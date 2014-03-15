@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="wrap_content"
+    android:layout_width="wrap_content">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:text="Friend's Activity"
+        android:gravity="center_vertical"
+        style="@style/CardTitle.1line"
+        android:id="@+id/textViewFriendsLabel"
+        android:layout_below="@+id/viewTrendingMovies"
+        android:layout_alignParentLeft="true"
+        android:layout_alignBottom="@+id/button3"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="2dp"
+        android:paddingLeft="2dp"/>
+
+    <Button
+
+        style="?android:attr/buttonStyleSmall"
+        android:layout_margin="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:gravity="center_vertical"
+        android:textAllCaps="true"
+        android:text="See More"
+        android:id="@+id/button3"
+        android:layout_alignParentRight="true"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="5dp"
+        android:id="@+id/linearLayoutFriends"
+        android:layout_below="@+id/button3">
+
+    </LinearLayout>
+
+</RelativeLayout>

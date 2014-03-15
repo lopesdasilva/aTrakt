@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+    style="@style/nowCardStyle">
+
+    <TextView
+        style="@style/CardTitleBold.Blue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Game of Thrones"
+        android:id="@+id/textViewEpisodeTonightShowTitle"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/imageView2"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="1dp"/>
+
+    <ImageView
+        android:scaleType="centerCrop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageViewEpisodeTonightScreen"
+        android:layout_below="@+id/textViewEpisodeTonightShowTitle"
+        android:src="@drawable/episode_backdrop"
+        android:adjustViewBounds="true"
+        android:maxHeight="200dp"
+        android:layout_alignParentLeft="true"/>
+
+    <TextView
+        style="@style/CardTitleBold"
+        android:id="@+id/textViewEpisodeTonightEpisodeTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Large Text"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_below="@+id/imageViewEpisodeTonightScreen"
+        android:layout_alignRight="@+id/textViewEpisodeTonightShowNetwork"
+        android:layout_toRightOf="@+id/textViewEpisodeTonightRatingsPercentage"
+        android:layout_marginLeft="3dp"/>
+
+    <View
+        android:id="@+id/viewEpisodeTonightLine"
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="@color/light_grey"
+        android:padding="2dp"
+        android:layout_below="@+id/textViewEpisodeTonightEpisodeTitle"
+        android:layout_alignLeft="@+id/textViewEpisodeTonightEpisodeTitle"/>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginLeft="2dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_below="@+id/textViewEpisodeTonightEpisodeTitle"
+        android:layout_alignLeft="@+id/imageViewEpisodeTonightScreen">
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="S1E9"
+        style="@style/CardTitleBold.1Lines"
+        android:id="@+id/textViewEpisodeTonightSeasonEpisodeNumber"
+        android:layout_alignTop="@+id/textViewEpisodeTonightShowTitle"
+        android:layout_alignRight="@+id/imageViewEpisodeTonightScreen"/>
+
+    <TextView
+        style="@style/CardText.1Line.Bigger.White"
+        android:id="@+id/textViewEpisodeTonightEpisodeAirDate"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:text="Sun 9pm"
+        android:background="@color/transparentBlack"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_alignTop="@+id/textView4"
+        android:layout_toLeftOf="@+id/textView4"
+        android:gravity="center_vertical|end"/>
+
+    <TextView
+        style="@style/CardTitleBold.Blue"
+        android:id="@+id/textViewEpisodeTonightShowNetwork"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:text="@string/network"
+        android:background="@color/transparentBlack"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_alignBottom="@+id/imageViewEpisodeTonightScreen"
+        android:layout_alignRight="@+id/imageViewEpisodeTonightScreen"
+        android:layout_marginRight="2dp"
+        android:gravity="center_vertical"/>
+
+    <TextView
+        style="@style/CardText.1Line.Bigger.White"
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:paddingLeft="2dp"
+        android:paddingRight="2dp"
+        android:text="@string/on"
+        android:background="@color/transparentBlack"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_alignBottom="@+id/imageViewEpisodeTonightScreen"
+        android:layout_toLeftOf="@+id/textViewEpisodeTonightShowNetwork"
+        android:gravity="center_vertical"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:lines="2"
+        style="@style/CardText.2lines"
+        android:id="@+id/textViewEpisodeTonightEpisodeOverview"
+        android:layout_below="@+id/viewEpisodeTonightLine"
+        android:layout_marginTop="2dp"
+        android:layout_marginRight="2dp"
+        android:layout_alignLeft="@+id/textViewEpisodeTonightEpisodeTitle"/>
+
+    <ImageView
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:id="@+id/imageView"
+        android:layout_below="@+id/textViewEpisodeTonightSeasonEpisodeNumber"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/seen_tag"/>
+
+    <ImageView
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:id="@+id/imageView2"
+        android:layout_below="@+id/textViewEpisodeTonightSeasonEpisodeNumber"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/hearth_tag"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView3"
+        android:src="@drawable/rating_favorite"
+        android:layout_alignLeft="@+id/textViewEpisodeTonightShowTitle"
+        android:layout_below="@+id/imageViewEpisodeTonightScreen"
+        android:layout_alignBottom="@+id/textViewEpisodeTonightRatingsPercentage"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="100%"
+        style="@style/CardTitleBold.Blue"
+        android:gravity="center_vertical"
+        android:id="@+id/textViewEpisodeTonightRatingsPercentage"
+        android:layout_toRightOf="@+id/imageView3"
+        android:layout_below="@+id/imageViewEpisodeTonightScreen"
+        android:layout_alignBottom="@+id/textViewEpisodeTonightEpisodeOverview"/>
+
+</RelativeLayout>

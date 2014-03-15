@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/action_recommended_dismiss_show"
+        android:showAsAction="never"
+        android:title="Dismiss show"/>
+    <item
+        android:id="@+id/action_recommended_seen_movie"
+        android:showAsAction="never"
+        android:title="Mark as seen"/>
+    <item
+        android:id="@+id/action_recommended_unseen_movie"
+        android:showAsAction="never"
+        android:visible="false"
+        android:title="Mark as unseen"/>
+</menu>

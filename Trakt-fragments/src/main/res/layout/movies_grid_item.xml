@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="115dp"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:id="@+id/relativeLayoutMoviesMovie"
+                style="@style/Element_Spacing"
+                android:background="@drawable/card_background_shadow">
+
+    <ImageView
+        android:layout_width="115dp"
+        android:layout_height="180dp"
+        android:cropToPadding="true"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        android:id="@+id/imageViewMoviesPoster"
+        android:src="@drawable/poster"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"/>
+
+    <ProgressBar
+        android:layout_width="15dip"
+        android:layout_height="15dip"
+        android:id="@+id/progress"
+        android:layout_centerInParent="true"
+        />
+
+    <TextView
+        android:layout_marginLeft="2dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        style="@style/CardText.1Line"
+        android:id="@+id/textViewMoviesMovieTitle"
+        android:layout_below="@+id/imageViewMoviesPoster"
+        android:layout_alignParentLeft="true"
+        android:layout_alignRight="@+id/imageViewMoviesPoster"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="100%"
+        style="@style/CardText.1Line.Blue"
+        android:id="@+id/textViewMoviesMoviePercentage"
+        android:layout_below="@+id/textViewMoviesMovieTitle"
+        android:layout_toRightOf="@+id/imageView"/>
+
+    <ImageView
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:id="@+id/imageView"
+        android:layout_below="@+id/textViewMoviesMovieTitle"
+        android:layout_alignLeft="@+id/textViewMoviesMovieTitle"
+        android:src="@drawable/rating_favorite"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="00 Viewers"
+        android:gravity="right"
+        android:padding="1dp"
+        android:id="@+id/textViewMoviesMovieViewers"
+        android:layout_alignBottom="@+id/imageViewMoviesPoster"
+        android:layout_alignRight="@+id/textViewMoviesMovieTitle"
+        android:layout_alignParentLeft="true"
+        style="@style/CardText.1Line.White"
+        android:background="@color/transparentBlack"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0000 votes"
+        android:id="@+id/textViewMoviesMovieNumberVotes"
+        style="@style/CardText.1Line"
+        android:layout_below="@+id/textViewMoviesMovieTitle"
+        android:layout_toRightOf="@+id/textViewMoviesMoviePercentage"
+        android:layout_alignRight="@+id/textViewMoviesMovieTitle"
+        android:gravity="right"/>
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:id="@+id/imageViewMoviesLovedTag"
+        android:src="@drawable/hearth_tag"
+        android:layout_alignTop="@+id/imageViewMoviesPoster"
+        android:layout_alignRight="@+id/textViewMoviesMovieTitle"/>
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:id="@+id/imageViewMoviesHatedTag"
+        android:src="@drawable/hated_tag"
+        android:layout_alignTop="@+id/imageViewMoviesPoster"
+        android:layout_alignRight="@+id/textViewMoviesMovieTitle"/>
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:id="@+id/imageViewMoviesSeenTag"
+        android:src="@drawable/seen_tag"
+        android:layout_alignTop="@+id/imageViewMoviesPoster"
+        android:layout_alignRight="@+id/textViewMoviesMovieTitle"/>
+
+</RelativeLayout>

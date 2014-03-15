@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/Element_Spacing"
+                android:id="@+id/relativeLayoutFriendsItem">
+
+    <ImageView
+        android:layout_width="75dp"
+        android:layout_height="110dp"
+        android:id="@+id/imageViewFriendsPoster"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/poster"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Username"
+        android:id="@+id/textViewFriendsUsername"
+        android:layout_alignTop="@+id/imageViewFriendsPoster"
+        android:layout_alignParentLeft="true"
+        style="@style/CardTitle"
+        android:layout_toLeftOf="@+id/imageViewFriendsPoster"
+        android:layout_marginLeft="2dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="watched"
+        android:id="@+id/textViewFriendsAction"
+        style="@style/CardText"
+        android:layout_below="@+id/textViewFriendsUsername"
+        android:layout_toLeftOf="@+id/imageViewFriendsPoster"
+        android:layout_alignLeft="@+id/textViewFriendsUsername"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Game Of Thrones S02E10"
+        android:id="@+id/textViewFriendsItemTitle"
+        style="@style/CardText.1Line.Blue"
+        android:layout_below="@+id/textViewFriendsAction"
+        android:layout_toLeftOf="@+id/imageViewFriendsPoster"
+        android:layout_alignLeft="@+id/textViewFriendsAction"/>
+
+    <TextView
+        style="@style/CardText.1Line.Blue"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:text="Fri 10:30"
+        android:id="@+id/textView"
+        android:gravity="center_vertical|right"
+        android:layout_alignBottom="@+id/imageViewFriendsPoster"
+        android:layout_alignParentRight="true"
+        android:layout_alignLeft="@+id/imageViewFriendsPoster"
+        android:background="@color/transparentBlack"
+        android:layout_marginRight="3dp"/>
+
+</RelativeLayout>

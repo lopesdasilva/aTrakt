@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+    style="@style/nowCardStyle2small">
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="150dp"
+        android:id="@+id/imageViewSearchMoviePoster"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:src="@drawable/poster"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Large Text"
+        android:id="@+id/textViewSearchMovieTitle"
+        android:layout_marginLeft="6dp"
+        style="@style/CardTitleBold.Blue"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/imageViewSearchMoviePoster"
+        android:layout_toLeftOf="@+id/imageView"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        style="@style/CardText.1Line.Bigger"
+        android:layout_marginLeft="6dp"
+        android:id="@+id/textViewSearchMovieTag"
+        android:layout_below="@+id/textViewSearchMovieTitle"
+        android:layout_toRightOf="@+id/imageViewSearchMoviePoster"
+        android:layout_alignRight="@+id/imageView"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="100%"
+        android:layout_marginLeft="2dp"
+        style="@style/CardTitleBold.Blue"
+        android:id="@+id/textViewSearchMovieRatingsPercentage"
+        android:layout_alignBottom="@+id/imageViewSearchMoviePoster"
+        android:layout_alignParentRight="true"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView2"
+        android:layout_alignBottom="@+id/textViewSearchMovieRatingsPercentage"
+        android:layout_toLeftOf="@+id/textViewSearchMovieRatingsPercentage"
+        android:src="@drawable/rating_favorite"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:layout_marginLeft="6dp"
+        style="@style/CardText.2lines"
+        android:lines="2"
+        android:id="@+id/textViewSearchMovieOverview"
+        android:layout_below="@+id/textViewSearchMovieTag"
+        android:layout_toRightOf="@+id/imageViewSearchMoviePoster"
+        android:layout_alignRight="@+id/textViewSearchMovieTag"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView"
+        android:src="@drawable/ic_action_overflow_light"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"/>
+</RelativeLayout>

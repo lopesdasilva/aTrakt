@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/nowCardStyle2small"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/textViewSeasonEpisodeNumber"
+        style="@style/Item.Sticky.1Line"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:paddingLeft="5dp"
+        android:paddingTop="3dp"
+        android:text="@string/episode"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/textViewSeasonEpisodeTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        style="@style/CardText.1Line"
+        android:layout_below="@+id/textViewSeasonEpisodeNumber"
+        android:text="Inside Game of Thrones"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <View
+        android:id="@+id/view1"
+        android:layout_width="fill_parent"
+        android:layout_height="2dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/textViewSeasonEpisodeTitle"
+        android:layout_marginBottom="3dp"
+        android:layout_marginTop="3dp"
+        android:layout_toLeftOf="@+id/imageViewSeasonEpisodeScreen"
+        android:background="@color/light_grey"
+        android:padding="2dp" />
+
+    <ImageView
+        android:id="@+id/imageViewSeasonEpisodeScreen"
+        android:layout_width="140dp"
+        android:layout_height="80dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/episode_backdrop" />
+
+    <TextView
+        android:id="@+id/textViewSeasonEpisodeDate"
+        style="@style/ShowTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/imageViewSeasonEpisodeScreen"
+        android:layout_alignLeft="@+id/view1"
+        android:text="seg, Dez 6, 2010"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <ImageView
+        android:id="@+id/imageViewSeasonEpisodeSeenTag"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:src="@drawable/seen_tag"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"/>
+
+</RelativeLayout>

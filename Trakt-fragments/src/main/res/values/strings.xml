@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">aTrakt
+    </string>
+    <string name="action_settings">Settings
+    </string>
+    <string name="hello_world">Hello world!
+    </string>
+    <string name="episode">Episode Title</string>
+    <string name="votes">Votes</string>
+    <string name="overview">Overview</string>
+    <string name="network">Network</string>
+    <string name="on">on</string>
+    <string name="nextepisode">Next Episode</string>
+    <array name="calendar_longclick">
+        <item>Mark as seen</item>
+        <item>Love</item>
+    </array>
+    <array name="navigation_drawer">
+        <item>Trending</item>
+        <item>Library</item>
+        <item>Recommended</item>
+        <item>Watchlist</item>
+        <item>Calendar</item>
+    </array>
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+    <string name="app_not_available">App not available</string>
+    <string name="search_hint">What are you looking for?</string>
+    <array name="watchlist_remove">
+        <item>Remove from watchlist</item>
+        <!--<item>Loved</item>-->
+        <!--<item>Hated</item>-->
+
+    </array>
+</resources>

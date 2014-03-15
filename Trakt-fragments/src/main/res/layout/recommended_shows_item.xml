@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/nowCardStyle.Smaller">
+
+    <ImageView
+        android:layout_width="90dp"
+        android:layout_height="135dp"
+        android:id="@+id/imageViewRecommendedShowPoster"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:src="@drawable/poster"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Show Name"
+        android:id="@+id/textViewRecommendedShowTitle"
+        android:layout_alignTop="@+id/imageViewRecommendedShowPoster"
+        android:layout_toRightOf="@+id/imageViewRecommendedShowPoster"
+        android:layout_marginLeft="13dp"
+        style="@style/CardTitle.1line.Blue"
+        android:layout_toLeftOf="@+id/imageViewRecommendedShowOverflow"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView"
+        android:src="@drawable/rating_favorite"
+        android:layout_above="@+id/textViewRecommendedShowVotes"
+        android:layout_toLeftOf="@+id/textViewRecommendedShowPercentage"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="100%"
+        android:id="@+id/textViewRecommendedShowPercentage"
+        android:gravity="center_vertical"
+        style="@style/CardText.1Line.Bigger.Blue"
+        android:layout_above="@+id/textViewRecommendedShowVotes"
+        android:layout_alignTop="@+id/imageView"
+        android:layout_alignParentRight="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="2000 votes"
+        android:id="@+id/textViewRecommendedShowVotes"
+        android:layout_alignBottom="@+id/imageViewRecommendedShowPoster"
+        android:layout_alignParentRight="true"
+        android:gravity="end"
+        style="@style/CardText.1Line"
+        android:layout_toRightOf="@+id/textViewRecommendedShowAirDate"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Overview"
+        android:id="@+id/textViewRecommendedShowOverview"
+        android:layout_below="@+id/textViewRecommendedShowTitle"
+        android:layout_alignLeft="@+id/textViewRecommendedShowTitle"
+        android:layout_above="@+id/imageView"
+        android:layout_alignRight="@+id/textViewRecommendedShowPercentage"
+        style="@style/CardText.2lines"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Wed at 8:00pm"
+        android:id="@+id/textViewRecommendedShowAirDate"
+        android:layout_alignBottom="@+id/imageViewRecommendedShowPoster"
+        android:layout_alignLeft="@+id/textViewRecommendedShowOverview"
+        style="@style/CardText.1Line"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Network"
+        style="@style/CardText.1Line.Blue"
+        android:id="@+id/textViewRecommendedShowNetwork"
+        android:layout_above="@+id/textViewRecommendedShowAirDate"
+        android:layout_alignLeft="@+id/textViewRecommendedShowAirDate"
+        android:layout_alignRight="@+id/textViewRecommendedShowAirDate"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageViewRecommendedShowOverflow"
+        android:src="@drawable/ic_overflow"
+        android:layout_alignTop="@+id/textViewRecommendedShowTitle"
+        android:layout_alignParentRight="true"/>
+</RelativeLayout>

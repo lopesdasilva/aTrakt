@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              style="@style/nowCardStyle2small">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Large Text"
+        android:id="@+id/textViewActorName"
+        android:layout_gravity="left|center_vertical"
+        style="@style/CardTitleBold.Blue"
+        android:layout_alignTop="@+id/imageViewActorImage"
+        android:layout_alignParentLeft="true"
+        android:layout_toLeftOf="@+id/imageViewActorImage"/>
+
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="120dp"
+        android:id="@+id/imageViewActorImage"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/poster"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Small Text"
+        android:id="@+id/textViewCharacterName"
+        android:layout_alignLeft="@+id/textViewActorName"
+        style="@style/CardText.1Line"
+        android:layout_below="@+id/textViewActorName"
+        android:layout_alignRight="@+id/textViewActorName"/>
+</RelativeLayout>

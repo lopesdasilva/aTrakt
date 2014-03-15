@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/nowCardStyle2small">
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="150dp"
+        android:id="@+id/imageViewSearchShowPoster"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:src="@drawable/poster"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Large Text"
+        android:id="@+id/textViewSearchShowTitle"
+        style="@style/CardTitleBold.Blue"
+
+        android:layout_marginLeft="6dp"
+        android:layout_marginRight="6dp"
+        android:layout_alignTop="@+id/imageViewSearchShowPoster"
+        android:layout_toRightOf="@+id/imageViewSearchShowPoster"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="3 "
+        android:layout_marginLeft="3dp"
+        style="@style/CardText.1Line.Bigger"
+        android:id="@+id/textViewSearchShowTag"
+        android:layout_below="@+id/textViewSearchShowTitle"
+        android:layout_alignRight="@+id/textViewSearchShowRatingsPercentage"
+        android:layout_toRightOf="@+id/textView"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="100%"
+        style="@style/CardTitleBold.Blue"
+        android:id="@+id/textViewSearchShowRatingsPercentage"
+        android:layout_alignBottom="@+id/imageViewSearchShowPoster"
+        android:layout_alignParentRight="true"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView2"
+        android:layout_alignBottom="@+id/textViewSearchShowRatingsPercentage"
+        android:layout_toLeftOf="@+id/textViewSearchShowRatingsPercentage"
+        android:src="@drawable/rating_favorite"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        style="@style/CardText.2lines"
+        android:lines="2"
+        android:id="@+id/textViewSearchShowOverview"
+        android:layout_below="@+id/textViewSearchShowTag"
+        android:layout_alignRight="@+id/textViewSearchShowTag"
+        android:layout_alignLeft="@+id/textView"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Seasons:"
+        android:id="@+id/textView"
+        android:layout_below="@+id/textViewSearchShowTitle"
+        android:layout_alignLeft="@+id/textViewSearchShowTitle"
+        style="@style/CardText.1Line.Bigger"
+        android:layout_gravity="bottom"
+        android:gravity="center_vertical"
+        android:layout_above="@+id/textViewSearchShowOverview"/>
+</RelativeLayout>

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+    android:paddingTop="1dp"
+    android:paddingBottom="1dp">
+
+    <ImageView
+        android:layout_marginLeft="1dp"
+        android:layout_marginRight="1dp"
+        android:id="@+id/imageViewCalendarEpisodeBackdrop"
+        android:adjustViewBounds="true"
+        android:layout_width="200dp"
+        android:layout_height="100dp"
+        android:scaleType="centerCrop"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:src="@drawable/episode_backdrop"/>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:background="@color/transparentBlack"
+        android:orientation="vertical"
+        android:layout_alignLeft="@+id/imageViewCalendarEpisodeBackdrop"
+        android:layout_alignRight="@+id/imageViewCalendarEpisodeBackdrop"
+        android:layout_alignBottom="@+id/imageViewCalendarEpisodeBackdrop">
+
+        <TextView
+            style="@style/CardText.1Line.Bigger.White"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Large Text"
+            android:id="@+id/textViewCalendarShowTitle"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Small Text"
+            style="@style/CardText.1Line"
+            android:id="@+id/textViewCalendarEpisodeTitle"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="3dp"
+            android:layout_toRightOf="@+id/textViewCalendarEpisodeSeasonNumberAndEpisodeNumber"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            style="@style/CardText.1Line.Blue"
+            android:text="Small Text"
+            android:id="@+id/textViewCalendarEpisodeSeasonNumberAndEpisodeNumber"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"/>
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:id="@+id/imageViewCalendarEpisodeLoveTag"
+        android:src="@drawable/hearth_tag"
+        android:layout_alignParentTop="true"
+        android:layout_alignRight="@+id/imageViewCalendarEpisodeBackdrop"
+        android:visibility="gone"/>
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:id="@+id/imageViewCalendarEpisodeHateTag"
+        android:src="@drawable/hated_tag"
+        android:layout_alignParentTop="true"
+        android:visibility="gone"
+        android:layout_alignRight="@+id/imageViewCalendarEpisodeBackdrop"/>
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:id="@+id/imageViewCalendarEpisodeSeenTag"
+        android:src="@drawable/seen_tag"
+        android:layout_alignTop="@+id/imageViewCalendarEpisodeBackdrop"
+        android:layout_alignRight="@+id/imageViewCalendarEpisodeBackdrop"/>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:id="@+id/imageViewCalendarEpisodeWatchlistTag"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="16dp"
+        android:layout_alignLeft="@+id/imageViewCalendarEpisodeBackdrop"
+        android:src="@drawable/watchlist_tag"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:id="@+id/imageViewCalendarEpisodeCollectionTag"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="10dp"
+        android:layout_alignLeft="@+id/imageViewCalendarEpisodeBackdrop"
+        android:src="@drawable/collections_tag"/>
+
+
+
+</RelativeLayout>

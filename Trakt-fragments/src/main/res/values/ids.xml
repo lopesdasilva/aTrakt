@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="menu_share" type="id">Share</item>
+    <item name="menu_delete" type="id">delete</item>
+    <item name="mark_seen" type="id">Mark as seen</item>
+    <item name="mark_unseen" type="id">Mark as unseen</item>
+</resources>

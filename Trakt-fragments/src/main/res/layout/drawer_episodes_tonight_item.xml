@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="240dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="3dp"
+                android:padding="3dp">
+
+    <TextView
+        android:id="@+id/textViewDrawerEpisodeNumber"
+        style="@style/Item.Sticky.1Line"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="S0E0"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_gravity="left"
+        android:gravity="left"
+        android:layout_below="@+id/textViewDrawerEpisodeTitle"
+        android:layout_alignParentLeft="true"/>
+
+    <TextView
+        android:id="@+id/textViewDrawerEpisodeTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/CardText.1Line"
+        android:text="Inside Game of Thrones"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_below="@+id/textViewDrawerEpisodeDate"
+        android:layout_toLeftOf="@+id/imageViewDrawerEpisodeScreen"
+        android:layout_alignParentLeft="true"/>
+
+
+    <ImageView
+        android:id="@+id/imageViewDrawerEpisodeScreen"
+        android:layout_width="86dp"
+        android:layout_height="66dp"
+        android:src="@drawable/episode_backdrop"
+        android:scaleType="centerCrop"
+        android:layout_alignTop="@+id/imageViewDrawerEpisodeSeenTag"
+        android:layout_alignParentRight="true"/>
+
+    <TextView
+        android:id="@+id/textViewDrawerEpisodeDate"
+        style="@style/ShowTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Game of Thrones"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/imageViewDrawerEpisodeScreen"
+        android:layout_alignParentLeft="true"/>
+
+    <ImageView
+        android:id="@+id/imageViewDrawerEpisodeSeenTag"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/seen_tag"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="HBO"
+        android:paddingLeft="3dp"
+        android:id="@+id/textViewDrawerEpisodeNetwork"
+        style="@style/Item.Sticky.1Line.Blue"
+        android:gravity="right"
+        android:layout_alignTop="@+id/textViewDrawerEpisodeNumber"
+        android:layout_toLeftOf="@+id/imageViewDrawerEpisodeScreen"
+        android:layout_toRightOf="@+id/textViewDrawerEpisodeNumber"
+        android:paddingRight="3dp"/>
+
+</RelativeLayout>

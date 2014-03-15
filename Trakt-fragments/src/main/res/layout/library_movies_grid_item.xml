@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="115dp"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:id="@+id/relativeLayoutMoviesMovie"
+                style="@style/Element_Spacing"
+                android:background="@drawable/card_background_shadow">
+
+    <ImageView
+        android:layout_width="115dp"
+        android:layout_height="180dp"
+        android:cropToPadding="true"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        android:id="@+id/imageViewMoviesPoster"
+        android:src="@drawable/poster"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"/>
+
+    <ProgressBar
+        android:layout_width="15dip"
+        android:layout_height="15dip"
+        android:id="@+id/progress"
+        android:layout_centerInParent="true"
+        />
+
+    <TextView
+        android:layout_marginLeft="2dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        style="@style/CardText.1Line"
+        android:id="@+id/textViewMoviesMovieTitle"
+        android:layout_below="@+id/imageViewMoviesPoster"
+        android:layout_alignParentLeft="true"
+        android:layout_alignRight="@+id/imageViewMoviesPoster"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1 play"
+        android:gravity="right"
+        android:padding="1dp"
+        android:id="@+id/textViewMoviesMoviePlays"
+        android:layout_alignBottom="@+id/imageViewMoviesPoster"
+        android:layout_alignRight="@+id/textViewMoviesMovieTitle"
+        android:layout_alignParentLeft="true"
+        style="@style/CardText.1Line.White"
+        android:background="@color/transparentBlack"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:id="@+id/imageViewLibraryCollectionTag"
+        android:src="@drawable/collections_tag"
+        android:layout_marginLeft="10dp"
+        android:layout_alignTop="@+id/imageViewMoviesPoster"
+        android:layout_alignLeft="@+id/textViewMoviesMovieTitle"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="0000"
+        style="@style/CardText.1Line.Blue"
+        android:id="@+id/textViewLibraryMovieYear"
+        android:layout_below="@+id/textViewMoviesMovieTitle"
+        android:layout_alignLeft="@+id/textViewMoviesMovieTitle"/>
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:id="@+id/imageViewLibraryMoviesSeenTag"
+        android:src="@drawable/seen_tag"
+        android:layout_alignTop="@+id/imageViewMoviesPoster"
+        android:layout_alignRight="@+id/textViewMoviesMovieTitle"/>
+
+</RelativeLayout>
