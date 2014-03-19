@@ -4,6 +4,9 @@
     <facet type="android" name="Android">
       <configuration>
         <option name="APK_PATH" value="/../../../build/classes/production/main/main.apk" />
+        <proGuardCfgFiles>
+          <file>file://C:/Program Files/Java/jdk1.7.0_51/tools/proguard/proguard-android.txt</file>
+        </proGuardCfgFiles>
         <notImportedProperties>
           <property>MANIFEST_FILE_PATH</property>
           <property>RESOURCES_DIR_PATH</property>
@@ -20,7 +23,7 @@
       <sourceFolder url="file://$MODULE_DIR$/gen" isTestSource="false" generated="true" />
       <sourceFolder url="file://$MODULE_DIR$/res" type="java-resource" />
     </content>
-    <orderEntry type="inheritedJdk" />
+    <orderEntry type="jdk" jdkName="Android API 19 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="trakt-java" />
     <orderEntry type="module" module-name="StickyGridHeaders" />

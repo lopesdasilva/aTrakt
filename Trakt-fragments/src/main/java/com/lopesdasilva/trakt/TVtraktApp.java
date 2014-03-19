@@ -2,12 +2,12 @@ package com.lopesdasilva.trakt;
 
 
 
-import java.util.List;
+import android.app.Application;
 
 import com.jakewharton.trakt.ServiceManager;
 import com.jakewharton.trakt.entities.TvShow;
 
-import android.app.Application;
+import java.util.List;
 
 public class TVtraktApp extends Application {
 
@@ -40,5 +40,5 @@ public class TVtraktApp extends Application {
 	public void setTrending(List<TvShow> trending) {
 		this.trending = trending;
 	}
-	
+
 }

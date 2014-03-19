@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/../StickyGridHeaders/Library/StickyGridHeaders.iml" filepath="$PROJECT_DIR$/../StickyGridHeaders/Library/StickyGridHeaders.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../stickygridheaders/library/StickyGridHeaders.iml" filepath="$PROJECT_DIR$/../stickygridheaders/library/StickyGridHeaders.iml" />
       <module fileurl="file://$PROJECT_DIR$/../apibuilder/src/main/apibuilder.iml" filepath="$PROJECT_DIR$/../apibuilder/src/main/apibuilder.iml" />
       <module fileurl="file://$PROJECT_DIR$/Trakt-fragments/src/main/atrakt.iml" filepath="$PROJECT_DIR$/Trakt-fragments/src/main/atrakt.iml" />
       <module fileurl="file://$PROJECT_DIR$/../trakt-java/src/main/trakt-java.iml" filepath="$PROJECT_DIR$/../trakt-java/src/main/trakt-java.iml" />

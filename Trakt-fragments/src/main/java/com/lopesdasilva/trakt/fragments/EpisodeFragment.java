@@ -7,19 +7,27 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
-import android.view.*;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+
 import com.androidquery.AQuery;
 import com.jakewharton.trakt.ServiceManager;
+import com.jakewharton.trakt.entities.RatingResponse;
 import com.jakewharton.trakt.entities.Response;
 import com.jakewharton.trakt.entities.TvEntity;
-import com.jakewharton.trakt.entities.TvShowEpisode;
-import com.jakewharton.trakt.enumerations.Rating;
 import com.lopesdasilva.trakt.R;
 import com.lopesdasilva.trakt.Tasks.CheckInChecker;
 import com.lopesdasilva.trakt.Tasks.DownloadEpisodeInfo;
+import com.lopesdasilva.trakt.Tasks.MarkEpisodeHate;
+import com.lopesdasilva.trakt.Tasks.MarkEpisodeLove;
+import com.lopesdasilva.trakt.Tasks.MarkEpisodeNone;
 import com.lopesdasilva.trakt.Tasks.MarkEpisodeWatchlistUnWatchlist;
 import com.lopesdasilva.trakt.Tasks.MarkSeenUnseen;
 import com.lopesdasilva.trakt.activities.ShowActivity;
@@ -31,7 +39,7 @@ import java.util.Date;
 /**
  * Created by lopesdasilva on 17/05/13.
  */
-public class EpisodeFragment extends Fragment implements DownloadEpisodeInfo.onEpisodeTaskComplete, MarkSeenUnseen.OnMarkSeenUnseenCompleted, MarkEpisodeWatchlistUnWatchlist.WatchlistUnWatchlistCompleted {
+public class EpisodeFragment extends Fragment implements DownloadEpisodeInfo.onEpisodeTaskComplete, MarkSeenUnseen.OnMarkSeenUnseenCompleted, MarkEpisodeWatchlistUnWatchlist.WatchlistUnWatchlistCompleted, MarkEpisodeHate.OnMarkEpisodeHateCompleted, MarkEpisodeLove.OnMarkEpisodeLoveCompleted, MarkEpisodeNone.OnMarkEpisodeNoneCompleted {
     private View rootView;
     private String show;
     private int season;
@@ -94,6 +102,22 @@ public class EpisodeFragment extends Fragment implements DownloadEpisodeInfo.onE
             menu.add(0, 2, 2, "Watchlist");
 
         menu.add(0, 3, 3, "Checkin");
+        if (episode_info.episode.rating != null) {
+
+            switch (episode_info.episode.rating) {
+                case Love:
+                    menu.add(0, 4, 4, "Hated");
+                    menu.add(0, 6, 6, "Remove rating");
+                    break;
+                case Hate:
+                    menu.add(0, 5, 5, "Loved");
+                    menu.add(0, 6, 6, "Remove rating");
+                    break;
+            }
+        }else {
+            menu.add(0, 4, 4, "Hated");
+            menu.add(0, 5, 5, "Loved");
+        }
     }
 
     @Override
@@ -154,7 +178,16 @@ public class EpisodeFragment extends Fragment implements DownloadEpisodeInfo.onE
                 new EpisodeCheckIn().execute();
 
                 return true;
+            case 4:
+                new MarkEpisodeHate(getActivity(),EpisodeFragment.this,manager,episode_info.show,episode_info.episode,0).execute();
 
+                return true;
+            case 5:
+                new MarkEpisodeLove(getActivity(),EpisodeFragment.this,manager,episode_info.show,episode_info.episode,0).execute();
+                return true;
+            case 6:
+                new MarkEpisodeNone(getActivity(),EpisodeFragment.this,manager,episode_info.show,episode_info.episode,0).execute();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -283,6 +316,43 @@ public class EpisodeFragment extends Fragment implements DownloadEpisodeInfo.onE
     @Override
     public void WatchlistUnWatchlistCompleted(int position) {
         updateWatchlist();
+    }
+
+    @Override
+    public void OnMarkEpisodeHateCompleted(int position, RatingResponse response) {
+        updateRatings(response);
+    }
+
+    private void updateRatings(RatingResponse response) {
+        episode_info.episode.rating=response.rating;
+        AQuery aq = new AQuery(getActivity());
+
+        if (episode_info.episode.rating == null) {
+            aq.id(R.id.imageViewHatedTag).gone();
+            aq.id(R.id.imageViewLovedTag).gone();
+        } else
+            switch (episode_info.episode.rating) {
+
+                case Love:
+                    aq.id(R.id.imageViewHatedTag).gone();
+                    aq.id(R.id.imageViewLovedTag).visible();
+                    break;
+                case Hate:
+                    aq.id(R.id.imageViewLovedTag).gone();
+                    aq.id(R.id.imageViewHatedTag).visible();
+                    break;
+            }
+
+    }
+
+    @Override
+    public void OnMarkEpisodeLoveCompleted(int position, RatingResponse response) {
+        updateRatings(response);
+    }
+
+    @Override
+    public void OnMarkEpisodeNoneCompleted(int position, RatingResponse response) {
+        updateRatings(response);
     }
 
     private class EpisodeCheckIn extends AsyncTask<Void, Void, Response> {

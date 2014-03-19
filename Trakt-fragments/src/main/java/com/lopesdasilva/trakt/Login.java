@@ -3,9 +3,7 @@ package com.lopesdasilva.trakt;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
-import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -19,6 +17,7 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.jakewharton.trakt.ServiceManager;
 import com.jakewharton.trakt.entities.Response;
 import com.lopesdasilva.trakt.extras.UserChecker;
@@ -236,10 +235,7 @@ public class Login extends FragmentActivity {
                 UserChecker.saveUserAndPassword(Login.this, mEmail, mPassword);
 
                 Intent intent = new Intent(getBaseContext(), MainActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
-                finish();
 
             } else {
                 mPasswordView

@@ -19,7 +19,7 @@ public class RecommendedActivity extends FragmentActivity {
         setContentView(R.layout.recommended_activity);
 
         getActionBar().setDisplayHomeAsUpEnabled(true);
-
+        getActionBar().setIcon(R.drawable.logo_black);
 
         if (savedInstanceState == null) {
             Log.d("Trakt", "Launching Fragment");

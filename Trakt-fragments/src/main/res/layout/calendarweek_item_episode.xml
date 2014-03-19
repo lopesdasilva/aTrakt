@@ -63,8 +63,7 @@
         android:id="@+id/imageViewCalendarEpisodeLoveTag"
         android:src="@drawable/hearth_tag"
         android:layout_alignParentTop="true"
-        android:layout_alignRight="@+id/imageViewCalendarEpisodeBackdrop"
-        android:visibility="gone"/>
+        android:layout_alignRight="@+id/imageViewCalendarEpisodeBackdrop"/>
 
     <ImageView
         android:layout_width="50dp"
@@ -72,7 +71,6 @@
         android:id="@+id/imageViewCalendarEpisodeHateTag"
         android:src="@drawable/hated_tag"
         android:layout_alignParentTop="true"
-        android:visibility="gone"
         android:layout_alignRight="@+id/imageViewCalendarEpisodeBackdrop"/>
 
     <ImageView
@@ -84,7 +82,7 @@
         android:layout_alignRight="@+id/imageViewCalendarEpisodeBackdrop"/>
     <ImageView
         android:layout_width="wrap_content"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:id="@+id/imageViewCalendarEpisodeWatchlistTag"
         android:layout_alignParentTop="true"
         android:layout_marginLeft="16dp"
@@ -93,7 +91,7 @@
 
     <ImageView
         android:layout_width="wrap_content"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:id="@+id/imageViewCalendarEpisodeCollectionTag"
         android:layout_alignParentTop="true"
         android:layout_marginLeft="10dp"

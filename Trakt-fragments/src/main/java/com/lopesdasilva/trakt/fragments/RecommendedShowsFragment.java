@@ -8,18 +8,20 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.*;
+import android.widget.AdapterView;
+import android.widget.BaseAdapter;
+import android.widget.ListView;
+import android.widget.PopupMenu;
+import android.widget.Toast;
+
 import com.androidquery.AQuery;
 import com.jakewharton.trakt.ServiceManager;
 import com.jakewharton.trakt.entities.DismissResponse;
 import com.jakewharton.trakt.entities.TvShow;
-import com.jakewharton.trakt.entities.TvShowEpisode;
 import com.lopesdasilva.trakt.R;
 import com.lopesdasilva.trakt.Tasks.DismissRecomendationShow;
 import com.lopesdasilva.trakt.Tasks.DownloadRecommendedShows;
-import com.lopesdasilva.trakt.Tasks.MarkSeenUnseen;
 import com.lopesdasilva.trakt.activities.ShowActivity;
-import com.lopesdasilva.trakt.extras.SwipeDismissListViewTouchListener;
 import com.lopesdasilva.trakt.extras.UserChecker;
 
 import java.io.Serializable;
@@ -116,7 +118,6 @@ public class RecommendedShowsFragment extends Fragment implements DownloadRecomm
     @Override
     public void onRecommendedShowListTaskComplete(List<TvShow> response) {
         updateView(response);
-
     }
 
     @Override

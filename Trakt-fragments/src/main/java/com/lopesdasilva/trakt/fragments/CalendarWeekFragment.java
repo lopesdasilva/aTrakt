@@ -10,12 +10,18 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.*;
+import android.widget.AdapterView;
+import android.widget.BaseAdapter;
+
 import com.androidquery.AQuery;
 import com.jakewharton.trakt.ServiceManager;
 import com.jakewharton.trakt.entities.CalendarDate;
+import com.jakewharton.trakt.entities.RatingResponse;
 import com.lopesdasilva.trakt.R;
 import com.lopesdasilva.trakt.Tasks.DownloadWeekCalendar;
+import com.lopesdasilva.trakt.Tasks.MarkEpisodeHate;
+import com.lopesdasilva.trakt.Tasks.MarkEpisodeLove;
+import com.lopesdasilva.trakt.Tasks.MarkEpisodeNone;
 import com.lopesdasilva.trakt.Tasks.MarkEpisodeWatchlistUnWatchlist;
 import com.lopesdasilva.trakt.Tasks.MarkSeenUnseen;
 import com.lopesdasilva.trakt.activities.EpisodeActivity;
@@ -32,7 +38,7 @@ import java.util.List;
 /**
  * Created by lopesdasilva on 27/05/13.
  */
-public class CalendarWeekFragment extends Fragment implements DownloadWeekCalendar.OnWeekTaskCompleted, MarkSeenUnseen.OnMarkSeenUnseenCompleted, MarkEpisodeWatchlistUnWatchlist.WatchlistUnWatchlistCompleted {
+public class CalendarWeekFragment extends Fragment implements DownloadWeekCalendar.OnWeekTaskCompleted, MarkSeenUnseen.OnMarkSeenUnseenCompleted, MarkEpisodeWatchlistUnWatchlist.WatchlistUnWatchlistCompleted, MarkEpisodeHate.OnMarkEpisodeHateCompleted, MarkEpisodeLove.OnMarkEpisodeLoveCompleted, MarkEpisodeNone.OnMarkEpisodeNoneCompleted {
 
     private ServiceManager manager;
     private DownloadWeekCalendar mTaskDownloadWeekCalendar;
@@ -132,18 +138,18 @@ public class CalendarWeekFragment extends Fragment implements DownloadWeekCalend
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, final int position, long l) {
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                builder.setTitle(lista.get(position).show.title);
+                builder.setTitle(lista.get(position).show.title +" - S"+lista.get(position).episode.season+"E"+lista.get(position).episode.number);
                 String[] options = new String[4];
                 if (lista.get(position).episode.rating != null) {
 
                     switch (lista.get(position).episode.rating) {
                         case Love:
-                            options[1] = "Removed Rating";
+                            options[1] = "Remove Rating";
                             options[2] = "Mark as Hated";
                             break;
                         case Hate:
-                            options[1] = "Removed Rating";
-                            options[2] = "Mark as Loved";
+                            options[2] = "Remove Rating";
+                            options[1] = "Mark as Loved";
                             break;
                     }
                 } else {
@@ -161,14 +167,29 @@ public class CalendarWeekFragment extends Fragment implements DownloadWeekCalend
                 else
                     options[3] = "Add to watchlist";
 
+                //options[4] = "Hide this show";
+
 
                 builder.setItems(options, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int item_clicked) {
 
                         switch (item_clicked) {
                             case 0:
-                                Toast.makeText(getActivity(), "Mark watched", Toast.LENGTH_SHORT).show();
                                 new MarkSeenUnseen(getActivity(), CalendarWeekFragment.this, manager, lista.get(position).show, lista.get(position).episode, position).execute();
+                                break;
+                            case 1:
+                                if (lista.get(position).episode.rating != null)
+                                    new MarkEpisodeNone(getActivity(),CalendarWeekFragment.this,manager,lista.get(position).show,lista.get(position).episode,position).execute();
+                                else
+                                new MarkEpisodeLove(getActivity(),CalendarWeekFragment.this,manager,lista.get(position).show,lista.get(position).episode,position).execute();
+
+                                break;
+                            case 2:
+                                if (lista.get(position).episode.rating != null)
+                                    new MarkEpisodeNone(getActivity(),CalendarWeekFragment.this,manager,lista.get(position).show,lista.get(position).episode,position).execute();
+                                else
+                                new MarkEpisodeHate(getActivity(),CalendarWeekFragment.this,manager,lista.get(position).show,lista.get(position).episode,position).execute();
+
                                 break;
                             case 3:
                                 new MarkEpisodeWatchlistUnWatchlist(getActivity(), CalendarWeekFragment.this, manager, lista.get(position).show, lista.get(position).episode, position).execute();
@@ -210,6 +231,24 @@ public class CalendarWeekFragment extends Fragment implements DownloadWeekCalend
     @Override
     public void WatchlistUnWatchlistCompleted(int position) {
         lista.get(position).episode.inWatchlist = !lista.get(position).episode.inWatchlist;
+        mAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void OnMarkEpisodeHateCompleted(int position, RatingResponse response) {
+        lista.get(position).episode.rating = response.rating;
+        mAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void OnMarkEpisodeLoveCompleted(int position, RatingResponse response) {
+        lista.get(position).episode.rating = response.rating;
+        mAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void OnMarkEpisodeNoneCompleted(int position, RatingResponse response) {
+        lista.get(position).episode.rating = null;
         mAdapter.notifyDataSetChanged();
     }
 
@@ -279,7 +318,11 @@ public class CalendarWeekFragment extends Fragment implements DownloadWeekCalend
                         aq.id(R.id.imageViewCalendarEpisodeLoveTag).gone();
                         aq.id(R.id.imageViewCalendarEpisodeHateTag).visible();
                         break;
+
                 }
+            }else{
+                aq.id(R.id.imageViewCalendarEpisodeLoveTag).gone();
+                aq.id(R.id.imageViewCalendarEpisodeHateTag).gone();
             }
 
 
