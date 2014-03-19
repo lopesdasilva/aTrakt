@@ -3,8 +3,10 @@ package com.lopesdasilva.trakt.fragments;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,7 +17,9 @@ import com.jakewharton.trakt.ServiceManager;
 import com.jakewharton.trakt.entities.TvShow;
 import com.jakewharton.trakt.entities.TvShowEpisode;
 import com.lopesdasilva.trakt.R;
+import com.lopesdasilva.trakt.Tasks.MarkEpisodeWatchlistUnWatchlist;
 import com.lopesdasilva.trakt.Tasks.MarkSeenUnseen;
+import com.lopesdasilva.trakt.activities.EpisodeActivity;
 import com.lopesdasilva.trakt.extras.UserChecker;
 import com.tonicartos.widget.stickygridheaders.StickyGridHeadersBaseAdapter;
 import com.tonicartos.widget.stickygridheaders.StickyGridHeadersGridView;
@@ -27,13 +31,13 @@ import java.util.List;
 /**
  * Created by lopesdasilva on 15/10/13.
  */
-public class WatchlistEpisodes extends DialogFragment implements MarkSeenUnseen.OnMarkSeenUnseenCompleted {
+public class WatchlistEpisodes extends DialogFragment implements MarkSeenUnseen.OnMarkSeenUnseenCompleted, MarkEpisodeWatchlistUnWatchlist.WatchlistUnWatchlistCompleted {
 
 
     private ServiceManager manager;
     private View rootView;
     private TvShow currentShow;
-    private ListAdapter mAdapter;
+    private ShowSeasonsAdapter mAdapter;
     private LinkedList<TvShowSeason_Auxiliar>  mListHeaders=new LinkedList<TvShowSeason_Auxiliar>();
     private List<TvShowEpisode> lista=new LinkedList<TvShowEpisode>();
 
@@ -87,8 +91,27 @@ public class WatchlistEpisodes extends DialogFragment implements MarkSeenUnseen.
         mAdapter=new ShowSeasonsAdapter(getActivity(),mListHeaders,currentShow.episodes);
 
         listview.setAdapter(mAdapter);
+        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
 
 
+
+                Log.d("Trakt", "position" + position+" size"+lista.size());
+                Bundle arguments = new Bundle();
+                arguments.putString("show_imdb", currentShow.imdbId);
+                arguments.putInt("show_season", currentShow.episodes.get(position).season);
+                arguments.putInt("show_episode", currentShow.episodes.get(position).number);
+                Intent i = new Intent(getActivity(), EpisodeActivity.class);
+                i.putExtras(arguments);
+
+                startActivity(i);
+                getActivity().overridePendingTransition(R.anim.push_left_out, R.anim.push_left_in);
+
+
+
+            }
+        });
         return rootView;
     }
 
@@ -97,6 +120,14 @@ public class WatchlistEpisodes extends DialogFragment implements MarkSeenUnseen.
         Toast.makeText(getActivity(),"todo mark seen/unseen",Toast.LENGTH_SHORT).show();
     }
 
+    @Override
+    public void WatchlistUnWatchlistCompleted(int position) {
+        Toast.makeText(getActivity(),"TODO: Done",Toast.LENGTH_SHORT).show();
+        mAdapter.removeEpisode(currentShow.episodes.get(position));
+
+
+        mAdapter.notifyDataSetChanged();
+    }
 
 
     public class ShowSeasonsAdapter extends BaseAdapter implements StickyGridHeadersBaseAdapter {
@@ -109,6 +140,11 @@ public class WatchlistEpisodes extends DialogFragment implements MarkSeenUnseen.
             this.mListHeaders = seasons;
             this.lista = lista;
             inflater = LayoutInflater.from(context);
+        }
+
+
+        public void removeEpisode(TvShowEpisode episode){
+            lista.remove(episode);
         }
 
         @Override
@@ -149,12 +185,12 @@ public class WatchlistEpisodes extends DialogFragment implements MarkSeenUnseen.
 //                });
 //            } else {
 //                aq.id(R.id.imageViewSeasonsEpisodeSeenTag).gone();
-//                aq.id(R.id.imageViewSeasonsEpisodeOptions).clicked(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View view) {
-//                        showSeenMenu(view, lista.get(position), position);
-//                    }
-//                });
+                aq.id(R.id.imageViewSeasonsEpisodeOptions).clicked(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        showSeenMenu(view, currentShow.episodes.get(position), position);
+                    }
+                });
 //            }
 //            if (lista.get(position).rating != null) {
 //                switch (lista.get(position).rating) {
@@ -195,18 +231,21 @@ public class WatchlistEpisodes extends DialogFragment implements MarkSeenUnseen.
 
                     switch (menuItem.getItemId()) {
 
-                        case R.id.action_episode_unseen:
-                            new MarkSeenUnseen(getActivity(), WatchlistEpisodes.this, manager, currentShow, episode, position).execute();
+                        case R.id.action_episode_remove_watchlist:
+                            //if it is here then it has to be true
+                            currentShow.episodes.get(position).inWatchlist=true;
+                            new MarkEpisodeWatchlistUnWatchlist(getActivity(),WatchlistEpisodes.this,manager,currentShow,currentShow.episodes.get(position),position).execute();
+//                            new MarkSeenUnseen(getActivity(), WatchlistEpisodes.this, manager, currentShow, episode, position).execute();
                             return true;
                         default:
                             return false;
                     }
                 }
             });
-            if (episode.watched)
-                popup.inflate(R.menu.seasons_episode_actions_unseen);
-            else
-                popup.inflate(R.menu.seasons_episode_actions_seen);
+//            if (episode.watched)
+//                popup.inflate(R.menu.seasons_episode_actions_unseen);
+//            else
+                popup.inflate(R.menu.seasons_episode_actions_remove_watchlist);
             popup.show();
         }
 
@@ -224,7 +263,7 @@ public class WatchlistEpisodes extends DialogFragment implements MarkSeenUnseen.
         @Override
         public View getHeaderView(final int position, View convertView, ViewGroup parent) {
             if (convertView == null) {
-                convertView = inflater.inflate(R.layout.seasons_seasons_item, parent, false);
+                convertView = inflater.inflate(R.layout.watchlist_seasons_seasons_item, parent, false);
             }
             AQuery aq = new AQuery(convertView);
 

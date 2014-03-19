@@ -56,7 +56,7 @@ public class MarkEpisodeWatchlistUnWatchlist extends AsyncTask<Void, Void, Void>
             listener.WatchlistUnWatchlistCompleted(position);
 
         }else{
-            Log.d("Trakt","Erro add watchlist/unwatchlist");
+            Log.d("Trakt","Error add watchlist/unwatchlist "+e.toString());
 
 
             AlertDialog.Builder builder = new AlertDialog.Builder(activity);
