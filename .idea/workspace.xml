@@ -281,30 +281,8 @@
       <file leaf-file-name="WatchlistEpisodes.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/java/com/lopesdasilva/trakt/fragments/WatchlistEpisodes.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1858" max-vertical-offset="4365">
+            <state vertical-scroll-proportion="0.0" vertical-offset="1935" max-vertical-offset="4545">
               <caret line="129" column="0" selection-start="4959" selection-end="4959" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1488#1511#0" expanded="true" />
-                <element signature="e#1567#1582#0" expanded="true" />
-                <element signature="e#3669#4491#0" expanded="true" />
-                <element signature="e#4480#4481#0" expanded="true" />
-                <element signature="e#5520#5521#0" expanded="true" />
-                <element signature="e#5565#5566#0" expanded="true" />
-                <element signature="e#7244#7485#0" expanded="true" />
-                <element signature="e#7466#7467#0" expanded="true" />
-                <element signature="e#8800#9692#0" expanded="true" />
-                <element signature="e#9677#9678#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BaseAdapter.class" pinned="false" current="false" current-in-tab="false">
-        <entry file="jar://$APPLICATION_HOME_DIR$/sdk/platforms/android-18/android.jar!/android/widget/BaseAdapter.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="159" max-vertical-offset="525">
-              <caret line="17" column="16" selection-start="656" selection-end="656" />
               <folding />
             </state>
           </provider>
@@ -313,7 +291,7 @@
       <file leaf-file-name="MainActivity.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/java/com/lopesdasilva/trakt/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="3840" max-vertical-offset="4395">
+            <state vertical-scroll-proportion="0.0" vertical-offset="750" max-vertical-offset="4680">
               <caret line="50" column="37" selection-start="1574" selection-end="1574" />
               <folding />
             </state>
@@ -323,7 +301,7 @@
       <file leaf-file-name="TVtraktApp.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/java/com/lopesdasilva/trakt/TVtraktApp.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="465">
+            <state vertical-scroll-proportion="0.0" vertical-offset="225" max-vertical-offset="750">
               <caret line="15" column="29" selection-start="293" selection-end="293" />
               <folding />
             </state>
@@ -333,8 +311,8 @@
       <file leaf-file-name="Login.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/java/com/lopesdasilva/trakt/Login.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="2280" max-vertical-offset="3390">
-              <caret line="240" column="38" selection-start="8244" selection-end="8244" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="3600" max-vertical-offset="3870">
+              <caret line="240" column="29" selection-start="8097" selection-end="8097" />
               <folding />
             </state>
           </provider>
@@ -343,7 +321,7 @@
       <file leaf-file-name="CheckInChecker.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/java/com/lopesdasilva/trakt/Tasks/CheckInChecker.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="450" max-vertical-offset="1215">
+            <state vertical-scroll-proportion="0.0" vertical-offset="540" max-vertical-offset="1485">
               <caret line="36" column="36" selection-start="1180" selection-end="1180" />
               <folding />
             </state>
@@ -353,7 +331,7 @@
       <file leaf-file-name="MarkEpisodeWatchlistUnWatchlist.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/java/com/lopesdasilva/trakt/Tasks/MarkEpisodeWatchlistUnWatchlist.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1170">
+            <state vertical-scroll-proportion="0.0" vertical-offset="240" max-vertical-offset="1350">
               <caret line="16" column="0" selection-start="518" selection-end="518" />
               <folding />
             </state>
@@ -520,8 +498,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -577,35 +553,11 @@
               <option name="myItemId" value="java" />
               <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="trakt" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="trakt" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="trakt" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Tasks" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -966,7 +918,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1366" height="699" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.12651515" sideWeight="0.47971782" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -979,22 +931,22 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="14" side_tool="true" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.19854133" sideWeight="0.38384956" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.38421956" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Android" active="false" anchor="bottom" auto_hide="true" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.5214408" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32804233" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24924242" sideWeight="0.67132866" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3298217" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17673716" sideWeight="0.67530227" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17673716" sideWeight="0.67530227" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32246998" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Thumbnails" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32867134" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.35120845" sideWeight="0.67530227" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32688928" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.38421956" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Android Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32867134" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
@@ -1047,6 +999,14 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/java/com/lopesdasilva/trakt/fragments/SeasonsFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="3345" max-vertical-offset="5520">
+          <caret line="223" column="55" selection-start="9911" selection-end="9922" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/java/com/lopesdasilva/trakt/fragments/CalendarWeekFragment.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="3960" max-vertical-offset="4770">
@@ -1065,19 +1025,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1905" max-vertical-offset="3960">
           <caret line="127" column="0" selection-start="4367" selection-end="4367" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1488#1511#0" expanded="true" />
-            <element signature="e#1567#1582#0" expanded="true" />
-            <element signature="e#3669#4491#0" expanded="true" />
-            <element signature="e#4480#4481#0" expanded="true" />
-            <element signature="e#5520#5521#0" expanded="true" />
-            <element signature="e#5565#5566#0" expanded="true" />
-            <element signature="e#7244#7485#0" expanded="true" />
-            <element signature="e#7466#7467#0" expanded="true" />
-            <element signature="e#8800#9692#0" expanded="true" />
-            <element signature="e#9677#9678#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1106,19 +1054,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1905" max-vertical-offset="3960">
           <caret line="127" column="0" selection-start="4367" selection-end="4367" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1488#1511#0" expanded="true" />
-            <element signature="e#1567#1582#0" expanded="true" />
-            <element signature="e#3669#4491#0" expanded="true" />
-            <element signature="e#4480#4481#0" expanded="true" />
-            <element signature="e#5520#5521#0" expanded="true" />
-            <element signature="e#5565#5566#0" expanded="true" />
-            <element signature="e#7244#7485#0" expanded="true" />
-            <element signature="e#7466#7467#0" expanded="true" />
-            <element signature="e#8800#9692#0" expanded="true" />
-            <element signature="e#9677#9678#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1147,19 +1083,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1905" max-vertical-offset="3960">
           <caret line="127" column="0" selection-start="4367" selection-end="4367" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1488#1511#0" expanded="true" />
-            <element signature="e#1567#1582#0" expanded="true" />
-            <element signature="e#3669#4491#0" expanded="true" />
-            <element signature="e#4480#4481#0" expanded="true" />
-            <element signature="e#5520#5521#0" expanded="true" />
-            <element signature="e#5565#5566#0" expanded="true" />
-            <element signature="e#7244#7485#0" expanded="true" />
-            <element signature="e#7466#7467#0" expanded="true" />
-            <element signature="e#8800#9692#0" expanded="true" />
-            <element signature="e#9677#9678#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1188,19 +1112,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1905" max-vertical-offset="3960">
           <caret line="127" column="0" selection-start="4367" selection-end="4367" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1488#1511#0" expanded="true" />
-            <element signature="e#1567#1582#0" expanded="true" />
-            <element signature="e#3669#4491#0" expanded="true" />
-            <element signature="e#4480#4481#0" expanded="true" />
-            <element signature="e#5520#5521#0" expanded="true" />
-            <element signature="e#5565#5566#0" expanded="true" />
-            <element signature="e#7244#7485#0" expanded="true" />
-            <element signature="e#7466#7467#0" expanded="true" />
-            <element signature="e#8800#9692#0" expanded="true" />
-            <element signature="e#9677#9678#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1240,23 +1152,23 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/res/layout/seasons_episode_item.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1695">
           <caret line="0" column="0" selection-start="0" selection-end="0" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/res/layout/seasons_fragment.xml">
       <provider editor-type-id="android-designer">
         <state />
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/res/layout/seasons_fragment.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-5.5555553" vertical-offset="0" max-vertical-offset="330">
           <caret line="10" column="42" selection-start="417" selection-end="417" />
         </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/java/com/lopesdasilva/trakt/fragments/WatchlistMoviesFragment.java">
@@ -1288,36 +1200,33 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/res/layout/watchlist_modal_fragment.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.44117647" vertical-offset="0" max-vertical-offset="340">
           <caret line="10" column="20" selection-start="403" selection-end="403" />
-          <folding />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/res/layout/seasons_seasons_item.xml">
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="540">
-          <caret line="0" column="0" selection-start="0" selection-end="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/res/layout/watchlist_seasons_seasons_item.xml">
       <provider editor-type-id="android-designer">
         <state />
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/res/layout/seasons_seasons_item.xml">
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="540">
+          <caret line="0" column="0" selection-start="0" selection-end="0" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/res/layout/watchlist_seasons_seasons_item.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-10.0" vertical-offset="0" max-vertical-offset="390">
           <caret line="18" column="0" selection-start="735" selection-end="735" />
-          <folding />
         </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/java/com/lopesdasilva/trakt/fragments/CalendarWeekFragment.java">
@@ -1338,7 +1247,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="660" max-vertical-offset="1215">
           <caret line="17" column="13" selection-start="440" selection-end="440" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1346,7 +1254,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.10810811" vertical-offset="0" max-vertical-offset="555">
           <caret line="4" column="56" selection-start="172" selection-end="172" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1354,7 +1261,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="555">
           <caret line="0" column="0" selection-start="0" selection-end="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1370,7 +1276,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.49815497" vertical-offset="375" max-vertical-offset="3780">
           <caret line="36" column="13" selection-start="1163" selection-end="1163" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1428,8 +1333,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/java/com/lopesdasilva/trakt/Login.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2280" max-vertical-offset="3390">
-          <caret line="240" column="38" selection-start="8244" selection-end="8244" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="3600" max-vertical-offset="3870">
+          <caret line="240" column="29" selection-start="8097" selection-end="8097" />
           <folding />
         </state>
       </provider>
@@ -1438,7 +1343,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="3195" max-vertical-offset="3750">
           <caret line="226" column="23" selection-start="7248" selection-end="7248" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1458,31 +1362,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/sdk/platforms/android-18/android.jar!/android/widget/BaseAdapter.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="159" max-vertical-offset="525">
-          <caret line="17" column="16" selection-start="656" selection-end="656" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/java/com/lopesdasilva/trakt/fragments/WatchlistEpisodes.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1858" max-vertical-offset="4365">
           <caret line="129" column="0" selection-start="4959" selection-end="4959" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1488#1511#0" expanded="true" />
-            <element signature="e#1567#1582#0" expanded="true" />
-            <element signature="e#3669#4491#0" expanded="true" />
-            <element signature="e#4480#4481#0" expanded="true" />
-            <element signature="e#5520#5521#0" expanded="true" />
-            <element signature="e#5565#5566#0" expanded="true" />
-            <element signature="e#7244#7485#0" expanded="true" />
-            <element signature="e#7466#7467#0" expanded="true" />
-            <element signature="e#8800#9692#0" expanded="true" />
-            <element signature="e#9677#9678#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1517,7 +1401,7 @@
       </state>
       <state key="FacetStructureConfigurable.UI">
         <settings>
-          <last-edited>Android (Library)|Android</last-edited>
+          <last-edited>Android</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
@@ -1557,7 +1441,6 @@
             <option name="proportions">
               <list>
                 <option value="0.2" />
-                <option value="0.5" />
               </list>
             </option>
           </splitter-proportions>
