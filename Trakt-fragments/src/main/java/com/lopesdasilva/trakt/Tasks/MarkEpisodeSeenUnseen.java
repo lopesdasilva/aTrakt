@@ -10,12 +10,10 @@ import com.jakewharton.trakt.ServiceManager;
 import com.jakewharton.trakt.entities.TvShow;
 import com.jakewharton.trakt.entities.TvShowEpisode;
 
-import java.util.List;
-
 /**
  * Created by lopesdasilva on 30/05/13.
  */
-public class MarkSeenUnseen extends AsyncTask<Void,Void,Void>{
+public class MarkEpisodeSeenUnseen extends AsyncTask<Void,Void,Void>{
 
     private final TvShowEpisode episode_info;
     private final ServiceManager manager;
@@ -25,7 +23,7 @@ public class MarkSeenUnseen extends AsyncTask<Void,Void,Void>{
     private final FragmentActivity activity;
     private Exception e = null;
 
-    public MarkSeenUnseen(FragmentActivity activity, OnMarkSeenUnseenCompleted listener, ServiceManager manager, TvShow show, TvShowEpisode episode, int position){
+    public MarkEpisodeSeenUnseen(FragmentActivity activity, OnMarkSeenUnseenCompleted listener, ServiceManager manager, TvShow show, TvShowEpisode episode, int position){
         this.activity=activity;
         this.manager=manager;
         this.episode_info=episode;
@@ -64,7 +62,7 @@ public class MarkSeenUnseen extends AsyncTask<Void,Void,Void>{
             builder.setMessage("Error marking episode")
                     .setPositiveButton("Retry", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
-                                new MarkSeenUnseen(activity,listener,manager,show_info,episode_info,position).execute();
+                                new MarkEpisodeSeenUnseen(activity,listener,manager,show_info,episode_info,position).execute();
                         }
                     })
                     .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {

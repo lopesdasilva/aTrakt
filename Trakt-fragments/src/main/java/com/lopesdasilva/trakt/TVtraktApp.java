@@ -15,7 +15,7 @@ public class TVtraktApp extends Application {
     private boolean firstRun=true;
 	private ServiceManager manager;
 	private String APIKEY="633c56872d241ed0c097829678ea9fbcd15df3c4";
-	List<TvShow> trending;
+
 
     public boolean isFirstRun() {
         return firstRun;
@@ -33,12 +33,6 @@ public class TVtraktApp extends Application {
 	}
 	public String getAPIKEY() {
 		return APIKEY;
-	}
-	public List<TvShow> getTrending() {
-		return trending;
-	}
-	public void setTrending(List<TvShow> trending) {
-		this.trending = trending;
 	}
 
 }

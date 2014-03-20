@@ -8,7 +8,7 @@
       <directory url="file://$PROJECT_DIR$/../devsmartlib/gen" includeSubdirectories="true" />
       <directory url="file://$PROJECT_DIR$/../StickyGridHeaders/gen" includeSubdirectories="true" />
       <directory url="file://$PROJECT_DIR$/../StickyGridHeaders Example/gen" includeSubdirectories="true" />
-      <directory url="file://$PROJECT_DIR$/../StickyGridHeaders/Library/gen" includeSubdirectories="true" />
+      <directory url="file://$PROJECT_DIR$/../stickygridheaders/library/gen" includeSubdirectories="true" />
     </excludeFromCompile>
     <resourceExtensions />
     <wildcardResourcePatterns>

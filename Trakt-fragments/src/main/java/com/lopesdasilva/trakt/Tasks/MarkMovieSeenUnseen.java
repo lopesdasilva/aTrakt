@@ -13,7 +13,7 @@ import java.util.Date;
 /**
  * Created by lopesdasilva on 05/07/13.
  */
-public class MovieSeenUnseen extends AsyncTask<Void, Void, Void> {
+public class MarkMovieSeenUnseen extends AsyncTask<Void, Void, Void> {
 
     private final FragmentActivity activity;
     private final ServiceManager manager;
@@ -21,7 +21,7 @@ public class MovieSeenUnseen extends AsyncTask<Void, Void, Void> {
     private final OnMovieMarkSeenUnseenCompleted listener;
     private final int position;
 
-    public MovieSeenUnseen(FragmentActivity activity, OnMovieMarkSeenUnseenCompleted listener, ServiceManager manager, Movie movie,  int position){
+    public MarkMovieSeenUnseen(FragmentActivity activity, OnMovieMarkSeenUnseenCompleted listener, ServiceManager manager, Movie movie, int position){
         this.activity=activity;
         this.manager=manager;
         this.movie=movie;

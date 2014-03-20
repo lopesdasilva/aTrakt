@@ -15,7 +15,7 @@ import com.jakewharton.trakt.ServiceManager;
 import com.jakewharton.trakt.entities.TvShow;
 import com.jakewharton.trakt.entities.TvShowEpisode;
 import com.lopesdasilva.trakt.R;
-import com.lopesdasilva.trakt.Tasks.MarkSeenUnseen;
+import com.lopesdasilva.trakt.Tasks.MarkEpisodeSeenUnseen;
 import com.lopesdasilva.trakt.extras.UserChecker;
 import com.tonicartos.widget.stickygridheaders.StickyGridHeadersBaseAdapter;
 import com.tonicartos.widget.stickygridheaders.StickyGridHeadersGridView;
@@ -27,7 +27,7 @@ import java.util.List;
 /**
  * Created by lopesdasilva on 15/10/13.
  */
-public class WatchlistEpisodes extends DialogFragment implements MarkSeenUnseen.OnMarkSeenUnseenCompleted {
+public class WatchlistEpisodes extends DialogFragment implements MarkEpisodeSeenUnseen.OnMarkSeenUnseenCompleted {
 
 
     private ServiceManager manager;
@@ -196,7 +196,7 @@ public class WatchlistEpisodes extends DialogFragment implements MarkSeenUnseen.
                     switch (menuItem.getItemId()) {
 
                         case R.id.action_episode_unseen:
-                            new MarkSeenUnseen(getActivity(), WatchlistEpisodes.this, manager, currentShow, episode, position).execute();
+                            new MarkEpisodeSeenUnseen(getActivity(), WatchlistEpisodes.this, manager, currentShow, episode, position).execute();
                             return true;
                         default:
                             return false;

@@ -19,8 +19,6 @@ import com.jakewharton.trakt.ServiceManager;
 import com.jakewharton.trakt.entities.TvShow;
 import com.lopesdasilva.trakt.R;
 import com.lopesdasilva.trakt.Tasks.DownloadWatchlistShows;
-import com.lopesdasilva.trakt.Tasks.MarkEpisodeWatchlistUnWatchlist;
-import com.lopesdasilva.trakt.Tasks.MarkSeenUnseen;
 import com.lopesdasilva.trakt.Tasks.MarkShowWatchlistUnWatchlist;
 import com.lopesdasilva.trakt.activities.ShowActivity;
 import com.lopesdasilva.trakt.extras.UserChecker;
@@ -111,7 +109,7 @@ public class WatchlistShowsFragment extends Fragment implements DownloadWatchlis
                                 case 0:
                                     Toast.makeText(getActivity(), "Mark watched", Toast.LENGTH_SHORT).show();
                                     new MarkShowWatchlistUnWatchlist(getActivity(), WatchlistShowsFragment.this, manager, mShowsListShowing.get(i), i).execute();
-//                                    new MarkSeenUnseen(getActivity(), CalendarWeekFragment.this, manager, lista.get(position).show, lista.get(position).episode, position).execute();
+//                                    new MarkEpisodeSeenUnseen(getActivity(), CalendarWeekFragment.this, manager, lista.get(position).show, lista.get(position).episode, position).execute();
                                     break;
                                 case 1:
                                     Toast.makeText(getActivity(), "Mark watched", Toast.LENGTH_SHORT).show();

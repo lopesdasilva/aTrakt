@@ -97,7 +97,7 @@ public class ShowInfoFragment extends Fragment {
             aq.id(R.id.buttonShowNextEpisode).gone();
             aq.id(R.id.textViewShowNextEpisode).text("You have no episodes to watch");
         }
-if (show.rating!=null)
+        if (show.rating!=null)
         switch (show.rating) {
 
             case Love:
@@ -108,11 +108,27 @@ if (show.rating!=null)
                 aq.id(R.id.imageViewShowLovedTag).gone();
                 aq.id(R.id.imageViewShowHatedTag).visible();
                 break;
+        }else{
+            aq.id(R.id.imageViewShowHatedTag).gone();
+            aq.id(R.id.imageViewShowLovedTag).gone();
         }
 
 
+        if (show.inCollection)
+            aq.id(R.id.imageViewShowCollectionTag).visible();
+        else
+            aq.id(R.id.imageViewShowCollectionTag).gone();
 
+
+        if (show.inWatchlist)
+            aq.id(R.id.imageViewShowWatchlistTag).visible();
+        else
+            aq.id(R.id.imageViewShowWatchlistTag).gone();
     }
 
 
+    public void updateInfo(TvShow show) {
+        mTVshow=show;
+        updateUI(rootView, mTVshow);
+    }
 }

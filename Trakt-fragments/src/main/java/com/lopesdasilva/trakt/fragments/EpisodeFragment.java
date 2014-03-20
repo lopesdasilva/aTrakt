@@ -25,11 +25,11 @@ import com.jakewharton.trakt.entities.TvEntity;
 import com.lopesdasilva.trakt.R;
 import com.lopesdasilva.trakt.Tasks.CheckInChecker;
 import com.lopesdasilva.trakt.Tasks.DownloadEpisodeInfo;
-import com.lopesdasilva.trakt.Tasks.MarkEpisodeHate;
-import com.lopesdasilva.trakt.Tasks.MarkEpisodeLove;
-import com.lopesdasilva.trakt.Tasks.MarkEpisodeNone;
+import com.lopesdasilva.trakt.Tasks.MarkEpisodeSeenUnseen;
+import com.lopesdasilva.trakt.Tasks.RateEpisodeHate;
+import com.lopesdasilva.trakt.Tasks.RateEpisodeLove;
+import com.lopesdasilva.trakt.Tasks.UnrateEpisode;
 import com.lopesdasilva.trakt.Tasks.MarkEpisodeWatchlistUnWatchlist;
-import com.lopesdasilva.trakt.Tasks.MarkSeenUnseen;
 import com.lopesdasilva.trakt.activities.ShowActivity;
 import com.lopesdasilva.trakt.extras.UserChecker;
 
@@ -39,7 +39,7 @@ import java.util.Date;
 /**
  * Created by lopesdasilva on 17/05/13.
  */
-public class EpisodeFragment extends Fragment implements DownloadEpisodeInfo.onEpisodeTaskComplete, MarkSeenUnseen.OnMarkSeenUnseenCompleted, MarkEpisodeWatchlistUnWatchlist.WatchlistUnWatchlistCompleted, MarkEpisodeHate.OnMarkEpisodeHateCompleted, MarkEpisodeLove.OnMarkEpisodeLoveCompleted, MarkEpisodeNone.OnMarkEpisodeNoneCompleted {
+public class EpisodeFragment extends Fragment implements DownloadEpisodeInfo.onEpisodeTaskComplete, MarkEpisodeSeenUnseen.OnMarkSeenUnseenCompleted, MarkEpisodeWatchlistUnWatchlist.WatchlistUnWatchlistCompleted, RateEpisodeHate.OnMarkEpisodeHateCompleted, RateEpisodeLove.OnMarkEpisodeLoveCompleted, UnrateEpisode.OnMarkEpisodeNoneCompleted {
     private View rootView;
     private String show;
     private int season;
@@ -156,7 +156,7 @@ public class EpisodeFragment extends Fragment implements DownloadEpisodeInfo.onE
                 item.setActionView(mRefreshView);
 
                 Log.d("Trakt Fragments", "Unseen button clicked");
-                new MarkSeenUnseen(getActivity(), this, manager, episode_info.show, episode_info.episode, 0).execute();
+                new MarkEpisodeSeenUnseen(getActivity(), this, manager, episode_info.show, episode_info.episode, 0).execute();
 
 
                 return true;
@@ -179,14 +179,14 @@ public class EpisodeFragment extends Fragment implements DownloadEpisodeInfo.onE
 
                 return true;
             case 4:
-                new MarkEpisodeHate(getActivity(),EpisodeFragment.this,manager,episode_info.show,episode_info.episode,0).execute();
+                new RateEpisodeHate(getActivity(),EpisodeFragment.this,manager,episode_info.show,episode_info.episode,0).execute();
 
                 return true;
             case 5:
-                new MarkEpisodeLove(getActivity(),EpisodeFragment.this,manager,episode_info.show,episode_info.episode,0).execute();
+                new RateEpisodeLove(getActivity(),EpisodeFragment.this,manager,episode_info.show,episode_info.episode,0).execute();
                 return true;
             case 6:
-                new MarkEpisodeNone(getActivity(),EpisodeFragment.this,manager,episode_info.show,episode_info.episode,0).execute();
+                new UnrateEpisode(getActivity(),EpisodeFragment.this,manager,episode_info.show,episode_info.episode,0).execute();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

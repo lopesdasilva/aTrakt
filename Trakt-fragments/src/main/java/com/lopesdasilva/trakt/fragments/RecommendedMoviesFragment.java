@@ -14,11 +14,9 @@ import com.androidquery.AQuery;
 import com.jakewharton.trakt.ServiceManager;
 import com.jakewharton.trakt.entities.DismissResponse;
 import com.jakewharton.trakt.entities.Movie;
-import com.jakewharton.trakt.entities.TvShow;
 import com.lopesdasilva.trakt.R;
 import com.lopesdasilva.trakt.Tasks.*;
 import com.lopesdasilva.trakt.activities.MovieActivity;
-import com.lopesdasilva.trakt.activities.ShowActivity;
 import com.lopesdasilva.trakt.extras.UserChecker;
 
 import java.io.Serializable;
@@ -28,7 +26,7 @@ import java.util.List;
 /**
  * Created by lopesdasilva on 02/07/13.
  */
-public class RecommendedMoviesFragment extends Fragment implements DismissRecomendationMovie.onDismissedMovieTaskComplete, DownloadRecommendedMovies.onRecommendedMovieListTaskComplete, MovieSeenUnseen.OnMovieMarkSeenUnseenCompleted {
+public class RecommendedMoviesFragment extends Fragment implements DismissRecomendationMovie.onDismissedMovieTaskComplete, DownloadRecommendedMovies.onRecommendedMovieListTaskComplete, MarkMovieSeenUnseen.OnMovieMarkSeenUnseenCompleted {
 
     private View rootView;
     private ServiceManager manager;
@@ -214,7 +212,7 @@ public class RecommendedMoviesFragment extends Fragment implements DismissRecome
                         return true;
                     case R.id.action_recommended_seen_movie:
                         mAdapter.getItem(position).watched=false;
-                        new MovieSeenUnseen(getActivity(), RecommendedMoviesFragment.this, manager, mAdapter.getItem(position), position).execute();
+                        new MarkMovieSeenUnseen(getActivity(), RecommendedMoviesFragment.this, manager, mAdapter.getItem(position), position).execute();
                         return true;
                     default:
                         return false;

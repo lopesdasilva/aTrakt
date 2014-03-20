@@ -12,7 +12,7 @@ import com.jakewharton.trakt.ServiceManager;
 import com.jakewharton.trakt.entities.*;
 import com.lopesdasilva.trakt.R;
 import com.lopesdasilva.trakt.Tasks.DownloadSeasonsInfo;
-import com.lopesdasilva.trakt.Tasks.MarkSeenUnseen;
+import com.lopesdasilva.trakt.Tasks.MarkEpisodeSeenUnseen;
 import com.lopesdasilva.trakt.Tasks.MultipleSeenUnseenTask;
 import com.lopesdasilva.trakt.activities.EpisodeActivity;
 import com.lopesdasilva.trakt.extras.UserChecker;
@@ -26,7 +26,7 @@ import java.util.List;
 /**
  * Created by lopesdasilva on 22/05/13.
  */
-public class SeasonsFragment extends Fragment implements MarkSeenUnseen.OnMarkSeenUnseenCompleted, MultipleSeenUnseenTask.OnMarkSeenUnseenCompleted {
+public class SeasonsFragment extends Fragment implements MarkEpisodeSeenUnseen.OnMarkSeenUnseenCompleted, MultipleSeenUnseenTask.OnMarkSeenUnseenCompleted {
 
 
     private View rootView;
@@ -318,7 +318,7 @@ Toast.makeText(getActivity(),"position: "+position,Toast.LENGTH_SHORT).show();
                     switch (menuItem.getItemId()) {
 
                         case R.id.action_episode_unseen:
-                            new MarkSeenUnseen(getActivity(), SeasonsFragment.this, manager, show, episode, position).execute();
+                            new MarkEpisodeSeenUnseen(getActivity(), SeasonsFragment.this, manager, show, episode, position).execute();
                             return true;
                         default:
                             return false;

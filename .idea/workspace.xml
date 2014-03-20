@@ -34,6 +34,12 @@
           <theme>@style/AppTheme</theme>
         </config>
       </layout>
+      <layout url="file://$PROJECT_DIR$/Trakt-fragments/src/main/res/layout/activity_login.xml">
+        <config>
+          <device>Nexus 4</device>
+          <theme>@style/AppTheme</theme>
+        </config>
+      </layout>
       <layout url="file://$PROJECT_DIR$/Trakt-fragments/src/main/res/layout/calendarweek_fragment.xml">
         <config>
           <device>Nexus 7</device>
@@ -109,6 +115,7 @@
     </layouts>
   </component>
   <component name="AndroidLogFilters">
+    <option name="TOOL_WINDOW_LOG_LEVEL" value="DEBUG" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="app: com.lopesdasilva.trakt" />
   </component>
   <component name="ChangeListManager">
@@ -250,6 +257,36 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/Trakt-fragments/src/main/java/com/lopesdasilva/trakt/Login.java" line="212" class="com.lopesdasilva.trakt.Login.UserLoginTask" package="com.lopesdasilva.trakt">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/Trakt-fragments/src/main/java/com/lopesdasilva/trakt/fragments/CalendarWeekFragment.java" line="309" class="com.lopesdasilva.trakt.fragments.CalendarWeekFragment.WeekCalendarAdapter" package="com.lopesdasilva.trakt.fragments">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
     </line_breakpoints>
     <breakpoint_rules />
     <ui_properties />
@@ -263,51 +300,104 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="CalendarWeekFragment.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/java/com/lopesdasilva/trakt/fragments/CalendarWeekFragment.java">
+      <file leaf-file-name="AndroidManifest.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/AndroidManifest.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="3960" max-vertical-offset="4770">
-              <caret line="264" column="0" selection-start="10402" selection-end="10402" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="221" max-vertical-offset="2108">
+              <caret line="13" column="16" selection-start="399" selection-end="399" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DownloadWeekCalendar.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/java/com/lopesdasilva/trakt/Tasks/DownloadWeekCalendar.java">
+      <file leaf-file-name="ShowFragment.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/java/com/lopesdasilva/trakt/fragments/ShowFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="705" max-vertical-offset="930">
-              <caret line="47" column="104" selection-start="1434" selection-end="1434" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="5049" max-vertical-offset="5848">
+              <caret line="297" column="34" selection-start="10279" selection-end="10279" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="WatchlistEpisodes.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/java/com/lopesdasilva/trakt/fragments/WatchlistEpisodes.java">
+      <file leaf-file-name="MarkEpisodeSeenUnseen.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/java/com/lopesdasilva/trakt/Tasks/MarkEpisodeSeenUnseen.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1905" max-vertical-offset="3960">
-              <caret line="127" column="0" selection-start="4367" selection-end="4367" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="748" max-vertical-offset="1530">
+              <caret line="44" column="0" selection-start="1505" selection-end="1505" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CalendarFragment.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/java/com/lopesdasilva/trakt/fragments/CalendarFragment.java">
+      <file leaf-file-name="MarkShowSeenUnseen.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/java/com/lopesdasilva/trakt/Tasks/MarkShowSeenUnseen.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="780" max-vertical-offset="1440">
-              <caret line="90" column="35" selection-start="3063" selection-end="3063" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="544" max-vertical-offset="1292">
+              <caret line="41" column="44" selection-start="1292" selection-end="1292" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Login.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/java/com/lopesdasilva/trakt/Login.java">
+      <file leaf-file-name="AddShowToWatchlist.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/java/com/lopesdasilva/trakt/Tasks/AddShowToWatchlist.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.3243243" vertical-offset="0" max-vertical-offset="3390">
-              <caret line="33" column="13" selection-start="963" selection-end="963" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="901" max-vertical-offset="1513">
+              <caret line="53" column="59" selection-start="1513" selection-end="1513" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DownloadShowInfo.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/java/com/lopesdasilva/trakt/Tasks/DownloadShowInfo.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="782" max-vertical-offset="1105">
+              <caret line="46" column="0" selection-start="1372" selection-end="1372" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TVtraktApp.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/java/com/lopesdasilva/trakt/TVtraktApp.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="612" max-vertical-offset="748">
+              <caret line="36" column="0" selection-start="714" selection-end="714" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ShowInfoFragment.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/java/com/lopesdasilva/trakt/fragments/ShowInfoFragment.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="1955" max-vertical-offset="2380">
+              <caret line="115" column="0" selection-start="4391" selection-end="4391" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="showinfo_fragment.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/res/layout/showinfo_fragment.xml">
+          <provider editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="340" max-vertical-offset="3536">
+              <caret line="20" column="12" selection-start="694" selection-end="694" />
+              <folding />
+            </state>
+          </provider>
+          <provider selected="true" editor-type-id="android-designer">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EpisodeFragment.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/java/com/lopesdasilva/trakt/fragments/EpisodeFragment.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="3094" max-vertical-offset="6698">
+              <caret line="182" column="0" selection-start="7035" selection-end="7152" />
               <folding />
             </state>
           </provider>
@@ -321,7 +411,7 @@
     </FindUsagesManager>
   </component>
   <component name="GenerateSignedApkSettings">
-    <option name="KEY_STORE_PATH" value="$USER_HOME$/Dropbox/android trakt keys/traktplaystorekey" />
+    <option name="KEY_STORE_PATH" value="D:\NB20308\Dropbox\android trakt keys\traktplaystorekey" />
     <option name="KEY_ALIAS" value="Trakt" />
     <option name="REMEMBER_PASSWORDS" value="true" />
   </component>
@@ -331,19 +421,47 @@
         <option value="$PROJECT_DIR$/Trakt-fragments/src/main/java/com/lopesdasilva/trakt/Tasks/DownloadWatchlistMovies.java" />
         <option value="$PROJECT_DIR$/Trakt-fragments/src/main/java/com/lopesdasilva/trakt/Tasks/DownloadWatchlistShows.java" />
         <option value="$PROJECT_DIR$/Trakt-fragments/src/main/java/com/lopesdasilva/trakt/MainActivity.java" />
-        <option value="$PROJECT_DIR$/Trakt-fragments/src/main/java/com/lopesdasilva/trakt/fragments/CalendarWeekFragment.java" />
         <option value="$PROJECT_DIR$/Trakt-fragments/src/main/java/com/lopesdasilva/trakt/Tasks/MarkShowWatchlistUnWatchlist.java" />
         <option value="$PROJECT_DIR$/Trakt-fragments/src/main/java/com/lopesdasilva/trakt/fragments/WatchlistPagerFragment.java" />
         <option value="$PROJECT_DIR$/Trakt-fragments/src/main/java/com/lopesdasilva/trakt/fragments/WatchlistMoviesFragment.java" />
         <option value="$PROJECT_DIR$/Trakt-fragments/src/main/java/com/lopesdasilva/trakt/fragments/WatchlistShowsFragment.java" />
         <option value="$PROJECT_DIR$/Trakt-fragments/src/main/java/com/lopesdasilva/trakt/Tasks/MarkMovieWatchlistUnWatchlist.java" />
-        <option value="$PROJECT_DIR$/Trakt-fragments/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/Trakt-fragments/src/main/java/com/lopesdasilva/trakt/Tasks/DownloadWatchlistEpisodes.java" />
         <option value="$PROJECT_DIR$/Trakt-fragments/src/main/java/com/lopesdasilva/trakt/fragments/WatchlistEpisodesFragment.java" />
         <option value="$PROJECT_DIR$/../trakt-java-tests/src/MainTest.java" />
         <option value="$PROJECT_DIR$/Trakt-fragments/src/main/res/layout/watchlist_modal_fragment.xml" />
         <option value="$PROJECT_DIR$/Trakt-fragments/src/main/java/com/lopesdasilva/trakt/fragments/WatchlistEpisodes.java" />
         <option value="$PROJECT_DIR$/Trakt-fragments/src/main/java/com/lopesdasilva/trakt/fragments/CalendarFragment.java" />
+        <option value="$PROJECT_DIR$/../trakt-java/src/main/java/com/jakewharton/trakt/ServiceManager.java" />
+        <option value="$PROJECT_DIR$/Trakt-fragments/src/main/java/com/lopesdasilva/trakt/activities/RecommendedActivity.java" />
+        <option value="$PROJECT_DIR$/Trakt-fragments/src/main/java/com/lopesdasilva/trakt/Login.java" />
+        <option value="$PROJECT_DIR$/Trakt-fragments/src/main/res/layout/activity_login.xml" />
+        <option value="$PROJECT_DIR$/Trakt-fragments/src/main/java/com/lopesdasilva/trakt/fragments/RecommendedShowsFragment.java" />
+        <option value="$PROJECT_DIR$/Trakt-fragments/src/main/res/layout/calendarweek_item_episode.xml" />
+        <option value="$PROJECT_DIR$/Trakt-fragments/src/main/java/com/lopesdasilva/trakt/Tasks/MarkHateLoved.java" />
+        <option value="$PROJECT_DIR$/Trakt-fragments/src/main/java/com/lopesdasilva/trakt/Tasks/MarkShowHateLoved.java" />
+        <option value="$PROJECT_DIR$/Trakt-fragments/src/main/java/com/lopesdasilva/trakt/Tasks/MarkShowHate.java" />
+        <option value="$PROJECT_DIR$/../trakt-java/src/main/java/com/jakewharton/trakt/services/RateService.java" />
+        <option value="$PROJECT_DIR$/Trakt-fragments/src/main/java/com/lopesdasilva/trakt/Tasks/MarkEpisodeLove.java" />
+        <option value="$PROJECT_DIR$/../trakt-java/src/main/java/com/jakewharton/trakt/enumerations/Rating.java" />
+        <option value="$PROJECT_DIR$/Trakt-fragments/src/main/java/com/lopesdasilva/trakt/Tasks/MarkEpisodeNone.java" />
+        <option value="$PROJECT_DIR$/Trakt-fragments/src/main/java/com/lopesdasilva/trakt/Tasks/MarkEpisodeHate.java" />
+        <option value="$PROJECT_DIR$/Trakt-fragments/src/main/java/com/lopesdasilva/trakt/fragments/CalendarWeekFragment.java" />
+        <option value="$PROJECT_DIR$/Trakt-fragments/src/main/res/values/strings.xml" />
+        <option value="$PROJECT_DIR$/Trakt-fragments/src/main/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/Trakt-fragments/src/main/java/com/lopesdasilva/trakt/fragments/EpisodeFragment.java" />
+        <option value="$PROJECT_DIR$/Trakt-fragments/src/main/java/com/lopesdasilva/trakt/TVtraktApp.java" />
+        <option value="$PROJECT_DIR$/Trakt-fragments/src/main/java/com/lopesdasilva/trakt/Tasks/RateShowHate.java" />
+        <option value="$PROJECT_DIR$/Trakt-fragments/src/main/java/com/lopesdasilva/trakt/Tasks/RateShowLove.java" />
+        <option value="$PROJECT_DIR$/Trakt-fragments/src/main/java/com/lopesdasilva/trakt/Tasks/UnrateShow.java" />
+        <option value="$PROJECT_DIR$/Trakt-fragments/src/main/java/com/lopesdasilva/trakt/Tasks/AddShowToWatchlist.java" />
+        <option value="$PROJECT_DIR$/Trakt-fragments/src/main/java/com/lopesdasilva/trakt/Tasks/RemoveShowFromWatchlist.java" />
+        <option value="$PROJECT_DIR$/Trakt-fragments/src/main/java/com/lopesdasilva/trakt/fragments/ShowFragment.java" />
+        <option value="$PROJECT_DIR$/Trakt-fragments/src/main/res/layout/showinfo_fragment.xml" />
+        <option value="$PROJECT_DIR$/Trakt-fragments/src/main/java/com/lopesdasilva/trakt/fragments/ShowInfoFragment.java" />
+        <option value="$PROJECT_DIR$/Trakt-fragments/src/main/java/com/lopesdasilva/trakt/Tasks/MarkSeenUnseen.java" />
+        <option value="$PROJECT_DIR$/Trakt-fragments/src/main/java/com/lopesdasilva/trakt/Tasks/MarkEpisodeSeenUnseen.java" />
+        <option value="$PROJECT_DIR$/Trakt-fragments/src/main/java/com/lopesdasilva/trakt/Tasks/MarkShowSeenUnseen.java" />
       </list>
     </option>
   </component>
@@ -354,9 +472,10 @@
     <scope name="Trakt-api" pattern="src[trakt-java]:*..*" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="y" value="22" />
-    <option name="width" value="1366" />
-    <option name="height" value="699" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1616" />
+    <option name="height" value="876" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -442,18 +561,18 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="trakt" />
+              <option name="myItemId" value="aTrakt" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="trakt" />
+              <option name="myItemId" value="aTrakt" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -463,7 +582,7 @@
           </PATH>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="trakt" />
+              <option name="myItemId" value="aTrakt" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -474,14 +593,10 @@
               <option name="myItemId" value="java" />
               <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="trakt" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -493,14 +608,13 @@
     <property name="MemberChooser.sorted" value="false" />
     <property name="recentsLimit" value="5" />
     <property name="GenerateAntBuildDialog.generateSingleFile" value="false" />
-    <property name="ExportedApkPath" value="$PROJECT_DIR$/../atrakt.apk" />
-    <property name="ExportedModule" value="main" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../libs/android-query-full.0.25.10.jar!/" />
+    <property name="ExportedApkPath" value="D:\NB20308\Documents\GitHub\aTrakt\Trakt-fragments\src\main\atrakt.apk" />
+    <property name="ExportedModule" value="atrakt" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Dropbox/android trakt keys/traktplaystorekey" />
     <property name="GenerateAntBuildDialog.inclineRuntiemClasspath" value="false" />
     <property name="GenerateAntBuildDialog.outputFileNameProperty" value="trakt" />
     <property name="GenerateAntBuildDialog.enableUiFormCompile" value="true" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
-    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_AVD" value="nexus_7_x86" />
     <property name="OverrideImplement.overriding.sorted" value="false" />
     <property name="FullScreen" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
@@ -508,10 +622,10 @@
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/Trakt-fragments/src/main/java/com" />
     <property name="GoToFile.includeJavaFiles" value="false" />
-    <property name="options.lastSelected" value="Errors" />
+    <property name="options.lastSelected" value="appearance" />
     <property name="GenerateAntBuildDialog.forceTargetJdk" value="true" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="192.168.1.12:5555" />
+    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="0087c3e7d508e111" />
     <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="Groovy.Shell.LastModule" value="devsmartlib" />
     <property name="AndroidRunProguardForReleaseBuild" value="false" />
@@ -528,11 +642,11 @@
       <recent name="com.lopesdasilva.trakt.activities" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\NB20308\Documents\GitHub\aTrakt\Trakt-fragments\src\main\res\drawable" />
       <recent name="$PROJECT_DIR$/Trakt-fragments/src/main/res/layout" />
       <recent name="$PROJECT_DIR$/Trakt-fragments/src/main/res/menu" />
       <recent name="$PROJECT_DIR$/Trakt-fragments/src/main/res/drawable" />
       <recent name="$PROJECT_DIR$/Trakt-fragments/src/main/res/values" />
-      <recent name="$PROJECT_DIR$/Trakt-fragments/src/main/java/com/tonicartos/widget/stickygridheaders" />
     </key>
     <key name="CreateClassDialog.RecentsKey">
       <recent name="com.lopesdasilva.trakt.fragments" />
@@ -541,13 +655,13 @@
       <recent name="com.jakewharton.trakt.entities" />
       <recent name="com.lopesdasilva.trakt.extras" />
     </key>
-    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
-      <recent name="com.lopesdasilva.trakt" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/Trakt-fragments/src/main/res/color" />
       <recent name="$PROJECT_DIR$/Trakt-fragments/src/main/res/layout" />
       <recent name="$PROJECT_DIR$/../trakt-java/src/main" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.lopesdasilva.trakt" />
     </key>
   </component>
   <component name="RunManager" selected="Android Application.lopesdasilva.trakt">
@@ -645,19 +759,6 @@
       <option name="PORT" value="5005" />
       <method />
     </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <method />
-    </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
       <module name="" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -683,6 +784,19 @@
       <envs />
       <properties />
       <listeners />
+      <method />
+    </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
       <method />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -786,6 +900,9 @@
       <AnalysisUIOptions />
     </option>
   </component>
+  <component name="SvnConfiguration" SSL_PROTOCOLS="sslv3">
+    <configuration />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="a87f29ef-7e12-4f38-8c80-0f5054ccc65c" name="Default" comment="" />
@@ -841,7 +958,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="22" width="1366" height="699" extended-state="6" />
+    <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
     <editor active="false" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.12651515" sideWeight="0.47971782" order="3" side_tool="false" content_ui="tabs" />
@@ -849,28 +966,28 @@
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3287879" sideWeight="0.47971782" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3298791" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5334477" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32358003" sideWeight="0.5" order="13" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.53333336" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.53194445" sideWeight="0.5" order="13" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24621212" sideWeight="0.42657343" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="14" side_tool="true" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.19854133" sideWeight="0.38384956" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.38421956" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="true" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.5214408" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="true" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.5208333" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32804233" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24924242" sideWeight="0.67132866" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3298217" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3298217" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17673716" sideWeight="0.67530227" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32246998" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21465296" sideWeight="0.67530227" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32222223" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Thumbnails" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32867134" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.35151514" sideWeight="0.67530227" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32688928" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.35089976" sideWeight="0.67530227" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3263889" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.38333333" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Android Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32867134" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
@@ -892,267 +1009,477 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/java/com/lopesdasilva/trakt/fragments/CalendarWeekFragment.java">
+    <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/res/menu/dismiss_show.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="3960" max-vertical-offset="4770">
-          <caret line="264" column="0" selection-start="10402" selection-end="10402" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/java/com/lopesdasilva/trakt/Tasks/DownloadWeekCalendar.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="705" max-vertical-offset="930">
-          <caret line="47" column="104" selection-start="1434" selection-end="1434" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/java/com/lopesdasilva/trakt/fragments/WatchlistEpisodes.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1905" max-vertical-offset="3960">
-          <caret line="127" column="0" selection-start="4367" selection-end="4367" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/java/com/lopesdasilva/trakt/fragments/CalendarFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="180" max-vertical-offset="1440">
-          <caret line="26" column="24" selection-start="793" selection-end="793" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/java/com/lopesdasilva/trakt/fragments/CalendarWeekFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="3960" max-vertical-offset="4770">
-          <caret line="264" column="0" selection-start="10402" selection-end="10402" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/java/com/lopesdasilva/trakt/Tasks/DownloadWeekCalendar.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="705" max-vertical-offset="930">
-          <caret line="47" column="104" selection-start="1434" selection-end="1434" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/java/com/lopesdasilva/trakt/fragments/WatchlistEpisodes.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1905" max-vertical-offset="3960">
-          <caret line="127" column="0" selection-start="4367" selection-end="4367" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/java/com/lopesdasilva/trakt/fragments/CalendarFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="390" max-vertical-offset="1440">
-          <caret line="26" column="24" selection-start="793" selection-end="793" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/java/com/lopesdasilva/trakt/fragments/CalendarWeekFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4770">
-          <caret line="264" column="0" selection-start="10402" selection-end="10402" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/java/com/lopesdasilva/trakt/Tasks/DownloadWeekCalendar.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="705" max-vertical-offset="930">
-          <caret line="47" column="104" selection-start="1434" selection-end="1434" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/java/com/lopesdasilva/trakt/fragments/WatchlistEpisodes.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1905" max-vertical-offset="3960">
-          <caret line="127" column="0" selection-start="4367" selection-end="4367" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/java/com/lopesdasilva/trakt/fragments/CalendarFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="480" max-vertical-offset="1440">
-          <caret line="32" column="35" selection-start="899" selection-end="899" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/java/com/lopesdasilva/trakt/fragments/CalendarWeekFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4770">
-          <caret line="264" column="0" selection-start="10402" selection-end="10402" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/java/com/lopesdasilva/trakt/Tasks/DownloadWeekCalendar.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="705" max-vertical-offset="930">
-          <caret line="47" column="104" selection-start="1434" selection-end="1434" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/java/com/lopesdasilva/trakt/fragments/WatchlistEpisodes.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1905" max-vertical-offset="3960">
-          <caret line="127" column="0" selection-start="4367" selection-end="4367" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/java/com/lopesdasilva/trakt/fragments/CalendarFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1440">
-          <caret line="95" column="39" selection-start="3256" selection-end="3256" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/java/com/lopesdasilva/trakt/fragments/SearchMovieFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.16356878" vertical-offset="17" max-vertical-offset="1575">
-          <caret line="27" column="13" selection-start="845" selection-end="845" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/java/com/lopesdasilva/trakt/Tasks/DownloadWatchlistEpisodes.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.256654" vertical-offset="0" max-vertical-offset="975">
-          <caret line="18" column="37" selection-start="529" selection-end="529" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../trakt-java-tests/src/MainTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1225" max-vertical-offset="1740">
-          <caret line="90" column="0" selection-start="3062" selection-end="3062" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../trakt-java/src/main/java/com/jakewharton/trakt/entities/TvShowSeason.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.108892925" vertical-offset="0" max-vertical-offset="945">
-          <caret line="5" column="13" selection-start="120" selection-end="120" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/res/layout/seasons_seasons_item.xml">
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="540">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="692">
           <caret line="0" column="0" selection-start="0" selection-end="0" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/java/com/lopesdasilva/trakt/fragments/WatchlistEpisodesFragment.java">
+    <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/res/menu/login.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="167" max-vertical-offset="2235">
-          <caret line="160" column="48" selection-start="5719" selection-end="5719" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/res/layout/seasons_episode_item.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1695">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="692">
           <caret line="0" column="0" selection-start="0" selection-end="0" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/res/layout/seasons_fragment.xml">
+    <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/res/menu/main.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="692">
+          <caret line="0" column="0" selection-start="0" selection-end="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/res/menu/seasons_episode_actions_seen.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="692">
+          <caret line="0" column="0" selection-start="0" selection-end="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/res/menu/seasons_episode_actions_unseen.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="692">
+          <caret line="0" column="0" selection-start="0" selection-end="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/res/menu/dismiss_movie.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="692">
+          <caret line="0" column="0" selection-start="0" selection-end="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/res/menu/context_menu.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="692">
+          <caret line="0" column="0" selection-start="0" selection-end="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/res/menu/context.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="692">
+          <caret line="0" column="0" selection-start="0" selection-end="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/res/values/colors.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="692">
+          <caret line="0" column="0" selection-start="0" selection-end="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/res/layout/activity_login.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-17.703703" vertical-offset="1018" max-vertical-offset="1683">
+          <caret line="88" column="0" selection-start="3223" selection-end="3223" />
+          <folding />
+        </state>
+      </provider>
       <provider editor-type-id="android-designer">
         <state />
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/res/layout/calendar_activity.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.5555553" vertical-offset="0" max-vertical-offset="330">
-          <caret line="10" column="42" selection-start="417" selection-end="417" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="665">
+          <caret line="0" column="0" selection-start="0" selection-end="0" />
+          <folding />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/java/com/lopesdasilva/trakt/fragments/WatchlistMoviesFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1154" max-vertical-offset="2835">
-          <caret line="131" column="0" selection-start="5514" selection-end="5514" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/java/com/lopesdasilva/trakt/fragments/SeasonsFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="4.9907064" vertical-offset="15" max-vertical-offset="4980">
-          <caret line="207" column="28" selection-start="9357" selection-end="9357" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/res/layout/watchlist_modal_fragment.xml">
       <provider editor-type-id="android-designer">
         <state />
       </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.34220532" vertical-offset="0" max-vertical-offset="526">
-          <caret line="12" column="39" selection-start="509" selection-end="509" />
-        </state>
-      </provider>
     </entry>
-    <entry file="jar://$PROJECT_DIR$/../../libs/android-support-v4.jar!/android/support/v4/view/ViewPager.class">
+    <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/res/layout/calendar_fragment.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.14563107" vertical-offset="0" max-vertical-offset="5235">
-          <caret line="6" column="13" selection-start="166" selection-end="166" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/java/com/lopesdasilva/trakt/Tasks/DownloadWeekCalendar.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="247" max-vertical-offset="825">
-          <caret line="47" column="104" selection-start="1434" selection-end="1434" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="665">
+          <caret line="0" column="0" selection-start="0" selection-end="0" />
           <folding />
         </state>
       </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/java/com/lopesdasilva/trakt/fragments/WatchlistEpisodes.java">
+    <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/res/layout/calendarweek_fragment.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1275" max-vertical-offset="3645">
-          <caret line="127" column="0" selection-start="4367" selection-end="4367" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="986">
+          <caret line="0" column="0" selection-start="0" selection-end="0" />
           <folding />
         </state>
       </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/java/com/lopesdasilva/trakt/fragments/CalendarWeekFragment.java">
+    <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/res/layout/calendarweek_item.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1950" max-vertical-offset="4245">
-          <caret line="264" column="0" selection-start="10402" selection-end="10402" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="665">
+          <caret line="0" column="0" selection-start="0" selection-end="0" />
           <folding />
         </state>
       </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/java/com/lopesdasilva/trakt/fragments/CalendarFragment.java">
+    <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/res/layout/drawer_episodes_tonight.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="780" max-vertical-offset="1440">
-          <caret line="90" column="35" selection-start="3063" selection-end="3063" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1190">
+          <caret line="0" column="0" selection-start="0" selection-end="0" />
           <folding />
         </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/res/layout/drawer_episodes_tonight_item.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1343">
+          <caret line="0" column="0" selection-start="0" selection-end="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/res/layout/episode_activity.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="665">
+          <caret line="0" column="0" selection-start="0" selection-end="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/res/layout/episode_fragment.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2992">
+          <caret line="0" column="0" selection-start="0" selection-end="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/res/layout/episodes_tonight_activity.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="665">
+          <caret line="0" column="0" selection-start="0" selection-end="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/res/layout/episodes_tonight_item.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2805">
+          <caret line="0" column="0" selection-start="0" selection-end="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/res/layout/fragment_planet.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="665">
+          <caret line="0" column="0" selection-start="0" selection-end="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/res/layout/fragment_sun.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="665">
+          <caret line="0" column="0" selection-start="0" selection-end="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/res/layout/friends_fragment.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="850">
+          <caret line="0" column="0" selection-start="0" selection-end="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/res/layout/friends_item.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1139">
+          <caret line="0" column="0" selection-start="0" selection-end="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/res/layout/home_fragment.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="969">
+          <caret line="0" column="0" selection-start="0" selection-end="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/res/layout/friends_item_episode.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1122">
+          <caret line="0" column="0" selection-start="0" selection-end="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/res/layout/home_pager_fragment.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="665">
+          <caret line="0" column="0" selection-start="0" selection-end="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/res/layout/library_movies_grid_item.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1428">
+          <caret line="0" column="0" selection-start="0" selection-end="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/res/layout/library_pager_fragment.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="665">
+          <caret line="0" column="0" selection-start="0" selection-end="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/res/layout/activity_main.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33895704" vertical-offset="272" max-vertical-offset="986">
+          <caret line="29" column="24" selection-start="948" selection-end="948" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/java/com/lopesdasilva/trakt/Login.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3243243" vertical-offset="0" max-vertical-offset="3390">
-          <caret line="33" column="13" selection-start="963" selection-end="963" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="544" max-vertical-offset="4131">
+          <caret line="32" column="13" selection-start="893" selection-end="893" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/res/layout/drawer_list_item.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.66466165" vertical-offset="0" max-vertical-offset="665">
+          <caret line="26" column="59" selection-start="1117" selection-end="1117" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/java/com/lopesdasilva/trakt/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="447" max-vertical-offset="5015">
+          <caret line="52" column="69" selection-start="1750" selection-end="1750" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/res/values/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="714">
+          <caret line="22" column="32" selection-start="723" selection-end="723" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/sdk/platforms/android-19/android.jar!/android/view/Menu.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3328424" vertical-offset="148" max-vertical-offset="1173">
+          <caret line="23" column="26" selection-start="684" selection-end="684" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/java/com/lopesdasilva/trakt/fragments/EpisodeFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="3094" max-vertical-offset="6698">
+          <caret line="182" column="0" selection-start="7035" selection-end="7152" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2108">
+          <caret line="13" column="16" selection-start="399" selection-end="399" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/java/com/lopesdasilva/trakt/TVtraktApp.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="527">
+          <caret line="36" column="0" selection-start="714" selection-end="714" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/java/com/lopesdasilva/trakt/Tasks/DownloadShowInfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="345" max-vertical-offset="1037">
+          <caret line="46" column="0" selection-start="1372" selection-end="1372" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/java/com/lopesdasilva/trakt/Tasks/RateShowLove.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.19653179" vertical-offset="408" max-vertical-offset="1292">
+          <caret line="42" column="69" selection-start="1269" selection-end="1269" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/java/com/lopesdasilva/trakt/Tasks/UnrateShow.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.1965318" vertical-offset="192" max-vertical-offset="1292">
+          <caret line="74" column="0" selection-start="2548" selection-end="2548" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/java/com/lopesdasilva/trakt/Tasks/RateShowHate.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.78612715" vertical-offset="102" max-vertical-offset="1292">
+          <caret line="48" column="9" selection-start="1475" selection-end="1475" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/java/com/lopesdasilva/trakt/Tasks/RemoveShowFromWatchlist.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.8106936" vertical-offset="0" max-vertical-offset="1513">
+          <caret line="33" column="4" selection-start="1040" selection-end="1040" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/java/com/lopesdasilva/trakt/Tasks/AddShowToWatchlist.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="901" max-vertical-offset="1513">
+          <caret line="53" column="59" selection-start="1513" selection-end="1513" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/res/layout/calendarweek_item_episode.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33895704" vertical-offset="918" max-vertical-offset="1836">
+          <caret line="67" column="14" selection-start="2783" selection-end="2783" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/res/layout/showinfo_fragment.xml">
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3230">
+          <caret line="20" column="12" selection-start="694" selection-end="694" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/java/com/lopesdasilva/trakt/fragments/ShowInfoFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1344" max-vertical-offset="2074">
+          <caret line="115" column="0" selection-start="4391" selection-end="4391" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/java/com/lopesdasilva/trakt/Tasks/MarkShowWatchlistUnWatchlist.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.6950867" vertical-offset="600" max-vertical-offset="1292">
+          <caret line="15" column="13" selection-start="448" selection-end="448" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/java/com/lopesdasilva/trakt/fragments/ShowFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="3588" max-vertical-offset="4777">
+          <caret line="297" column="34" selection-start="10279" selection-end="10279" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/java/com/lopesdasilva/trakt/Tasks/MarkEpisodeSeenUnseen.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="204" max-vertical-offset="1326">
+          <caret line="44" column="0" selection-start="1505" selection-end="1505" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Trakt-fragments/src/main/java/com/lopesdasilva/trakt/Tasks/MarkShowSeenUnseen.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="544" max-vertical-offset="1292">
+          <caret line="41" column="44" selection-start="1292" selection-end="1292" />
           <folding />
         </state>
       </provider>
@@ -1175,7 +1502,7 @@
       </state>
       <state key="FacetStructureConfigurable.UI">
         <settings>
-          <last-edited>Android (Library)|Android</last-edited>
+          <last-edited>Android</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
@@ -1187,6 +1514,7 @@
       </state>
       <state key="GlobalLibrariesConfigurable.UI">
         <settings>
+          <last-edited>android-support-v4</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
@@ -1198,7 +1526,7 @@
       </state>
       <state key="JdkListConfigurable.UI">
         <settings>
-          <last-edited>1.6</last-edited>
+          <last-edited>Android API 18 Platform</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
@@ -1215,7 +1543,6 @@
             <option name="proportions">
               <list>
                 <option value="0.2" />
-                <option value="0.5" />
               </list>
             </option>
           </splitter-proportions>
@@ -1223,7 +1550,7 @@
       </state>
       <state key="ProjectJDKs.UI">
         <settings>
-          <last-edited>1.6</last-edited>
+          <last-edited>Android API 19 Platform</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>

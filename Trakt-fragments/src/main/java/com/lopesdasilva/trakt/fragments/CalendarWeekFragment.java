@@ -19,11 +19,11 @@ import com.jakewharton.trakt.entities.CalendarDate;
 import com.jakewharton.trakt.entities.RatingResponse;
 import com.lopesdasilva.trakt.R;
 import com.lopesdasilva.trakt.Tasks.DownloadWeekCalendar;
-import com.lopesdasilva.trakt.Tasks.MarkEpisodeHate;
-import com.lopesdasilva.trakt.Tasks.MarkEpisodeLove;
-import com.lopesdasilva.trakt.Tasks.MarkEpisodeNone;
+import com.lopesdasilva.trakt.Tasks.RateEpisodeHate;
+import com.lopesdasilva.trakt.Tasks.RateEpisodeLove;
+import com.lopesdasilva.trakt.Tasks.UnrateEpisode;
 import com.lopesdasilva.trakt.Tasks.MarkEpisodeWatchlistUnWatchlist;
-import com.lopesdasilva.trakt.Tasks.MarkSeenUnseen;
+import com.lopesdasilva.trakt.Tasks.MarkEpisodeSeenUnseen;
 import com.lopesdasilva.trakt.activities.EpisodeActivity;
 import com.lopesdasilva.trakt.extras.UserChecker;
 import com.tonicartos.widget.stickygridheaders.StickyGridHeadersBaseAdapter;
@@ -38,7 +38,7 @@ import java.util.List;
 /**
  * Created by lopesdasilva on 27/05/13.
  */
-public class CalendarWeekFragment extends Fragment implements DownloadWeekCalendar.OnWeekTaskCompleted, MarkSeenUnseen.OnMarkSeenUnseenCompleted, MarkEpisodeWatchlistUnWatchlist.WatchlistUnWatchlistCompleted, MarkEpisodeHate.OnMarkEpisodeHateCompleted, MarkEpisodeLove.OnMarkEpisodeLoveCompleted, MarkEpisodeNone.OnMarkEpisodeNoneCompleted {
+public class CalendarWeekFragment extends Fragment implements DownloadWeekCalendar.OnWeekTaskCompleted, MarkEpisodeSeenUnseen.OnMarkSeenUnseenCompleted, MarkEpisodeWatchlistUnWatchlist.WatchlistUnWatchlistCompleted, RateEpisodeHate.OnMarkEpisodeHateCompleted, RateEpisodeLove.OnMarkEpisodeLoveCompleted, UnrateEpisode.OnMarkEpisodeNoneCompleted {
 
     private ServiceManager manager;
     private DownloadWeekCalendar mTaskDownloadWeekCalendar;
@@ -175,20 +175,20 @@ public class CalendarWeekFragment extends Fragment implements DownloadWeekCalend
 
                         switch (item_clicked) {
                             case 0:
-                                new MarkSeenUnseen(getActivity(), CalendarWeekFragment.this, manager, lista.get(position).show, lista.get(position).episode, position).execute();
+                                new MarkEpisodeSeenUnseen(getActivity(), CalendarWeekFragment.this, manager, lista.get(position).show, lista.get(position).episode, position).execute();
                                 break;
                             case 1:
                                 if (lista.get(position).episode.rating != null)
-                                    new MarkEpisodeNone(getActivity(),CalendarWeekFragment.this,manager,lista.get(position).show,lista.get(position).episode,position).execute();
+                                    new UnrateEpisode(getActivity(),CalendarWeekFragment.this,manager,lista.get(position).show,lista.get(position).episode,position).execute();
                                 else
-                                new MarkEpisodeLove(getActivity(),CalendarWeekFragment.this,manager,lista.get(position).show,lista.get(position).episode,position).execute();
+                                new RateEpisodeLove(getActivity(),CalendarWeekFragment.this,manager,lista.get(position).show,lista.get(position).episode,position).execute();
 
                                 break;
                             case 2:
                                 if (lista.get(position).episode.rating != null)
-                                    new MarkEpisodeNone(getActivity(),CalendarWeekFragment.this,manager,lista.get(position).show,lista.get(position).episode,position).execute();
+                                    new UnrateEpisode(getActivity(),CalendarWeekFragment.this,manager,lista.get(position).show,lista.get(position).episode,position).execute();
                                 else
-                                new MarkEpisodeHate(getActivity(),CalendarWeekFragment.this,manager,lista.get(position).show,lista.get(position).episode,position).execute();
+                                new RateEpisodeHate(getActivity(),CalendarWeekFragment.this,manager,lista.get(position).show,lista.get(position).episode,position).execute();
 
                                 break;
                             case 3:

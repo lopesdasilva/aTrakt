@@ -21,13 +21,19 @@
         <item>Trending</item>
         <item>Library</item>
         <item>Recommended</item>
-        <item>Watchlist</item>
         <item>Calendar</item>
     </array>
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
     <string name="app_not_available">App not available</string>
     <string name="search_hint">What are you looking for?</string>
+    <string name="share">Share</string>
+    <string name="watchlist">Watchlist</string>
+    <string name="seen">Seen</string>
+    <string name="loved">Loved</string>
+    <string name="hated">Hated</string>
+    <string name="unrate">Unrate</string>
+    <string name="remove_watchlist">Unwatchlist</string>
     <array name="watchlist_remove">
         <item>Remove from watchlist</item>
         <!--<item>Loved</item>-->

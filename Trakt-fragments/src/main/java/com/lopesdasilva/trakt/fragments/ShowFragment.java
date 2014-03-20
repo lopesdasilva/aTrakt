@@ -1,8 +1,5 @@
 package com.lopesdasilva.trakt.fragments;
 
-import java.io.Serializable;
-import java.util.Locale;
-
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
@@ -12,22 +9,35 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
+
 import com.jakewharton.trakt.ServiceManager;
+import com.jakewharton.trakt.entities.RatingResponse;
 import com.jakewharton.trakt.entities.TvShow;
 import com.lopesdasilva.trakt.R;
+import com.lopesdasilva.trakt.Tasks.AddShowToWatchlist;
 import com.lopesdasilva.trakt.Tasks.DownloadShowInfo;
+import com.lopesdasilva.trakt.Tasks.RateShowHate;
+import com.lopesdasilva.trakt.Tasks.RateShowLove;
+import com.lopesdasilva.trakt.Tasks.RemoveShowFromWatchlist;
+import com.lopesdasilva.trakt.Tasks.UnrateShow;
 import com.lopesdasilva.trakt.extras.UserChecker;
 
-public class ShowFragment extends Fragment implements ActionBar.TabListener, DownloadShowInfo.onShowInfoTaskComplete {
+import java.util.Locale;
+
+public class ShowFragment extends Fragment implements ActionBar.TabListener, DownloadShowInfo.onShowInfoTaskComplete, RateShowLove.OnRatingShowLoveCompleted, UnrateShow.OnUnratingShowCompleted, RateShowHate.OnRatingShowHateCompleted, AddShowToWatchlist.OnAddShowToWatchlistCompleted, RemoveShowFromWatchlist.OnRemovingShowFromWatchlistCompleted {
 
     private View rootView;
     private ServiceManager manager;
     private DownloadShowInfo mTaskDownloadShowInfo;
     private ActionBar actionBar;
     private TvShow mTVshow;
+    private Menu mMenu;
+    private ShowInfoFragment mInfoFragment;
 
     public ShowFragment() {
 
@@ -49,10 +59,72 @@ public class ShowFragment extends Fragment implements ActionBar.TabListener, Dow
     }
 
 
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        this.mMenu = menu;
+        updateOptionsMenu(mMenu);
+
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case 0:
+                new RemoveShowFromWatchlist(getActivity(),ShowFragment.this,manager,mTVshow,0).execute();
+                return true;
+            case 1:
+                new AddShowToWatchlist(getActivity(),ShowFragment.this,manager,mTVshow,0).execute();
+                return true;
+            case 2:
+                new UnrateShow(getActivity(),ShowFragment.this,manager,mTVshow,0).execute();
+
+                return true;
+            case 3:
+                new RateShowHate(getActivity(),ShowFragment.this,manager,mTVshow,0).execute();
+
+                return true;
+            case 4:
+                new RateShowLove(getActivity(),ShowFragment.this,manager,mTVshow,0).execute();
+
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    public void updateOptionsMenu(Menu menu){
+        menu.clear();
+        if(mTVshow.inWatchlist!=null )
+            if(mTVshow.inWatchlist)
+        menu.add(0, 0, 0,  R.string.remove_watchlist);
+        else
+        menu.add(0, 1, 1, R.string.watchlist);
+        if(mTVshow.rating!=null){
+            switch (mTVshow.rating){
+
+                case Love:
+                    menu.add(0, 2, 2,  R.string.unrate);
+                    menu.add(0, 3, 3,  R.string.hated);
+                    break;
+                case Hate:
+                    menu.add(0, 2, 2,  R.string.unrate);
+                    menu.add(0, 4, 4,  R.string.loved);
+                    break;
+            }
+        }else{
+            menu.add(0, 3, 3,  R.string.hated);
+            menu.add(0, 4, 4,  R.string.loved);
+        }
+
+        menu.add(0, 4, 4,  R.string.seen);
+        menu.add(0,5,5, R.string.share).setIcon(android.R.drawable.ic_menu_share).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.show_fragment, container, false);
+
+
+
 
         if (savedInstanceState == null) {
             show = getArguments().getString("show_imdb");
@@ -115,8 +187,8 @@ public class ShowFragment extends Fragment implements ActionBar.TabListener, Dow
     public void onShowInfoTaskComplete(TvShow response) {
 
         Log.d("Trakt", "Download show info complete");
-
         updateShow(response);
+
 
 
     }
@@ -153,8 +225,43 @@ public class ShowFragment extends Fragment implements ActionBar.TabListener, Dow
                             actionBar.setSelectedNavigationItem(position);
                         }
                     });
-
+            setHasOptionsMenu(true);
         }
+    }
+
+    @Override
+    public void OnRatingShowLoveCompleted(int position, RatingResponse response) {
+        mTVshow.rating=response.rating;
+        updateOptionsMenu(mMenu);
+        mInfoFragment.updateInfo(mTVshow);
+    }
+
+    @Override
+    public void OnUnratingShowCompleted(int position, RatingResponse response) {
+        mTVshow.rating=response.rating;
+        updateOptionsMenu(mMenu);
+        mInfoFragment.updateInfo(mTVshow);
+    }
+
+    @Override
+    public void OnRatingShowHateCompleted(int position, RatingResponse response) {
+        mTVshow.rating=response.rating;
+        updateOptionsMenu(mMenu);
+        mInfoFragment.updateInfo(mTVshow);
+    }
+
+    @Override
+    public void OnAddShowToWatchlistCompleted(int position) {
+        mTVshow.inWatchlist=true;
+        updateOptionsMenu(mMenu);
+        mInfoFragment.updateInfo(mTVshow);
+    }
+
+    @Override
+    public void OnRemovingShowfromWatchlistCompleted(int position) {
+        mTVshow.inWatchlist=false;
+        updateOptionsMenu(mMenu);
+        mInfoFragment.updateInfo(mTVshow);
     }
 
     /**
@@ -178,7 +285,8 @@ public class ShowFragment extends Fragment implements ActionBar.TabListener, Dow
             switch (position) {
                 case 0:
                     arguments.putSerializable("show", mTVshow);
-                    fragment = new ShowInfoFragment();
+                    mInfoFragment = new ShowInfoFragment();
+                    fragment=mInfoFragment;
                     break;
                 case 1:
                     arguments.putSerializable("show", mTVshow);

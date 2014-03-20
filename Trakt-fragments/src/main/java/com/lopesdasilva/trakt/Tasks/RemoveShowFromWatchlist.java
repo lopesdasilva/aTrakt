@@ -8,28 +8,24 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.jakewharton.trakt.ServiceManager;
-import com.jakewharton.trakt.entities.RatingResponse;
 import com.jakewharton.trakt.entities.TvShow;
-import com.jakewharton.trakt.entities.TvShowEpisode;
-import com.jakewharton.trakt.enumerations.Rating;
 
 /**
  * Created by lopesdasilva on 30/05/13.
  */
-public class MarkEpisodeHate extends AsyncTask<Void, Void, RatingResponse> {
+public class RemoveShowFromWatchlist extends AsyncTask<Void, Void, Void> {
 
-    private final TvShowEpisode episode_info;
+
     private final ServiceManager manager;
-    private final OnMarkEpisodeHateCompleted listener;
+    private final OnRemovingShowFromWatchlistCompleted listener;
     private final TvShow show_info;
     private final int position;
     private final FragmentActivity activity;
     private Exception e = null;
 
-    public MarkEpisodeHate(FragmentActivity activity, OnMarkEpisodeHateCompleted listener, ServiceManager manager, TvShow show, TvShowEpisode episode, int position){
+    public RemoveShowFromWatchlist(FragmentActivity activity, OnRemovingShowFromWatchlistCompleted listener, ServiceManager manager, TvShow show, int position){
         this.activity=activity;
         this.manager=manager;
-        this.episode_info=episode;
         this.show_info=show;
         this.listener=listener;
         this.position=position;
@@ -39,10 +35,12 @@ public class MarkEpisodeHate extends AsyncTask<Void, Void, RatingResponse> {
 
 
     @Override
-    protected RatingResponse doInBackground(Void... voids) {
+    protected Void doInBackground(Void... voids) {
          try {
+
                 Log.d("Trakt", "Marking "+show_info.tvdbId+" as hated");
-                return manager.rateService().episode(show_info.title,show_info.year).season(episode_info.season).episode(episode_info.number).rating(Rating.Hate).fire();
+             return manager.showService().unwatchlist().title(show_info.title,show_info.year).fire();
+
 
         } catch (Exception e) {
             this.e = e;
@@ -50,20 +48,20 @@ public class MarkEpisodeHate extends AsyncTask<Void, Void, RatingResponse> {
         }
     }
     @Override
-    protected void onPostExecute(RatingResponse response) {
+    protected void onPostExecute(Void response) {
         if(e==null){
 
-            listener.OnMarkEpisodeHateCompleted(position, response);
+            listener.OnRemovingShowfromWatchlistCompleted(position);
 
         }else{
-            Log.d("Trakt","Error marking episode as hated");
+            Log.d("Trakt","Error removing the show from watchlist");
 
 
             AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-            builder.setMessage("Error rating the episode")
+            builder.setMessage("Error removing the show from watchlist")
                     .setPositiveButton("Retry", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
-                                new MarkEpisodeHate(activity,listener,manager,show_info,episode_info,position).execute();
+                                new RemoveShowFromWatchlist(activity,listener,manager,show_info,position).execute();
                         }
                     })
                     .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -79,7 +77,7 @@ public class MarkEpisodeHate extends AsyncTask<Void, Void, RatingResponse> {
 
     }
 
-    public interface OnMarkEpisodeHateCompleted {
-        void OnMarkEpisodeHateCompleted(int position, RatingResponse response);
+    public interface OnRemovingShowFromWatchlistCompleted {
+        void OnRemovingShowfromWatchlistCompleted(int position);
     }
 }
