@@ -93,7 +93,7 @@ public class CalendarFragment extends Fragment {
                 return "next week";
             else {
                 if (position < middlePosition) {
-                    int aux_position = mCount - position - middlePosition;
+                    int aux_position = mCount - position - middlePosition-1;
                     return aux_position + " weeks ago";
                 } else
                     return String.valueOf(position - middlePosition) + " weeks ahead";
