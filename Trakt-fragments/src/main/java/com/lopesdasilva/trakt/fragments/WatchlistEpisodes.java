@@ -17,17 +17,13 @@ import com.jakewharton.trakt.ServiceManager;
 import com.jakewharton.trakt.entities.TvShow;
 import com.jakewharton.trakt.entities.TvShowEpisode;
 import com.lopesdasilva.trakt.R;
-<<<<<<< HEAD
 import com.lopesdasilva.trakt.Tasks.MarkEpisodeSeenUnseen;
-=======
 import com.lopesdasilva.trakt.Tasks.MarkEpisodeWatchlistUnWatchlist;
 import com.lopesdasilva.trakt.Tasks.MarkSeenUnseen;
 import com.lopesdasilva.trakt.activities.EpisodeActivity;
->>>>>>> facfcc52031cede1c7a418658917c6e72b950896
 import com.lopesdasilva.trakt.extras.UserChecker;
 import com.tonicartos.widget.stickygridheaders.StickyGridHeadersBaseAdapter;
 import com.tonicartos.widget.stickygridheaders.StickyGridHeadersGridView;
-
 import java.text.SimpleDateFormat;
 import java.util.LinkedList;
 import java.util.List;
@@ -35,11 +31,8 @@ import java.util.List;
 /**
  * Created by lopesdasilva on 15/10/13.
  */
-<<<<<<< HEAD
-public class WatchlistEpisodes extends DialogFragment implements MarkEpisodeSeenUnseen.OnMarkSeenUnseenCompleted {
-=======
 public class WatchlistEpisodes extends DialogFragment implements MarkSeenUnseen.OnMarkSeenUnseenCompleted, MarkEpisodeWatchlistUnWatchlist.WatchlistUnWatchlistCompleted {
->>>>>>> facfcc52031cede1c7a418658917c6e72b950896
+
 
 
     private ServiceManager manager;
@@ -239,16 +232,15 @@ public class WatchlistEpisodes extends DialogFragment implements MarkSeenUnseen.
 
                     switch (menuItem.getItemId()) {
 
-<<<<<<< HEAD
                         case R.id.action_episode_unseen:
                             new MarkEpisodeSeenUnseen(getActivity(), WatchlistEpisodes.this, manager, currentShow, episode, position).execute();
-=======
+
                         case R.id.action_episode_remove_watchlist:
                             //if it is here then it has to be true
                             currentShow.episodes.get(position).inWatchlist=true;
                             new MarkEpisodeWatchlistUnWatchlist(getActivity(),WatchlistEpisodes.this,manager,currentShow,currentShow.episodes.get(position),position).execute();
 //                            new MarkSeenUnseen(getActivity(), WatchlistEpisodes.this, manager, currentShow, episode, position).execute();
->>>>>>> facfcc52031cede1c7a418658917c6e72b950896
+
                             return true;
                         default:
                             return false;
