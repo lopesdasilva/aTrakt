@@ -101,7 +101,7 @@ public class FriendsFragment extends Fragment {
         protected void onPostExecute(List<ActivityItem> result) {
             if (e == null) {
                 updateList(result);
-            }
+            }else
             Log.d("Trakt", "Error downloading Friends list");
 
         }

@@ -1,6 +1,8 @@
 package com.lopesdasilva.trakt.fragments;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.util.Log;
@@ -8,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ListView;
 import com.androidquery.AQuery;
 import com.jakewharton.trakt.entities.Actor;
 import com.jakewharton.trakt.entities.People;
@@ -38,6 +41,15 @@ public class ShowCastFragment extends ListFragment {
             getListView().setClickable(false);
         }
 
+    }
+
+    @Override
+    public void onListItemClick(ListView l, View v, int position, long id) {
+        super.onListItemClick(l, v, position, id);
+
+        Uri uri = Uri.parse("http://www.google.com/#q="+mShowpeople.actors.get(position).name+"+"+mShowpeople.actors.get(position).character);
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        startActivity(intent);
     }
 
     public class ShowCastAdapter extends BaseAdapter {

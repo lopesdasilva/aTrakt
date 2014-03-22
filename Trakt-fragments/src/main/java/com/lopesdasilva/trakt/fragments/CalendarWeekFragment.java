@@ -18,12 +18,8 @@ import com.jakewharton.trakt.ServiceManager;
 import com.jakewharton.trakt.entities.CalendarDate;
 import com.jakewharton.trakt.entities.RatingResponse;
 import com.lopesdasilva.trakt.R;
-import com.lopesdasilva.trakt.Tasks.DownloadWeekCalendar;
-import com.lopesdasilva.trakt.Tasks.RateEpisodeHate;
-import com.lopesdasilva.trakt.Tasks.RateEpisodeLove;
-import com.lopesdasilva.trakt.Tasks.UnrateEpisode;
-import com.lopesdasilva.trakt.Tasks.MarkEpisodeWatchlistUnWatchlist;
-import com.lopesdasilva.trakt.Tasks.MarkEpisodeSeenUnseen;
+import com.lopesdasilva.trakt.Tasks.*;
+import com.lopesdasilva.trakt.Tasks.EpisodeWatchlistUnWatchlist;
 import com.lopesdasilva.trakt.activities.EpisodeActivity;
 import com.lopesdasilva.trakt.extras.UserChecker;
 import com.tonicartos.widget.stickygridheaders.StickyGridHeadersBaseAdapter;
@@ -38,7 +34,7 @@ import java.util.List;
 /**
  * Created by lopesdasilva on 27/05/13.
  */
-public class CalendarWeekFragment extends Fragment implements DownloadWeekCalendar.OnWeekTaskCompleted, MarkEpisodeSeenUnseen.OnMarkSeenUnseenCompleted, MarkEpisodeWatchlistUnWatchlist.WatchlistUnWatchlistCompleted, RateEpisodeHate.OnMarkEpisodeHateCompleted, RateEpisodeLove.OnMarkEpisodeLoveCompleted, UnrateEpisode.OnMarkEpisodeNoneCompleted {
+public class CalendarWeekFragment extends Fragment implements DownloadWeekCalendar.OnWeekTaskCompleted, MarkEpisodeSeenUnseen.OnMarkSeenUnseenCompleted, EpisodeWatchlistUnWatchlist.WatchlistUnWatchlistCompleted, RateEpisodeHate.OnMarkEpisodeHateCompleted, RateEpisodeLove.OnMarkEpisodeLoveCompleted, UnrateEpisode.OnMarkEpisodeNoneCompleted {
 
     private ServiceManager manager;
     private DownloadWeekCalendar mTaskDownloadWeekCalendar;
@@ -192,7 +188,7 @@ public class CalendarWeekFragment extends Fragment implements DownloadWeekCalend
 
                                 break;
                             case 3:
-                                new MarkEpisodeWatchlistUnWatchlist(getActivity(), CalendarWeekFragment.this, manager, lista.get(position).show, lista.get(position).episode, position).execute();
+                                new EpisodeWatchlistUnWatchlist(getActivity(), CalendarWeekFragment.this, manager, lista.get(position).show, lista.get(position).episode, position).execute();
                                 break;
                         }
                     }

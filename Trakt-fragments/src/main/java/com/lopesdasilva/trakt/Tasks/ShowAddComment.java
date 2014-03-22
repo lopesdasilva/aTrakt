@@ -1,0 +1,82 @@
+package com.lopesdasilva.trakt.Tasks;
+
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.os.AsyncTask;
+import android.support.v4.app.FragmentActivity;
+import android.util.Log;
+import android.widget.Toast;
+import com.jakewharton.trakt.ServiceManager;
+import com.jakewharton.trakt.entities.Response;
+import com.jakewharton.trakt.entities.TvShow;
+
+/**
+ * Created by lopesdasilva on 18/05/13.
+ */
+public class ShowAddComment extends AsyncTask<Void, Void, Response> {
+
+    private final FragmentActivity activity;
+    private final ServiceManager manager;
+    private final TvShow mTvShow;
+    private final String comment;
+    private OnShowAddCommentTaskCompleted listener;
+
+
+    public ShowAddComment(FragmentActivity activity,OnShowAddCommentTaskCompleted listener, ServiceManager manager, TvShow show,String comment){
+        this.listener=listener;
+        this.activity=activity;
+        this.manager=manager;
+        this.mTvShow =show;
+        this.comment=comment;
+    }
+
+    private Exception e;
+
+    @Override
+    protected Response doInBackground(Void... voids) {
+
+        try {
+            Log.d("Trakt Fragments", "Add a comment to show "+mTvShow.imdbId);
+           return manager.shoutService().show(mTvShow.title,mTvShow.year).shout(comment).fire();
+//            return manager.movieService().summary(mTvShow).fire();
+        } catch (Exception e) {
+            Log.d("Trakt Fragments", "An Exception was caught");
+            this.e = e;
+            return null;
+        }
+    }
+
+    @Override
+    protected void onPostExecute(final Response response) {
+
+        if (e == null) {
+            Log.d("Trakt it", "Comment added" + response.message);
+            listener.onShowAddCommentComplete(response);
+
+        } else {
+            Log.d("Trakt it", "Failed to add your comment to the show. Exception Found: " + e.getMessage());
+
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+            builder.setMessage("Error  adding your comment to the show.")
+                    .setPositiveButton("Retry", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            new ShowAddComment(activity,listener,manager, mTvShow,comment).execute();
+                        }
+                    })
+                    .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            Toast.makeText(activity, "Cancel", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+            AlertDialog dialog = builder.create();
+            dialog.show();
+
+        }
+    }
+
+    public interface OnShowAddCommentTaskCompleted {
+        void onShowAddCommentComplete(Response response);
+    }
+
+}

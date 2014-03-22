@@ -17,10 +17,10 @@ import android.widget.Toast;
 import com.androidquery.AQuery;
 import com.jakewharton.trakt.ServiceManager;
 import com.jakewharton.trakt.entities.Movie;
+import com.jakewharton.trakt.entities.RatingResponse;
 import com.jakewharton.trakt.entities.Response;
 import com.lopesdasilva.trakt.R;
-import com.lopesdasilva.trakt.Tasks.CheckInChecker;
-import com.lopesdasilva.trakt.Tasks.DownloadMovieInfo;
+import com.lopesdasilva.trakt.Tasks.*;
 import com.lopesdasilva.trakt.extras.UserChecker;
 
 import java.text.SimpleDateFormat;
@@ -29,7 +29,7 @@ import java.util.Date;
 /**
  * Created by lopesdasilva on 17/05/13.
  */
-public class MovieFragment extends Fragment implements DownloadMovieInfo.OnMovieTaskCompleted {
+public class MovieFragment extends Fragment implements DownloadMovieInfo.OnMovieTaskCompleted, RateMovieHate.OnRatingMovieHateCompleted, RateMovieLove.OnRatingMovieLoveCompleted, UnrateMovie.OnUnratingMovieCompleted {
     private View rootView;
     private String movie;
     private ServiceManager manager;
@@ -68,29 +68,66 @@ public class MovieFragment extends Fragment implements DownloadMovieInfo.OnMovie
         return rootView;
     }
 
+
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         this.mMenu = menu;
-        menu.add(0, 0, 0, "Refresh").setIcon(android.R.drawable.ic_popup_sync).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+        updateOptionsMenu(mMenu);
+
+    }
+
+    public void updateOptionsMenu(Menu menu){
+        menu.clear();
+        menu.add(0, 0, 0, R.string.refresh).setIcon(android.R.drawable.ic_popup_sync).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+        menu.add(1,1,1,R.string.share).setIcon(android.R.drawable.ic_menu_share).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
         if (movie_info.watched) {
-            menu.add(0, 1, 1, "Unseen")
-                    .setIcon(R.drawable.ic_action_accept_on).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+            menu.add(0, 2, 2, R.string.unseen);
+//                    .setIcon(R.drawable.ic_action_accept_on).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
 
         } else
-            menu.add(0, 1, 1, "Watch").setIcon(R.drawable.ic_action_accept).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+            menu.add(0, 2, 2, R.string.seen);
+//                    .setIcon(R.drawable.ic_action_accept).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
         ;
 
 
         if (movie_info.inWatchlist) {
-            menu.add(0, 2, 2, "UnWatchlist");
+            menu.add(0, 3, 3, R.string.unwatchlist);
         } else
-            menu.add(0, 2, 2, "Watchlist");
+            menu.add(0, 3, 3, R.string.watchlist);
 
-        menu.add(0, 3, 3, "Checkin");
+        menu.add(0, 7, 7, R.string.checkin);
+
+        if(movie_info.rating!=null){
+            switch (movie_info.rating){
+
+                case Love:
+                    menu.add(0, 6, 6, R.string.unrate);
+                    menu.add(0, 5, 5,  R.string.hated);
+                    break;
+                case Hate:
+                    menu.add(0, 6, 6,  R.string.unrate);
+                    menu.add(0, 4, 4, R.string.loved);
+
+                    break;
+            }
+        }   else{
+            menu.add(0, 4, 4, R.string.loved);
+            menu.add(0, 5, 5, R.string.hated);
+        }
+
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+            case 1:
+                Intent i = new Intent(Intent.ACTION_SEND);
+                i.setType("text/plain");
+                i.putExtra(Intent.EXTRA_SUBJECT, movie_info.title);
+                i.putExtra(Intent.EXTRA_TEXT, movie_info.url);
+                startActivity(Intent.createChooser(i, "Share "+movie_info.title));
+
+                return true;
             case 0:
                 if (mTaskDownloadMovie == null) {
 
@@ -110,7 +147,7 @@ public class MovieFragment extends Fragment implements DownloadMovieInfo.OnMovie
                     mTaskDownloadMovie.execute();
                 }
                 return true;
-            case 1:
+            case 2:
                 LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 mRefreshView = (ImageView) inflater.inflate(R.layout.refresh, null);
 //
@@ -127,21 +164,21 @@ public class MovieFragment extends Fragment implements DownloadMovieInfo.OnMovie
                 new MovieSeenUnseen().execute();
                 // do whatever
                 return true;
-            case 2:
+            case 3:
 
                 Log.d("Trakt Fragments", "Add/Rem watchlist button clicked");
                 new MovieWatchlist().execute();
                 return true;
-            case 3:
-
-
-//                CreateNotifications.EpisodeNotification(getActivity(), movie_info);
-
-
-//                Bundle bundle = new Bundle();
-// add extras here..
-//                MyAlarmReceiver alarm = new MyAlarmReceiver(getActivity(), bundle, 30);
-
+            case 4:
+                new RateMovieLove(getActivity(), MovieFragment.this, manager, movie_info, 0).execute();
+                break;
+            case 5:
+                new RateMovieHate(getActivity(), MovieFragment.this, manager, movie_info, 0).execute();
+                break;
+            case 6:
+                new UnrateMovie(getActivity(), MovieFragment.this, manager, movie_info, 0).execute();
+                break;
+            case 7:
                 new MovieCheckIn().execute();
 
                 return true;
@@ -149,6 +186,7 @@ public class MovieFragment extends Fragment implements DownloadMovieInfo.OnMovie
             default:
                 return super.onOptionsItemSelected(item);
         }
+        return false;
     }
 
 
@@ -157,6 +195,27 @@ public class MovieFragment extends Fragment implements DownloadMovieInfo.OnMovie
         movie_info = response;
         updateUI();
         mTaskDownloadMovie = null;
+    }
+
+    @Override
+    public void OnRatingMovieHateCompleted(int position, RatingResponse response) {
+        movie_info.rating=response.rating;
+        updateOptionsMenu(mMenu);
+        updateUI();
+    }
+
+    @Override
+    public void OnRatingMovieLoveCompleted(int position, RatingResponse response) {
+        movie_info.rating=response.rating;
+        updateOptionsMenu(mMenu);
+        updateUI();
+    }
+
+    @Override
+    public void OnUnratingMovieCompleted(int position, RatingResponse response) {
+        movie_info.rating=response.rating;
+        updateOptionsMenu(mMenu);
+        updateUI();
     }
 
     private class MovieSeenUnseen extends AsyncTask<Void, Void, Void> {
@@ -191,6 +250,7 @@ public class MovieFragment extends Fragment implements DownloadMovieInfo.OnMovie
 
             }
         }
+
     }
 
     private class MovieWatchlist extends AsyncTask<Void, Void, Void> {
@@ -227,34 +287,18 @@ public class MovieFragment extends Fragment implements DownloadMovieInfo.OnMovie
     }
 
     private void updateWatchlist() {
-        AQuery aq = new AQuery(getActivity());
-        if (movie_info.inWatchlist) {
-            mMenu.findItem(2).setTitle("UnWatchlist");
-            aq.id(R.id.imageViewWatchlistTag).gone();
-        } else {
-            aq.id(R.id.imageViewWatchlistTag).visible();
-            mMenu.findItem(2).setTitle("Watchlist");
-        }
         movie_info.inWatchlist = !movie_info.inWatchlist;
+        updateOptionsMenu(mMenu);
+        updateUI();
     }
 
     private void updateSeenUnseen() {
-        mRefreshView.clearAnimation();
-        mRefreshItem.setActionView(null);
 
 
-        AQuery aq = new AQuery(getActivity());
-        if (movie_info.watched) {
 
-            mMenu.findItem(1).setIcon(R.drawable.ic_action_accept).setTitle("Unseen");
-            aq.id(R.id.imageViewEpisodeSeen).gone();
-        } else {
-            mMenu.findItem(1).setIcon(R.drawable.ic_action_accept_on).setTitle("Seen");
-            aq.id(R.id.imageViewEpisodeSeen).visible();
-        }
-        Log.d("Trakt Fragments", "seen status before: " + movie_info.watched);
         movie_info.watched = !movie_info.watched;
-        Log.d("Trakt Fragments", "seen status after: " + movie_info.watched);
+        updateUI();
+        updateOptionsMenu(mMenu);
     }
 
     private void updateUI() {

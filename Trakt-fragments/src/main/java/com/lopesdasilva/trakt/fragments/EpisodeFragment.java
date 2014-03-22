@@ -23,13 +23,8 @@ import com.jakewharton.trakt.entities.RatingResponse;
 import com.jakewharton.trakt.entities.Response;
 import com.jakewharton.trakt.entities.TvEntity;
 import com.lopesdasilva.trakt.R;
-import com.lopesdasilva.trakt.Tasks.CheckInChecker;
-import com.lopesdasilva.trakt.Tasks.DownloadEpisodeInfo;
-import com.lopesdasilva.trakt.Tasks.MarkEpisodeSeenUnseen;
-import com.lopesdasilva.trakt.Tasks.RateEpisodeHate;
-import com.lopesdasilva.trakt.Tasks.RateEpisodeLove;
-import com.lopesdasilva.trakt.Tasks.UnrateEpisode;
-import com.lopesdasilva.trakt.Tasks.MarkEpisodeWatchlistUnWatchlist;
+import com.lopesdasilva.trakt.Tasks.*;
+import com.lopesdasilva.trakt.Tasks.EpisodeWatchlistUnWatchlist;
 import com.lopesdasilva.trakt.activities.ShowActivity;
 import com.lopesdasilva.trakt.extras.UserChecker;
 
@@ -39,7 +34,7 @@ import java.util.Date;
 /**
  * Created by lopesdasilva on 17/05/13.
  */
-public class EpisodeFragment extends Fragment implements DownloadEpisodeInfo.onEpisodeTaskComplete, MarkEpisodeSeenUnseen.OnMarkSeenUnseenCompleted, MarkEpisodeWatchlistUnWatchlist.WatchlistUnWatchlistCompleted, RateEpisodeHate.OnMarkEpisodeHateCompleted, RateEpisodeLove.OnMarkEpisodeLoveCompleted, UnrateEpisode.OnMarkEpisodeNoneCompleted {
+public class EpisodeFragment extends Fragment implements DownloadEpisodeInfo.onEpisodeTaskComplete, MarkEpisodeSeenUnseen.OnMarkSeenUnseenCompleted, EpisodeWatchlistUnWatchlist.WatchlistUnWatchlistCompleted, RateEpisodeHate.OnMarkEpisodeHateCompleted, RateEpisodeLove.OnMarkEpisodeLoveCompleted, UnrateEpisode.OnMarkEpisodeNoneCompleted {
     private View rootView;
     private String show;
     private int season;
@@ -118,6 +113,7 @@ public class EpisodeFragment extends Fragment implements DownloadEpisodeInfo.onE
             menu.add(0, 4, 4, "Hated");
             menu.add(0, 5, 5, "Loved");
         }
+        menu.add(0,7,7,R.string.youtube);
     }
 
     @Override
@@ -163,7 +159,7 @@ public class EpisodeFragment extends Fragment implements DownloadEpisodeInfo.onE
             case 2:
 
                 Log.d("Trakt Fragments", "Add/Rem watchlist button clicked");
-                new MarkEpisodeWatchlistUnWatchlist(getActivity(), this, manager, episode_info.show, episode_info.episode, 0).execute();
+                new EpisodeWatchlistUnWatchlist(getActivity(), this, manager, episode_info.show, episode_info.episode, 0).execute();
                 return true;
             case 3:
 
@@ -187,6 +183,13 @@ public class EpisodeFragment extends Fragment implements DownloadEpisodeInfo.onE
                 return true;
             case 6:
                 new UnrateEpisode(getActivity(),EpisodeFragment.this,manager,episode_info.show,episode_info.episode,0).execute();
+                return true;
+            case 7:
+                Intent intent = new Intent(Intent.ACTION_SEARCH);
+                intent.setPackage("com.google.android.youtube");
+                intent.putExtra("query", episode_info.show.title+" "+episode_info.episode.title);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

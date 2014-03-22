@@ -7,7 +7,7 @@
     <com.tonicartos.widget.stickygridheaders.StickyGridHeadersGridView
 
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:id="@+id/listViewWathclistShowEpisodes"
         android:numColumns="1"
         android:stretchMode="columnWidth"

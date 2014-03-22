@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">aTrakt
-    </string>
+    <string name="app_name">trakt it</string>
     <string name="action_settings">Settings
     </string>
     <string name="hello_world">Hello world!
@@ -21,6 +20,7 @@
         <item>Trending</item>
         <item>Library</item>
         <item>Recommended</item>
+        <item>Watchlist</item>
         <item>Calendar</item>
     </array>
     <string name="drawer_open">Open navigation drawer</string>
@@ -34,6 +34,14 @@
     <string name="hated">Hated</string>
     <string name="unrate">Unrate</string>
     <string name="remove_watchlist">Unwatchlist</string>
+    <string name="unwatchlist">Unwatchlist</string>
+    <string name="checkin">Checkin</string>
+    <string name="refresh">Refresh</string>
+    <string name="unseen">Unseen</string>
+    <string name="youtube">YouTube</string>
+    <string name="action_share">Share</string>
+    <string name="enter_comment_hint">Write your own comment</string>
+    <string name="comment_short">Your comment is too short</string>
     <array name="watchlist_remove">
         <item>Remove from watchlist</item>
         <!--<item>Loved</item>-->

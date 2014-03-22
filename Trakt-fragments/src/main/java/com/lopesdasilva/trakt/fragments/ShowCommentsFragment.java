@@ -1,24 +1,24 @@
 package com.lopesdasilva.trakt.fragments;
 
+
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v4.app.ListFragment;
+import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.ListView;
-import android.widget.Toast;
+import android.widget.*;
 import com.androidquery.AQuery;
 import com.androidquery.callback.ImageOptions;
 import com.jakewharton.trakt.ServiceManager;
+import com.jakewharton.trakt.entities.Response;
 import com.jakewharton.trakt.entities.Shout;
 import com.jakewharton.trakt.entities.TvShow;
-import com.jakewharton.trakt.entities.TvShowSeason;
 import com.lopesdasilva.trakt.R;
-import com.lopesdasilva.trakt.Tasks.DownloadSeasonsInfo;
+
+import com.lopesdasilva.trakt.Tasks.ShowAddComment;
 import com.lopesdasilva.trakt.extras.UserChecker;
 
 import java.io.Serializable;
@@ -28,23 +28,22 @@ import java.util.List;
 /**
  * Created by lopesdasilva on 22/05/13.
  */
-public class ShowCommentsFragment extends ListFragment {
+public class ShowCommentsFragment extends Fragment implements ShowAddComment.OnShowAddCommentTaskCompleted {
 
 
     private TvShow show;
     private ServiceManager manager;
     private DownloadShowComments mTaskDownloadComments;
     private List<Shout> mShouts;
+    private View rootView;
+    private ListView listViewComments;
 
     public ShowCommentsFragment() {
     }
 
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        rootView = inflater.inflate(R.layout.show_comments, container, false);
 
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-
-//        setRetainInstance(true);
         if (savedInstanceState == null) {
             show = (TvShow) getArguments().getSerializable("show");
             manager = UserChecker.checkUserLogin(getActivity());
@@ -52,11 +51,11 @@ public class ShowCommentsFragment extends ListFragment {
             Log.d("Trakt", "show received on commentFragments: " + show.title);
             mTaskDownloadComments = new DownloadShowComments();
             mTaskDownloadComments.execute();
-        }else{
-            mShouts=(List<Shout>) savedInstanceState.get("shouts");
-            if(mShouts!=null){
+        } else {
+            mShouts = (List<Shout>) savedInstanceState.get("shouts");
+            if (mShouts != null) {
                 updateUI(mShouts);
-            }else{
+            } else {
                 show = (TvShow) getArguments().getSerializable("show");
                 manager = UserChecker.checkUserLogin(getActivity());
                 mTaskDownloadComments = new DownloadShowComments();
@@ -66,13 +65,20 @@ public class ShowCommentsFragment extends ListFragment {
 
         }
 
-
+        return rootView;
     }
+
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putSerializable("shouts", (Serializable) mShouts);
+    }
+
+    @Override
+    public void onShowAddCommentComplete(Response response) {
+        mTaskDownloadComments = new DownloadShowComments();
+        mTaskDownloadComments.execute();
     }
 
     public class DownloadShowComments extends AsyncTask<Void, Void, List<Shout>> {
@@ -105,26 +111,44 @@ public class ShowCommentsFragment extends ListFragment {
     }
 
     private void updateUI(List<Shout> response) {
-        if(getActivity()!=null){
-        this.mShouts = response;
+        if (getActivity() != null) {
+            this.mShouts = response;
 
-        getListView().setDivider(null);
-        setListAdapter(new ShowSeasonsAdapter(getActivity(), response));
-    }
-    }
+            listViewComments = (ListView) rootView.findViewById(R.id.listViewShow_Comments);
+            listViewComments.setDivider(null);
+            listViewComments.setAdapter(new ShowSeasonsAdapter(getActivity(), response));
+            listViewComments.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    if (mShouts.get(position).spoiler) {
+                        mShouts.get(position).spoiler = false;
+                        showItem(position, mShouts.get(position));
+                    }
+                }
+            });
 
-    @Override
-    public void onListItemClick(ListView l, View v, int position, long id) {
-        super.onListItemClick(l, v, position, id);
-        if (mShouts.get(position).spoiler) {
-            mShouts.get(position).spoiler = false;
-            showItem(position, mShouts.get(position));
+            final AQuery aq= new AQuery(rootView);
+
+            aq.id(R.id.imageButtonSendComment).clicked(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                   String comment= aq.id(R.id.editTextAddComment).getText().toString();
+                    ((EditText) aq.id(R.id.editTextAddComment).getView()).setError(null);
+                    if(comment.length()!=0){
+
+                        new ShowAddComment(getActivity(),ShowCommentsFragment.this,manager,show,comment).execute();
+                    }else
+                        ((EditText) aq.id(R.id.editTextAddComment).getView()).setError(getResources().getString(R.string.comment_short));
+
+                }
+            });
+
         }
-
     }
+
 
     private void showItem(int position, Shout shout) {
-        View v = getListView().getChildAt(position - getListView().getFirstVisiblePosition());
+        View v = listViewComments.getChildAt(position - listViewComments.getFirstVisiblePosition());
 
         AQuery aq = new AQuery(v);
         aq.id(R.id.imageViewSpoiler).gone();

@@ -2,6 +2,7 @@ package com.lopesdasilva.trakt.fragments;
 
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -83,7 +84,13 @@ public class ShowFragment extends Fragment implements ActionBar.TabListener, Dow
                 return true;
             case 4:
                 new RateShowLove(getActivity(),ShowFragment.this,manager,mTVshow,0).execute();
-
+                return true;
+            case 5:
+                Intent i = new Intent(Intent.ACTION_SEND);
+                i.setType("text/plain");
+                i.putExtra(Intent.EXTRA_SUBJECT, mTVshow.title);
+                i.putExtra(Intent.EXTRA_TEXT, mTVshow.url);
+                startActivity(Intent.createChooser(i, "Share "+mTVshow.title));
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -114,7 +121,7 @@ public class ShowFragment extends Fragment implements ActionBar.TabListener, Dow
             menu.add(0, 4, 4,  R.string.loved);
         }
 
-        menu.add(0, 4, 4,  R.string.seen);
+      //  menu.add(0, 4, 4, R.string.seen);
         menu.add(0,5,5, R.string.share).setIcon(android.R.drawable.ic_menu_share).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
     }
 
@@ -294,10 +301,9 @@ public class ShowFragment extends Fragment implements ActionBar.TabListener, Dow
                     break;
                 case 2:
                     arguments.putSerializable("show", mTVshow);
-                    if (commentFragment == null) {
-                        fragment = commentFragment = new ShowCommentsFragment();
-                    } else
-                        fragment = commentFragment;
+
+                        fragment = new ShowCommentsFragment();
+
                     break;
                 case 3:
                     arguments.putSerializable("showpeople", mTVshow.people);

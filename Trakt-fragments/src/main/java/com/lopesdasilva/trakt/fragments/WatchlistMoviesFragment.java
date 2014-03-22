@@ -119,7 +119,7 @@ public class WatchlistMoviesFragment extends Fragment implements DownloadWatchli
                                     break;
                                 case 1:
                                     Toast.makeText(getActivity(), "Mark watched", Toast.LENGTH_SHORT).show();
-//  new MarkEpisodeWatchlistUnWatchlist(getActivity(), CalendarWeekFragment.this, manager, lista.get(position).show, lista.get(position).episode, position).execute();
+//  new EpisodeWatchlistUnWatchlist(getActivity(), CalendarWeekFragment.this, manager, lista.get(position).show, lista.get(position).episode, position).execute();
                                     break;
                             }
                         }

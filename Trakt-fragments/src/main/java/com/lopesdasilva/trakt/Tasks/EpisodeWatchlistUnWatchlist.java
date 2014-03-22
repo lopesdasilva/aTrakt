@@ -13,7 +13,7 @@ import com.jakewharton.trakt.entities.TvShowEpisode;
 /**
  * Created by lopesdasilva on 30/05/13.
  */
-public class MarkEpisodeWatchlistUnWatchlist extends AsyncTask<Void, Void, Void> {
+public class EpisodeWatchlistUnWatchlist extends AsyncTask<Void, Void, Void> {
 
     private final FragmentActivity activity;
     private final ServiceManager manager;
@@ -23,7 +23,7 @@ public class MarkEpisodeWatchlistUnWatchlist extends AsyncTask<Void, Void, Void>
     private final WatchlistUnWatchlistCompleted listener;
     private Exception e;
 
-    public MarkEpisodeWatchlistUnWatchlist(FragmentActivity activity,WatchlistUnWatchlistCompleted listener, ServiceManager manager,TvShow show, TvShowEpisode episode,int position){
+    public EpisodeWatchlistUnWatchlist(FragmentActivity activity, WatchlistUnWatchlistCompleted listener, ServiceManager manager, TvShow show, TvShowEpisode episode, int position){
         this.activity=activity;
         this.listener=listener;
         this.manager=manager;
@@ -63,7 +63,7 @@ public class MarkEpisodeWatchlistUnWatchlist extends AsyncTask<Void, Void, Void>
             builder.setMessage("Error updating episode watchlist")
                     .setPositiveButton("Retry", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
-                            new MarkEpisodeWatchlistUnWatchlist(activity,listener,manager,show,episode,position).execute();
+                            new EpisodeWatchlistUnWatchlist(activity,listener,manager,show,episode,position).execute();
                         }
                     })
                     .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {

@@ -12,6 +12,7 @@ import com.jakewharton.trakt.ServiceManager;
 import com.jakewharton.trakt.entities.*;
 import com.lopesdasilva.trakt.R;
 import com.lopesdasilva.trakt.Tasks.DownloadSeasonsInfo;
+import com.lopesdasilva.trakt.Tasks.EpisodeWatchlistUnWatchlist;
 import com.lopesdasilva.trakt.Tasks.MarkEpisodeSeenUnseen;
 import com.lopesdasilva.trakt.Tasks.MultipleSeenUnseenTask;
 import com.lopesdasilva.trakt.activities.EpisodeActivity;
@@ -26,7 +27,7 @@ import java.util.List;
 /**
  * Created by lopesdasilva on 22/05/13.
  */
-public class SeasonsFragment extends Fragment implements MarkEpisodeSeenUnseen.OnMarkSeenUnseenCompleted, MultipleSeenUnseenTask.OnMarkSeenUnseenCompleted {
+public class SeasonsFragment extends Fragment implements MarkEpisodeSeenUnseen.OnMarkSeenUnseenCompleted, MultipleSeenUnseenTask.OnMarkSeenUnseenCompleted, EpisodeWatchlistUnWatchlist.WatchlistUnWatchlistCompleted {
 
 
     private View rootView;
@@ -87,9 +88,9 @@ public class SeasonsFragment extends Fragment implements MarkEpisodeSeenUnseen.O
 
                         Fragment fragment = new EpisodeFragment();
                         fragment.setArguments(arguments);
-Toast.makeText(getActivity(),"position: "+position,Toast.LENGTH_SHORT).show();
 
-                        mListView.setSelection( position);
+
+                        mListView.setSelection(position);
 
                         Log.d("Trakt", "Launching new fragment EpisodeFragment");
                         getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.episode_activity, fragment).commit();
@@ -220,6 +221,12 @@ Toast.makeText(getActivity(),"position: "+position,Toast.LENGTH_SHORT).show();
         mAdapter.notifyDataSetChanged();
     }
 
+    @Override
+    public void WatchlistUnWatchlistCompleted(int position) {
+        lista.get(position).inWatchlist = !lista.get(position).inWatchlist;
+        mAdapter.notifyDataSetChanged();
+    }
+
 
     public class ShowSeasonsAdapter extends BaseAdapter implements StickyGridHeadersBaseAdapter {
 
@@ -266,7 +273,7 @@ Toast.makeText(getActivity(),"position: "+position,Toast.LENGTH_SHORT).show();
                 aq.id(R.id.imageViewSeasonsEpisodeOptions).clicked(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        showSeenMenu(view, lista.get(position), position);
+                        showContextMenu(view, lista.get(position), position);
                     }
                 });
             } else {
@@ -274,7 +281,7 @@ Toast.makeText(getActivity(),"position: "+position,Toast.LENGTH_SHORT).show();
                 aq.id(R.id.imageViewSeasonsEpisodeOptions).clicked(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        showSeenMenu(view, lista.get(position), position);
+                        showContextMenu(view, lista.get(position), position);
                     }
                 });
             }
@@ -301,12 +308,17 @@ Toast.makeText(getActivity(),"position: "+position,Toast.LENGTH_SHORT).show();
             else
                 aq.id(R.id.imageViewSeasonsEpisodeWatchlistTag).gone();
 
+            if (lista.get(position).inCollection)
+                aq.id(R.id.imageViewSeasonsEpisodeCollectionTag).visible();
+            else
+                aq.id(R.id.imageViewSeasonsEpisodeCollectionTag).gone();
+
 
             return convertView;
         }
 
 
-        public void showSeenMenu(View v, final TvShowEpisode episode, final int position) {
+        public void showContextMenu(View v, final TvShowEpisode episode, final int position) {
             PopupMenu popup = new PopupMenu(getActivity(), v);
 
             // This activity implements OnMenuItemClickListener
@@ -317,19 +329,33 @@ Toast.makeText(getActivity(),"position: "+position,Toast.LENGTH_SHORT).show();
 
                     switch (menuItem.getItemId()) {
 
+                        case R.id.action_episode_seen:
+                            new MarkEpisodeSeenUnseen(getActivity(), SeasonsFragment.this, manager, show, episode, position).execute();
+                            return true;
                         case R.id.action_episode_unseen:
                             new MarkEpisodeSeenUnseen(getActivity(), SeasonsFragment.this, manager, show, episode, position).execute();
                             return true;
+                        case R.id.action_episode_remove_watchlist:
+                            new EpisodeWatchlistUnWatchlist(getActivity(),SeasonsFragment.this,manager,show,episode,position).execute();
+                            return true;
+                        case R.id.action_episode_add_watchlist:
+                            new EpisodeWatchlistUnWatchlist(getActivity(),SeasonsFragment.this,manager,show,episode,position).execute();
+                            return true;
+
                         default:
                             return false;
                     }
                 }
             });
-            if (episode.watched)
+            if (episode.watched) {
                 popup.inflate(R.menu.seasons_episode_actions_unseen);
-            else
+            } else
                 popup.inflate(R.menu.seasons_episode_actions_seen);
             popup.show();
+            if (episode.inWatchlist) {
+                popup.inflate(R.menu.seasons_episode_actions_remove_watchlist);
+            } else
+                popup.inflate(R.menu.seasons_episode_actions_add_watchlist);
         }
 
 
