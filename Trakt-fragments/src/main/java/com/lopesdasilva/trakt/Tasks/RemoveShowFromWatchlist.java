@@ -54,11 +54,11 @@ public class RemoveShowFromWatchlist extends AsyncTask<Void, Void, Void> {
             listener.OnRemovingShowfromWatchlistCompleted(position);
 
         }else{
-            Log.d("Trakt","Error removing the show from watchlist");
+            Log.d("Trakt","Error removing the movie from watchlist");
 
 
             AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-            builder.setMessage("Error removing the show from watchlist")
+            builder.setMessage("Error removing the movie from watchlist")
                     .setPositiveButton("Retry", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
                                 new RemoveShowFromWatchlist(activity,listener,manager,show_info,position).execute();

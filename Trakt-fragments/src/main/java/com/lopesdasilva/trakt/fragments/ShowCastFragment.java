@@ -39,6 +39,7 @@ public class ShowCastFragment extends ListFragment {
             getListView().setDivider(null);
             setListAdapter(new ShowCastAdapter(getActivity(),mShowpeople.actors));
             getListView().setClickable(false);
+            getListView().setBackgroundColor(getResources().getColor(R.color.light_grey));
         }
 
     }

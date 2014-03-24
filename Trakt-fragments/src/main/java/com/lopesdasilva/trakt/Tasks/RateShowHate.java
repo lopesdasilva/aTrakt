@@ -55,11 +55,11 @@ public class RateShowHate extends AsyncTask<Void, Void, RatingResponse> {
             listener.OnRatingShowHateCompleted(position, response);
 
         }else{
-            Log.d("Trakt","Error rating show as hated");
+            Log.d("Trakt","Error rating movie as hated");
 
 
             AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-            builder.setMessage("Error rating the show")
+            builder.setMessage("Error rating the movie")
                     .setPositiveButton("Retry", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
                                 new RateShowHate(activity,listener,manager,show_info,position).execute();

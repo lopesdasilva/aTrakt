@@ -13,5 +13,5 @@
         android:numColumns="1"
         android:stretchMode="columnWidth"
         android:gravity="left"
-        android:background="@color/calendar_background"/>
+        android:background="@color/light_grey"/>
 </LinearLayout>

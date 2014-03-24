@@ -190,7 +190,7 @@ public class Login extends FragmentActivity {
                         }
                     });
         } else {
-            // The ViewPropertyAnimator APIs are not available, so simply show
+            // The ViewPropertyAnimator APIs are not available, so simply movie
             // and hide the relevant UI components.
             mLoginStatusView.setVisibility(show ? View.VISIBLE : View.GONE);
             mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);

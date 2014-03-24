@@ -55,11 +55,11 @@ public class UnrateShow extends AsyncTask<Void, Void, RatingResponse> {
             listener.OnUnratingShowCompleted(position, response);
 
         }else{
-            Log.d("Trakt","Error unrating the show");
+            Log.d("Trakt","Error unrating the movie");
 
 
             AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-            builder.setMessage("Error unrating the show")
+            builder.setMessage("Error unrating the movie")
                     .setPositiveButton("Retry", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
                                 new UnrateShow(activity,listener,manager,show_info,position).execute();

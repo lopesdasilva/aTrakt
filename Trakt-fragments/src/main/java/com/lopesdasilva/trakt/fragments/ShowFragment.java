@@ -193,7 +193,7 @@ public class ShowFragment extends Fragment implements ActionBar.TabListener, Dow
     @Override
     public void onShowInfoTaskComplete(TvShow response) {
 
-        Log.d("Trakt", "Download show info complete");
+        Log.d("Trakt", "Download movie info complete");
         updateShow(response);
 
 
@@ -291,16 +291,16 @@ public class ShowFragment extends Fragment implements ActionBar.TabListener, Dow
             Fragment fragment = null;
             switch (position) {
                 case 0:
-                    arguments.putSerializable("show", mTVshow);
+                    arguments.putSerializable("movie", mTVshow);
                     mInfoFragment = new ShowInfoFragment();
                     fragment=mInfoFragment;
                     break;
                 case 1:
-                    arguments.putSerializable("show", mTVshow);
+                    arguments.putSerializable("movie", mTVshow);
                     fragment = new SeasonsFragment();
                     break;
                 case 2:
-                    arguments.putSerializable("show", mTVshow);
+                    arguments.putSerializable("movie", mTVshow);
 
                         fragment = new ShowCommentsFragment();
 

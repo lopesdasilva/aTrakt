@@ -45,10 +45,10 @@ public class ShowCommentsFragment extends Fragment implements ShowAddComment.OnS
         rootView = inflater.inflate(R.layout.show_comments, container, false);
 
         if (savedInstanceState == null) {
-            show = (TvShow) getArguments().getSerializable("show");
+            show = (TvShow) getArguments().getSerializable("movie");
             manager = UserChecker.checkUserLogin(getActivity());
             Log.d("Trakt", "ServiceManager: " + manager);
-            Log.d("Trakt", "show received on commentFragments: " + show.title);
+            Log.d("Trakt", "movie received on commentFragments: " + show.title);
             mTaskDownloadComments = new DownloadShowComments();
             mTaskDownloadComments.execute();
         } else {
@@ -56,7 +56,7 @@ public class ShowCommentsFragment extends Fragment implements ShowAddComment.OnS
             if (mShouts != null) {
                 updateUI(mShouts);
             } else {
-                show = (TvShow) getArguments().getSerializable("show");
+                show = (TvShow) getArguments().getSerializable("movie");
                 manager = UserChecker.checkUserLogin(getActivity());
                 mTaskDownloadComments = new DownloadShowComments();
                 mTaskDownloadComments.execute();
@@ -77,6 +77,8 @@ public class ShowCommentsFragment extends Fragment implements ShowAddComment.OnS
 
     @Override
     public void onShowAddCommentComplete(Response response) {
+        AQuery aq= new AQuery(rootView);
+        ((EditText) aq.id(R.id.editTextAddComment).text("").getView()).clearFocus();
         mTaskDownloadComments = new DownloadShowComments();
         mTaskDownloadComments.execute();
     }

@@ -163,7 +163,7 @@ public class CalendarWeekFragment extends Fragment implements DownloadWeekCalend
                 else
                     options[3] = "Add to watchlist";
 
-                //options[4] = "Hide this show";
+                //options[4] = "Hide this movie";
 
 
                 builder.setItems(options, new DialogInterface.OnClickListener() {

@@ -109,7 +109,7 @@ public class MainActivity extends FragmentActivity {
 //        findViewById(R.id.buttonEpisodeActivity).setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {
-//                Toast.makeText(MainActivity.this, "Launching Episode Activity", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(MainActivity.this, "Launching Episode Activity", Toast.LENGTH_SHORT).movie();
 //                Log.d("Trakt", "Launching Episode Activity");
 //
 //
@@ -143,7 +143,7 @@ public class MainActivity extends FragmentActivity {
 //        findViewById(R.id.buttonMovieActivity).setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {
-//                Toast.makeText(MainActivity.this, "Launching Movie Activity", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(MainActivity.this, "Launching Movie Activity", Toast.LENGTH_SHORT).movie();
 //                Log.d("Trakt Fragments", "Launching Movie Activity");
 //
 //
@@ -160,7 +160,7 @@ public class MainActivity extends FragmentActivity {
 //        findViewById(R.id.buttonCalendar).setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {
-//                Toast.makeText(MainActivity.this, "Launching Calendar Activity", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(MainActivity.this, "Launching Calendar Activity", Toast.LENGTH_SHORT).movie();
 //                Log.d("Trakt", "Launching Calendar Activity");
 //
 //
@@ -173,7 +173,7 @@ public class MainActivity extends FragmentActivity {
 //        findViewById(R.id.buttonEpisodesTonight).setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {
-//                Toast.makeText(MainActivity.this, "Launching Tonight Episodes Activity", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(MainActivity.this, "Launching Tonight Episodes Activity", Toast.LENGTH_SHORT).movie();
 //                Log.d("Trakt", "Launching Tonight Episodes Activity");
 //
 //

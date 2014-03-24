@@ -34,7 +34,7 @@ public class CheckInReceiver extends BroadcastReceiver implements CancelCheckIn.
 
         String show=extras.getString("show_imdb");
         if(show!=null){
-            Log.d("Trakt Fragments","Canceling show");
+            Log.d("Trakt Fragments","Canceling movie");
             new CancelCheckIn(this,manager, MediaType.TvShow).execute();
         }
         else{

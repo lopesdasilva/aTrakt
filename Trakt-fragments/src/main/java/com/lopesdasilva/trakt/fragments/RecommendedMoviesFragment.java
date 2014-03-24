@@ -187,7 +187,7 @@ public class RecommendedMoviesFragment extends Fragment implements DismissRecome
     public void showSeenMenu(View v, final Movie show, final int position) {
         PopupMenu popup = new PopupMenu(getActivity(), v);
         popup.inflate(R.menu.dismiss_movie);
-//        if(show.watched){
+//        if(movie.watched){
 //        popup.getMenu().getItem(R.id.action_recommended_seen_show).setVisible(false);
 //        popup.getMenu().getItem(R.id.action_recommended_unseen_show).setVisible(true);
 //    }else{

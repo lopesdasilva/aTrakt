@@ -54,11 +54,11 @@ public class AddShowToWatchlist extends AsyncTask<Void, Void, Void> {
             listener.OnAddShowToWatchlistCompleted(position);
 
         }else{
-            Log.d("Trakt","Error adding the show to watchlist");
+            Log.d("Trakt","Error adding the movie to watchlist");
 
 
             AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-            builder.setMessage("Error adding the show to watchlist")
+            builder.setMessage("Error adding the movie to watchlist")
                     .setPositiveButton("Retry", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
                                 new AddShowToWatchlist(activity,listener,manager,show_info,position).execute();

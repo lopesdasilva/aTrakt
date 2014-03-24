@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import com.lopesdasilva.trakt.R;
 import com.lopesdasilva.trakt.fragments.MovieFragment;
+import com.lopesdasilva.trakt.fragments.MovieInfoFragment;
 
 
 /**

@@ -91,7 +91,7 @@ public class MoviesFragment extends Fragment implements DownloadTrendingMovies.o
 
             float pixels = (int) (115 * (metrics.densityDpi / 160f));
 
-//        Toast.makeText(getActivity(), "pixels" + pixels + " columns=" + (int) (widthPixels / pixels), Toast.LENGTH_SHORT).show();
+//        Toast.makeText(getActivity(), "pixels" + pixels + " columns=" + (int) (widthPixels / pixels), Toast.LENGTH_SHORT).movie();
 
             mMoviesLayout = (LinearLayout) rootView.findViewById(R.id.linearLayoutMovies);
 

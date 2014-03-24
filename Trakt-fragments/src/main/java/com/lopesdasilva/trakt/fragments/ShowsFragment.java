@@ -107,7 +107,7 @@ public class ShowsFragment extends Fragment implements DownloadTrendingShows.onT
 
             float pixels = (int) (115 * (metrics.densityDpi / 160f));
 
-//        Toast.makeText(getActivity(), "pixels" + pixels + " columns=" + (int) (widthPixels / pixels), Toast.LENGTH_SHORT).show();
+//        Toast.makeText(getActivity(), "pixels" + pixels + " columns=" + (int) (widthPixels / pixels), Toast.LENGTH_SHORT).movie();
 
             mShowLayout = (LinearLayout) rootView.findViewById(R.id.linearLayoushows);
 

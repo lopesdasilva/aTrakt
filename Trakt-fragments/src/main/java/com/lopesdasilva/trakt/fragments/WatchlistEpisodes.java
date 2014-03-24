@@ -48,7 +48,7 @@ public class WatchlistEpisodes extends DialogFragment implements MarkEpisodeSeen
 
         manager = UserChecker.checkUserLogin(getActivity());
 
-        currentShow=(TvShow)getArguments().get("show");
+        currentShow=(TvShow)getArguments().get("movie");
     }
 
     @Override

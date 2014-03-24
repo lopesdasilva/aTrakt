@@ -124,7 +124,7 @@ public class MyAlarmReceiver extends BroadcastReceiver implements DownloadDayCal
 //                            .BigPictureStyle(build)
 //                            .bigPicture(episodeScreen)
 //                            .setBigContentTitle("Your are watching")
-//                            .setSummaryText(episode_info.show.title)
+//                            .setSummaryText(episode_info.movie.title)
 //                            .build();
 //                    mNotificationManager.notify(0, notification);
 //                } else {

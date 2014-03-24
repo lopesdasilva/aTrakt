@@ -95,7 +95,7 @@ public class WatchlistEpisodesFragment extends Fragment implements DownloadWatch
 //                    getActivity().overridePendingTransition(R.anim.push_left_out, R.anim.push_left_in);
 
 
-                    arguments.putSerializable("show", mShowsListShowing.get(i));
+                    arguments.putSerializable("movie", mShowsListShowing.get(i));
                     WatchlistEpisodes watchlistEpisodes = new WatchlistEpisodes();
                     watchlistEpisodes.setArguments(arguments);
                     watchlistEpisodes.show(getFragmentManager(), "watchlist_episodes");

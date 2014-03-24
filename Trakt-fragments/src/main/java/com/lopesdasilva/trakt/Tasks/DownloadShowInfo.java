@@ -43,7 +43,7 @@ public class DownloadShowInfo extends AsyncTask<Void, Void, TvShow> {
     protected void onPostExecute(final TvShow response) {
 
         if (e == null) {
-            Log.d("Trakt Fragments", "Download show complete: " + response.title);
+            Log.d("Trakt Fragments", "Download movie complete: " + response.title);
             listener.onShowInfoTaskComplete(response);
 
         } else {

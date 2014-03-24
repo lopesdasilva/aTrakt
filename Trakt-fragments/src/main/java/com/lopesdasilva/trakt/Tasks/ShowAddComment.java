@@ -36,7 +36,7 @@ public class ShowAddComment extends AsyncTask<Void, Void, Response> {
     protected Response doInBackground(Void... voids) {
 
         try {
-            Log.d("Trakt Fragments", "Add a comment to show "+mTvShow.imdbId);
+            Log.d("Trakt Fragments", "Add a comment to movie "+mTvShow.imdbId);
            return manager.shoutService().show(mTvShow.title,mTvShow.year).shout(comment).fire();
 //            return manager.movieService().summary(mTvShow).fire();
         } catch (Exception e) {
@@ -54,11 +54,11 @@ public class ShowAddComment extends AsyncTask<Void, Void, Response> {
             listener.onShowAddCommentComplete(response);
 
         } else {
-            Log.d("Trakt it", "Failed to add your comment to the show. Exception Found: " + e.getMessage());
+            Log.d("Trakt it", "Failed to add your comment to the movie. Exception Found: " + e.getMessage());
 
 
             AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-            builder.setMessage("Error  adding your comment to the show.")
+            builder.setMessage("Error  adding your comment to the movie.")
                     .setPositiveButton("Retry", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
                             new ShowAddComment(activity,listener,manager, mTvShow,comment).execute();
