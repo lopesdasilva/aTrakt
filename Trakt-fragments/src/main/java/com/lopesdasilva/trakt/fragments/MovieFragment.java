@@ -2,7 +2,9 @@ package com.lopesdasilva.trakt.fragments;
 
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
+import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -10,23 +12,33 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.*;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 import com.jakewharton.trakt.ServiceManager;
 import com.jakewharton.trakt.entities.Movie;
+import com.jakewharton.trakt.entities.RatingResponse;
+import com.jakewharton.trakt.entities.Response;
 import com.lopesdasilva.trakt.R;
 import com.lopesdasilva.trakt.Tasks.*;
 import com.lopesdasilva.trakt.extras.UserChecker;
 
+import java.util.Date;
 import java.util.Locale;
 
-public class MovieFragment extends Fragment implements ActionBar.TabListener, DownloadMovieInfo.OnMovieTaskCompleted {
+public class MovieFragment extends Fragment implements ActionBar.TabListener, DownloadMovieInfo.OnMovieTaskCompleted, RateMovieHate.OnRatingMovieHateCompleted, RateMovieLove.OnRatingMovieLoveCompleted, UnrateMovie.OnUnratingMovieCompleted {
 
     private View rootView;
     private ServiceManager manager;
     private DownloadMovieInfo mTaskDownloadMovieInfo;
     private ActionBar actionBar;
     private Movie mMovie;
-    private Menu mMenu;
+    protected Menu mMenu;
     private MovieInfoFragment mInfoFragment;
+    private MenuItem mRefreshItem;
+    private ImageView mRefreshView;
+    private DownloadMovieInfo mTaskDownloadMovie;
+    private String mUsername;
 
     public MovieFragment() {
 
@@ -56,61 +68,138 @@ public class MovieFragment extends Fragment implements ActionBar.TabListener, Do
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case 0:
-//                new RemoveShowFromWatchlist(getActivity(),MovieFragment.this,manager, mMovie,0).execute();
-                return true;
             case 1:
-//                new AddShowToWatchlist(getActivity(),MovieFragment.this,manager, mMovie,0).execute();
-                return true;
-            case 2:
-//                new UnrateShow(getActivity(),MovieFragment.this,manager, mMovie,0).execute();
-
-                return true;
-            case 3:
-//                new RateShowHate(getActivity(),MovieFragment.this,manager, mMovie,0).execute();
-
-                return true;
-            case 4:
-//                new RateShowLove(getActivity(),MovieFragment.this,manager, mMovie,0).execute();
-                return true;
-            case 5:
                 Intent i = new Intent(Intent.ACTION_SEND);
                 i.setType("text/plain");
                 i.putExtra(Intent.EXTRA_SUBJECT, mMovie.title);
                 i.putExtra(Intent.EXTRA_TEXT, mMovie.url);
-                startActivity(Intent.createChooser(i, "Share "+ mMovie.title));
+                startActivity(Intent.createChooser(i, "Share "+mMovie.title));
+
                 return true;
+            case 0:
+                if (mTaskDownloadMovie == null) {
+
+                    LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                    mRefreshView = (ImageView) inflater.inflate(R.layout.refresh, null);
+//
+//                // Load the animation
+                    Animation rotateClockwise = AnimationUtils.loadAnimation(getActivity(), R.anim.rotation);
+//
+//                // Apply the animation to our View
+                    mRefreshView.startAnimation(rotateClockwise);
+                    mRefreshItem = item;
+//                // Apply the View to our MenuItem
+                    item.setActionView(mRefreshView);
+
+//                    mTaskDownloadMovie = new DownloadMovieInfo(this, getActivity(), manager, movie);
+                    mTaskDownloadMovie.execute();
+                }
+                return true;
+            case 2:
+                LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                mRefreshView = (ImageView) inflater.inflate(R.layout.refresh, null);
+//
+//                // Load the animation
+                Animation rotateClockwise = AnimationUtils.loadAnimation(getActivity(), R.anim.rotation);
+//
+//                // Apply the animation to our View
+                mRefreshView.startAnimation(rotateClockwise);
+                mRefreshItem = item;
+//                // Apply the View to our MenuItem
+                item.setActionView(mRefreshView);
+
+                Log.d("Trakt Fragments", "Unseen button clicked");
+                new MovieSeenUnseen().execute();
+                // do whatever
+                return true;
+            case 3:
+
+                Log.d("Trakt Fragments", "Add/Rem watchlist button clicked");
+                new MovieWatchlist().execute();
+                return true;
+            case 4:
+                new RateMovieLove(getActivity(), MovieFragment.this, manager, mMovie, 0).execute();
+                break;
+            case 5:
+                new RateMovieHate(getActivity(), MovieFragment.this, manager, mMovie, 0).execute();
+                break;
+            case 6:
+                new UnrateMovie(getActivity(), MovieFragment.this, manager, mMovie, 0).execute();
+                break;
+            case 7:
+                new MovieCheckIn().execute();
+
+                return true;
+
             default:
                 return super.onOptionsItemSelected(item);
         }
+        return false;
     }
+
+
+
+    @Override
+    public void OnRatingMovieHateCompleted(int position, RatingResponse response) {
+        mMovie.rating=response.rating;
+        updateOptionsMenu(mMenu);
+        mInfoFragment.updateUI(mMovie);
+    }
+
+    @Override
+    public void OnRatingMovieLoveCompleted(int position, RatingResponse response) {
+        mMovie.rating=response.rating;
+        updateOptionsMenu(mMenu);
+        mInfoFragment.updateUI(mMovie);
+    }
+
+    @Override
+    public void OnUnratingMovieCompleted(int position, RatingResponse response) {
+        mMovie.rating=response.rating;
+        updateOptionsMenu(mMenu);
+        mInfoFragment.updateUI(mMovie);
+    }
+
 
     public void updateOptionsMenu(Menu menu){
         menu.clear();
-        if(mMovie.inWatchlist!=null )
-            if(mMovie.inWatchlist)
-        menu.add(0, 0, 0,  R.string.remove_watchlist);
-        else
-        menu.add(0, 1, 1, R.string.watchlist);
+//        menu.add(0, 0, 0, R.string.refresh).setIcon(android.R.drawable.ic_popup_sync).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+        menu.add(1,1,1,R.string.share).setIcon(android.R.drawable.ic_menu_share).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+        if (mMovie.watched) {
+            menu.add(0, 2, 2, R.string.unseen);
+//                    .setIcon(R.drawable.ic_action_accept_on).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+
+        } else
+            menu.add(0, 2, 2, R.string.seen);
+//                    .setIcon(R.drawable.ic_action_accept).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+        ;
+
+
+        if (mMovie.inWatchlist) {
+            menu.add(0, 3, 3, R.string.unwatchlist);
+        } else
+            menu.add(0, 3, 3, R.string.watchlist);
+
+        menu.add(0, 7, 7, R.string.checkin);
+
         if(mMovie.rating!=null){
             switch (mMovie.rating){
 
                 case Love:
-                    menu.add(0, 2, 2,  R.string.unrate);
-                    menu.add(0, 3, 3,  R.string.hated);
+                    menu.add(0, 6, 6, R.string.unrate);
+                    menu.add(0, 5, 5,  R.string.hated);
                     break;
                 case Hate:
-                    menu.add(0, 2, 2,  R.string.unrate);
-                    menu.add(0, 4, 4,  R.string.loved);
+                    menu.add(0, 6, 6,  R.string.unrate);
+                    menu.add(0, 4, 4, R.string.loved);
+
                     break;
             }
-        }else{
-            menu.add(0, 3, 3,  R.string.hated);
-            menu.add(0, 4, 4,  R.string.loved);
+        }   else{
+            menu.add(0, 4, 4, R.string.loved);
+            menu.add(0, 5, 5, R.string.hated);
         }
 
-      //  menu.add(0, 4, 4, R.string.seen);
-        menu.add(0,5,5, R.string.share).setIcon(android.R.drawable.ic_menu_share).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
     }
 
     @Override
@@ -118,6 +207,7 @@ public class MovieFragment extends Fragment implements ActionBar.TabListener, Do
                              Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.movie_fragment, container, false);
 
+        mUsername = UserChecker.getUsername(getActivity());
 
 
 
@@ -187,7 +277,7 @@ public class MovieFragment extends Fragment implements ActionBar.TabListener, Do
                     getActivity().getSupportFragmentManager());
 //        mSectionsPagerAdapter.notifyDataSetChanged();
             mViewPager.setAdapter(mSectionsPagerAdapter);
-            mViewPager.setOffscreenPageLimit(3);
+            mViewPager.setOffscreenPageLimit(2);
             for (int i = 0; i < mSectionsPagerAdapter.getCount(); i++) {
                 // Create a tab with text corresponding to the page title defined by
                 // the adapter. Also specify this Activity object, which implements
@@ -241,11 +331,11 @@ public class MovieFragment extends Fragment implements ActionBar.TabListener, Do
                     break;
                 case 1:
                     arguments.putSerializable("movie", mMovie);
-                        fragment = new MovieInfoFragment();
+                        fragment = new MovieCommentsFragment();
                     break;
                 case 2:
-                    arguments.putSerializable("moviepeople", mMovie.people);
-                    fragment = new MovieInfoFragment();
+                    arguments.putSerializable("movie", mMovie);
+                    fragment = new MovieCastFragment();
                     break;
 
             }
@@ -276,5 +366,106 @@ public class MovieFragment extends Fragment implements ActionBar.TabListener, Do
 
     }
 
+
+    private class MovieSeenUnseen extends AsyncTask<Void, Void, Void> {
+
+
+        private Exception e;
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+
+            try {
+                if (mMovie.watched) {
+                    Log.d("Trakt Fragments", "Changing to unseen");
+                    return manager.movieService().unseen().movie(mMovie.title).fire();
+                } else {
+                    Log.d("Trakt Fragments", "Changing to seen");
+                    return manager.movieService().seen().movie(mMovie.title, 1, new Date()).fire();
+                }
+            } catch (Exception e) {
+                this.e = e;
+                return null;
+            }
+        }
+
+        @Override
+        protected void onPostExecute(Void voids) {
+            if (e == null) {
+                Log.d("Trakt Fragments", "Updating seen status ui");
+                mInfoFragment.updateSeenUnseen(MovieFragment.this);
+            } else {
+                Log.d("Trakt Fragments", "Error marking episode as unseen: " + e.getMessage());
+
+            }
+        }
+
+    }
+
+
+    private class MovieWatchlist extends AsyncTask<Void, Void, Void> {
+
+
+        private Exception e;
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+
+            try {
+                if (mMovie.inWatchlist) {
+                    Log.d("Trakt", "Adding to Unwatchlist");
+                    return manager.movieService().unwatchlist().movie(mMovie.title).fire();
+                } else {
+                    Log.d("Trakt", "Adding to Watchlist");
+                    return manager.movieService().watchlist().movie(mMovie.title).fire();
+                }
+            } catch (Exception e) {
+                this.e = e;
+                return null;
+            }
+        }
+
+        @Override
+        protected void onPostExecute(Void voids) {
+            if (e == null) {
+                Log.d("Trakt", "Updating watchlist status ui");
+                mMovie.inWatchlist=!mMovie.inWatchlist;
+                mInfoFragment.updateUI(mMovie);
+                updateOptionsMenu(mMenu);
+            } else {
+                Log.d("Trakt", "Error changing watchlist status: " + e.getMessage());
+            }
+        }
+    }
+
+    private class MovieCheckIn extends AsyncTask<Void, Void, Response> {
+
+
+        private Exception e;
+
+        @Override
+        protected Response doInBackground(Void... voids) {
+
+            try {
+                return manager.movieService().checkin(mMovie.title, mMovie.year).fire();
+
+
+            } catch (Exception e) {
+                this.e = e;
+                return null;
+            }
+        }
+
+        @Override
+        protected void onPostExecute(Response response) {
+            if (e == null) {
+                Log.d("Trakt Fragments", "Checked in movie " + mMovie.title);
+                new CheckInChecker(getActivity(), manager, mUsername).execute();
+            } else {
+                Log.d("Trakt Fragments", "Error marking episode as unseen: " + e.getMessage());
+
+            }
+        }
+    }
 
 }

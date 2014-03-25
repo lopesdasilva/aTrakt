@@ -19,7 +19,7 @@
             android:minHeight="200dp"/>
 
         <TextView
-            android:id="@+id/textViewEpisodeTitle"
+            android:id="@+id/textViewMovieTitle"
             style="@style/CardTitleBold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -32,7 +32,7 @@
             android:id="@+id/view1"
             android:layout_width="fill_parent"
             android:layout_height="1dp"
-            android:layout_below="@+id/textViewEpisodeTitle"
+            android:layout_below="@+id/textViewMovieTitle"
             android:background="@color/light_grey"
             android:padding="2dp" />
 
@@ -162,7 +162,7 @@
             android:id="@+id/textViewEpisodeShow"
             style="@style/CardText.1Line.Bigger.Blue"
             android:background="@color/transparentBlack"
-            android:layout_above="@+id/textViewEpisodeTitle"
+            android:layout_above="@+id/textViewMovieTitle"
             android:layout_alignLeft="@+id/imageViewEpisodeScreen"
             android:layout_alignRight="@+id/imageViewEpisodeScreen"/>
 

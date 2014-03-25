@@ -18,7 +18,7 @@
             android:src="@drawable/episode_backdrop" />
 
         <TextView
-            android:id="@+id/textViewEpisodeTitle"
+            android:id="@+id/textViewMovieTitle"
             style="@style/CardTitleBold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -30,7 +30,7 @@
             android:id="@+id/view1"
             android:layout_width="fill_parent"
             android:layout_height="1dp"
-            android:layout_below="@+id/textViewEpisodeTitle"
+            android:layout_below="@+id/textViewMovieTitle"
             android:background="@color/light_grey"
             android:padding="2dp" />
 
@@ -147,7 +147,7 @@
             android:layout_height="150dp"
             android:id="@+id/imageViewMoviePoster"
             android:scaleType="centerCrop"
-            android:layout_above="@+id/textViewEpisodeTitle"
+            android:layout_above="@+id/textViewMovieTitle"
             android:layout_alignLeft="@+id/imageViewEpisodeScreen"
             android:adjustViewBounds="true"
             android:layout_marginLeft="20dp"
@@ -161,7 +161,7 @@
             android:src="@drawable/play_trailer"
             android:layout_alignTop="@+id/imageViewEpisodeScreen"
             android:layout_alignLeft="@+id/imageViewEpisodeScreen"
-            android:layout_above="@+id/textViewEpisodeTitle"
+            android:layout_above="@+id/textViewMovieTitle"
             android:layout_alignRight="@+id/imageViewEpisodeSeen"/>
 
     </RelativeLayout>
