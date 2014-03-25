@@ -1,4 +1,4 @@
-package com.lopesdasilva.trakt;
+package com.lopesdasilva.trakt.activities;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -12,14 +12,17 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.jakewharton.trakt.ServiceManager;
 import com.jakewharton.trakt.entities.Response;
+import com.lopesdasilva.trakt.MainActivity;
+import com.lopesdasilva.trakt.R;
+import com.lopesdasilva.trakt.TVtraktApp;
 import com.lopesdasilva.trakt.extras.UserChecker;
 
 /**
@@ -30,7 +33,7 @@ import com.lopesdasilva.trakt.extras.UserChecker;
  * Activity which displays a login screen to the user, offering registration as
  * well.
  */
-public class Login extends FragmentActivity {
+public class LoginActivity extends FragmentActivity {
 
 
     public static final String PREFS_NAME = "TVtraktPrefsFile";
@@ -107,6 +110,20 @@ public class Login extends FragmentActivity {
         super.onCreateOptionsMenu(menu);
         getMenuInflater().inflate(R.menu.login, menu);
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_register:
+
+                startActivity(new Intent(getBaseContext(), RegisterActivity.class));
+                overridePendingTransition(R.anim.push_right_out, R.anim.push_right_in);
+                return true;
+
+
+        }
+        return false;
     }
 
     /**
@@ -230,9 +247,8 @@ public class Login extends FragmentActivity {
             Log.d("trakt", "This must be null: " + e);
 
             if (e == null) {
-                Toast.makeText(getApplication(), "Success", Toast.LENGTH_SHORT).show();
 
-                UserChecker.saveUserAndPassword(Login.this, mEmail, mPassword);
+                UserChecker.saveUserAndPassword(LoginActivity.this, mEmail, mPassword);
 
                 Intent intent = new Intent(getBaseContext(), MainActivity.class);
                 startActivity(intent);

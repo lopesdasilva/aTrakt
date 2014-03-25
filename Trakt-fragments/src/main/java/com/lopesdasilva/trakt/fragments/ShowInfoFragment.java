@@ -41,7 +41,7 @@ public class ShowInfoFragment extends Fragment {
 
         setRetainInstance(true);
 
-        mTVshow = (TvShow) getArguments().getSerializable("movie");
+        mTVshow = (TvShow) getArguments().getSerializable("show");
 
         updateUI(rootView, mTVshow);
 

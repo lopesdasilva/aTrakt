@@ -56,7 +56,7 @@ public class MovieFragment extends Fragment implements ActionBar.TabListener, Do
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putSerializable("mShow", mMovie);
+        outState.putSerializable("mMovie", mMovie);
     }
 
 
@@ -223,7 +223,7 @@ public class MovieFragment extends Fragment implements ActionBar.TabListener, Do
             mTaskDownloadMovieInfo = new DownloadMovieInfo(this, getActivity(), manager, movie);
             mTaskDownloadMovieInfo.execute();
         } else {
-            mMovie = (Movie) savedInstanceState.getSerializable("mShow");
+            mMovie = (Movie) savedInstanceState.getSerializable("mMovie");
             updateMovie(mMovie);
             if (mMovie == null) {
 
@@ -296,6 +296,7 @@ public class MovieFragment extends Fragment implements ActionBar.TabListener, Do
                         }
                     });
             setHasOptionsMenu(true);
+            new CheckInChecker(getActivity(), manager, mUsername).execute();
         }
     }
 

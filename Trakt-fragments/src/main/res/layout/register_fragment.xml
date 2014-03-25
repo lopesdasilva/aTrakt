@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/light_grey"
+    android:gravity="center_vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/scrollView" >
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            >
+
+
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:id="@+id/imageView"
+                android:src="@drawable/logo_black"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/prase_trakt"
+                android:id="@+id/textView"
+                style="@style/CardTitle"
+                android:layout_gravity="center"
+                android:layout_below="@+id/imageView"
+                android:layout_centerHorizontal="true" />
+
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:ems="10"
+                android:id="@+id/editTextRegisterPassword"
+                android:hint="@string/prompt_password"
+                android:layout_below="@+id/editTextRegisterEmail"
+                android:layout_alignLeft="@+id/editTextRegisterEmail" />
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:ems="10"
+                android:id="@+id/editTextRegisterEmail"
+                android:hint="@string/prompt_email"
+                android:layout_below="@+id/editTextRegisterUsername"
+                android:layout_alignLeft="@+id/editTextRegisterUsername" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="@string/prompt_username"
+                android:ems="10"
+                android:id="@+id/editTextRegisterUsername"
+                android:layout_below="@+id/textView2"
+                android:layout_centerHorizontal="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/register_info"
+                android:id="@+id/textView2"
+                android:layout_below="@+id/textView"
+                android:layout_centerHorizontal="true"
+                style="@style/CardText.1Line"/>
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:ems="10"
+                android:id="@+id/editTextRegisterRetypePassword"
+                android:hint="@string/prompt_retype_password"
+                android:layout_below="@+id/editTextRegisterPassword"
+                android:layout_alignLeft="@+id/editTextRegisterPassword" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/register"
+                android:id="@+id/buttonRegister"
+                android:layout_gravity="center_horizontal"
+                android:layout_below="@+id/editTextRegisterRetypePassword"
+                android:layout_alignRight="@+id/editTextRegisterRetypePassword"
+                android:layout_alignLeft="@+id/editTextRegisterRetypePassword" />
+
+
+        </RelativeLayout>
+    </ScrollView>
+
+</LinearLayout>

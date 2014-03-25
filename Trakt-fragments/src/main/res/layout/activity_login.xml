@@ -3,12 +3,12 @@
     tools:context=".LoginActivity"
     >
 
-    <!-- Login progress -->
+    <!-- LoginActivity progress -->
 
     <LinearLayout
         android:id="@+id/login_status"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_gravity="center"
         android:gravity="center_horizontal"
         android:orientation="vertical"
@@ -30,7 +30,7 @@
             android:textAppearance="?android:attr/textAppearanceMedium" />
     </LinearLayout>
 
-    <!-- Login form -->
+    <!-- LoginActivity form -->
 
     <ScrollView
         android:id="@+id/login_form"
@@ -43,14 +43,13 @@
             style="@style/LoginFormContainer"
             android:orientation="vertical"
             android:layout_margin="10dp"
-            android:background="@drawable/card_background_shadow">
+            android:layout_height="match_parent">
 
 
 
 
             <EditText
 
-                android:layout_marginTop="30dp"
                 android:id="@+id/email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -58,7 +57,9 @@
                 android:inputType="textEmailAddress"
                 android:maxLines="1"
                 android:singleLine="true"
-                style="@style/CardText.1Line.Bigger"/>
+                style="@style/CardText.1Line.Bigger"
+                android:layout_below="@+id/imageView"
+                android:layout_alignParentRight="true" />
 
             <EditText
                 android:id="@+id/password"
@@ -73,7 +74,7 @@
                 android:singleLine="true"
                 style="@style/CardText.1Line.Bigger"
                 android:layout_below="@+id/email"
-                android:layout_alignRight="@+id/sign_in_button"/>
+                android:layout_alignParentRight="true" />
 
             <Button
                 android:id="@+id/sign_in_button"
@@ -84,8 +85,15 @@
                 android:paddingRight="32dp"
                 android:text="@string/action_sign_in_register"
                 android:layout_below="@+id/password"
-                android:layout_alignRight="@+id/email"/>
+                android:layout_centerHorizontal="true" />
 
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:id="@+id/imageView"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/logo_black" />
 
 
         </RelativeLayout>

@@ -14,14 +14,13 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.Toast;
+
 import com.androidquery.AQuery;
 import com.jakewharton.trakt.ServiceManager;
 import com.jakewharton.trakt.entities.Movie;
 import com.lopesdasilva.trakt.R;
-import com.lopesdasilva.trakt.Tasks.DownloadLibraryMovies;
 import com.lopesdasilva.trakt.Tasks.DownloadWatchlistMovies;
 import com.lopesdasilva.trakt.Tasks.MarkMovieWatchlistUnWatchlist;
-import com.lopesdasilva.trakt.Tasks.MarkShowWatchlistUnWatchlist;
 import com.lopesdasilva.trakt.activities.MovieActivity;
 import com.lopesdasilva.trakt.extras.UserChecker;
 

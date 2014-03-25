@@ -59,12 +59,12 @@ public class SeasonsFragment extends Fragment implements MarkEpisodeSeenUnseen.O
         super.onActivityCreated(savedInstanceState);
 
         setRetainInstance(true);
-        show = (TvShow) getArguments().getSerializable("movie");
+        show = (TvShow) getArguments().getSerializable("show");
 
         if (savedInstanceState == null) {
             manager = UserChecker.checkUserLogin(getActivity());
             Log.d("Trakt Fragments", "ServiceManager: " + manager);
-//        Log.d("Trakt Fragments", "Show_imdb received: " + movie);
+//        Log.d("Trakt Fragments", "Show_imdb received: " + show);
 
 
             mListHeaders.addAll(show.seasons);
@@ -104,7 +104,7 @@ public class SeasonsFragment extends Fragment implements MarkEpisodeSeenUnseen.O
                         arguments.putString("show_imdb", show.imdbId);
                         arguments.putInt("show_season", lista.get(position).season);
                         arguments.putInt("show_episode", lista.get(position).number);
-                        arguments.putSerializable("movie", show);
+                        arguments.putSerializable("show", show);
 
                         Intent intent = new Intent(getActivity(), EpisodeActivity.class);
                         intent.putExtras(arguments);

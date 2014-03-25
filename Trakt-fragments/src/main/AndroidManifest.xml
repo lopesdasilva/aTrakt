@@ -85,8 +85,8 @@
                 android:resource="@xml/searchable"/>
         </activity>
         <activity
-            android:name=".Login"
-            android:label="Trakt Login" android:noHistory="true"/>
+            android:name=".activities.LoginActivity"
+            android:label="trakt it Login" android:noHistory="true"/>
 
         <receiver android:name="com.lopesdasilva.trakt.alarms.MyAlarmReceiver"/>
         <receiver android:name="com.lopesdasilva.trakt.broadcasts.CheckInReceiver"/>
@@ -108,6 +108,14 @@
         <activity
             android:name="com.lopesdasilva.trakt.activities.RecommendedActivity">
             android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity"/>
+        </activity>
+        <activity
+            android:name="com.lopesdasilva.trakt.activities.RegisterActivity">
+            android:parentActivityName=".MainActivity"
+            android:noHistory="true">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity"/>

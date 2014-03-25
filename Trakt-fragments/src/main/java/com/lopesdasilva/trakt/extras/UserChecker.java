@@ -1,14 +1,12 @@
 package com.lopesdasilva.trakt.extras;
 
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import com.jakewharton.trakt.ServiceManager;
-import com.lopesdasilva.trakt.Login;
-import com.lopesdasilva.trakt.MainActivity;
+import com.lopesdasilva.trakt.activities.LoginActivity;
 import com.lopesdasilva.trakt.TVtraktApp;
 
 /**
@@ -36,7 +34,7 @@ public class UserChecker {
               //TODO: launch login SCREEN
                 Log.d("Trakt", "Not Logged implement login, finishing now");
                 fragmentActivity.finish();
-                fragmentActivity.startActivity(new Intent(fragmentActivity.getBaseContext(), Login.class));
+                fragmentActivity.startActivity(new Intent(fragmentActivity.getBaseContext(), LoginActivity.class));
                 return null;
             }else{
                 manager=new ServiceManager();

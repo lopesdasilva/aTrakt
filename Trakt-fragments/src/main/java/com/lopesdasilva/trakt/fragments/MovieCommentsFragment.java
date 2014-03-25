@@ -9,7 +9,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.*;
+import android.widget.AdapterView;
+import android.widget.BaseAdapter;
+import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.Toast;
+
 import com.androidquery.AQuery;
 import com.androidquery.callback.ImageOptions;
 import com.jakewharton.trakt.ServiceManager;
@@ -51,11 +56,11 @@ public class MovieCommentsFragment extends Fragment implements MovieAddComment.O
             mTaskDownloadComments = new DownloadMovieComments();
             mTaskDownloadComments.execute();
         } else {
-            mShouts = (List<Shout>) savedInstanceState.get("shouts");
+            mShouts = (List<Shout>) savedInstanceState.getSerializable("shouts");
             if (mShouts != null) {
                 updateUI(mShouts);
             } else {
-                movie = (Movie) getArguments().getSerializable("movie");
+                movie = (Movie) getArguments().getSerializable("mMovie");
                 manager = UserChecker.checkUserLogin(getActivity());
                 mTaskDownloadComments = new DownloadMovieComments();
                 mTaskDownloadComments.execute();
@@ -71,7 +76,7 @@ public class MovieCommentsFragment extends Fragment implements MovieAddComment.O
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putSerializable("mMovie", (Serializable) movie);
+        outState.putSerializable("shouts", (Serializable) mShouts);
     }
 
     @Override
