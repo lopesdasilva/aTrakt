@@ -50,6 +50,12 @@
     <string name="prompt_retype_password">Retype password</string>
     <string name="error_missmatch_password">Password missmatch</string>
     <string name="error_username_length_invalid">Must be between 3 and 20 characters</string>
+    <string name="error_password_short">Password is too short</string>
+    <string name="error_incorrect_username">Username incorrect</string>
+    <string name="error_exists_username">Username already exists</string>
+    <string name="error_incorrect_username_or_password">Username or password incorrect</string>
+    <string name="register_loading">Registering...</string>
+    <string name="action_register_in_short">register</string>
     <array name="watchlist">
 
 

@@ -3,8 +3,8 @@ package com.lopesdasilva.trakt.activities;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.content.Context;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -15,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -23,6 +24,7 @@ import com.jakewharton.trakt.entities.Response;
 import com.lopesdasilva.trakt.MainActivity;
 import com.lopesdasilva.trakt.R;
 import com.lopesdasilva.trakt.TVtraktApp;
+import com.lopesdasilva.trakt.Tasks.UserLoginTask;
 import com.lopesdasilva.trakt.extras.UserChecker;
 
 /**
@@ -33,7 +35,7 @@ import com.lopesdasilva.trakt.extras.UserChecker;
  * Activity which displays a login screen to the user, offering registration as
  * well.
  */
-public class LoginActivity extends FragmentActivity {
+public class LoginActivity extends FragmentActivity implements UserLoginTask.OnLoginUserCompleted {
 
 
     public static final String PREFS_NAME = "TVtraktPrefsFile";
@@ -42,7 +44,6 @@ public class LoginActivity extends FragmentActivity {
     /**
      * Keep track of the login task to ensure we can cancel it if requested.
      */
-    private UserLoginTask mAuthTask = null;
 
     // Values for email and password at the time of the login attempt.
     private String mEmail;
@@ -74,11 +75,17 @@ public class LoginActivity extends FragmentActivity {
 
         setContentView(R.layout.activity_login);
 
-
         mEmailView = (EditText) findViewById(R.id.email);
+        mPasswordView = (EditText) findViewById(R.id.password);
+
+        if(getIntent().getStringExtra("mUsername")!=null) {
+            mEmail = getIntent().getStringExtra("mUsername");
+            mPasswordView.requestFocus();
+        }
+
         mEmailView.setText(mEmail);
 
-        mPasswordView = (EditText) findViewById(R.id.password);
+
         mPasswordView
                 .setOnEditorActionListener(new TextView.OnEditorActionListener() {
                     @Override
@@ -132,9 +139,10 @@ public class LoginActivity extends FragmentActivity {
      * errors are presented and no actual login attempt is made.
      */
     public void attemptLogin() {
-        if (mAuthTask != null) {
-            return;
-        }
+
+        //hide keyboard
+        InputMethodManager inputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
 
         // Reset errors.
         mEmailView.setError(null);
@@ -157,7 +165,11 @@ public class LoginActivity extends FragmentActivity {
             focusView = mPasswordView;
             cancel = true;
         }
-
+        if (TextUtils.isEmpty(mEmail)) {
+            mEmailView.setError(getString(R.string.error_field_required));
+            focusView = mEmailView;
+            cancel = true;
+        }
 
         if (cancel) {
             // There was an error; don't attempt login and focus the first
@@ -168,8 +180,7 @@ public class LoginActivity extends FragmentActivity {
             // perform the user login attempt.
             mLoginStatusMessageView.setText(R.string.login_progress_signing_in);
             showProgress(true);
-            mAuthTask = new UserLoginTask();
-            mAuthTask.execute((Void) null);
+           new UserLoginTask(LoginActivity.this, LoginActivity.this ,mAPIKEY,mEmail,mPassword).execute();
         }
     }
 
@@ -214,11 +225,31 @@ public class LoginActivity extends FragmentActivity {
         }
     }
 
-    /**
+    @Override
+    public void OnLoginUserCompleted(Response response, Exception e) {
+
+
+        if (e == null) {
+            UserChecker.saveUserAndPassword(LoginActivity.this, mEmail, mPassword);
+
+            Intent intent = new Intent(getBaseContext(), MainActivity.class);
+            startActivity(intent);
+        } else {
+            showProgress(false);
+            Log.d("Trakt", "Error on login message: " + e.getMessage());
+            mEmailView.setError(getString(R.string.error_incorrect_username_or_password));
+            mEmailView.requestFocus();
+        }
+
+
+
+    }
+
+   /* *//**
      * Represents an asynchronous login/registration task used to authenticate
      * the user.
-     */
-    public class UserLoginTask extends AsyncTask<Void, Void, Response> {
+     *//*
+    public class UserLoginTask_old extends AsyncTask<Void, Void, Response> {
         private Exception e;
 
         @Override
@@ -242,7 +273,7 @@ public class LoginActivity extends FragmentActivity {
 
         @Override
         protected void onPostExecute(final Response success) {
-            mAuthTask = null;
+
             showProgress(false);
             Log.d("trakt", "This must be null: " + e);
 
@@ -265,5 +296,5 @@ public class LoginActivity extends FragmentActivity {
             mAuthTask = null;
             showProgress(false);
         }
-    }
+    }*/
 }

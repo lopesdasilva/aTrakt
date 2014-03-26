@@ -11,14 +11,24 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.*;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.SearchView;
+
 import com.lopesdasilva.trakt.alarms.MyAlarmReceiver;
 import com.lopesdasilva.trakt.extras.UserChecker;
-import com.lopesdasilva.trakt.fragments.*;
+import com.lopesdasilva.trakt.fragments.CalendarFragment;
+import com.lopesdasilva.trakt.fragments.HomeFragment;
+import com.lopesdasilva.trakt.fragments.LibraryPagerFragment;
+import com.lopesdasilva.trakt.fragments.RecommendedFragment;
+import com.lopesdasilva.trakt.fragments.WatchlistPagerFragment;
 
 public class MainActivity extends FragmentActivity {
 
@@ -90,6 +100,7 @@ public class MainActivity extends FragmentActivity {
                 boolean firstRun = settings.getBoolean("logged", false);
 
                 if (!firstRun) {
+                    Log.d("Trakt it", "it is first run scheduling alarm for shows tonight.");
                     //RUN ONCE!
                     Bundle bundle = new Bundle();
 // add extras here..

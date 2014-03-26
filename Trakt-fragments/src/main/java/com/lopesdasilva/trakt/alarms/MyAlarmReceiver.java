@@ -7,21 +7,17 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
-import com.androidquery.AQuery;
+
 import com.jakewharton.trakt.ServiceManager;
 import com.jakewharton.trakt.entities.CalendarDate;
 import com.lopesdasilva.trakt.R;
 import com.lopesdasilva.trakt.Tasks.DownloadDayCalendar;
-import com.lopesdasilva.trakt.activities.EpisodeActivity;
 import com.lopesdasilva.trakt.activities.EpisodesTonightActivity;
-import com.lopesdasilva.trakt.broadcasts.CheckInReceiver;
 import com.lopesdasilva.trakt.extras.UserChecker;
 
-import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -44,13 +40,10 @@ public class MyAlarmReceiver extends BroadcastReceiver implements DownloadDayCal
     //  any extras you'd like to get later when triggered
     //  and the timeout
     public MyAlarmReceiver(Context context, Bundle extras, int timeoutInHours) {
-        AlarmManager alarmMgr =
-                (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+        AlarmManager alarmMgr = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(context, MyAlarmReceiver.class);
         intent.putExtra(REMINDER_BUNDLE, extras);
-        PendingIntent pendingIntent =
-                PendingIntent.getBroadcast(context, 0, intent,
-                        PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent pendingIntent =  PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 //        Calendar time = Calendar.getInstance();
 //        time.setTimeInMillis(System.currentTimeMillis());
 //        time.add(Calendar.SECOND, 60);
@@ -58,30 +51,46 @@ public class MyAlarmReceiver extends BroadcastReceiver implements DownloadDayCal
 //                pendingIntent);
 
 
+//        Calendar calendar = Calendar.getInstance();
+//        calendar.set(Calendar.HOUR_OF_DAY, 19);
+//        calendar.set(Calendar.MINUTE, 30);
+//        calendar.set(Calendar.SECOND, 0);
+//
+//
+//        alarmMgr.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
+
+
+        // Set the alarm to start at approximately 2:00 p.m.
         Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(System.currentTimeMillis());
         calendar.set(Calendar.HOUR_OF_DAY, 19);
-        calendar.set(Calendar.MINUTE, 30);
-        calendar.set(Calendar.SECOND, 0);
 
-
-        alarmMgr.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
+// With setInexactRepeating(), you have to use one of the AlarmManager interval
+// constants--in this case, AlarmManager.INTERVAL_DAY.
+        alarmMgr.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),  AlarmManager.INTERVAL_DAY, pendingIntent);
 
     }
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        this.context = context;
-        // here you can get the extras you passed in when creating the alarm
-        //intent.getBundleExtra(REMINDER_BUNDLE));
-        Log.d("Trakt Fragments", "The alarm has ended");
-        Toast.makeText(context, "Alarm went off", Toast.LENGTH_SHORT).show();
+        if (intent.getAction().equals("android.intent.action.BOOT_COMPLETED")) {
+            Log.d("Trakt it", "Android reboot rescheduling alarm to get shows tonight");
+            Bundle bundle = new Bundle();
+            // add extras here..
+            MyAlarmReceiver alarm = new MyAlarmReceiver(context, bundle, 24);
+        }else {
+            this.context = context;
+            // here you can get the extras you passed in when creating the alarm
+            //intent.getBundleExtra(REMINDER_BUNDLE));
+            Log.d("Trakt Fragments", "The alarm has ended");
+            Toast.makeText(context, "Alarm went off", Toast.LENGTH_SHORT).show();
 
 
-        manager = UserChecker.checkUserLogin(context);
+            manager = UserChecker.checkUserLogin(context);
 
 
-        new DownloadDayCalendar(this, manager, new Date()).execute();
-
+            new DownloadDayCalendar(this, manager, new Date()).execute();
+        }
 
     }
 

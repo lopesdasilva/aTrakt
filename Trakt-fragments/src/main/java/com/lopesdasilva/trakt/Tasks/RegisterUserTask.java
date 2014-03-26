@@ -23,48 +23,52 @@ public class RegisterUserTask extends AsyncTask<Void, Void, Response> {
     private final String password;
     private Exception e = null;
 
-    public RegisterUserTask(FragmentActivity activity, OnRegisterUserCompleted listener, ServiceManager manager,String username, String password, String email){
-        this.activity=activity;
-        this.manager=manager;
-        this.listener=listener;
-        this.email=email;
-        this.username=username;
-        this.password=password;
+    public RegisterUserTask(FragmentActivity activity, OnRegisterUserCompleted listener, ServiceManager manager, String username, String password, String email) {
+        this.activity = activity;
+        this.manager = manager;
+        this.listener = listener;
+        this.email = email;
+        this.username = username;
+        this.password = password;
     }
-
-
 
 
     @Override
     protected Response doInBackground(Void... voids) {
-         try {
-                Log.d("Trakt", "Creating account");
-                return manager.accountService().create(username,password,email).fire();
+        try {
+            Log.d("Trakt", "Creating account");
+            return manager.accountService().create(username, password, email).fire();
         } catch (Exception e) {
             this.e = e;
             return null;
         }
     }
+
     @Override
     protected void onPostExecute(Response response) {
-        if(e==null){
+        if (e == null) {
 
-            listener.onRegisterUserComplete( response);
+            listener.onRegisterUserComplete(response);
 
-        }else{
-            Log.d("Trakt","Error creating account message: "+e.getMessage());
+        } else {
+
+            Log.d("Trakt", "Error creating account message: " + e.getMessage());
 
 
             AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-            builder.setMessage("Error creating account")
-                    .setPositiveButton("Retry", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                                new RegisterUserTask(activity,listener,manager,username,password,email).execute();
-                        }
-                    })
+            if (e.getMessage().contains("UnknownHostException"))
+                builder.setMessage("Error connecting to trakt");
+            else
+                builder.setMessage("Error creating account");
+
+            builder.setPositiveButton("Retry", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    new RegisterUserTask(activity, listener, manager, username, password, email).execute();
+                }
+            })
                     .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
-                            Toast.makeText(activity,"Cancel",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(activity, "Cancel", Toast.LENGTH_SHORT).show();
                         }
                     });
             AlertDialog dialog = builder.create();

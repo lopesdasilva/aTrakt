@@ -1,20 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<RelativeLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/light_grey"
-    android:gravity="center_vertical">
+    android:background="@color/light_grey">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/scrollView" >
+        android:id="@+id/scrollViewRegisterForm">
 
         <RelativeLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            >
+            android:layout_gravity="center_vertical"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true">
 
 
             <ImageView
@@ -48,7 +50,7 @@
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:inputType="textEmailAddress"
+                android:inputType="textEmailAddress|textAutoComplete"
                 android:ems="10"
                 android:id="@+id/editTextRegisterEmail"
                 android:hint="@string/prompt_email"
@@ -58,6 +60,7 @@
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:inputType="text"
                 android:hint="@string/prompt_username"
                 android:ems="10"
                 android:id="@+id/editTextRegisterUsername"
@@ -81,7 +84,9 @@
                 android:id="@+id/editTextRegisterRetypePassword"
                 android:hint="@string/prompt_retype_password"
                 android:layout_below="@+id/editTextRegisterPassword"
-                android:layout_alignLeft="@+id/editTextRegisterPassword" />
+                android:layout_alignLeft="@+id/editTextRegisterPassword"
+                android:imeActionId="@+id/buttonRegister"
+                android:imeActionLabel="@string/action_register_in_short"/>
 
             <Button
                 android:layout_width="wrap_content"
@@ -91,10 +96,42 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_below="@+id/editTextRegisterRetypePassword"
                 android:layout_alignRight="@+id/editTextRegisterRetypePassword"
-                android:layout_alignLeft="@+id/editTextRegisterRetypePassword" />
+                android:layout_alignLeft="@+id/editTextRegisterRetypePassword"/>
 
 
         </RelativeLayout>
     </ScrollView>
 
-</LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/relativeLayoutRegisterLoading"
+        android:layout_gravity="center"
+        android:gravity="center_vertical"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:visibility="gone">
+
+
+        <ProgressBar
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:id="@+id/login_status_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:fontFamily="sans-serif-light"
+            android:text="@string/register_loading"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:gravity="center_vertical" />
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>

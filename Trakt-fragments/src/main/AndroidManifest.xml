@@ -8,7 +8,7 @@
         android:minSdkVersion="14"
         android:targetSdkVersion="16"/>
 
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
@@ -75,8 +75,8 @@
                 android:value=".MainActivity"/>
         </activity>
         <activity
-            android:name="com.lopesdasilva.trakt.activities.SearchActivity">
-            android:launchMode="singleTop"
+            android:name="com.lopesdasilva.trakt.activities.SearchActivity"
+            android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH"/>
             </intent-filter>
@@ -88,32 +88,36 @@
             android:name=".activities.LoginActivity"
             android:label="trakt it Login" android:noHistory="true"/>
 
-        <receiver android:name="com.lopesdasilva.trakt.alarms.MyAlarmReceiver"/>
+        <receiver android:name="com.lopesdasilva.trakt.alarms.MyAlarmReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"></action>
+            </intent-filter>
+        </receiver>
         <receiver android:name="com.lopesdasilva.trakt.broadcasts.CheckInReceiver"/>
 
         <activity
-            android:name="com.lopesdasilva.trakt.activities.ShowsActivity">
+            android:name="com.lopesdasilva.trakt.activities.ShowsActivity"
             android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity"/>
         </activity>
         <activity
-            android:name="com.lopesdasilva.trakt.activities.MoviesActivity">
+            android:name="com.lopesdasilva.trakt.activities.MoviesActivity"
             android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity"/>
         </activity>
         <activity
-            android:name="com.lopesdasilva.trakt.activities.RecommendedActivity">
+            android:name="com.lopesdasilva.trakt.activities.RecommendedActivity"
             android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity"/>
         </activity>
         <activity
-            android:name="com.lopesdasilva.trakt.activities.RegisterActivity">
+            android:name="com.lopesdasilva.trakt.activities.RegisterActivity"
             android:parentActivityName=".MainActivity"
             android:noHistory="true">
             <meta-data
