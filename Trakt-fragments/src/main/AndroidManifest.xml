@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.lopesdasilva.trakt"
-          android:versionCode="23"
-          android:versionName="1.23">
+          android:versionCode="24"
+          android:versionName="1.24">
 
     <uses-sdk
         android:minSdkVersion="14"
@@ -86,7 +86,7 @@
         </activity>
         <activity
             android:name=".activities.LoginActivity"
-            android:label="trakt it Login" android:noHistory="true"/>
+            android:label="trakt it" android:noHistory="true"/>
 
         <receiver android:name="com.lopesdasilva.trakt.alarms.MyAlarmReceiver">
             <intent-filter>

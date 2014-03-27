@@ -73,7 +73,8 @@ public class MyAlarmReceiver extends BroadcastReceiver implements DownloadDayCal
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        if (intent.getAction().equals("android.intent.action.BOOT_COMPLETED")) {
+
+        if (intent!=null && intent.getAction()!=null && intent.getAction().equals("android.intent.action.BOOT_COMPLETED")) {
             Log.d("Trakt it", "Android reboot rescheduling alarm to get shows tonight");
             Bundle bundle = new Bundle();
             // add extras here..
