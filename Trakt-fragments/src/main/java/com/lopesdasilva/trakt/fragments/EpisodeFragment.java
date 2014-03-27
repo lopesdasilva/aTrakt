@@ -23,8 +23,13 @@ import com.jakewharton.trakt.entities.RatingResponse;
 import com.jakewharton.trakt.entities.Response;
 import com.jakewharton.trakt.entities.TvEntity;
 import com.lopesdasilva.trakt.R;
-import com.lopesdasilva.trakt.Tasks.*;
+import com.lopesdasilva.trakt.Tasks.CheckInChecker;
+import com.lopesdasilva.trakt.Tasks.DownloadEpisodeInfo;
 import com.lopesdasilva.trakt.Tasks.EpisodeWatchlistUnWatchlist;
+import com.lopesdasilva.trakt.Tasks.MarkEpisodeSeenUnseen;
+import com.lopesdasilva.trakt.Tasks.RateEpisodeHate;
+import com.lopesdasilva.trakt.Tasks.RateEpisodeLove;
+import com.lopesdasilva.trakt.Tasks.UnrateEpisode;
 import com.lopesdasilva.trakt.activities.ShowActivity;
 import com.lopesdasilva.trakt.extras.UserChecker;
 
@@ -46,17 +51,24 @@ public class EpisodeFragment extends Fragment implements DownloadEpisodeInfo.onE
     private MenuItem mRefreshItem;
     private DownloadEpisodeInfo mTaskDownloadEpisode;
     private String mUsername;
+    private AQuery aq;
 
 
     public EpisodeFragment() {
     }
 
 
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putSerializable("mEpisode", episode_info);
+    }
+
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.episode_fragment, container, false);
 
 
-        setRetainInstance(true);
+
         show = getArguments().getString("show_imdb");
         season = getArguments().getInt("show_season");
         episode = getArguments().getInt("show_episode");
@@ -65,16 +77,32 @@ public class EpisodeFragment extends Fragment implements DownloadEpisodeInfo.onE
         manager = UserChecker.checkUserLogin(getActivity());
         mUsername = UserChecker.getUsername(getActivity());
 
-        Log.d("Trakt Fragments", "ServiceManager: " + manager);
-        Log.d("Trakt Fragments", "Show_imdb received: " + show);
-        Log.d("Trakt Fragments", "Show_season received: " + season);
-        Log.d("Trakt Fragments", "Show_episode received: " + episode);
+        Log.d("Trakt it", "ServiceManager: " + manager);
+        Log.d("Trakt it", "Show_imdb received: " + show);
+        Log.d("Trakt it", "Show_season received: " + season);
+        Log.d("Trakt it", "Show_episode received: " + episode);
+        Log.d("Trakt it", "savedInstanceState: " + savedInstanceState);
+
+        aq= new AQuery(rootView);
+        aq.id(R.id.relativeLayoutEpisodeLoading).visible();
+        aq.id(R.id.scrollViewepisodeInfoLayout).invisible();
 
 
-        mTaskDownloadEpisode = new DownloadEpisodeInfo(this, getActivity(), manager, show, season, episode);
-        mTaskDownloadEpisode.execute();
+        if (savedInstanceState == null) {
+            mTaskDownloadEpisode = new DownloadEpisodeInfo(this, getActivity(), manager, show, season, episode);
+            mTaskDownloadEpisode.execute();
+        }else{
+            episode_info = (TvEntity) savedInstanceState.getSerializable("mEpisode");
+            if(episode_info==null){
+                mTaskDownloadEpisode = new DownloadEpisodeInfo(this, getActivity(), manager, show, season, episode);
+                mTaskDownloadEpisode.execute();
+            }else
+                updateUI();
+        }
 
-        new CheckInChecker(getActivity(), manager, mUsername).execute();
+
+
+
 
         return rootView;
     }
@@ -201,6 +229,7 @@ public class EpisodeFragment extends Fragment implements DownloadEpisodeInfo.onE
         episode_info = response;
         updateUI();
         mTaskDownloadEpisode = null;
+        new CheckInChecker(getActivity(), manager, mUsername).execute();
     }
 
     @Override
@@ -250,10 +279,10 @@ public class EpisodeFragment extends Fragment implements DownloadEpisodeInfo.onE
             mRefreshItem.setActionView(null);
         }
 
-        AQuery aq = new AQuery(getActivity());
+        AQuery aq = new AQuery(rootView);
         aq.id(R.id.textViewMovieTitle).text(episode_info.episode.title);
         aq.id(R.id.textViewEpisodeSeasonNumber).text("S" + episode_info.episode.season + "E" + episode_info.episode.number);
-        aq.id(R.id.imageViewEpisodeScreen).image(episode_info.episode.images.screen, false, true, 600, R.drawable.episode_backdrop, null, AQuery.FADE_IN);
+        aq.id(R.id.imageViewEpisodeScreen).image(episode_info.episode.images.screen, false, true, 600, R.drawable.episode_backdrop, aq.getCachedImage(R.drawable.episode_backdrop), AQuery.FADE_IN,AQuery.RATIO_PRESERVE);
         aq.id(R.id.textViewEpisodeOverview).text(episode_info.episode.overview);
         aq.id(R.id.textViewEpisodeRatingsPercentage).text(episode_info.episode.ratings.percentage + "%");
         aq.id(R.id.textViewEpisodeRatingsVotes).text(episode_info.episode.ratings.votes + " votes");
@@ -312,7 +341,8 @@ public class EpisodeFragment extends Fragment implements DownloadEpisodeInfo.onE
                     break;
             }
 
-
+        aq.id(R.id.relativeLayoutEpisodeLoading).invisible();
+        aq.id(R.id.scrollViewepisodeInfoLayout).visible();
         setHasOptionsMenu(true);
     }
 

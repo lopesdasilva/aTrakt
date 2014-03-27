@@ -39,7 +39,7 @@ public class ShowsAllFragment extends Fragment implements DownloadTrendingShows.
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.showsall_fragment, container, false);
 
-        Log.d("Trakt", "ShaowsAllFragment saveInstance: " + savedInstanceState);
+        Log.d("Trakt it", "Shows Fragment saveInstance: " + savedInstanceState);
         if (savedInstanceState == null) {
             manager = UserChecker.checkUserLogin(getActivity());
             mTrendingShowsTask = new DownloadTrendingShows(this, getActivity(), manager);
@@ -140,7 +140,7 @@ public class ShowsAllFragment extends Fragment implements DownloadTrendingShows.
 
             AQuery aq = new AQuery(convertView);
 
-            aq.id(R.id.imageViewShowsPoster).progress(R.id.progress).image(mList.get(position).images.poster, true, true, 100, R.drawable.poster, null, AQuery.FADE_IN);
+            aq.id(R.id.imageViewShowsPoster).image(mList.get(position).images.poster, true, true, 100, R.drawable.poster_small, aq.getCachedImage(R.drawable.poster_small), AQuery.FADE_IN,AQuery.RATIO_PRESERVE);
             aq.id(R.id.textViewShowsShowTitle).text(mList.get(position).title);
             aq.id(R.id.textViewShowsShowPercentage).text(mList.get(position).ratings.percentage + "%");
             aq.id(R.id.textViewShowsShowNumberVotes).text(mList.get(position).ratings.votes + " votes");

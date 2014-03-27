@@ -11,7 +11,11 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.*;
+import android.widget.AdapterView;
+import android.widget.BaseAdapter;
+import android.widget.PopupMenu;
+import android.widget.Toast;
+
 import com.androidquery.AQuery;
 import com.jakewharton.trakt.ServiceManager;
 import com.jakewharton.trakt.entities.TvShow;
@@ -23,6 +27,7 @@ import com.lopesdasilva.trakt.activities.EpisodeActivity;
 import com.lopesdasilva.trakt.extras.UserChecker;
 import com.tonicartos.widget.stickygridheaders.StickyGridHeadersBaseAdapter;
 import com.tonicartos.widget.stickygridheaders.StickyGridHeadersGridView;
+
 import java.text.SimpleDateFormat;
 import java.util.LinkedList;
 import java.util.List;
@@ -33,13 +38,12 @@ import java.util.List;
 public class WatchlistEpisodes extends DialogFragment implements MarkEpisodeSeenUnseen.OnMarkSeenUnseenCompleted, EpisodeWatchlistUnWatchlist.WatchlistUnWatchlistCompleted {
 
 
-
     private ServiceManager manager;
     private View rootView;
     private TvShow currentShow;
     private ShowSeasonsAdapter mAdapter;
-    private LinkedList<TvShowSeason_Auxiliar>  mListHeaders=new LinkedList<TvShowSeason_Auxiliar>();
-    private List<TvShowEpisode> lista=new LinkedList<TvShowEpisode>();
+    private LinkedList<TvShowSeason_Auxiliar> mListHeaders = new LinkedList<TvShowSeason_Auxiliar>();
+    private List<TvShowEpisode> lista = new LinkedList<TvShowEpisode>();
     private TvShowSeason_Auxiliar mSeason_auxiliar;
 
     @Override
@@ -48,7 +52,7 @@ public class WatchlistEpisodes extends DialogFragment implements MarkEpisodeSeen
 
         manager = UserChecker.checkUserLogin(getActivity());
 
-        currentShow=(TvShow)getArguments().get("movie");
+        currentShow = (TvShow) getArguments().get("movie");
     }
 
     @Override
@@ -70,26 +74,23 @@ public class WatchlistEpisodes extends DialogFragment implements MarkEpisodeSeen
         StickyGridHeadersGridView listview = (StickyGridHeadersGridView) rootView.findViewById(R.id.listViewWathclistShowEpisodes);
 
 
-        for(TvShowEpisode te: currentShow.episodes){
-            if(mListHeaders.size()==0){
-                mSeason_auxiliar=new TvShowSeason_Auxiliar(te.season);
+        for (TvShowEpisode te : currentShow.episodes) {
+            if (mListHeaders.size() == 0) {
+                mSeason_auxiliar = new TvShowSeason_Auxiliar(te.season);
+                mSeason_auxiliar.addEpsiode(te);
+                mListHeaders.addLast(mSeason_auxiliar);
+            } else if (mListHeaders.getLast().season == te.season) {
+                mListHeaders.getLast().addEpsiode(te);
+            } else {
+                mSeason_auxiliar = new TvShowSeason_Auxiliar(te.season);
                 mSeason_auxiliar.addEpsiode(te);
                 mListHeaders.addLast(mSeason_auxiliar);
             }
-            else
-                if(mListHeaders.getLast().season==te.season){
-                    mListHeaders.getLast().addEpsiode(te);
-                }else{
-                    mSeason_auxiliar=new TvShowSeason_Auxiliar(te.season);
-                    mSeason_auxiliar.addEpsiode(te);
-                    mListHeaders.addLast(mSeason_auxiliar);
-                }
 
         }
 
 
-
-        mAdapter=new ShowSeasonsAdapter(getActivity(),mListHeaders,currentShow.episodes);
+        mAdapter = new ShowSeasonsAdapter(getActivity(), mListHeaders, currentShow.episodes);
 
         listview.setAdapter(mAdapter);
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -97,8 +98,7 @@ public class WatchlistEpisodes extends DialogFragment implements MarkEpisodeSeen
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
 
 
-
-                Log.d("Trakt", "position" + position+" size"+lista.size());
+                Log.d("Trakt", "position" + position + " size" + lista.size());
                 Bundle arguments = new Bundle();
                 arguments.putString("show_imdb", currentShow.imdbId);
                 arguments.putInt("show_season", currentShow.episodes.get(position).season);
@@ -110,7 +110,6 @@ public class WatchlistEpisodes extends DialogFragment implements MarkEpisodeSeen
                 getActivity().overridePendingTransition(R.anim.push_left_out, R.anim.push_left_in);
 
 
-
             }
         });
         return rootView;
@@ -118,20 +117,16 @@ public class WatchlistEpisodes extends DialogFragment implements MarkEpisodeSeen
 
     @Override
     public void OnMarkSeenUnseenCompleted(int position) {
-        Toast.makeText(getActivity(),"todo mark seen/unseen",Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(), "todo mark seen/unseen", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void WatchlistUnWatchlistCompleted(int position) {
-        Toast.makeText(getActivity(),"TODO: Done",Toast.LENGTH_SHORT).show();
-
-
-
         mSeason_auxiliar.episodes.remove(currentShow.episodes.get(position));
         currentShow.episodes.remove(position);
-       if(currentShow.episodes.size()==0){
-        dismiss();
-       }
+        if (currentShow.episodes.size() == 0) {
+            dismiss();
+        }
 
 
         mAdapter.notifyDataSetChanged();
@@ -189,12 +184,12 @@ public class WatchlistEpisodes extends DialogFragment implements MarkEpisodeSeen
 //                });
 //            } else {
 //                aq.id(R.id.imageViewSeasonsEpisodeSeenTag).gone();
-                aq.id(R.id.imageViewSeasonsEpisodeOptions).clicked(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        showSeenMenu(view, currentShow.episodes.get(position), position);
-                    }
-                });
+            aq.id(R.id.imageViewSeasonsEpisodeOptions).clicked(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    showSeenMenu(view, currentShow.episodes.get(position), position);
+                }
+            });
 //            }
 //            if (lista.get(position).rating != null) {
 //                switch (lista.get(position).rating) {
@@ -240,8 +235,8 @@ public class WatchlistEpisodes extends DialogFragment implements MarkEpisodeSeen
 
                         case R.id.action_episode_remove_watchlist:
                             //if it is here then it has to be true
-                            currentShow.episodes.get(position).inWatchlist=true;
-                            new EpisodeWatchlistUnWatchlist(getActivity(),WatchlistEpisodes.this,manager,currentShow,currentShow.episodes.get(position),position).execute();
+                            currentShow.episodes.get(position).inWatchlist = true;
+                            new EpisodeWatchlistUnWatchlist(getActivity(), WatchlistEpisodes.this, manager, currentShow, currentShow.episodes.get(position), position).execute();
 //                            new MarkSeenUnseen(getActivity(), WatchlistEpisodes.this, manager, currentShow, episode, position).execute();
 
                             return true;
@@ -253,7 +248,7 @@ public class WatchlistEpisodes extends DialogFragment implements MarkEpisodeSeen
 //            if (episode.watched)
 //                popup.inflate(R.menu.seasons_episode_actions_unseen);
 //            else
-                popup.inflate(R.menu.seasons_episode_actions_remove_watchlist);
+            popup.inflate(R.menu.seasons_episode_actions_remove_watchlist);
             popup.show();
         }
 
@@ -282,19 +277,19 @@ public class WatchlistEpisodes extends DialogFragment implements MarkEpisodeSeen
         }
     }
 
-    public class TvShowSeason_Auxiliar{
+    public class TvShowSeason_Auxiliar {
 
         public final int season;
         public final List<TvShowEpisode> episodes;
 
-        public TvShowSeason_Auxiliar(int season, List<TvShowEpisode> episodes){
-            this.season=season;
-            this.episodes=episodes;
+        public TvShowSeason_Auxiliar(int season, List<TvShowEpisode> episodes) {
+            this.season = season;
+            this.episodes = episodes;
         }
 
         public TvShowSeason_Auxiliar(Integer season) {
-            this.season=season;
-            this.episodes=new LinkedList<TvShowEpisode>();
+            this.season = season;
+            this.episodes = new LinkedList<TvShowEpisode>();
         }
 
         public void addEpsiode(TvShowEpisode te) {

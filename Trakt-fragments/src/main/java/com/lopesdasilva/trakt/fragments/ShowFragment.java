@@ -297,7 +297,7 @@ public class ShowFragment extends Fragment implements ActionBar.TabListener, Dow
                     break;
                 case 1:
                     arguments.putSerializable("show", mTVshow);
-                    fragment = new SeasonsFragment();
+                    fragment = new ShowSeasonsFragment();
                     break;
                 case 2:
                     arguments.putSerializable("show", mTVshow);

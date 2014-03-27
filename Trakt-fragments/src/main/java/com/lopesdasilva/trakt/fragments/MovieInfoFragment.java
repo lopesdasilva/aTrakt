@@ -1,30 +1,28 @@
 package com.lopesdasilva.trakt.fragments;
 
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
-import android.view.*;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Toast;
+
 import com.androidquery.AQuery;
 import com.jakewharton.trakt.ServiceManager;
 import com.jakewharton.trakt.entities.Movie;
-import com.jakewharton.trakt.entities.RatingResponse;
-import com.jakewharton.trakt.entities.Response;
 import com.lopesdasilva.trakt.R;
-import com.lopesdasilva.trakt.Tasks.*;
+import com.lopesdasilva.trakt.Tasks.DownloadMovieInfo;
 import com.lopesdasilva.trakt.extras.UserChecker;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 /**
  * Created by lopesdasilva on 17/05/13.
@@ -89,7 +87,8 @@ public class MovieInfoFragment extends Fragment{
 
             final AQuery aq = new AQuery(rootView);
             aq.id(R.id.textViewMovieTitle).text(movie.title);
-            aq.id(R.id.imageViewEpisodeScreen).image(movie.images.fanart, false, true, 600, R.drawable.episode_backdrop).clicked(new View.OnClickListener() {
+
+            aq.id(R.id.imageViewEpisodeScreen).image(movie.images.fanart, false, true, 600,R.drawable.episode_backdrop,aq.getCachedImage(R.drawable.episode_backdrop),AQuery.FADE_IN,AQuery.RATIO_PRESERVE).clicked(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     if (!movie_info.trailer.equals(""))
@@ -119,7 +118,7 @@ public class MovieInfoFragment extends Fragment{
                     return false;
                 }
             });
-            aq.id(R.id.imageViewMoviePoster).image(movie.images.poster, false, true, 600, R.drawable.poster);
+            aq.id(R.id.imageViewMoviePoster).image(movie.images.poster, false, true, 600, R.drawable.poster,aq.getCachedImage(R.drawable.poster),AQuery.FADE_IN,AQuery.RATIO_PRESERVE);
             aq.id(R.id.textViewEpisodeOverview).text(movie.overview);
             aq.id(R.id.textViewEpisodeRatingsPercentage).text(movie.ratings.percentage + "%");
             aq.id(R.id.textViewEpisodeRatingsVotes).text(movie.ratings.votes + " votes");

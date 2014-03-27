@@ -56,6 +56,8 @@
     <string name="error_incorrect_username_or_password">Username or password incorrect</string>
     <string name="register_loading">Registering...</string>
     <string name="action_register_in_short">register</string>
+    <string name="movie">Movie title</string>
+    <string name="episode_loading">Loading episode...</string>
     <array name="watchlist">
 
 

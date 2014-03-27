@@ -224,14 +224,15 @@ public class MovieFragment extends Fragment implements ActionBar.TabListener, Do
             mTaskDownloadMovieInfo.execute();
         } else {
             mMovie = (Movie) savedInstanceState.getSerializable("mMovie");
-            updateMovie(mMovie);
+
             if (mMovie == null) {
 
                 manager = UserChecker.checkUserLogin(getActivity());
                 mTaskDownloadMovieInfo = new DownloadMovieInfo(this, getActivity(), manager, movie);
                 mTaskDownloadMovieInfo.execute();
 
-            }
+            }else
+            updateMovie(mMovie);
         }
 
 

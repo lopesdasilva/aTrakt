@@ -1,13 +1,10 @@
 package com.lopesdasilva.trakt;
 
 
-
 import android.app.Application;
 
+import com.androidquery.callback.BitmapAjaxCallback;
 import com.jakewharton.trakt.ServiceManager;
-import com.jakewharton.trakt.entities.TvShow;
-
-import java.util.List;
 
 public class TVtraktApp extends Application {
 
@@ -34,5 +31,15 @@ public class TVtraktApp extends Application {
 	public String getAPIKEY() {
 		return APIKEY;
 	}
+
+    @Override
+    public void onLowMemory(){
+
+        //clear all memory cached images when system is in low memory
+        //note that you can configure the max image cache count, see CONFIGURATION
+        BitmapAjaxCallback.clearCache();
+    }
+
+
 
 }

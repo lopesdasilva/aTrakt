@@ -19,12 +19,7 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"/>
 
-    <ProgressBar
-        android:layout_width="15dip"
-        android:layout_height="15dip"
-        android:id="@+id/progress"
-        android:layout_centerInParent="true"
-        />
+
 
     <TextView
         android:layout_marginLeft="2dp"

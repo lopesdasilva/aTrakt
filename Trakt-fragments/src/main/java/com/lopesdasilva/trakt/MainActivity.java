@@ -22,6 +22,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SearchView;
 
+import com.androidquery.util.AQUtility;
 import com.lopesdasilva.trakt.alarms.MyAlarmReceiver;
 import com.lopesdasilva.trakt.extras.UserChecker;
 import com.lopesdasilva.trakt.fragments.CalendarFragment;
@@ -313,5 +314,19 @@ public class MainActivity extends FragmentActivity {
         mDrawerToggle.onConfigurationChanged(newConfig);
     }
 
+    @Override
+    protected void onDestroy(){
+
+        super.onDestroy();
+
+        if(isTaskRoot()){
+
+            //clean the file cache with advance option
+            long triggerSize = 3000000; //starts cleaning when cache size is larger than 3M
+            long targetSize = 2000000;      //remove the least recently used files until cache size is less than 2M
+            AQUtility.cleanCacheAsync(this, triggerSize, targetSize);
+        }
+
+    }
 
 }

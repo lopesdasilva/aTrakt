@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/imageViewEpisodeScreen"
             android:layout_alignLeft="@+id/imageViewEpisodeScreen"
-            android:text="@string/episode"
+            android:text="@string/movie"
             android:textAppearance="?android:attr/textAppearanceLarge" />
         <View
             android:id="@+id/view1"

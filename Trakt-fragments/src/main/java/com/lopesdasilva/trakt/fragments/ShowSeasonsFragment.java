@@ -27,7 +27,7 @@ import java.util.List;
 /**
  * Created by lopesdasilva on 22/05/13.
  */
-public class SeasonsFragment extends Fragment implements MarkEpisodeSeenUnseen.OnMarkSeenUnseenCompleted, MultipleSeenUnseenTask.OnMarkSeenUnseenCompleted, EpisodeWatchlistUnWatchlist.WatchlistUnWatchlistCompleted {
+public class ShowSeasonsFragment extends Fragment implements MarkEpisodeSeenUnseen.OnMarkSeenUnseenCompleted, MultipleSeenUnseenTask.OnMarkSeenUnseenCompleted, EpisodeWatchlistUnWatchlist.WatchlistUnWatchlistCompleted {
 
 
     private View rootView;
@@ -42,7 +42,7 @@ public class SeasonsFragment extends Fragment implements MarkEpisodeSeenUnseen.O
 
     List<TvShowEpisode> mSelectedEpisodes = new LinkedList<TvShowEpisode>();
 
-    public SeasonsFragment() {
+    public ShowSeasonsFragment() {
     }
 
 
@@ -147,14 +147,14 @@ public class SeasonsFragment extends Fragment implements MarkEpisodeSeenUnseen.O
                     switch (item.getItemId()) {
                         case R.id.action_episode_seen:
                             Toast.makeText(getActivity(), "Mark as seen", Toast.LENGTH_SHORT).show();
-                            MultipleSeenUnseenTask mMultipleSeenTask = new MultipleSeenUnseenTask(getActivity(), SeasonsFragment.this, manager, show, mSelectedEpisodes, true, mode);
+                            MultipleSeenUnseenTask mMultipleSeenTask = new MultipleSeenUnseenTask(getActivity(), ShowSeasonsFragment.this, manager, show, mSelectedEpisodes, true, mode);
                             mMultipleSeenTask.execute();
 //                            deleteSelectedItems();
 
                             return true;
                         case R.id.action_episode_unseen:
                             Toast.makeText(getActivity(), "Mark as unseen", Toast.LENGTH_SHORT).show();
-                            MultipleSeenUnseenTask mMultipleUnseenTask = new MultipleSeenUnseenTask(getActivity(), SeasonsFragment.this, manager, show, mSelectedEpisodes, false, mode);
+                            MultipleSeenUnseenTask mMultipleUnseenTask = new MultipleSeenUnseenTask(getActivity(), ShowSeasonsFragment.this, manager, show, mSelectedEpisodes, false, mode);
                             mMultipleUnseenTask.execute();
 //                            deleteSelectedItems();
 
@@ -266,7 +266,7 @@ public class SeasonsFragment extends Fragment implements MarkEpisodeSeenUnseen.O
             aq.id(R.id.textViewSeasonsEpisodeTitle).text(lista.get(position).title);
             SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d, yyyy");
             aq.id(R.id.textViewSeasonsEpisodeDate).text("" + dateFormat.format(lista.get(position).firstAired));
-            aq.id(R.id.imageViewSeasonsEpisodeScreen).image(lista.get(position).images.screen, false, true, 200, 0);
+            aq.id(R.id.imageViewSeasonsEpisodeScreen).image(lista.get(position).images.screen, false, true, 200,R.drawable.episode_backdrop_small,aq.getCachedImage(R.drawable.episode_backdrop_small),AQuery.FADE_IN,AQuery.RATIO_PRESERVE);
 
             if (lista.get(position).watched) {
                 aq.id(R.id.imageViewSeasonsEpisodeSeenTag).visible();
@@ -330,16 +330,16 @@ public class SeasonsFragment extends Fragment implements MarkEpisodeSeenUnseen.O
                     switch (menuItem.getItemId()) {
 
                         case R.id.action_episode_seen:
-                            new MarkEpisodeSeenUnseen(getActivity(), SeasonsFragment.this, manager, show, episode, position).execute();
+                            new MarkEpisodeSeenUnseen(getActivity(), ShowSeasonsFragment.this, manager, show, episode, position).execute();
                             return true;
                         case R.id.action_episode_unseen:
-                            new MarkEpisodeSeenUnseen(getActivity(), SeasonsFragment.this, manager, show, episode, position).execute();
+                            new MarkEpisodeSeenUnseen(getActivity(), ShowSeasonsFragment.this, manager, show, episode, position).execute();
                             return true;
                         case R.id.action_episode_remove_watchlist:
-                            new EpisodeWatchlistUnWatchlist(getActivity(),SeasonsFragment.this,manager,show,episode,position).execute();
+                            new EpisodeWatchlistUnWatchlist(getActivity(),ShowSeasonsFragment.this,manager,show,episode,position).execute();
                             return true;
                         case R.id.action_episode_add_watchlist:
-                            new EpisodeWatchlistUnWatchlist(getActivity(),SeasonsFragment.this,manager,show,episode,position).execute();
+                            new EpisodeWatchlistUnWatchlist(getActivity(),ShowSeasonsFragment.this,manager,show,episode,position).execute();
                             return true;
 
                         default:

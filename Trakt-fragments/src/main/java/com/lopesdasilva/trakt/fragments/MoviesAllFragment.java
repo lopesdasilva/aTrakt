@@ -11,14 +11,13 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
+
 import com.androidquery.AQuery;
 import com.jakewharton.trakt.ServiceManager;
 import com.jakewharton.trakt.entities.Movie;
-import com.jakewharton.trakt.entities.TvShow;
 import com.lopesdasilva.trakt.R;
 import com.lopesdasilva.trakt.Tasks.DownloadTrendingMovies;
 import com.lopesdasilva.trakt.activities.MovieActivity;
-import com.lopesdasilva.trakt.activities.ShowActivity;
 import com.lopesdasilva.trakt.extras.UserChecker;
 
 import java.io.Serializable;
@@ -140,7 +139,7 @@ public class MoviesAllFragment extends Fragment implements DownloadTrendingMovie
 
             AQuery aq = new AQuery(convertView);
 
-            aq.id(R.id.imageViewMoviesPoster).progress(R.id.progress).image(mList.get(position).images.poster, true, true, 100, R.drawable.poster, null, AQuery.FADE_IN);
+            aq.id(R.id.imageViewMoviesPoster).image(mList.get(position).images.poster, true, true, 100, R.drawable.poster_small, aq.getCachedImage(R.drawable.poster_small), AQuery.FADE_IN,AQuery.RATIO_PRESERVE);
             aq.id(R.id.textViewMoviesMovieTitle).text(mList.get(position).title + " (" + mList.get(position).year + ")");
             aq.id(R.id.textViewMoviesMoviePercentage).text(mList.get(position).ratings.percentage + "%");
             aq.id(R.id.textViewMoviesMovieViewers).text(mList.get(position).watchers + " viewers");

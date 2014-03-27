@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
+
+
+<ScrollView android:id="@+id/scrollViewepisodeInfoLayout"
              android:layout_width="match_parent"
              android:layout_height="match_parent">
     <RelativeLayout
@@ -157,15 +162,50 @@
 
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="25dp"
+            android:layout_height="35dp"
             android:text="New Text"
+            android:gravity="center_vertical"
             android:id="@+id/textViewEpisodeShow"
             style="@style/CardText.1Line.Bigger.Blue"
             android:background="@color/transparentBlack"
             android:layout_above="@+id/textViewMovieTitle"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
             android:layout_alignLeft="@+id/imageViewEpisodeScreen"
             android:layout_alignRight="@+id/imageViewEpisodeScreen"/>
 
     </RelativeLayout>
 
 </ScrollView>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/relativeLayoutEpisodeLoading"
+        android:layout_gravity="center"
+        android:gravity="center_vertical"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:visibility="gone">
+
+
+        <ProgressBar
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:id="@+id/login_status_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:fontFamily="sans-serif-light"
+            android:text="@string/episode_loading"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:gravity="center_vertical" />
+
+    </LinearLayout>
+
+
+</RelativeLayout>

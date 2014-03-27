@@ -9,8 +9,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import com.lopesdasilva.trakt.R;
 import com.lopesdasilva.trakt.fragments.EpisodeFragment;
-import com.lopesdasilva.trakt.fragments.RecommendedShowsFragment;
-import com.lopesdasilva.trakt.fragments.SeasonsFragment;
+import com.lopesdasilva.trakt.fragments.ShowSeasonsFragment;
 
 
 /**
@@ -38,7 +37,7 @@ public class EpisodeActivity extends FragmentActivity {
             getSupportFragmentManager().beginTransaction().replace(R.id.episode_activity, fragment).commit();
 
             if (findViewById(R.id.episode_list) != null) {
-                Fragment f1=new SeasonsFragment();
+                Fragment f1=new ShowSeasonsFragment();
                 f1.setArguments(arguments);
                 getSupportFragmentManager().beginTransaction().replace(R.id.episode_list, f1).commit();
             }
