@@ -1,5 +1,6 @@
 package com.lopesdasilva.trakt.alarms;
 
+import android.annotation.TargetApi;
 import android.app.AlarmManager;
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -7,6 +8,7 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
@@ -95,6 +97,7 @@ public class MyAlarmReceiver extends BroadcastReceiver implements DownloadDayCal
 
     }
 
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     @Override
     public void OnDayCalendarTaskCompleted(List<CalendarDate> response) {
         Bundle arguments = new Bundle();
