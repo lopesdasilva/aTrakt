@@ -58,7 +58,7 @@ public class UserActivityFragment extends Fragment {
             Log.d("Trakt", "CalendarFragment get position: " + position);
             int onWeekInMIliSecconds = 604800000;
             Bundle arguments = new Bundle();
-            Fragment fragment = new CalendarWeekFragment();
+            Fragment fragment = new ActivityWeekFragment();
             arguments.putInt("calendardate", -1);
             fragment.setArguments(arguments);
             Log.d("Trakt", "getItem launching fragment");
