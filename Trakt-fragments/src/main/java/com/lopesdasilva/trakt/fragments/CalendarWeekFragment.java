@@ -284,6 +284,7 @@ public class CalendarWeekFragment extends Fragment implements DownloadWeekCalend
 
             AQuery aq = new AQuery(convertView);
             aq.id(R.id.imageViewCalendarEpisodeBackdrop).image(lista.get(position).episode.images.screen, true, true, 200, R.drawable.episode_backdrop_small,aq.getCachedImage(R.drawable.episode_backdrop_small),AQuery.FADE_IN);
+
             aq.id(R.id.textViewCalendarShowTitle).text(lista.get(position).show.title);
             aq.id(R.id.textViewCalendarEpisodeSeasonNumberAndEpisodeNumber).text("S" + lista.get(position).episode.season + "E" + lista.get(position).episode.number);
             aq.id(R.id.textViewCalendarEpisodeTitle).text(lista.get(position).episode.title);

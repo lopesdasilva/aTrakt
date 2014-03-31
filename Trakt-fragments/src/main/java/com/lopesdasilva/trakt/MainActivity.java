@@ -29,6 +29,7 @@ import com.lopesdasilva.trakt.fragments.CalendarFragment;
 import com.lopesdasilva.trakt.fragments.HomeFragment;
 import com.lopesdasilva.trakt.fragments.LibraryPagerFragment;
 import com.lopesdasilva.trakt.fragments.RecommendedFragment;
+import com.lopesdasilva.trakt.fragments.UserActivityFragment;
 import com.lopesdasilva.trakt.fragments.WatchlistPagerFragment;
 
 public class MainActivity extends FragmentActivity {
@@ -278,6 +279,12 @@ public class MainActivity extends FragmentActivity {
 //                if (fragment == null)
                 fragment = new CalendarFragment();
                 getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, fragment, "calendar").commit();
+                break;
+            case 5:
+//                fragment = getSupportFragmentManager().findFragmentByTag("calendar");
+//                if (fragment == null)
+                fragment = new UserActivityFragment();
+                getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, fragment, "UserActivity").commit();
                 break;
 
         }
