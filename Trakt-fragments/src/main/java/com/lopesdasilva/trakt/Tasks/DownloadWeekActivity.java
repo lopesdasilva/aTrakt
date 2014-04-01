@@ -17,16 +17,18 @@ public class DownloadWeekActivity extends AsyncTask<Void, Void, Activity> {
 
     private final OnWeekActivityTaskCompleted listener;
     private final FragmentActivity activity;
-    private final Date date;
+    private final Date start_ts;
     private final String username;
+    private final Date end_ts;
     public ServiceManager manager;
     private Exception e;
 
-    public DownloadWeekActivity(OnWeekActivityTaskCompleted listener, FragmentActivity activity, ServiceManager manager,String username , Date date) {
+    public DownloadWeekActivity(OnWeekActivityTaskCompleted listener, FragmentActivity activity, ServiceManager manager,String username , Date start_ts,Date end_ts) {
         this.activity = activity;
         this.listener = listener;
         this.manager = manager;
-        this.date = date;
+        this.start_ts = start_ts;
+        this.end_ts = end_ts;
         this.username=username;
     }
 
@@ -34,7 +36,7 @@ public class DownloadWeekActivity extends AsyncTask<Void, Void, Activity> {
     @Override
     protected Activity doInBackground(Void... voids) {
         try {
-            return manager.activityService().user(username).types(ActivityType.Episode,ActivityType.Movie,ActivityType.Show).images().min(true).timestamp(date).fire();
+            return manager.activityService().user(username).types(ActivityType.Episode,ActivityType.Movie,ActivityType.Show).images().min(true).start_ts(start_ts).end_ts(end_ts).fire();
         } catch (Exception e) {
             this.e = e;
             return null;

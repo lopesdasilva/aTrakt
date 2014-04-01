@@ -21,6 +21,8 @@ import com.tonicartos.widget.stickygridheaders.StickyGridHeadersGridView;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -41,6 +43,7 @@ public class ActivityWeekFragment extends Fragment implements DownloadWeekActivi
     private StickyGridHeadersGridView l;
     private String username;
     private Activity mResponse;
+    private ArrayList<Header> mListHeader;
 
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -55,29 +58,30 @@ public class ActivityWeekFragment extends Fragment implements DownloadWeekActivi
             manager = UserChecker.checkUserLogin(getActivity());
             Log.d("Trakt", "Fragment Calendar Week Launched");
             Date d = new Date();
-            if (mDate != -1) {
-                d.setTime(d.getTime() + (mDate));
-            }
-
-            mTaskDownloadWeekCalendar = new DownloadWeekActivity(ActivityWeekFragment.this, getActivity(), manager, username,d);
+//            if (mDate != -1) {
+//                d.setTime(d.getTime() + (mDate));
+//            }
+            d.setTime(d.getTime() + (-604800000));
+            mTaskDownloadWeekCalendar = new DownloadWeekActivity(ActivityWeekFragment.this, getActivity(), manager, "lopesdasilva",new Date(),d);
             mTaskDownloadWeekCalendar.execute();
-        } else {
-//            init();
-            Activity response = (Activity) savedInstanceState.get("activity");
-            if (response!= null) {
-                onWeekActivityInfoComplete(response);
-            } else {
-                manager = UserChecker.checkUserLogin(getActivity());
-                Log.d("Trakt", "Fragment Calendar Week Launched");
-                Date d = new Date();
-                if (mDate != -1) {
-                    d.setTime(d.getTime() + (mDate));
-                }
-
-                mTaskDownloadWeekCalendar = new DownloadWeekActivity(ActivityWeekFragment.this, getActivity(), manager, username,d);
-                mTaskDownloadWeekCalendar.execute();
-            }
         }
+//        else {
+////            init();
+//            Activity response = (Activity) savedInstanceState.get("activity");
+//            if (response!= null) {
+//                onWeekActivityInfoComplete(response);
+//            } else {
+//                manager = UserChecker.checkUserLogin(getActivity());
+//                Log.d("Trakt", "Fragment Calendar Week Launched");
+//                Date d = new Date();
+//                if (mDate != -1) {
+//                    d.setTime(d.getTime() + (mDate));
+//                }
+//
+//                mTaskDownloadWeekCalendar = new DownloadWeekActivity(ActivityWeekFragment.this, getActivity(), manager, username,d,d);
+//                mTaskDownloadWeekCalendar.execute();
+//            }
+//        }
 
 
         return rootView;
@@ -91,112 +95,32 @@ public class ActivityWeekFragment extends Fragment implements DownloadWeekActivi
     }
 
 
-
-//    private void init() {
-//
-//        l = (StickyGridHeadersGridView) rootView.findViewById(R.id.listViewCalendar);
-//        mAdapter = new WeekActivityAdapter(getActivity(), weekActivity);
-//        l.setAdapter(mAdapter);
-//
-//
-//        l.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-//
-//                Bundle arguments = new Bundle();
-//                arguments.putString("show_imdb", weekActivity.get(position).show.imdbId);
-//                arguments.putInt("show_season", weekActivity.get(position).episode.season);
-//                arguments.putInt("show_episode", weekActivity.get(position).episode.number);
-//                Intent i = new Intent(getActivity(), EpisodeActivity.class);
-//                i.putExtras(arguments);
-//
-//                startActivity(i);
-//                getActivity().overridePendingTransition(R.anim.push_left_out, R.anim.push_left_in);
-//
-//
-//            }
-//        });
-//        l.setLongClickable(true);
-//        l.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-//            @Override
-//            public boolean onItemLongClick(AdapterView<?> adapterView, View view, final int position, long l) {
-//
-//                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-//                builder.setTitle(weekActivity.get(position).show.title +" - S"+weekActivity.get(position).episode.season+"E"+weekActivity.get(position).episode.number);
-//                String[] options = new String[4];
-//                if (weekActivity.get(position).episode.rating != null) {
-//
-//                    switch (weekActivity.get(position).episode.rating) {
-//                        case Love:
-//                            options[1] = "Remove Rating";
-//                            options[2] = "Mark as Hated";
-//                            break;
-//                        case Hate:
-//                            options[2] = "Remove Rating";
-//                            options[1] = "Mark as Loved";
-//                            break;
-//                    }
-//                } else {
-//                    options[1] = "Mark as Loved";
-//                    options[2] = "Mark as Hated";
-//                }
-//                if (weekActivity.get(position).episode.watched)
-//                    options[0] = "Mark as unwatched";
-//                else
-//                    options[0] = "Mark as watched";
-//
-//
-//                if (weekActivity.get(position).episode.inWatchlist)
-//                    options[3] = "Remove from watchlist";
-//                else
-//                    options[3] = "Add to watchlist";
-//
-//                //options[4] = "Hide this movie";
-//
-//
-//                builder.setItems(options, new DialogInterface.OnClickListener() {
-//                    public void onClick(DialogInterface dialog, int item_clicked) {
-//
-//                        switch (item_clicked) {
-//                            case 0:
-//                                new MarkEpisodeSeenUnseen(getActivity(), ActivityWeekFragment.this, manager, weekActivity.get(position).show, weekActivity.get(position).episode, position).execute();
-//                                break;
-//                            case 1:
-//                                if (weekActivity.get(position).episode.rating != null)
-//                                    new UnrateEpisode(getActivity(),ActivityWeekFragment.this,manager,weekActivity.get(position).show,weekActivity.get(position).episode,position).execute();
-//                                else
-//                                new RateEpisodeLove(getActivity(),ActivityWeekFragment.this,manager,weekActivity.get(position).show,weekActivity.get(position).episode,position).execute();
-//
-//                                break;
-//                            case 2:
-//                                if (weekActivity.get(position).episode.rating != null)
-//                                    new UnrateEpisode(getActivity(),ActivityWeekFragment.this,manager,weekActivity.get(position).show,weekActivity.get(position).episode,position).execute();
-//                                else
-//                                new RateEpisodeHate(getActivity(),ActivityWeekFragment.this,manager,weekActivity.get(position).show,weekActivity.get(position).episode,position).execute();
-//
-//                                break;
-//                            case 3:
-//                                new EpisodeWatchlistUnWatchlist(getActivity(), ActivityWeekFragment.this, manager, weekActivity.get(position).show, weekActivity.get(position).episode, position).execute();
-//                                break;
-//                        }
-//                    }
-//                }
-//                );
-//                AlertDialog dialog = builder.create();
-//                dialog.show();
-//                return true;
-//            }
-//        });
-//
-//    }
-
-
-
     @Override
     public void onWeekActivityInfoComplete(Activity response) {
         mResponse=response;
         rootView.findViewById(R.id.progressBarCalendarWeek).setVisibility(View.GONE);
-        mAdapter = new WeekActivityAdapter(getActivity(), weekActivity);
+        mAdapter = new WeekActivityAdapter(getActivity(), mListHeader,weekActivity);
+
+         mListHeader=new ArrayList<Header>();
+        String day=null;
+        List<ActivityItem> mListActivityItems= null;
+        for (ActivityItem activityItem: response.activity) {
+            Calendar cal = Calendar.getInstance();
+            SimpleDateFormat format = new SimpleDateFormat("E MMM dd, yyyy");
+
+            String compare_day = format.format(activityItem.timestamp);
+            if (!compare_day.equals(day)) {
+
+                if (mListActivityItems != null) {
+                    mListHeader.add(new Header(day,mListActivityItems));
+                }
+                mListActivityItems=new LinkedList<ActivityItem>();
+                day = compare_day;
+            }
+            mListActivityItems.add(activityItem);
+        }
+
+
         l = (StickyGridHeadersGridView) rootView.findViewById(R.id.listViewCalendar);
         l.setAdapter(mAdapter);
         //l.setEmptyView(rootView.findViewById(R.id.emptyView));
@@ -211,10 +135,12 @@ public class ActivityWeekFragment extends Fragment implements DownloadWeekActivi
     public class WeekActivityAdapter extends BaseAdapter implements StickyGridHeadersBaseAdapter {
 
         private final List<ActivityItem> mListActivity;
+        private final ArrayList<Header> mListHeaders;
         private LayoutInflater inflater;
 
-        public WeekActivityAdapter(Context context, List<ActivityItem> mList) {
+        public WeekActivityAdapter(Context context, ArrayList<Header> mListHeader, List<ActivityItem> mList) {
             this.mListActivity = mList;
+            this.mListHeaders=mListHeader;
             inflater = LayoutInflater.from(context);
         }
 
@@ -308,12 +234,12 @@ public class ActivityWeekFragment extends Fragment implements DownloadWeekActivi
 
         @Override
         public int getCountForHeader(int i) {
-            return mListActivity.get(i).episodes.size();
+            return mListHeaders.get(i).activityItems.size();
         }
 
         @Override
         public int getNumHeaders() {
-            return mListActivity.size();
+            return mListHeaders.size();
         }
 
         @Override
@@ -322,10 +248,19 @@ public class ActivityWeekFragment extends Fragment implements DownloadWeekActivi
                 convertView = inflater.inflate(R.layout.calendarweek_item, parent, false);
             }
             AQuery aq = new AQuery(convertView);
-            SimpleDateFormat format = new SimpleDateFormat("E MMM dd, yyyy");
-            aq.id(R.id.textViewCalendarWeekDay).text(format.format(mListActivity.get(position).timestamp) + "");
+            aq.id(R.id.textViewCalendarWeekDay).text(mListHeaders.get(position).name + "");
 
             return convertView;
+        }
+    }
+
+    protected class Header{
+        String name;
+        List<ActivityItem> activityItems;
+
+        public Header(String day, List<ActivityItem> mListActivityItems) {
+            this.name=day;
+            this.activityItems=mListActivityItems;
         }
     }
 }
