@@ -315,10 +315,16 @@ public class ActivityWeekFragment extends Fragment implements DownloadWeekActivi
                         aq.id(R.id.imageViewCalendarEpisodeWatchlistTag).visible();
 
 
-                    if (mListActivity.get(position).movie.watched == null || mListActivity.get(position).movie.plays != null || !mListActivity.get(position).movie.watched || !(mListActivity.get(position).movie.plays > 0))
-                        aq.id(R.id.imageViewCalendarEpisodeSeenTag).gone();
-                    else
+                    if (mListActivity.get(position).action == ActivityAction.Seen) {
                         aq.id(R.id.imageViewCalendarEpisodeSeenTag).visible();
+                        aq.id(R.id.imageViewCalendarEpisodeCheckInTag).gone();
+                    } else if (mListActivity.get(position).action == ActivityAction.Checkin) {
+                        aq.id(R.id.imageViewCalendarEpisodeCheckInTag).visible();
+                        aq.id(R.id.imageViewCalendarEpisodeSeenTag).gone();
+                    } else {
+                        aq.id(R.id.imageViewCalendarEpisodeCheckInTag).gone();
+                        aq.id(R.id.imageViewCalendarEpisodeSeenTag).gone();
+                    }
 
                     if (mListActivity.get(position).movie.rating != null) {
                         switch (mListActivity.get(position).movie.rating) {

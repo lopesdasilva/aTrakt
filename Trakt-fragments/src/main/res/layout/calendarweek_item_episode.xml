@@ -84,7 +84,7 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:id="@+id/imageViewCalendarEpisodeCheckInTag"
-        android:src="@drawable/seen_tag"
+        android:src="@drawable/checkin_tag"
         android:layout_alignTop="@+id/imageViewCalendarEpisodeBackdrop"
         android:layout_alignRight="@+id/imageViewCalendarEpisodeBackdrop"
         android:visibility="gone"/>
