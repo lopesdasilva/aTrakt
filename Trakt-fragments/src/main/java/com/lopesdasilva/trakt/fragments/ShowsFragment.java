@@ -3,8 +3,8 @@ package com.lopesdasilva.trakt.fragments;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.PorterDuff;
+import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.v4.app.Fragment;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -12,15 +12,15 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.*;
+import android.widget.BaseAdapter;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+
 import com.androidquery.AQuery;
 import com.jakewharton.trakt.ServiceManager;
-import com.jakewharton.trakt.entities.Movie;
 import com.jakewharton.trakt.entities.TvShow;
-import com.lopesdasilva.trakt.MainActivity;
 import com.lopesdasilva.trakt.R;
 import com.lopesdasilva.trakt.Tasks.DownloadTrendingShows;
-import com.lopesdasilva.trakt.activities.MovieActivity;
 import com.lopesdasilva.trakt.activities.ShowActivity;
 import com.lopesdasilva.trakt.activities.ShowsActivity;
 import com.lopesdasilva.trakt.extras.UserChecker;
@@ -57,7 +57,7 @@ public class ShowsFragment extends Fragment implements DownloadTrendingShows.onT
         if (savedInstanceState == null) {
             manager = UserChecker.checkUserLogin(getActivity());
             mTrendingShowsTask = new DownloadTrendingShows(this, getActivity(), manager);
-            mTrendingShowsTask.execute();
+            mTrendingShowsTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
         } else {
 
             mShowsList = (List<TvShow>) savedInstanceState.get("shows");
@@ -66,7 +66,7 @@ public class ShowsFragment extends Fragment implements DownloadTrendingShows.onT
             else {
                 manager = UserChecker.checkUserLogin(getActivity());
                 mTrendingShowsTask = new DownloadTrendingShows(this, getActivity(), manager);
-                mTrendingShowsTask.execute();
+                mTrendingShowsTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
             }
         }
 
@@ -181,7 +181,7 @@ public class ShowsFragment extends Fragment implements DownloadTrendingShows.onT
             @Override
             public void onClick(View view) {
 
-                Log.d("Trakt Fragments", "Launching Movie Activity");
+                Log.d("Trakt Fragments", "Launching Show Activity");
 
                 Bundle arguments = new Bundle();
                 arguments.putString("show_imdb", show.imdbId);

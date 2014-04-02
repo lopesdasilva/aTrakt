@@ -2,6 +2,7 @@ package com.lopesdasilva.trakt.fragments;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -48,14 +49,14 @@ public class RecommendedShowsFragment extends Fragment implements DownloadRecomm
         mListView = (ListView) rootView.findViewById(R.id.listViewRecommendedShows);
         if (savedInstanceState == null) {
             recommendTask = new DownloadRecommendedShows(this, getActivity(), manager);
-            recommendTask.execute();
+            recommendTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
         } else {
             mRecommendationsList = (List<TvShow>) savedInstanceState.get("recommendations");
             if (mRecommendationsList.size() != 0) {
                 updateView(mRecommendationsList);
             } else {
                 recommendTask = new DownloadRecommendedShows(this, getActivity(), manager);
-                recommendTask.execute();
+                recommendTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
             }
 
         }
@@ -78,7 +79,7 @@ public class RecommendedShowsFragment extends Fragment implements DownloadRecomm
 //                                @Override
 //                                public void onDismiss(ListView listView, int[] reverseSortedPositions) {
 //                                    for (int position : reverseSortedPositions) {
-//                                        new DismissRecomendationShow(RecommendedShowsFragment.this, getActivity(), manager, mAdapter.getItem(position), position).execute();
+//                                        new DismissRecomendationShow(RecommendedShowsFragment.this, getActivity(), manager, mAdapter.getItem(position), position).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 //                                        mAdapter.remove(mAdapter.getItem(position));
 //                                    }
 //                                    mAdapter.notifyDataSetChanged();
@@ -197,7 +198,7 @@ public class RecommendedShowsFragment extends Fragment implements DownloadRecomm
 
                     case R.id.action_recommended_dismiss_show:
 
-                        new DismissRecomendationShow(RecommendedShowsFragment.this, getActivity(), manager, mAdapter.getItem(position), position).execute();
+                        new DismissRecomendationShow(RecommendedShowsFragment.this, getActivity(), manager, mAdapter.getItem(position), position).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
                         mAdapter.remove(mAdapter.getItem(position));
                         mAdapter.notifyDataSetChanged();

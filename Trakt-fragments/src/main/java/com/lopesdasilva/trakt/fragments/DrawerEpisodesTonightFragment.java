@@ -3,6 +3,7 @@ package com.lopesdasilva.trakt.fragments;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
@@ -12,9 +13,9 @@ import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+
 import com.androidquery.AQuery;
 import com.jakewharton.trakt.ServiceManager;
-import com.jakewharton.trakt.entities.ActivityItem;
 import com.jakewharton.trakt.entities.CalendarDate;
 import com.lopesdasilva.trakt.R;
 import com.lopesdasilva.trakt.Tasks.DownloadDayCalendar;
@@ -22,7 +23,6 @@ import com.lopesdasilva.trakt.activities.EpisodeActivity;
 import com.lopesdasilva.trakt.extras.UserChecker;
 
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -65,7 +65,7 @@ public class DrawerEpisodesTonightFragment extends ListFragment implements Downl
 
         if (savedInstanceState == null) {
             manager = UserChecker.checkUserLogin(getActivity());
-            new DownloadDayCalendar(this, manager, new Date()).execute();
+            new DownloadDayCalendar(this, manager, new Date()).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
         } else {
             mListepisodes = (List<CalendarDate.CalendarTvShowEpisode>) savedInstanceState.get("episodesTonight");
             mAdapter.notifyDataSetChanged();

@@ -3,12 +3,19 @@ package com.lopesdasilva.trakt.fragments;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.PorterDuff;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.DisplayMetrics;
 import android.util.Log;
-import android.view.*;
-import android.widget.*;
+import android.view.LayoutInflater;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+
 import com.androidquery.AQuery;
 import com.jakewharton.trakt.ServiceManager;
 import com.jakewharton.trakt.entities.Movie;
@@ -16,7 +23,6 @@ import com.lopesdasilva.trakt.R;
 import com.lopesdasilva.trakt.Tasks.DownloadTrendingMovies;
 import com.lopesdasilva.trakt.activities.MovieActivity;
 import com.lopesdasilva.trakt.activities.MoviesActivity;
-import com.lopesdasilva.trakt.activities.ShowsActivity;
 import com.lopesdasilva.trakt.extras.UserChecker;
 
 import java.io.Serializable;
@@ -52,7 +58,7 @@ public class MoviesFragment extends Fragment implements DownloadTrendingMovies.o
         if (savedInstanceState == null) {
             manager = UserChecker.checkUserLogin(getActivity());
             mTrendingMoviesTask = new DownloadTrendingMovies(this, getActivity(), manager);
-            mTrendingMoviesTask.execute();
+            mTrendingMoviesTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
         }else{
             mMoviesList = (List<Movie>) savedInstanceState.get("movies");
             if(mMoviesList.size()!=0)
@@ -60,7 +66,7 @@ public class MoviesFragment extends Fragment implements DownloadTrendingMovies.o
             else{
                 manager = UserChecker.checkUserLogin(getActivity());
                 mTrendingMoviesTask = new DownloadTrendingMovies(this, getActivity(), manager);
-                mTrendingMoviesTask.execute();
+                mTrendingMoviesTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
             }
 
         }

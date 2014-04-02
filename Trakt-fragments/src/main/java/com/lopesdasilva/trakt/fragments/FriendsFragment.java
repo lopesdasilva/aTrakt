@@ -1,25 +1,21 @@
 package com.lopesdasilva.trakt.fragments;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.ListFragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
+
 import com.androidquery.AQuery;
 import com.jakewharton.trakt.ServiceManager;
 import com.jakewharton.trakt.entities.ActivityItem;
-import com.jakewharton.trakt.entities.Movie;
 import com.lopesdasilva.trakt.R;
 import com.lopesdasilva.trakt.activities.EpisodeActivity;
 import com.lopesdasilva.trakt.activities.MovieActivity;
@@ -58,7 +54,7 @@ public class FriendsFragment extends Fragment {
         if (savedInstanceState == null) {
             manager = UserChecker.checkUserLogin(getActivity());
             mFriendsTask = new FriendsTaskDownload();
-            mFriendsTask.execute();
+            mFriendsTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
         } else {
             activityList = (List<ActivityItem>) savedInstanceState.get("friendsActivity");
             if (activityList.size() != 0)
@@ -66,7 +62,7 @@ public class FriendsFragment extends Fragment {
             else {
                 manager = UserChecker.checkUserLogin(getActivity());
                 mFriendsTask = new FriendsTaskDownload();
-                mFriendsTask.execute();
+                mFriendsTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
             }
         }
         return rootView;

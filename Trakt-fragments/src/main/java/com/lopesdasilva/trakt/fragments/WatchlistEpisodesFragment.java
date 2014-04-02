@@ -1,11 +1,8 @@
 package com.lopesdasilva.trakt.fragments;
 
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,13 +11,12 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
+
 import com.androidquery.AQuery;
 import com.jakewharton.trakt.ServiceManager;
 import com.jakewharton.trakt.entities.TvShow;
 import com.lopesdasilva.trakt.R;
 import com.lopesdasilva.trakt.Tasks.DownloadWatchlistEpisodes;
-import com.lopesdasilva.trakt.Tasks.DownloadWatchlistShows;
-import com.lopesdasilva.trakt.activities.ShowActivity;
 import com.lopesdasilva.trakt.extras.UserChecker;
 
 import java.io.Serializable;
@@ -49,7 +45,7 @@ public class WatchlistEpisodesFragment extends Fragment implements DownloadWatch
         if (savedInstanceState == null) {
 
             mWatchlistShowsTask = new DownloadWatchlistEpisodes(this, getActivity(), manager);
-            mWatchlistShowsTask.execute();
+            mWatchlistShowsTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
         } else {
 
             if (((List<TvShow>) savedInstanceState.get("shows")).size() != 0)
@@ -57,7 +53,7 @@ public class WatchlistEpisodesFragment extends Fragment implements DownloadWatch
             else {
 
                 mWatchlistShowsTask = new DownloadWatchlistEpisodes(this, getActivity(), manager);
-                mWatchlistShowsTask.execute();
+                mWatchlistShowsTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
             }
         }
 

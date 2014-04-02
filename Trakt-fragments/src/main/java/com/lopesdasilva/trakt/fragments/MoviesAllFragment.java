@@ -2,6 +2,7 @@ package com.lopesdasilva.trakt.fragments;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -44,7 +45,7 @@ public class MoviesAllFragment extends Fragment implements DownloadTrendingMovie
         if (savedInstanceState == null) {
             manager = UserChecker.checkUserLogin(getActivity());
             mTrendingMoviesTask = new DownloadTrendingMovies(this, getActivity(), manager);
-            mTrendingMoviesTask.execute();
+            mTrendingMoviesTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
         } else {
 
             mMoviesListShowing = (List<Movie>) savedInstanceState.get("movies");
@@ -53,7 +54,7 @@ public class MoviesAllFragment extends Fragment implements DownloadTrendingMovie
             else {
                 manager = UserChecker.checkUserLogin(getActivity());
                 mTrendingMoviesTask = new DownloadTrendingMovies(this, getActivity(), manager);
-                mTrendingMoviesTask.execute();
+                mTrendingMoviesTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
             }
         }
 

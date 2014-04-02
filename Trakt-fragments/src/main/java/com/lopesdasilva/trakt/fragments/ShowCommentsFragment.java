@@ -9,7 +9,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.*;
+import android.widget.AdapterView;
+import android.widget.BaseAdapter;
+import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.Toast;
+
 import com.androidquery.AQuery;
 import com.androidquery.callback.ImageOptions;
 import com.jakewharton.trakt.ServiceManager;
@@ -17,7 +22,6 @@ import com.jakewharton.trakt.entities.Response;
 import com.jakewharton.trakt.entities.Shout;
 import com.jakewharton.trakt.entities.TvShow;
 import com.lopesdasilva.trakt.R;
-
 import com.lopesdasilva.trakt.Tasks.ShowAddComment;
 import com.lopesdasilva.trakt.extras.UserChecker;
 
@@ -50,7 +54,7 @@ public class ShowCommentsFragment extends Fragment implements ShowAddComment.OnS
             Log.d("Trakt", "ServiceManager: " + manager);
             Log.d("Trakt", "movie received on commentFragments: " + show.title);
             mTaskDownloadComments = new DownloadShowComments();
-            mTaskDownloadComments.execute();
+            mTaskDownloadComments.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
         } else {
             mShouts = (List<Shout>) savedInstanceState.get("shouts");
             if (mShouts != null) {
@@ -59,7 +63,7 @@ public class ShowCommentsFragment extends Fragment implements ShowAddComment.OnS
                 show = (TvShow) getArguments().getSerializable("show");
                 manager = UserChecker.checkUserLogin(getActivity());
                 mTaskDownloadComments = new DownloadShowComments();
-                mTaskDownloadComments.execute();
+                mTaskDownloadComments.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
             }
 
 
@@ -80,7 +84,7 @@ public class ShowCommentsFragment extends Fragment implements ShowAddComment.OnS
         AQuery aq= new AQuery(rootView);
         ((EditText) aq.id(R.id.editTextAddComment).text("").getView()).clearFocus();
         mTaskDownloadComments = new DownloadShowComments();
-        mTaskDownloadComments.execute();
+        mTaskDownloadComments.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     }
 
     public class DownloadShowComments extends AsyncTask<Void, Void, List<Shout>> {
@@ -138,7 +142,7 @@ public class ShowCommentsFragment extends Fragment implements ShowAddComment.OnS
                     ((EditText) aq.id(R.id.editTextAddComment).getView()).setError(null);
                     if(comment.length()!=0){
 
-                        new ShowAddComment(getActivity(),ShowCommentsFragment.this,manager,show,comment).execute();
+                        new ShowAddComment(getActivity(),ShowCommentsFragment.this,manager,show,comment).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
                     }else
                         ((EditText) aq.id(R.id.editTextAddComment).getView()).setError(getResources().getString(R.string.comment_short));
 

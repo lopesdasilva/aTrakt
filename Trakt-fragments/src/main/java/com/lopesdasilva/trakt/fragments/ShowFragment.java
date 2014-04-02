@@ -3,6 +3,7 @@ package com.lopesdasilva.trakt.fragments;
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -69,21 +70,21 @@ public class ShowFragment extends Fragment implements ActionBar.TabListener, Dow
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case 0:
-                new RemoveShowFromWatchlist(getActivity(),ShowFragment.this,manager,mTVshow,0).execute();
+                new RemoveShowFromWatchlist(getActivity(),ShowFragment.this,manager,mTVshow,0).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
                 return true;
             case 1:
-                new AddShowToWatchlist(getActivity(),ShowFragment.this,manager,mTVshow,0).execute();
+                new AddShowToWatchlist(getActivity(),ShowFragment.this,manager,mTVshow,0).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
                 return true;
             case 2:
-                new UnrateShow(getActivity(),ShowFragment.this,manager,mTVshow,0).execute();
+                new UnrateShow(getActivity(),ShowFragment.this,manager,mTVshow,0).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
                 return true;
             case 3:
-                new RateShowHate(getActivity(),ShowFragment.this,manager,mTVshow,0).execute();
+                new RateShowHate(getActivity(),ShowFragment.this,manager,mTVshow,0).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
                 return true;
             case 4:
-                new RateShowLove(getActivity(),ShowFragment.this,manager,mTVshow,0).execute();
+                new RateShowLove(getActivity(),ShowFragment.this,manager,mTVshow,0).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
                 return true;
             case 5:
                 Intent i = new Intent(Intent.ACTION_SEND);
@@ -143,7 +144,7 @@ public class ShowFragment extends Fragment implements ActionBar.TabListener, Dow
             Log.d("Trakt", "Show_imdb received: " + show);
 
             mTaskDownloadShowInfo = new DownloadShowInfo(this, getActivity(), manager, show);
-            mTaskDownloadShowInfo.execute();
+            mTaskDownloadShowInfo.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
         } else {
             mTVshow = (TvShow) savedInstanceState.getSerializable("mShow");
             updateShow(mTVshow);
@@ -151,7 +152,7 @@ public class ShowFragment extends Fragment implements ActionBar.TabListener, Dow
 
                 manager = UserChecker.checkUserLogin(getActivity());
                 mTaskDownloadShowInfo = new DownloadShowInfo(this, getActivity(), manager, show);
-                mTaskDownloadShowInfo.execute();
+                mTaskDownloadShowInfo.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
             }
         }

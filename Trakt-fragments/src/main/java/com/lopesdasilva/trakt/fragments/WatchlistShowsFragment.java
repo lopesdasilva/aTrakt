@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -14,6 +15,7 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.Toast;
+
 import com.androidquery.AQuery;
 import com.jakewharton.trakt.ServiceManager;
 import com.jakewharton.trakt.entities.TvShow;
@@ -49,14 +51,14 @@ public class WatchlistShowsFragment extends Fragment implements DownloadWatchlis
         if (savedInstanceState == null) {
 
             mWatchlistShowsTask = new DownloadWatchlistShows(this, getActivity(), manager);
-            mWatchlistShowsTask.execute();
+            mWatchlistShowsTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
         } else {
             if (((List<TvShow>) savedInstanceState.get("shows")).size() != 0)
                 updateView((List<TvShow>) savedInstanceState.get("shows"));
             else {
 
                 mWatchlistShowsTask = new DownloadWatchlistShows(this, getActivity(), manager);
-                mWatchlistShowsTask.execute();
+                mWatchlistShowsTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
             }
         }
 
@@ -108,12 +110,12 @@ public class WatchlistShowsFragment extends Fragment implements DownloadWatchlis
                             switch (item_clicked) {
                                 case 0:
                                     Toast.makeText(getActivity(), "Mark watched", Toast.LENGTH_SHORT).show();
-                                    new MarkShowWatchlistUnWatchlist(getActivity(), WatchlistShowsFragment.this, manager, mShowsListShowing.get(i), i).execute();
-//                                    new MarkEpisodeSeenUnseen(getActivity(), CalendarWeekFragment.this, manager, lista.get(position).movie, lista.get(position).episode, position).execute();
+                                    new MarkShowWatchlistUnWatchlist(getActivity(), WatchlistShowsFragment.this, manager, mShowsListShowing.get(i), i).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+//                                    new MarkEpisodeSeenUnseen(getActivity(), CalendarWeekFragment.this, manager, lista.get(position).movie, lista.get(position).episode, position).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
                                     break;
                                 case 1:
                                     Toast.makeText(getActivity(), "Mark watched", Toast.LENGTH_SHORT).show();
-//  new EpisodeWatchlistUnWatchlist(getActivity(), CalendarWeekFragment.this, manager, lista.get(position).movie, lista.get(position).episode, position).execute();
+//  new EpisodeWatchlistUnWatchlist(getActivity(), CalendarWeekFragment.this, manager, lista.get(position).movie, lista.get(position).episode, position).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
                                     break;
                             }
                         }

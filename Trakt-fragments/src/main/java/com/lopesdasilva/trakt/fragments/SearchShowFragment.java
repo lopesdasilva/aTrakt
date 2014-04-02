@@ -2,14 +2,16 @@ package com.lopesdasilva.trakt.fragments;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.util.Log;
-import android.view.*;
-import android.widget.AbsListView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
+
 import com.androidquery.AQuery;
 import com.jakewharton.trakt.ServiceManager;
 import com.jakewharton.trakt.entities.TvShow;
@@ -41,7 +43,7 @@ public class SearchShowFragment extends ListFragment implements SearchShowTask.o
 
         manager = UserChecker.checkUserLogin(getActivity());
 
-        new SearchShowTask(getActivity(), this, manager, query).execute();
+        new SearchShowTask(getActivity(), this, manager, query).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     }
 
     @Override

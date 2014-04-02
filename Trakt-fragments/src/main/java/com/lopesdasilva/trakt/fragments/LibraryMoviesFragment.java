@@ -2,6 +2,7 @@ package com.lopesdasilva.trakt.fragments;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -11,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
+
 import com.androidquery.AQuery;
 import com.jakewharton.trakt.ServiceManager;
 import com.jakewharton.trakt.entities.Movie;
@@ -43,7 +45,7 @@ public class LibraryMoviesFragment extends Fragment implements DownloadLibraryMo
         if (savedInstanceState == null) {
             manager = UserChecker.checkUserLogin(getActivity());
             mLibraryMoviesTask = new DownloadLibraryMovies(this, getActivity(), manager);
-            mLibraryMoviesTask.execute();
+            mLibraryMoviesTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
         } else {
 
             mMoviesListShowing = (List<Movie>) savedInstanceState.get("movies");
@@ -52,7 +54,7 @@ public class LibraryMoviesFragment extends Fragment implements DownloadLibraryMo
             else {
                 manager = UserChecker.checkUserLogin(getActivity());
                 mLibraryMoviesTask = new DownloadLibraryMovies(this, getActivity(), manager);
-                mLibraryMoviesTask.execute();
+                mLibraryMoviesTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
             }
         }
 

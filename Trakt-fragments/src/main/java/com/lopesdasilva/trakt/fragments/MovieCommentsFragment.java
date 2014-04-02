@@ -54,7 +54,7 @@ public class MovieCommentsFragment extends Fragment implements MovieAddComment.O
             Log.d("Trakt", "ServiceManager: " + manager);
             Log.d("Trakt", "movie received on commentFragments: " + movie.title);
             mTaskDownloadComments = new DownloadMovieComments();
-            mTaskDownloadComments.execute();
+            mTaskDownloadComments.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
         } else {
             mShouts = (List<Shout>) savedInstanceState.getSerializable("shouts");
             if (mShouts != null) {
@@ -63,7 +63,7 @@ public class MovieCommentsFragment extends Fragment implements MovieAddComment.O
                 movie = (Movie) getArguments().getSerializable("mMovie");
                 manager = UserChecker.checkUserLogin(getActivity());
                 mTaskDownloadComments = new DownloadMovieComments();
-                mTaskDownloadComments.execute();
+                mTaskDownloadComments.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
             }
 
 
@@ -84,7 +84,7 @@ public class MovieCommentsFragment extends Fragment implements MovieAddComment.O
         AQuery aq= new AQuery(rootView);
         ((EditText) aq.id(R.id.editTextAddComment).text("").getView()).clearFocus();
         mTaskDownloadComments = new DownloadMovieComments();
-        mTaskDownloadComments.execute();
+        mTaskDownloadComments.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     }
 
     public class DownloadMovieComments extends AsyncTask<Void, Void, List<Shout>> {
@@ -142,7 +142,7 @@ public class MovieCommentsFragment extends Fragment implements MovieAddComment.O
                     ((EditText) aq.id(R.id.editTextAddComment).getView()).setError(null);
                     if(comment.length()!=0){
 
-                        new MovieAddComment(getActivity(),MovieCommentsFragment.this,manager, movie,comment).execute();
+                        new MovieAddComment(getActivity(),MovieCommentsFragment.this,manager, movie,comment).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
                     }else
                         ((EditText) aq.id(R.id.editTextAddComment).getView()).setError(getResources().getString(R.string.comment_short));
 

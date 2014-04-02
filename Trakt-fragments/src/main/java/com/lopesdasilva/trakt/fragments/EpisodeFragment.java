@@ -90,12 +90,12 @@ public class EpisodeFragment extends Fragment implements DownloadEpisodeInfo.onE
 
         if (savedInstanceState == null) {
             mTaskDownloadEpisode = new DownloadEpisodeInfo(this, getActivity(), manager, show, season, episode);
-            mTaskDownloadEpisode.execute();
+            mTaskDownloadEpisode.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
         }else{
             episode_info = (TvEntity) savedInstanceState.getSerializable("mEpisode");
             if(episode_info==null){
                 mTaskDownloadEpisode = new DownloadEpisodeInfo(this, getActivity(), manager, show, season, episode);
-                mTaskDownloadEpisode.execute();
+                mTaskDownloadEpisode.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
             }else
                 updateUI();
         }
@@ -163,7 +163,7 @@ public class EpisodeFragment extends Fragment implements DownloadEpisodeInfo.onE
                     item.setActionView(mRefreshView);
 
                     mTaskDownloadEpisode = new DownloadEpisodeInfo(this, getActivity(), manager, show, season, episode);
-                    mTaskDownloadEpisode.execute();
+                    mTaskDownloadEpisode.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
                 }
                 return true;
             case 1:
@@ -180,14 +180,14 @@ public class EpisodeFragment extends Fragment implements DownloadEpisodeInfo.onE
                 item.setActionView(mRefreshView);
 
                 Log.d("Trakt Fragments", "Unseen button clicked");
-                new MarkEpisodeSeenUnseen(getActivity(), this, manager, episode_info.show, episode_info.episode, 0).execute();
+                new MarkEpisodeSeenUnseen(getActivity(), this, manager, episode_info.show, episode_info.episode, 0).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
 
                 return true;
             case 2:
 
                 Log.d("Trakt Fragments", "Add/Rem watchlist button clicked");
-                new EpisodeWatchlistUnWatchlist(getActivity(), this, manager, episode_info.show, episode_info.episode, 0).execute();
+                new EpisodeWatchlistUnWatchlist(getActivity(), this, manager, episode_info.show, episode_info.episode, 0).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
                 return true;
             case 3:
 
@@ -199,18 +199,18 @@ public class EpisodeFragment extends Fragment implements DownloadEpisodeInfo.onE
 // add extras here..
 //                MyAlarmReceiver alarm = new MyAlarmReceiver(getActivity(), bundle, 30);
 
-                new EpisodeCheckIn().execute();
+                new EpisodeCheckIn().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
                 return true;
             case 4:
-                new RateEpisodeHate(getActivity(),EpisodeFragment.this,manager,episode_info.show,episode_info.episode,0).execute();
+                new RateEpisodeHate(getActivity(),EpisodeFragment.this,manager,episode_info.show,episode_info.episode,0).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
                 return true;
             case 5:
-                new RateEpisodeLove(getActivity(),EpisodeFragment.this,manager,episode_info.show,episode_info.episode,0).execute();
+                new RateEpisodeLove(getActivity(),EpisodeFragment.this,manager,episode_info.show,episode_info.episode,0).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
                 return true;
             case 6:
-                new UnrateEpisode(getActivity(),EpisodeFragment.this,manager,episode_info.show,episode_info.episode,0).execute();
+                new UnrateEpisode(getActivity(),EpisodeFragment.this,manager,episode_info.show,episode_info.episode,0).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
                 return true;
             case 7:
                 Intent intent = new Intent(Intent.ACTION_SEARCH);
@@ -229,7 +229,7 @@ public class EpisodeFragment extends Fragment implements DownloadEpisodeInfo.onE
         episode_info = response;
         updateUI();
         mTaskDownloadEpisode = null;
-        new CheckInChecker(getActivity(), manager, mUsername).execute();
+        new CheckInChecker(getActivity(), manager, mUsername).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     }
 
     @Override
@@ -410,7 +410,7 @@ public class EpisodeFragment extends Fragment implements DownloadEpisodeInfo.onE
         protected void onPostExecute(Response response) {
             if (e == null) {
                 Log.d("Trakt Fragments", "Checked in Episode " + episode_info.episode.title);
-                new CheckInChecker(getActivity(), manager, mUsername).execute();
+                new CheckInChecker(getActivity(), manager, mUsername).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
             } else {
                 Log.d("Trakt Fragments", "Error marking episode as unseen: " + e.getMessage());
 

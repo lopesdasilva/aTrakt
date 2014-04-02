@@ -2,6 +2,7 @@ package com.lopesdasilva.trakt.fragments;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
@@ -171,7 +172,7 @@ public class RegisterFragment extends Fragment implements RegisterUserTask.OnReg
 
             aq.id(R.id.relativeLayoutRegisterLoading).visible();
             aq.id(R.id.scrollViewRegisterForm).invisible();
-            new RegisterUserTask(getActivity(), RegisterFragment.this, manager, username, password_sha1, email).execute();
+            new RegisterUserTask(getActivity(), RegisterFragment.this, manager, username, password_sha1, email).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
 
         } else {

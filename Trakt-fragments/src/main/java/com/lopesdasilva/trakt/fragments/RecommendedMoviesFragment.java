@@ -2,6 +2,7 @@ package com.lopesdasilva.trakt.fragments;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -9,13 +10,20 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.*;
+import android.widget.AdapterView;
+import android.widget.BaseAdapter;
+import android.widget.ListView;
+import android.widget.PopupMenu;
+import android.widget.Toast;
+
 import com.androidquery.AQuery;
 import com.jakewharton.trakt.ServiceManager;
 import com.jakewharton.trakt.entities.DismissResponse;
 import com.jakewharton.trakt.entities.Movie;
 import com.lopesdasilva.trakt.R;
-import com.lopesdasilva.trakt.Tasks.*;
+import com.lopesdasilva.trakt.Tasks.DismissRecomendationMovie;
+import com.lopesdasilva.trakt.Tasks.DownloadRecommendedMovies;
+import com.lopesdasilva.trakt.Tasks.MarkMovieSeenUnseen;
 import com.lopesdasilva.trakt.activities.MovieActivity;
 import com.lopesdasilva.trakt.extras.UserChecker;
 
@@ -43,14 +51,14 @@ public class RecommendedMoviesFragment extends Fragment implements DismissRecome
         mListView = (ListView) rootView.findViewById(R.id.listViewRecommendedShows);
         if (savedInstanceState == null) {
             recommendTask = new DownloadRecommendedMovies(this, getActivity(), manager);
-            recommendTask.execute();
+            recommendTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
         } else {
             mRecommendationsList = (List<Movie>) savedInstanceState.get("recommendations");
             if (mRecommendationsList.size() != 0) {
                 updateView(mRecommendationsList);
             } else {
                 recommendTask = new DownloadRecommendedMovies(this, getActivity(), manager);
-                recommendTask.execute();
+                recommendTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
             }
 
         }
@@ -73,7 +81,7 @@ public class RecommendedMoviesFragment extends Fragment implements DismissRecome
 //                                @Override
 //                                public void onDismiss(ListView listView, int[] reverseSortedPositions) {
 //                                    for (int position : reverseSortedPositions) {
-//                                        new DismissRecomendationShow(RecommendedShowsFragment.this, getActivity(), manager, mAdapter.getItem(position), position).execute();
+//                                        new DismissRecomendationShow(RecommendedShowsFragment.this, getActivity(), manager, mAdapter.getItem(position), position).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 //                                        mAdapter.remove(mAdapter.getItem(position));
 //                                    }
 //                                    mAdapter.notifyDataSetChanged();
@@ -204,7 +212,7 @@ public class RecommendedMoviesFragment extends Fragment implements DismissRecome
 
                     case R.id.action_recommended_dismiss_show:
 
-                        new DismissRecomendationMovie(RecommendedMoviesFragment.this, getActivity(), manager, mAdapter.getItem(position), position).execute();
+                        new DismissRecomendationMovie(RecommendedMoviesFragment.this, getActivity(), manager, mAdapter.getItem(position), position).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
                         mAdapter.remove(mAdapter.getItem(position));
                         mAdapter.notifyDataSetChanged();
@@ -212,7 +220,7 @@ public class RecommendedMoviesFragment extends Fragment implements DismissRecome
                         return true;
                     case R.id.action_recommended_seen_movie:
                         mAdapter.getItem(position).watched=false;
-                        new MarkMovieSeenUnseen(getActivity(), RecommendedMoviesFragment.this, manager, mAdapter.getItem(position), position).execute();
+                        new MarkMovieSeenUnseen(getActivity(), RecommendedMoviesFragment.this, manager, mAdapter.getItem(position), position).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
                         return true;
                     default:
                         return false;

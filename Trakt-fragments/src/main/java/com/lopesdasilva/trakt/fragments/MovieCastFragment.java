@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
+
 import com.androidquery.AQuery;
 import com.jakewharton.trakt.entities.Actor;
 import com.jakewharton.trakt.entities.Movie;

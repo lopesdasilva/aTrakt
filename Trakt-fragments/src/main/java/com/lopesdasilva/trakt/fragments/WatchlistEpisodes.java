@@ -4,6 +4,7 @@ package com.lopesdasilva.trakt.fragments;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.util.Log;
@@ -231,13 +232,13 @@ public class WatchlistEpisodes extends DialogFragment implements MarkEpisodeSeen
                     switch (menuItem.getItemId()) {
 
                         case R.id.action_episode_unseen:
-                            new MarkEpisodeSeenUnseen(getActivity(), WatchlistEpisodes.this, manager, currentShow, episode, position).execute();
+                            new MarkEpisodeSeenUnseen(getActivity(), WatchlistEpisodes.this, manager, currentShow, episode, position).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
                         case R.id.action_episode_remove_watchlist:
                             //if it is here then it has to be true
                             currentShow.episodes.get(position).inWatchlist = true;
-                            new EpisodeWatchlistUnWatchlist(getActivity(), WatchlistEpisodes.this, manager, currentShow, currentShow.episodes.get(position), position).execute();
-//                            new MarkSeenUnseen(getActivity(), WatchlistEpisodes.this, manager, currentShow, episode, position).execute();
+                            new EpisodeWatchlistUnWatchlist(getActivity(), WatchlistEpisodes.this, manager, currentShow, currentShow.episodes.get(position), position).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+//                            new MarkSeenUnseen(getActivity(), WatchlistEpisodes.this, manager, currentShow, episode, position).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
                             return true;
                         default:

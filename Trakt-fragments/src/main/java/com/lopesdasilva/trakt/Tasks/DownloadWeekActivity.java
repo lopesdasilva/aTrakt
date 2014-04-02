@@ -6,7 +6,7 @@ import android.widget.Toast;
 
 import com.jakewharton.trakt.ServiceManager;
 import com.jakewharton.trakt.entities.Activity;
-import com.jakewharton.trakt.enumerations.ActivityType;
+import com.jakewharton.trakt.enumerations.ActivityAction;
 
 import java.util.Date;
 
@@ -36,7 +36,7 @@ public class DownloadWeekActivity extends AsyncTask<Void, Void, Activity> {
     @Override
     protected Activity doInBackground(Void... voids) {
         try {
-            return manager.activityService().user(username).types(ActivityType.Episode,ActivityType.Movie,ActivityType.Show).images().min(true).start_ts(start_ts).end_ts(end_ts).fire();
+            return manager.activityService().user(username).actions(ActivityAction.Checkin).images().min(true).start_ts(start_ts).end_ts(end_ts).fire();
         } catch (Exception e) {
             this.e = e;
             return null;

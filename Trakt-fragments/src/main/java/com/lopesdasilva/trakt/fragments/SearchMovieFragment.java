@@ -2,6 +2,7 @@ package com.lopesdasilva.trakt.fragments;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.util.Log;
@@ -10,13 +11,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
+
 import com.androidquery.AQuery;
 import com.jakewharton.trakt.ServiceManager;
 import com.jakewharton.trakt.entities.Movie;
 import com.lopesdasilva.trakt.R;
 import com.lopesdasilva.trakt.Tasks.SearchMovieTask;
 import com.lopesdasilva.trakt.activities.MovieActivity;
-import com.lopesdasilva.trakt.activities.ShowActivity;
 import com.lopesdasilva.trakt.extras.UserChecker;
 
 import java.util.LinkedList;
@@ -41,7 +42,7 @@ public class SearchMovieFragment extends ListFragment implements SearchMovieTask
         query = getArguments().getString("query");
 
         manager = UserChecker.checkUserLogin(getActivity());
-        new SearchMovieTask(getActivity(), this, manager, query).execute();
+        new SearchMovieTask(getActivity(), this, manager, query).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     }
 
     @Override

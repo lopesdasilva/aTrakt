@@ -2,6 +2,7 @@ package com.lopesdasilva.trakt.fragments;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -11,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
+
 import com.androidquery.AQuery;
 import com.jakewharton.trakt.ServiceManager;
 import com.jakewharton.trakt.entities.TvShow;
@@ -43,7 +45,7 @@ public class LibraryShowsFragment extends Fragment implements DownloadLibrarySho
         if (savedInstanceState == null) {
             manager = UserChecker.checkUserLogin(getActivity());
             mLibraryShowsTask = new DownloadLibraryShows(this, getActivity(), manager);
-            mLibraryShowsTask.execute();
+            mLibraryShowsTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
         } else {
             mShowsListShowing = (List<TvShow>) savedInstanceState.get("shows");
             if (mShowsListShowing.size() != 0)
@@ -51,7 +53,7 @@ public class LibraryShowsFragment extends Fragment implements DownloadLibrarySho
             else {
                 manager = UserChecker.checkUserLogin(getActivity());
                 mLibraryShowsTask = new DownloadLibraryShows(this, getActivity(), manager);
-                mLibraryShowsTask.execute();
+                mLibraryShowsTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
             }
         }
 

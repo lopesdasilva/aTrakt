@@ -11,16 +11,26 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
-import android.view.*;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+
 import com.jakewharton.trakt.ServiceManager;
 import com.jakewharton.trakt.entities.Movie;
 import com.jakewharton.trakt.entities.RatingResponse;
 import com.jakewharton.trakt.entities.Response;
 import com.lopesdasilva.trakt.R;
-import com.lopesdasilva.trakt.Tasks.*;
+import com.lopesdasilva.trakt.Tasks.CheckInChecker;
+import com.lopesdasilva.trakt.Tasks.DownloadMovieInfo;
+import com.lopesdasilva.trakt.Tasks.RateMovieHate;
+import com.lopesdasilva.trakt.Tasks.RateMovieLove;
+import com.lopesdasilva.trakt.Tasks.UnrateMovie;
 import com.lopesdasilva.trakt.extras.UserChecker;
 
 import java.util.Date;
@@ -92,7 +102,7 @@ public class MovieFragment extends Fragment implements ActionBar.TabListener, Do
                     item.setActionView(mRefreshView);
 
 //                    mTaskDownloadMovie = new DownloadMovieInfo(this, getActivity(), manager, movie);
-                    mTaskDownloadMovie.execute();
+                    mTaskDownloadMovie.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
                 }
                 return true;
             case 2:
@@ -109,25 +119,25 @@ public class MovieFragment extends Fragment implements ActionBar.TabListener, Do
                 item.setActionView(mRefreshView);
 
                 Log.d("Trakt Fragments", "Unseen button clicked");
-                new MovieSeenUnseen().execute();
+                new MovieSeenUnseen().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
                 // do whatever
                 return true;
             case 3:
 
                 Log.d("Trakt Fragments", "Add/Rem watchlist button clicked");
-                new MovieWatchlist().execute();
+                new MovieWatchlist().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
                 return true;
             case 4:
-                new RateMovieLove(getActivity(), MovieFragment.this, manager, mMovie, 0).execute();
+                new RateMovieLove(getActivity(), MovieFragment.this, manager, mMovie, 0).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
                 break;
             case 5:
-                new RateMovieHate(getActivity(), MovieFragment.this, manager, mMovie, 0).execute();
+                new RateMovieHate(getActivity(), MovieFragment.this, manager, mMovie, 0).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
                 break;
             case 6:
-                new UnrateMovie(getActivity(), MovieFragment.this, manager, mMovie, 0).execute();
+                new UnrateMovie(getActivity(), MovieFragment.this, manager, mMovie, 0).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
                 break;
             case 7:
-                new MovieCheckIn().execute();
+                new MovieCheckIn().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
                 return true;
 
@@ -221,7 +231,7 @@ public class MovieFragment extends Fragment implements ActionBar.TabListener, Do
             Log.d("Trakt", "movie_imdb received: " + movie);
 
             mTaskDownloadMovieInfo = new DownloadMovieInfo(this, getActivity(), manager, movie);
-            mTaskDownloadMovieInfo.execute();
+            mTaskDownloadMovieInfo.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
         } else {
             mMovie = (Movie) savedInstanceState.getSerializable("mMovie");
 
@@ -229,7 +239,7 @@ public class MovieFragment extends Fragment implements ActionBar.TabListener, Do
 
                 manager = UserChecker.checkUserLogin(getActivity());
                 mTaskDownloadMovieInfo = new DownloadMovieInfo(this, getActivity(), manager, movie);
-                mTaskDownloadMovieInfo.execute();
+                mTaskDownloadMovieInfo.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
             }else
             updateMovie(mMovie);
@@ -297,7 +307,7 @@ public class MovieFragment extends Fragment implements ActionBar.TabListener, Do
                         }
                     });
             setHasOptionsMenu(true);
-            new CheckInChecker(getActivity(), manager, mUsername).execute();
+            new CheckInChecker(getActivity(), manager, mUsername).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
         }
     }
 
@@ -462,7 +472,7 @@ public class MovieFragment extends Fragment implements ActionBar.TabListener, Do
         protected void onPostExecute(Response response) {
             if (e == null) {
                 Log.d("Trakt Fragments", "Checked in movie " + mMovie.title);
-                new CheckInChecker(getActivity(), manager, mUsername).execute();
+                new CheckInChecker(getActivity(), manager, mUsername).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
             } else {
                 Log.d("Trakt Fragments", "Error marking episode as unseen: " + e.getMessage());
 

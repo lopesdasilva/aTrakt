@@ -17,11 +17,12 @@ import com.lopesdasilva.trakt.R;
  */
 public class UserActivityFragment extends Fragment {
 
+    int middlePosition = 1;
+    int numberOfPositions = 10;
     private View rootView;
     private WeekPager mWeekPagerAdapter;
     private ViewPager mViewPager;
-    int middlePosition=1;
-    int numberOfPositions=3;
+    final int ONE_WEEK_IN_MILLISECONDS = 604800000;
 
     public UserActivityFragment() {
     }
@@ -30,7 +31,7 @@ public class UserActivityFragment extends Fragment {
         if (container == null) // must put this in
             return null;
         rootView = inflater.inflate(R.layout.user_activity_fragment, container, false);
-        Log.d("Trakt", "CalendarFragment On CreateView savedinstace:" + savedInstanceState);
+        Log.d("Trakt", "CalendarFragment On CreateView saved instance:" + savedInstanceState);
 
 
         mViewPager = (ViewPager) rootView.findViewById(R.id.user_activity_pager);
@@ -41,7 +42,6 @@ public class UserActivityFragment extends Fragment {
 
         return rootView;
     }
-
 
 
     public class WeekPager extends FragmentStatePagerAdapter implements ViewPager.OnPageChangeListener {
@@ -56,12 +56,19 @@ public class UserActivityFragment extends Fragment {
         @Override
         public Fragment getItem(int position) {
             Log.d("Trakt", "CalendarFragment get position: " + position);
-            int onWeekInMIliSecconds = 604800000;
             Bundle arguments = new Bundle();
             Fragment fragment = new ActivityWeekFragment();
-            arguments.putInt("calendardate", -1);
+
+
+            arguments.putInt("start_ts", (position+1)* ONE_WEEK_IN_MILLISECONDS);
+            arguments.putInt("end_ts", position* ONE_WEEK_IN_MILLISECONDS);
+
             fragment.setArguments(arguments);
-            Log.d("Trakt", "getItem launching fragment");
+            if(position==mCount-1) {
+                Log.d("Trakt", "Last tab should increase..");
+//                mCount++;
+//                this.notifyDataSetChanged();
+            }
             return fragment;
         }
 
@@ -72,23 +79,34 @@ public class UserActivityFragment extends Fragment {
 
         @Override
         public CharSequence getPageTitle(int position) {
+            String title;
+            switch (position) {
+                case 0:
+                    title = "this week";
+                    break;
+                case 1:
+                    title ="last week";
+                    break;
+                default:
+                    title = position + " weeks ago";
+            }
 
-           return "Week"+position;
+            return title;
         }
 
         @Override
         public void onPageScrolled(int i, float v, int i2) {
-            Log.d("Trakt","onPageScrolled page selected"+i);
+            Log.d("Trakt", "onPageScrolled page selected" + i);
         }
 
         @Override
         public void onPageSelected(int i) {
-            Log.d("Trakt","onPageSelected page selected"+i);
+            Log.d("Trakt", "onPageSelected page selected" + i);
         }
 
         @Override
         public void onPageScrollStateChanged(int i) {
-            Log.d("Trakt","onPageScrollStateChanged page selected"+i);
+            Log.d("Trakt", "onPageScrollStateChanged page selected" + i);
         }
 
     }

@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -18,8 +19,12 @@ import com.jakewharton.trakt.ServiceManager;
 import com.jakewharton.trakt.entities.CalendarDate;
 import com.jakewharton.trakt.entities.RatingResponse;
 import com.lopesdasilva.trakt.R;
-import com.lopesdasilva.trakt.Tasks.*;
+import com.lopesdasilva.trakt.Tasks.DownloadWeekCalendar;
 import com.lopesdasilva.trakt.Tasks.EpisodeWatchlistUnWatchlist;
+import com.lopesdasilva.trakt.Tasks.MarkEpisodeSeenUnseen;
+import com.lopesdasilva.trakt.Tasks.RateEpisodeHate;
+import com.lopesdasilva.trakt.Tasks.RateEpisodeLove;
+import com.lopesdasilva.trakt.Tasks.UnrateEpisode;
 import com.lopesdasilva.trakt.activities.EpisodeActivity;
 import com.lopesdasilva.trakt.extras.UserChecker;
 import com.tonicartos.widget.stickygridheaders.StickyGridHeadersBaseAdapter;
@@ -62,7 +67,7 @@ public class CalendarWeekFragment extends Fragment implements DownloadWeekCalend
             }
 
             mTaskDownloadWeekCalendar = new DownloadWeekCalendar(this, getActivity(), manager, d);
-            mTaskDownloadWeekCalendar.execute();
+            mTaskDownloadWeekCalendar.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
         } else {
             init();
             List<CalendarDate> response = (List<CalendarDate>) savedInstanceState.get("calendar");
@@ -77,7 +82,7 @@ public class CalendarWeekFragment extends Fragment implements DownloadWeekCalend
                 }
 
                 mTaskDownloadWeekCalendar = new DownloadWeekCalendar(this, getActivity(), manager, d);
-                mTaskDownloadWeekCalendar.execute();
+                mTaskDownloadWeekCalendar.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
             }
         }
 
@@ -171,24 +176,24 @@ public class CalendarWeekFragment extends Fragment implements DownloadWeekCalend
 
                         switch (item_clicked) {
                             case 0:
-                                new MarkEpisodeSeenUnseen(getActivity(), CalendarWeekFragment.this, manager, lista.get(position).show, lista.get(position).episode, position).execute();
+                                new MarkEpisodeSeenUnseen(getActivity(), CalendarWeekFragment.this, manager, lista.get(position).show, lista.get(position).episode, position).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
                                 break;
                             case 1:
                                 if (lista.get(position).episode.rating != null)
-                                    new UnrateEpisode(getActivity(),CalendarWeekFragment.this,manager,lista.get(position).show,lista.get(position).episode,position).execute();
+                                    new UnrateEpisode(getActivity(),CalendarWeekFragment.this,manager,lista.get(position).show,lista.get(position).episode,position).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
                                 else
-                                new RateEpisodeLove(getActivity(),CalendarWeekFragment.this,manager,lista.get(position).show,lista.get(position).episode,position).execute();
+                                new RateEpisodeLove(getActivity(),CalendarWeekFragment.this,manager,lista.get(position).show,lista.get(position).episode,position).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
                                 break;
                             case 2:
                                 if (lista.get(position).episode.rating != null)
-                                    new UnrateEpisode(getActivity(),CalendarWeekFragment.this,manager,lista.get(position).show,lista.get(position).episode,position).execute();
+                                    new UnrateEpisode(getActivity(),CalendarWeekFragment.this,manager,lista.get(position).show,lista.get(position).episode,position).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
                                 else
-                                new RateEpisodeHate(getActivity(),CalendarWeekFragment.this,manager,lista.get(position).show,lista.get(position).episode,position).execute();
+                                new RateEpisodeHate(getActivity(),CalendarWeekFragment.this,manager,lista.get(position).show,lista.get(position).episode,position).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
                                 break;
                             case 3:
-                                new EpisodeWatchlistUnWatchlist(getActivity(), CalendarWeekFragment.this, manager, lista.get(position).show, lista.get(position).episode, position).execute();
+                                new EpisodeWatchlistUnWatchlist(getActivity(), CalendarWeekFragment.this, manager, lista.get(position).show, lista.get(position).episode, position).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
                                 break;
                         }
                     }

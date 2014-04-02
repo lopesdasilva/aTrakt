@@ -81,6 +81,14 @@
         android:layout_alignTop="@+id/imageViewCalendarEpisodeBackdrop"
         android:layout_alignRight="@+id/imageViewCalendarEpisodeBackdrop"/>
     <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:id="@+id/imageViewCalendarEpisodeCheckInTag"
+        android:src="@drawable/seen_tag"
+        android:layout_alignTop="@+id/imageViewCalendarEpisodeBackdrop"
+        android:layout_alignRight="@+id/imageViewCalendarEpisodeBackdrop"
+        android:visibility="gone"/>
+    <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/imageViewCalendarEpisodeWatchlistTag"

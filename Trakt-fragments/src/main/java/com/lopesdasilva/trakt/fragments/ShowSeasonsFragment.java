@@ -2,14 +2,28 @@ package com.lopesdasilva.trakt.fragments;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
-import android.view.*;
-import android.widget.*;
+import android.view.ActionMode;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AbsListView;
+import android.widget.AdapterView;
+import android.widget.BaseAdapter;
+import android.widget.PopupMenu;
+import android.widget.Toast;
+
 import com.androidquery.AQuery;
 import com.jakewharton.trakt.ServiceManager;
-import com.jakewharton.trakt.entities.*;
+import com.jakewharton.trakt.entities.TvShow;
+import com.jakewharton.trakt.entities.TvShowEpisode;
+import com.jakewharton.trakt.entities.TvShowSeason;
 import com.lopesdasilva.trakt.R;
 import com.lopesdasilva.trakt.Tasks.DownloadSeasonsInfo;
 import com.lopesdasilva.trakt.Tasks.EpisodeWatchlistUnWatchlist;
@@ -148,14 +162,14 @@ public class ShowSeasonsFragment extends Fragment implements MarkEpisodeSeenUnse
                         case R.id.action_episode_seen:
                             Toast.makeText(getActivity(), "Mark as seen", Toast.LENGTH_SHORT).show();
                             MultipleSeenUnseenTask mMultipleSeenTask = new MultipleSeenUnseenTask(getActivity(), ShowSeasonsFragment.this, manager, show, mSelectedEpisodes, true, mode);
-                            mMultipleSeenTask.execute();
+                            mMultipleSeenTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 //                            deleteSelectedItems();
 
                             return true;
                         case R.id.action_episode_unseen:
                             Toast.makeText(getActivity(), "Mark as unseen", Toast.LENGTH_SHORT).show();
                             MultipleSeenUnseenTask mMultipleUnseenTask = new MultipleSeenUnseenTask(getActivity(), ShowSeasonsFragment.this, manager, show, mSelectedEpisodes, false, mode);
-                            mMultipleUnseenTask.execute();
+                            mMultipleUnseenTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 //                            deleteSelectedItems();
 
                             return true;
@@ -330,16 +344,16 @@ public class ShowSeasonsFragment extends Fragment implements MarkEpisodeSeenUnse
                     switch (menuItem.getItemId()) {
 
                         case R.id.action_episode_seen:
-                            new MarkEpisodeSeenUnseen(getActivity(), ShowSeasonsFragment.this, manager, show, episode, position).execute();
+                            new MarkEpisodeSeenUnseen(getActivity(), ShowSeasonsFragment.this, manager, show, episode, position).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
                             return true;
                         case R.id.action_episode_unseen:
-                            new MarkEpisodeSeenUnseen(getActivity(), ShowSeasonsFragment.this, manager, show, episode, position).execute();
+                            new MarkEpisodeSeenUnseen(getActivity(), ShowSeasonsFragment.this, manager, show, episode, position).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
                             return true;
                         case R.id.action_episode_remove_watchlist:
-                            new EpisodeWatchlistUnWatchlist(getActivity(),ShowSeasonsFragment.this,manager,show,episode,position).execute();
+                            new EpisodeWatchlistUnWatchlist(getActivity(),ShowSeasonsFragment.this,manager,show,episode,position).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
                             return true;
                         case R.id.action_episode_add_watchlist:
-                            new EpisodeWatchlistUnWatchlist(getActivity(),ShowSeasonsFragment.this,manager,show,episode,position).execute();
+                            new EpisodeWatchlistUnWatchlist(getActivity(),ShowSeasonsFragment.this,manager,show,episode,position).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
                             return true;
 
                         default:
