@@ -22,7 +22,7 @@ public class UserActivityFragment extends Fragment {
     private View rootView;
     private WeekPager mWeekPagerAdapter;
     private ViewPager mViewPager;
-    final int ONE_WEEK_IN_MILLISECONDS = 604800000;
+    final long ONE_WEEK_IN_MILLISECONDS = 604800000;
 
     public UserActivityFragment() {
     }
@@ -36,6 +36,7 @@ public class UserActivityFragment extends Fragment {
 
         mViewPager = (ViewPager) rootView.findViewById(R.id.user_activity_pager);
         mWeekPagerAdapter = new WeekPager(getActivity().getSupportFragmentManager());
+        mViewPager.setOffscreenPageLimit(2);
         mWeekPagerAdapter.notifyDataSetChanged();
         mViewPager.setAdapter(mWeekPagerAdapter);
 
@@ -60,8 +61,8 @@ public class UserActivityFragment extends Fragment {
             Fragment fragment = new ActivityWeekFragment();
 
 
-            arguments.putInt("start_ts", (position+1)* ONE_WEEK_IN_MILLISECONDS);
-            arguments.putInt("end_ts", position* ONE_WEEK_IN_MILLISECONDS);
+            arguments.putLong("start_ts", (position+1)* ONE_WEEK_IN_MILLISECONDS);
+            arguments.putLong("end_ts", position* ONE_WEEK_IN_MILLISECONDS);
 
             fragment.setArguments(arguments);
             if(position==mCount-1) {

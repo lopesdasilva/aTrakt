@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.lopesdasilva.trakt"
-          android:versionCode="25"
-          android:versionName="1.25">
+          android:versionCode="26"
+          android:versionName="1.26">
 
     <uses-sdk
         android:minSdkVersion="14"
@@ -95,6 +95,14 @@
         </receiver>
         <receiver android:name="com.lopesdasilva.trakt.broadcasts.CheckInReceiver"/>
 
+        <receiver android:name="com.lopesdasilva.trakt.widgets.MyFirstWidget" >
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider"
+                android:resource="@xml/example_appwidget_info" />
+        </receiver>
+
         <activity
             android:name="com.lopesdasilva.trakt.activities.ShowsActivity"
             android:parentActivityName=".MainActivity">
@@ -132,6 +140,9 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity"/>
         </activity>
+
+
+
     </application>
 
 

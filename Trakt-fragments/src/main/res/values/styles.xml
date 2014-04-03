@@ -46,10 +46,18 @@
         <item name="android:minWidth">200dp</item>
         <item name="android:textColor">#707070</item>
     </style>
+    <style name="nowCardStyle2">
+        <item name="android:background">@drawable/bg_card</item>
+        <item name="android:minWidth">200dp</item>
+        <item name="android:textColor">#707070</item>
+    </style>
     <style name="nowCardStyle.Smaller">
 
         <item name="android:minHeight">100dp</item>
         </style>
+    <style name="nowCardStyle.Smallest">
+
+    </style>
 
     <style name="nowCardStyle.center">
         <item name="android:gravity">center</item>
@@ -213,5 +221,7 @@
 
         <item  name="android:background">@drawable/card_background_shadow</item>
     </style>
-
+    <style name="CardSmall">
+              <item  name="android:background">@drawable/card_back_temp</item>
+    </style>
 </resources>

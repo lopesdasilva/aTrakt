@@ -53,16 +53,16 @@ public class ActivityWeekFragment extends Fragment implements DownloadWeekActivi
     private Activity mResponse;
     private ArrayList<Header> mListHeader;
     private List<ActivityItem> mActivityItems;
-    private int mStart_ts;
-    private int mEnd_ts;
+    private long mStart_ts;
+    private long mEnd_ts;
 
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.calendarweek_fragment, container, false);
 //        Log.d("Trakt", "OnCreateView");
 
-        mStart_ts = getArguments().getInt("start_ts");
-        mEnd_ts = getArguments().getInt("end_ts");
+        mStart_ts = getArguments().getLong("start_ts");
+        mEnd_ts = getArguments().getLong("end_ts");
         username = UserChecker.getUsername(getActivity());
 
         if (savedInstanceState == null) {
@@ -75,8 +75,8 @@ public class ActivityWeekFragment extends Fragment implements DownloadWeekActivi
 
             Date end_ts= new Date();
             end_ts.setTime(end_ts.getTime()-(mEnd_ts));
-
-
+            SimpleDateFormat format = new SimpleDateFormat("E MMM dd, yyyy");
+               Log.d("Trakt it ","end: "+format.format(end_ts)+" start:"+format.format(start_ts));
             mTaskDownloadWeekCalendar = new DownloadWeekActivity(ActivityWeekFragment.this, getActivity(), manager, username, start_ts, end_ts);
             mTaskDownloadWeekCalendar.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
         }
