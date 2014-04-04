@@ -157,7 +157,7 @@ public class ShowSeasonsFragment extends Fragment implements MarkEpisodeSeenUnse
                 @Override
                 public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
                     // Respond to clicks on the actions in the CAB
-                    Toast.makeText(getActivity(), "selected items: " + mSelectedEpisodes.size(), Toast.LENGTH_SHORT).show();
+
                     switch (item.getItemId()) {
                         case R.id.action_episode_seen:
                             Toast.makeText(getActivity(), "Mark as seen", Toast.LENGTH_SHORT).show();
@@ -203,7 +203,7 @@ public class ShowSeasonsFragment extends Fragment implements MarkEpisodeSeenUnse
             mListView.setOnHeaderClickListener(new StickyGridHeadersGridView.OnHeaderClickListener() {
                 @Override
                 public void onHeaderClick(AdapterView<?> parent, View view, long id) {
-                    Toast.makeText(getActivity(), "Clicked " + mListHeaders.get((int) id).season, Toast.LENGTH_SHORT).show();
+
                     int position = mListHeaders.get((int) id).season;
                     for (int i = 0; i != lista.size(); i++) {
                         if (lista.get(i).season == position) {

@@ -3,12 +3,59 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content" android:layout_height="wrap_content"
-    android:background="@drawable/background_card"
     android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="@drawable/bg_header_widget">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            style="@android:style/TextAppearance.DeviceDefault.Medium"
+            android:id="@+id/textView"
+            android:textColor="@color/black"
+            android:layout_marginLeft="3dp"
+            android:layout_alignTop="@+id/imageViewWidgetTonightIcon"
+            android:layout_toRightOf="@+id/imageViewWidgetTonightIcon" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageViewWidgetTonightIcon"
+            android:layout_gravity="right"
+            android:src="@drawable/ic_launcher"
+            android:layout_marginLeft="2dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/widget_tonight_episodes"
+            android:id="@+id/textView2"
+            android:textColor="@color/dark_grey"
+            style="@android:style/TextAppearance.DeviceDefault.Widget.IconMenu.Item"
+            android:layout_below="@+id/textView"
+            android:layout_alignLeft="@+id/textView" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/imageViewWidgetTonightRefresh"
+            android:src="@drawable/ic_action_refresh_dark"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:clickable="true"
+            android:layout_alignParentRight="true" />
+    </RelativeLayout>
 
     <ListView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:id="@+id/listViewWidgetTonight"
-        tools:listitem="@layout/widget_tonight_item" />
+        tools:listitem="@layout/widget_tonight_item"
+        android:background="@color/light_grey"/>
 </LinearLayout>

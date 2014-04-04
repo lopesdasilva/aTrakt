@@ -2,41 +2,70 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="?android:attr/listPreferredItemHeight"
-        android:layout_marginLeft="6dp"
-        android:layout_marginRight="6dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginBottom="4dp"
-        android:background="@drawable/bg_card">
+        android:background="@color/list_background"
+    android:id="@+id/relativeLayoutWidgetTonightEpisode">
 
         <!-- Card Contents go here -->
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="New Text"
+            android:text="@string/show_name"
             android:id="@+id/textViewWidgetShowTitle"
             style="@style/CardText.1Line.Bigger.Blue"
             android:layout_toLeftOf="@+id/imageViewWidgetScreen"
             android:layout_alignTop="@+id/imageViewWidgetScreen"
             android:layout_alignParentLeft="true"
+            android:layout_marginLeft="8dp"
             />
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:layout_width="100dp"
+            android:layout_height="?android:attr/listPreferredItemHeight"
             android:id="@+id/imageViewWidgetScreen"
             android:src="@drawable/episode_backdrop_small"
-            android:layout_alignParentTop="true"
+            android:layout_centerVertical="true"
+            android:scaleType="centerInside"
             android:layout_alignParentRight="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Text"
+        android:text="@string/episode"
         android:id="@+id/textViewWidgetEpisodeInfo"
+        style="@style/CardText.1Line"
+        android:textColor="@color/dark_grey"
         android:layout_below="@+id/textViewWidgetShowTitle"
-        android:layout_alignParentLeft="true"
-        android:layout_toLeftOf="@+id/imageViewWidgetScreen"
-        style="@style/CardText.1Line"/>
+        android:layout_alignLeft="@+id/textViewWidgetShowTitle"
+        android:layout_toLeftOf="@+id/imageViewWidgetScreen" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/on"
+        android:id="@+id/textView"
+        style="@style/CardText.1Line"
+        android:layout_below="@+id/textViewWidgetEpisodeInfo"
+        android:layout_toRightOf="@+id/textViewWidgetEpisodeSchedule"
+        android:layout_marginLeft="14dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/network"
+        android:id="@+id/textViewWidgetEpisodeNetwork"
+        android:layout_below="@+id/textViewWidgetEpisodeInfo"
+        android:layout_toRightOf="@+id/textView"
+        android:layout_marginLeft="19dp"
+        android:layout_toLeftOf="@+id/imageViewWidgetScreen" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="20:30"
+        android:id="@+id/textViewWidgetEpisodeSchedule"
+        android:layout_below="@+id/textViewWidgetEpisodeInfo"
+        android:layout_alignLeft="@+id/textViewWidgetEpisodeInfo" />
 
 </RelativeLayout>

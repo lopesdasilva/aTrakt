@@ -1,6 +1,6 @@
 package com.lopesdasilva.trakt.widgets;
 
-import android.app.LauncherActivity;
+import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.Context;
@@ -11,13 +11,13 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
-import android.widget.Toast;
 
 import com.androidquery.AQuery;
 import com.jakewharton.trakt.ServiceManager;
 import com.jakewharton.trakt.entities.CalendarDate;
 import com.lopesdasilva.trakt.R;
 import com.lopesdasilva.trakt.Tasks.DownloadDayCalendar;
+import com.lopesdasilva.trakt.activities.LoginActivity;
 import com.lopesdasilva.trakt.extras.UserChecker;
 
 import java.util.Date;
@@ -27,10 +27,10 @@ import java.util.List;
 /**
  * Created by NB20308 on 03-04-2014.
  */
-public class MyFirstWidget extends AppWidgetProvider {
+public class TonightEpisodesWidget extends AppWidgetProvider {
 
-    private ServiceManager manager;
     public AppWidgetManager appWidgetManager;
+    private ServiceManager manager;
     private int[] appWidgetIds;
     private Context context;
 
@@ -38,9 +38,7 @@ public class MyFirstWidget extends AppWidgetProvider {
         this.appWidgetManager = appWidgetManager;
         this.appWidgetIds = appWidgetIds;
         this.context = context;
-        Toast.makeText(context, "updating widget trakt", Toast.LENGTH_SHORT).show();
         Log.d("trakt it", "onupdate widget");
-
 
 
         for (int i = 0; i < appWidgetIds.length; ++i) {
@@ -50,8 +48,27 @@ public class MyFirstWidget extends AppWidgetProvider {
             intent.setData(Uri.parse(intent.toUri(Intent.URI_INTENT_SCHEME)));
 
             RemoteViews rv = new RemoteViews(context.getPackageName(), R.layout.example_appwidget);
-            Log.d("trakt it", "setting remote adapter "+appWidgetIds[i]);
+            Log.d("trakt it", "setting remote adapter " + appWidgetIds[i]);
             rv.setRemoteAdapter(R.id.listViewWidgetTonight, intent);
+
+
+
+            Intent mainIntent = new Intent(context, LoginActivity.class);
+            PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
+            rv.setOnClickPendingIntent(R.id.imageViewWidgetTonightIcon, pendingIntent);
+
+          /*  Intent toastIntent = new Intent(context, EpisodeActivity.class);
+            // Set the action for the intent.
+            // When the user touches a particular view, it will have the effect of
+            // broadcasting TOAST_ACTION.
+//            toastIntent.setAction(EpisodeActivity.TOAST_ACTION);
+            toastIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetIds[i]);
+            intent.setData(Uri.parse(intent.toUri(Intent.URI_INTENT_SCHEME)));
+            PendingIntent toastPendingIntent = PendingIntent.getBroadcast(context, 0, toastIntent,
+                    PendingIntent.FLAG_UPDATE_CURRENT);
+            rv.setPendingIntentTemplate(R.id.listViewWidgetTonight, toastPendingIntent);
+*/
+
 
 //            rv.setEmptyView(R.id.list, R.id.empty_view);
             appWidgetManager.updateAppWidget(appWidgetIds[i], rv);
@@ -65,9 +82,6 @@ public class MyFirstWidget extends AppWidgetProvider {
 }
 
 
-
-
-
 /**
  * If you are familiar with Adapter of ListView,this is the same as adapter
  * with few changes
@@ -77,7 +91,7 @@ class ListProvider implements RemoteViewsService.RemoteViewsFactory, DownloadDay
     private final Context mContext;
     private final int mAppWidgetId;
     private ServiceManager manager;
-    private List<CalendarDate> mTonightShows = new LinkedList<CalendarDate>();
+    private List<CalendarDate.CalendarTvShowEpisode> mTonightShows = new LinkedList<CalendarDate.CalendarTvShowEpisode>();
 
     public ListProvider(Context context, Intent intent) {
         mContext = context;
@@ -113,11 +127,28 @@ class ListProvider implements RemoteViewsService.RemoteViewsFactory, DownloadDay
     @Override
     public RemoteViews getViewAt(int position) {
         RemoteViews rv = new RemoteViews(mContext.getPackageName(), R.layout.widget_tonight_item);
-rv.setTextViewText(R.id.textViewWidgetShowTitle,mTonightShows.get(position).episodes.get(0).show.title);
-        rv.setTextViewText(R.id.textViewWidgetEpisodeInfo,"S"+mTonightShows.get(position).episodes.get(0).episode.season+"E"+mTonightShows.get(position).episodes.get(0).episode.number+" "+mTonightShows.get(position).episodes.get(0).episode.title);
-        AQuery aq= new AQuery(mContext);
-        Bitmap screen = aq.getCachedImage(mTonightShows.get(position).episodes.get(0).episode.images.screen);
-        rv.setImageViewBitmap(R.id.imageViewWidgetScreen,screen);
+        rv.setTextViewText(R.id.textViewWidgetShowTitle, mTonightShows.get(position).show.title);
+        rv.setTextViewText(R.id.textViewWidgetEpisodeInfo, "S" + mTonightShows.get(position).episode.season + "E" + mTonightShows.get(position).episode.number + " " + mTonightShows.get(position).episode.title);
+
+
+        rv.setTextViewText(R.id.textViewWidgetEpisodeSchedule,  mTonightShows.get(position).show.airTimeLocalized);
+        rv.setTextViewText(R.id.textViewWidgetEpisodeNetwork, mTonightShows.get(position).show.network);
+        AQuery aq = new AQuery(mContext);
+        Bitmap screen = aq.getCachedImage(mTonightShows.get(position).episode.images.screen);
+        rv.setImageViewBitmap(R.id.imageViewWidgetScreen, screen);
+
+
+
+
+       /* Bundle extras = new Bundle();
+        extras.putString("show_imdb", mTonightShows.get(position).show.imdbId);
+        extras.putInt("show_season", mTonightShows.get(position).episode.season);
+        extras.putInt("show_episode", mTonightShows.get(position).episode.number);
+        Intent fillInIntent = new Intent();
+        fillInIntent.putExtras(extras);
+        // Make it possible to distinguish the individual on-click
+        // action of a given item
+        rv.setOnClickFillInIntent(R.id.relativeLayoutWidgetTonightEpisode, fillInIntent);*/
 
         return rv;
     }
@@ -144,11 +175,11 @@ rv.setTextViewText(R.id.textViewWidgetShowTitle,mTonightShows.get(position).epis
 
     @Override
     public void OnDayCalendarTaskCompleted(List<CalendarDate> response) {
-        mTonightShows = response;
+        mTonightShows = response.get(0).episodes;
         Log.d("trakt it", "download complete");
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(mContext);
-
-        appWidgetManager.notifyAppWidgetViewDataChanged(mAppWidgetId,R.id.listViewWidgetTonight);
+        Log.d("trakt it", "tonigth shows: " + response.get(0).episodes.size());
+        appWidgetManager.notifyAppWidgetViewDataChanged(mAppWidgetId, R.id.listViewWidgetTonight);
     }
 }
 

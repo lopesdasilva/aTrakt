@@ -38,7 +38,7 @@ public class CreateNotifications {
                 .setContentText(episode_info.episode.title)
                 .setContentInfo("S" + episode_info.episode.season + "E" + episode_info.episode.number)
                 .setTicker("You are watching " + episode_info.show.title + " S" + episode_info.episode.season + "E" + episode_info.episode.number + " " + episode_info.episode.title)
-                .setSmallIcon(R.drawable.ic_action_all)
+                .setSmallIcon(R.drawable.ic_notifications)
                 .setContentIntent(intent);
 
         NotificationManager mNotificationManager = (NotificationManager) activity.getSystemService(Context.NOTIFICATION_SERVICE);
@@ -76,7 +76,7 @@ public class CreateNotifications {
                 .setTicker("You are watching " + movie.title + " (" + movie.year + ")")
 //                .setLargeIcon(movieFanArt)
 //                .setContentIntent(intent)
-                .setSmallIcon(R.drawable.ic_action_all);
+                .setSmallIcon(R.drawable.ic_notifications);
 //
 
         NotificationManager mNotificationManager = (NotificationManager) activity.getSystemService(Context.NOTIFICATION_SERVICE);

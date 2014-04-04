@@ -128,7 +128,7 @@ public class MyAlarmReceiver extends BroadcastReceiver implements DownloadDayCal
 //                .setContentInfo("S" + episode_info.episode.season + "E" + episode_info.episode.number)
 //
                             .setContentIntent(intent)
-                            .setSmallIcon(R.drawable.ic_launcher);
+                            .setSmallIcon(R.drawable.ic_notifications);
                     NotificationManager mNotificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 //                if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
 //

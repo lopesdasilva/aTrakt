@@ -95,7 +95,7 @@
         </receiver>
         <receiver android:name="com.lopesdasilva.trakt.broadcasts.CheckInReceiver"/>
 
-        <receiver android:name="com.lopesdasilva.trakt.widgets.MyFirstWidget" >
+        <receiver android:name=".widgets.TonightEpisodesWidget" >
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>

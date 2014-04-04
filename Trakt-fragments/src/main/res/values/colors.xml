@@ -11,7 +11,9 @@
     <color name="card_border">#ffdedede</color>
     <color name="dark_grey">#303030</color>
     <color name="light_grey">#e3e3e3</color>
+    <color name="list_background">#ededed</color>
     <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
     <color name="blue">#ff0099cc</color>
     <color name="calendar_background">#E8E8DC</color>
     <color name="transparentBlack">#80000000</color>
