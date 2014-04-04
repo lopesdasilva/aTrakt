@@ -14,12 +14,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="New Text"
-            android:id="@+id/textView"
-            style="@style/CardText.1Line.Bigger"
-            android:layout_alignParentBottom="true"
+            android:id="@+id/textViewWidgetShowTitle"
+            style="@style/CardText.1Line.Bigger.Blue"
             android:layout_toLeftOf="@+id/imageViewWidgetScreen"
             android:layout_alignTop="@+id/imageViewWidgetScreen"
-            android:layout_alignParentLeft="true" />
+            android:layout_alignParentLeft="true"
+            />
 
         <ImageView
             android:layout_width="wrap_content"
@@ -28,5 +28,15 @@
             android:src="@drawable/episode_backdrop_small"
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:id="@+id/textViewWidgetEpisodeInfo"
+        android:layout_below="@+id/textViewWidgetShowTitle"
+        android:layout_alignParentLeft="true"
+        android:layout_toLeftOf="@+id/imageViewWidgetScreen"
+        style="@style/CardText.1Line"/>
 
 </RelativeLayout>
