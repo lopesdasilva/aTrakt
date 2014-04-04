@@ -13,7 +13,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
-import android.widget.Toast;
 
 import com.androidquery.AQuery;
 import com.jakewharton.trakt.ServiceManager;
@@ -34,7 +33,6 @@ import java.util.List;
 public class TonightEpisodesWidget extends AppWidgetProvider {
 
     public static final String TOAST_ACTION = "com.example.android.stackwidget.TOAST_ACTION";
-    public static final String UPDATE_ACTION = "com.example.android.stackwidget.UPDATE_ACTION";
 
 
     public AppWidgetManager appWidgetManager;
@@ -56,7 +54,7 @@ public class TonightEpisodesWidget extends AppWidgetProvider {
             episodeIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(episodeIntent);
 
-        } else if (intent.getAction().equals(UPDATE_ACTION)) {
+        } else if (intent.getAction().equals(AppWidgetManager.ACTION_APPWIDGET_UPDATE)) {
 
             manager = UserChecker.checkUserLogin(context);
             AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
@@ -71,11 +69,13 @@ public class TonightEpisodesWidget extends AppWidgetProvider {
                     AppWidgetManager.INVALID_APPWIDGET_ID);
 
 
-            onUpdate(context, appWidgetManager, appWidgetIds);
-            Toast.makeText(context,"UPDATE",Toast.LENGTH_SHORT).show();
-
-
-
+//            appWidgetManager.updateAppWidget();
+            RemoteViews rv = new RemoteViews(context.getPackageName(), R.layout.example_appwidget);
+            Intent intentUpdate = new Intent(context, WidgetService.class);
+            intentUpdate.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
+            intentUpdate.setData(Uri.parse(intent.toUri(Intent.URI_INTENT_SCHEME)));
+            rv.setRemoteAdapter(R.id.listViewWidgetTonight, intentUpdate);
+            appWidgetManager.updateAppWidget(appWidgetId, rv);
         }
         super.onReceive(context, intent);
     }
@@ -113,7 +113,7 @@ public class TonightEpisodesWidget extends AppWidgetProvider {
 
             //UPDATE INTENT
             Intent updateIntent = new Intent(context, TonightEpisodesWidget.class);
-            updateIntent.setAction(TonightEpisodesWidget.UPDATE_ACTION);
+            updateIntent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
             updateIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetIds[i]);
             PendingIntent updatePendingIntent = PendingIntent.getBroadcast(context, 0, updateIntent, PendingIntent.FLAG_UPDATE_CURRENT);
             rv.setOnClickPendingIntent(R.id.imageViewWidgetUpdate, updatePendingIntent);
@@ -159,7 +159,7 @@ class ListProvider implements RemoteViewsService.RemoteViewsFactory, DownloadDay
 
     @Override
     public void onDataSetChanged() {
-
+            Log.d("Trakt it ", "Im onDataSetChanged ");
     }
 
     @Override
