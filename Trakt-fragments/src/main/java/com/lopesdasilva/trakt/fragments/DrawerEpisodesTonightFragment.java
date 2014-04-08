@@ -16,11 +16,15 @@ import android.widget.TextView;
 
 import com.androidquery.AQuery;
 import com.jakewharton.trakt.ServiceManager;
+import com.jakewharton.trakt.entities.Activity;
 import com.jakewharton.trakt.entities.CalendarDate;
 import com.lopesdasilva.trakt.R;
 import com.lopesdasilva.trakt.Tasks.DownloadDayCalendar;
 import com.lopesdasilva.trakt.activities.EpisodeActivity;
+import com.lopesdasilva.trakt.activities.EpisodesTonightActivity;
+import com.lopesdasilva.trakt.activities.LoginActivity;
 import com.lopesdasilva.trakt.extras.UserChecker;
+import com.lopesdasilva.trakt.widgets.TonightEpisodesWidget;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -62,7 +66,14 @@ public class DrawerEpisodesTonightFragment extends ListFragment implements Downl
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.drawer_episodes_tonight, null);
+        view.findViewById(R.id.textViewOnTonight).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                startActivity(new Intent(getActivity(), EpisodesTonightActivity.class));
+
+            }
+        });
         if (savedInstanceState == null) {
             manager = UserChecker.checkUserLogin(getActivity());
             new DownloadDayCalendar(this, manager, new Date()).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);

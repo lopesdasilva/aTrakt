@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="On tonight"
-        android:id="@+id/textView"
+        android:id="@+id/textViewOnTonight"
         style="@style/CardTitleBold"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
@@ -23,7 +23,7 @@
         android:layout_height="1dp"
         android:layout_alignParentLeft="true"
         android:background="@color/blue"
-        android:layout_below="@+id/textView"
+        android:layout_below="@+id/textViewOnTonight"
         android:layout_marginLeft="3dp"
         android:layout_marginRight="3dp"/>
 

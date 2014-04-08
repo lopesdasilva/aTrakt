@@ -58,14 +58,16 @@
         android:layout_below="@+id/textViewWidgetEpisodeInfo"
         android:layout_toRightOf="@+id/textView"
         android:layout_marginLeft="19dp"
-        android:layout_toLeftOf="@+id/imageViewWidgetScreen" />
+        android:layout_toLeftOf="@+id/imageViewWidgetScreen"
+        style="@style/CardText.1Line.Blue"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="20:30"
         android:id="@+id/textViewWidgetEpisodeSchedule"
-        android:layout_below="@+id/textViewWidgetEpisodeInfo"
-        android:layout_alignLeft="@+id/textViewWidgetEpisodeInfo" />
+        android:layout_alignBaseline="@+id/textView"
+        android:layout_alignBottom="@+id/textView"
+        android:layout_alignLeft="@+id/textViewWidgetEpisodeInfo"/>
 
 </RelativeLayout>

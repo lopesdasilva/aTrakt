@@ -61,6 +61,12 @@
     <string name="episode_loading">Loading episode...</string>
     <string name="widget_tonight_episodes">Tonight episodes</string>
     <string name="show_name">Show Name</string>
+    <string name="need_login">You need to login in the app first</string>
+    <string name="widget_loading">Loading</string>
+    <string name="show_loading">Loading show</string>
+    <string name="movie_loading">Loading movie</string>
+    <string name="search_loading">Searching...</string>
+    <string name="recommended_loading">Loading recommendations</string>
     <array name="watchlist">
 
 

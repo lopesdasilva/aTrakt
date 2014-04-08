@@ -35,7 +35,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/widget_tonight_episodes"
-            android:id="@+id/textView2"
+            android:id="@+id/textViewWidgetTonightEpisodes"
             android:textColor="@color/dark_grey"
             style="@android:style/TextAppearance.DeviceDefault.Widget.IconMenu.Item"
             android:layout_below="@+id/textView"
@@ -50,6 +50,15 @@
             android:layout_marginRight="10dp"
             android:clickable="true"
             android:layout_alignParentRight="true" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/imageViewWidgetCalendar"
+            android:src="@drawable/ic_action_go_to_today"
+            android:layout_alignTop="@+id/textView"
+            android:layout_toLeftOf="@+id/imageViewWidgetUpdate"
+            android:layout_marginRight="10dp"/>
     </RelativeLayout>
 
     <ListView
@@ -57,5 +66,6 @@
         android:layout_height="match_parent"
         android:id="@+id/listViewWidgetTonight"
         tools:listitem="@layout/widget_tonight_item"
-        android:background="@color/light_grey"/>
+        android:background="@color/light_grey"
+        android:dividerHeight="2dp"/>
 </LinearLayout>

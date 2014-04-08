@@ -82,10 +82,10 @@ public class EpisodesTonightFragment extends ListFragment implements DownloadDay
     @Override
     public void OnDayCalendarTaskCompleted(List<CalendarDate> response) {
 
-        if(response.size()!=0){
+        if (response.size() != 0) {
             mListepisodes.clear();
-        mListepisodes.addAll(response.get(0).episodes);
-        mAdapter.notifyDataSetChanged();
+            mListepisodes.addAll(response.get(0).episodes);
+            mAdapter.notifyDataSetChanged();
         }
     }
 
@@ -120,11 +120,13 @@ public class EpisodesTonightFragment extends ListFragment implements DownloadDay
                 convertView = inflater.inflate(R.layout.episodes_tonight_item, parent, false);
             }
             AQuery aq = new AQuery(convertView);
-            aq.id(R.id.imageViewEpisodeTonightScreen).image(mListEpisodes.get(position).episode.images.screen,false,true);
+            aq.id(R.id.imageViewEpisodeTonightScreen).image(mListEpisodes.get(position).episode.images.screen, true, true, 600, R.drawable.episode_backdrop, aq.getCachedImage(R.drawable.episode_backdrop), AQuery.FADE_IN, AQuery.RATIO_PRESERVE);
             aq.id(R.id.textViewEpisodeTonightShowTitle).text(mListEpisodes.get(position).show.title);
             aq.id(R.id.textViewEpisodeTonightSeasonEpisodeNumber).text("S" + mListepisodes.get(position).episode.season + "E" + mListepisodes.get(position).episode.number);
             aq.id(R.id.textViewEpisodeTonightEpisodeTitle).text(mListEpisodes.get(position).episode.title);
-            if (mListEpisodes.get(position).episode.overview!=null) {
+
+
+            if (mListEpisodes.get(position).episode.overview != null) {
                 aq.id(R.id.textViewEpisodeTonightEpisodeOverview).text(mListEpisodes.get(position).episode.overview).visible();
                 aq.id(R.id.viewEpisodeTonightLine).visible();
             } else {
@@ -132,7 +134,32 @@ public class EpisodesTonightFragment extends ListFragment implements DownloadDay
                 aq.id(R.id.viewEpisodeTonightLine).gone();
             }
             aq.id(R.id.textViewEpisodeTonightShowNetwork).text(mListEpisodes.get(position).show.network);
-            aq.id(R.id.textViewEpisodeTonightRatingsPercentage).text(mListEpisodes.get(position).episode.ratings.percentage+"%");
+            aq.id(R.id.textViewEpisodeTonightRatingsPercentage).text(mListEpisodes.get(position).episode.ratings.percentage + "%");
+
+            if (mListEpisodes.get(position).episode.rating != null) {
+                switch (mListEpisodes.get(position).episode.rating) {
+
+                    case Love:
+                        aq.id(R.id.imageViewEpsiodeTonightLoveTag).visible();
+                        break;
+                    case Hate:
+
+                        aq.id(R.id.imageViewEpsiodeTonightLoveTag).gone();
+                        break;
+                    case Unrate:
+
+                        aq.id(R.id.imageViewEpsiodeTonightLoveTag).gone();
+                        break;
+                }
+
+            } else
+                aq.id(R.id.imageViewEpsiodeTonightLoveTag).gone();
+
+            if (mListEpisodes.get(position).episode.watched != null || !mListEpisodes.get(position).episode.watched)
+                aq.id(R.id.imageViewEpsiodeTonightSeenTag).gone();
+            else
+                aq.id(R.id.imageViewEpsiodeTonightSeenTag).visible();
+
 
             SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm");
             aq.id(R.id.textViewEpisodeTonightEpisodeAirDate).text(dateFormat.format(mListEpisodes.get(position).episode.firstAired));

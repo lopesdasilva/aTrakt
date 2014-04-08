@@ -11,6 +11,7 @@ public class WidgetService extends RemoteViewsService {
 * here Adapter is ListProvider
 * */
 
+
     @Override
     public RemoteViewsFactory onGetViewFactory(Intent intent) {
 
@@ -19,5 +20,4 @@ public class WidgetService extends RemoteViewsService {
         Log.d("trakt it", "onGetViewFactory widgetID:" + appWidgetId);
         return (new ListProvider(this.getApplicationContext(), intent));
     }
-
 }

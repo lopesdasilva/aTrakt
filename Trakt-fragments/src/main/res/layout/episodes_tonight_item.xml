@@ -13,7 +13,7 @@
         android:text="Game of Thrones"
         android:id="@+id/textViewEpisodeTonightShowTitle"
         android:layout_alignParentTop="true"
-        android:layout_toLeftOf="@+id/imageView2"
+        android:layout_toLeftOf="@+id/imageViewEpsiodeTonightLoveTag"
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="1dp"/>
 
@@ -123,18 +123,20 @@
     <ImageView
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:id="@+id/imageView"
+        android:id="@+id/imageViewEpsiodeTonightSeenTag"
         android:layout_below="@+id/textViewEpisodeTonightSeasonEpisodeNumber"
         android:layout_alignParentRight="true"
-        android:src="@drawable/seen_tag"/>
+        android:src="@drawable/seen_tag"
+        android:visibility="gone"/>
 
     <ImageView
         android:layout_width="55dp"
         android:layout_height="55dp"
-        android:id="@+id/imageView2"
+        android:id="@+id/imageViewEpsiodeTonightLoveTag"
         android:layout_below="@+id/textViewEpisodeTonightSeasonEpisodeNumber"
         android:layout_alignParentRight="true"
-        android:src="@drawable/hearth_tag"/>
+        android:src="@drawable/hearth_tag"
+        android:visibility="gone"/>
 
     <ImageView
         android:layout_width="wrap_content"

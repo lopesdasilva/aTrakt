@@ -6,7 +6,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.androidquery.AQuery;
 import com.jakewharton.trakt.entities.TvShow;
@@ -79,7 +78,6 @@ public class ShowInfoFragment extends Fragment {
             aq.id(R.id.buttonShowNextEpisode).visible().clicked(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Toast.makeText(getActivity(), "Laucnhing episode", Toast.LENGTH_SHORT).show();
 
 
                     Bundle arguments = new Bundle();

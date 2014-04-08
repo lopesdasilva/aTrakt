@@ -1,7 +1,8 @@
 package com.lopesdasilva.trakt.activities;
 
 
-
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -10,6 +11,8 @@ import android.view.MenuItem;
 import com.lopesdasilva.trakt.R;
 import com.lopesdasilva.trakt.fragments.MovieFragment;
 import com.lopesdasilva.trakt.fragments.MovieInfoFragment;
+
+import java.net.URL;
 
 
 /**
@@ -25,12 +28,31 @@ public class MovieActivity extends FragmentActivity {
         //To get back button on actionbar
         getActionBar().setDisplayHomeAsUpEnabled(true);
 
-        if(savedInstanceState==null){
+        if (savedInstanceState == null) {
 
-    //THIS IS STATIC
+
 
 
             Bundle arguments = getIntent().getExtras();
+
+            Intent intent = getIntent();
+            Uri data = intent.getData();
+            URL url = null;
+            if (data != null) {
+                try {
+                    url = new URL(data.getScheme(), data.getHost(),
+                            data.getPath());
+                    String s_url = url.getPath();
+
+
+                    String[] name_temp = s_url.split("/movie/");
+                    String movie_name = name_temp[1];
+                    arguments.putString("movie_imdb",movie_name);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
             Fragment fragment = new MovieFragment();
             fragment.setArguments(arguments);
             Log.d("Trakt", "Launching new fragment MovieFragment");

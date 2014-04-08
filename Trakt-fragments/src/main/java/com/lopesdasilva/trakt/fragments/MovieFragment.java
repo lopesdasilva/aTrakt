@@ -222,6 +222,7 @@ public class MovieFragment extends Fragment implements ActionBar.TabListener, Do
 
 
         if (savedInstanceState == null) {
+
             movie = getArguments().getString("movie_imdb");
 
             manager = UserChecker.checkUserLogin(getActivity());

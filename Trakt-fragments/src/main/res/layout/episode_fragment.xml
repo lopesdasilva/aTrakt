@@ -163,10 +163,10 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="35dp"
-            android:text="New Text"
+            android:text="@string/show_name"
             android:gravity="center_vertical"
             android:id="@+id/textViewEpisodeShow"
-            style="@style/CardText.1Line.Bigger.Blue"
+            style="@style/CardTitleBold.Blue"
             android:background="@color/transparentBlack"
             android:layout_above="@+id/textViewMovieTitle"
             android:paddingLeft="5dp"
