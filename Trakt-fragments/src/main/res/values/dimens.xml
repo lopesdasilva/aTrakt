@@ -31,7 +31,24 @@
     <dimen name="card_action_text">16.0sp</dimen>
     <dimen name="card_padding">16.0dip</dimen>
     <dimen name="sticky_height">120dp</dimen>
-    
+
+
+    <dimen name="card_outer_padding_firstlast">8dp</dimen>
+    <dimen name="card_outer_padding_top">2dp</dimen>
+    <dimen name="card_outer_padding_bottom">1dp</dimen>
+    <dimen name="card_outer_padding_horizontal">8dp</dimen>
+
+    <dimen name="card_inner_padding_vertical">8dp</dimen>
+    <dimen name="card_inner_padding_left">10dp</dimen>
+    <dimen name="card_inner_padding_right">5dp</dimen>
+
+    <dimen name="card_thumbnail">56dp</dimen>
+    <dimen name="card_thumbnail_margin">5dp</dimen>
+    <dimen name="card_title_margin_left">5dp</dimen>
+    <dimen name="card_title">16sp</dimen>
+
+
+
     <integer name="num_cols">1</integer>
 
 </resources>

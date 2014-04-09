@@ -67,6 +67,8 @@
     <string name="movie_loading">Loading movie</string>
     <string name="search_loading">Searching...</string>
     <string name="recommended_loading">Loading recommendations</string>
+    <string name="cancel">Cancel</string>
+    <string name="ok">Ok</string>
     <array name="watchlist">
 
 

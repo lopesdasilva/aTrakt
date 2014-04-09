@@ -127,7 +127,7 @@
         </receiver>
         <receiver android:name="com.lopesdasilva.trakt.broadcasts.CheckInReceiver"/>
 
-        <receiver android:name=".widgets.TonightEpisodesWidget" >
+        <receiver android:name=".widgets.TonightEpisodesWidget" android:label="@string/widget_tonight_episodes" >
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>

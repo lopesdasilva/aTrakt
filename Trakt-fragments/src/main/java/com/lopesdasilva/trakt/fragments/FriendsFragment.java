@@ -1,17 +1,14 @@
 package com.lopesdasilva.trakt.fragments;
 
 import android.content.Intent;
-import android.graphics.PorterDuff;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 
 import com.androidquery.AQuery;
 import com.jakewharton.trakt.ServiceManager;
@@ -119,6 +116,7 @@ public class FriendsFragment extends Fragment {
 
 //            try {
             View activityItemLayout = setActivity(activityItem);
+            activityItemLayout.setPadding(0,0,0,2);
             activityItemLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -192,7 +190,7 @@ public class FriendsFragment extends Fragment {
     private View setActivity(ActivityItem activityItem) {
 
 
-        RelativeLayout relativeLayoutFriends = (RelativeLayout) inflater.inflate(R.layout.friends_item_episode, null).findViewById(R.id.relativeLayoutFriendsItem);
+        LinearLayout relativeLayoutFriends = (LinearLayout) inflater.inflate(R.layout.friends_item_episode, null).findViewById(R.id.linearLayoutFriendsItem);
         final AQuery aq = new AQuery(relativeLayoutFriends);
         aq.id(R.id.textViewFriendsUsername).text(activityItem.user.username);
         aq.id(R.id.textViewFriendsAction).text(activityItem.action.toString());
@@ -233,16 +231,16 @@ public class FriendsFragment extends Fragment {
             case All:
                 break;
             case Episode:
-                aq.id(R.id.imageViewFriendsPoster).image(activityItem.episode.images.screen, false, true, 200, AQuery.GONE, null, AQuery.FADE_IN);
+                aq.id(R.id.imageViewFriendsPoster).image(activityItem.episode.images.screen, false, true, 150, R.drawable.episode_backdrop,aq.getCachedImage(R.drawable.episode_backdrop_small),AQuery.FADE_IN,AQuery.RATIO_PRESERVE);
                 aq.id(R.id.textViewFriendsItemTitle).text(activityItem.show.title + " S" + activityItem.episode.season + "E" + activityItem.episode.number);
                 break;
             case Show:
-                aq.id(R.id.imageViewFriendsPoster).image(activityItem.show.images.poster, false, true, 200, AQuery.GONE, null, AQuery.FADE_IN);
+                aq.id(R.id.imageViewFriendsPoster).image(activityItem.show.images.poster, false, true, 150, R.drawable.poster_small,aq.getCachedImage(R.drawable.poster_small),AQuery.FADE_IN);
                 aq.id(R.id.textViewFriendsItemTitle).text(activityItem.show.title);
 
                 break;
             case Movie:
-                aq.id(R.id.imageViewFriendsPoster).image(activityItem.movie.images.fanart, false, true, 200, AQuery.GONE, null, AQuery.FADE_IN);
+                aq.id(R.id.imageViewFriendsPoster).image(activityItem.movie.images.fanart, false, true, 150, R.drawable.poster_small,aq.getCachedImage(R.drawable.poster_small),AQuery.FADE_IN);
                 aq.id(R.id.textViewFriendsItemTitle).text(activityItem.movie.title);
                 break;
             case List:
@@ -250,25 +248,26 @@ public class FriendsFragment extends Fragment {
         }
 
 
-        relativeLayoutFriends.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                switch (motionEvent.getAction()) {
-                    case MotionEvent.ACTION_DOWN:
-                        aq.id(R.id.imageViewFriendsPoster).getImageView().setColorFilter(0xaf0099cc, PorterDuff.Mode.SRC_ATOP);
-                        break;
-
-                    case MotionEvent.ACTION_UP:
-                        aq.id(R.id.imageViewFriendsPoster).getImageView().clearColorFilter();
-                        break;
-                    case MotionEvent.ACTION_CANCEL:
-                        aq.id(R.id.imageViewFriendsPoster).getImageView().clearColorFilter();
-                        break;
-                }
-
-                return false;
-            }
-        });
+//        relativeLayoutFriends.setOnTouchListener(new View.OnTouchListener() {
+//            @Override
+//            public boolean onTouch(View view, MotionEvent motionEvent) {
+//                switch (motionEvent.getAction()) {
+//                    case MotionEvent.ACTION_DOWN:
+////                        aq.id(R.id.relativeLayoutFriendsItem).getView().setT.setColorFilter(0xaf0099cc, PorterDuff.Mode.SRC_ATOP);
+////                        aq.id(R.id.imageViewFriendsPoster).getImageView().setColorFilter(0xaf0099cc, PorterDuff.Mode.SRC_ATOP);
+//                        break;
+//
+//                    case MotionEvent.ACTION_UP:
+//                        aq.id(R.id.relativeLayoutFriendsItem).getImageView().clearColorFilter();
+//                        break;
+//                    case MotionEvent.ACTION_CANCEL:
+//                        aq.id(R.id.relativeLayoutFriendsItem).getImageView().clearColorFilter();
+//                        break;
+//                }
+//
+//                return false;
+//            }
+//        });
 
 
         return relativeLayoutFriends;

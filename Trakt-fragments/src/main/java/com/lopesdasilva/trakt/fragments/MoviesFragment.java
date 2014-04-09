@@ -127,7 +127,7 @@ public class MoviesFragment extends Fragment implements DownloadTrendingMovies.o
         aq.id(R.id.textViewMoviesMovieNumberVotes).text(m.ratings.votes + " votes");
 
 
-        if (m.watched)
+        if (m.watched!=null && m.watched)
             aq.id(R.id.imageViewMoviesSeenTag).visible();
         else
             aq.id(R.id.imageViewMoviesSeenTag).gone();

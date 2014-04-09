@@ -96,7 +96,11 @@ public class ShowInfoFragment extends Fragment {
             aq.id(R.id.buttonShowNextEpisode).gone();
             aq.id(R.id.textViewShowNextEpisode).text("You have no episodes to watch");
         }
-        if (show.rating!=null)
+        if (!"0".equals(show.ratingAdvanced)){
+                    aq.id(R.id.textViewShowRatingAdvance).text(show.ratingAdvanced);
+
+        }
+        else if (show.rating!=null)
         switch (show.rating) {
 
             case Love:
@@ -108,9 +112,11 @@ public class ShowInfoFragment extends Fragment {
                 aq.id(R.id.imageViewShowHatedTag).visible();
                 break;
         }else{
+            aq.id(R.id.textViewShowRatingAdvance).gone();
             aq.id(R.id.imageViewShowHatedTag).gone();
             aq.id(R.id.imageViewShowLovedTag).gone();
         }
+
 
 
         if (show.inCollection)

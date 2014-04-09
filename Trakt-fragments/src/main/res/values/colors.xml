@@ -17,4 +17,12 @@
     <color name="blue">#ff0099cc</color>
     <color name="calendar_background">#E8E8DC</color>
     <color name="transparentBlack">#80000000</color>
+    <drawable name="listview_highlight_pressed">#98dff3</drawable>
+    <drawable name="listview_highlight_focused">#b9e6f3</drawable>
+    <color name="listview_background">#ececec</color>
+    <color name="card_pressed">#ebebeb</color>
+    <color name="card_gray">#e5e5e5</color>
+    <color name="card_focused">#ebebeb</color>
+    <color name="red">#ff0000</color>
+
 </resources>

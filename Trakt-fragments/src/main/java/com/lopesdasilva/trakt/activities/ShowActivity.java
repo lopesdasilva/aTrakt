@@ -70,7 +70,7 @@ public class ShowActivity extends FragmentActivity {
                 startActivity(i);
                 finish();
             } else {
-                if (show_imdb.contains("show")) {
+                if (show_imdb.contains("season")) {
                     String show_aux = show_imdb.substring(0, show_imdb.indexOf("/"));
                     arguments.putString("show_imdb", show_aux);
                 }

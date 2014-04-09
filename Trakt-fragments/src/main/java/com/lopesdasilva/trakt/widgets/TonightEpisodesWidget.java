@@ -203,8 +203,10 @@ class ListProvider implements RemoteViewsService.RemoteViewsFactory {
         rv.setTextViewText(R.id.textViewWidgetShowTitle, mTonightShows.get(position).show.title);
         rv.setTextViewText(R.id.textViewWidgetEpisodeInfo, "S" + mTonightShows.get(position).episode.season + "E" + mTonightShows.get(position).episode.number + " " + mTonightShows.get(position).episode.title);
 
-
-        rv.setTextViewText(R.id.textViewWidgetEpisodeSchedule, mTonightShows.get(position).show.airDayLocalized + ", " + mTonightShows.get(position).show.airTimeLocalized);
+        if(mTonightShows.get(position).show.airDayLocalized!=null)
+        rv.setTextViewText(R.id.textViewWidgetEpisodeSchedule, mTonightShows.get(position).show.airDayLocalized.substring(0,3) + ", " + mTonightShows.get(position).show.airTimeLocalized);
+        else
+        rv.setTextViewText(R.id.textViewWidgetEpisodeSchedule, mTonightShows.get(position).show.airTimeLocalized);
         rv.setTextViewText(R.id.textViewWidgetEpisodeNetwork, mTonightShows.get(position).show.network);
 //        AQuery aq = new AQuery(mContext);
 

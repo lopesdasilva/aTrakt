@@ -80,7 +80,9 @@ public class ShowFragment extends Fragment implements ActionBar.TabListener, Dow
 
                 return true;
             case 3:
-                new RateShowHate(getActivity(),ShowFragment.this,manager,mTVshow,0).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+                RatingAdvance  dialog=new RatingAdvance();
+                dialog.show(getFragmentManager(), "NoticeDialogFragment");
+//                new RateShowHate(getActivity(),ShowFragment.this,manager,mTVshow,0).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
                 return true;
             case 4:
