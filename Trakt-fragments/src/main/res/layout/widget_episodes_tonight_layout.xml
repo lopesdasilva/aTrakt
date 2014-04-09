@@ -68,4 +68,17 @@
         tools:listitem="@layout/widget_tonight_item"
         android:background="@color/light_grey"
         android:dividerHeight="2dp"/>
+    <RelativeLayout
+        android:id="@+id/relativeLayoutWidgetEmpty"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/listPreferredItemHeight"
+        android:background="@color/list_background">
+        <TextView
+            style="@style/CardTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/widget_tonight_episodes_empty"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"/>
+        </RelativeLayout>
 </LinearLayout>

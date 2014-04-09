@@ -69,6 +69,7 @@
     <string name="recommended_loading">Loading recommendations</string>
     <string name="cancel">Cancel</string>
     <string name="ok">Ok</string>
+    <string name="widget_tonight_episodes_empty">No shows tonight</string>
     <array name="watchlist">
 
 

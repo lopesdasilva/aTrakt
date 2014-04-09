@@ -12,7 +12,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.RemoteViews;
-
 import android.widget.RemoteViewsService;
 import com.jakewharton.trakt.ServiceManager;
 import com.jakewharton.trakt.entities.CalendarDate;
@@ -101,6 +100,7 @@ public class TonightEpisodesWidget extends AppWidgetProvider {
 
                 RemoteViews rv = new RemoteViews(context.getPackageName(), R.layout.widget_episodes_tonight_layout);
                 rv.setRemoteAdapter(R.id.listViewWidgetTonight, intent);
+                rv.setEmptyView(R.id.listViewWidgetTonight,R.id.relativeLayoutWidgetEmpty);
 
 
                 Intent mainIntent = new Intent(context, MainActivity.class);
@@ -178,11 +178,10 @@ class ListProvider implements RemoteViewsService.RemoteViewsFactory {
 
 //        new DownloadDayCalendar(this, manager, new Date()).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
             Log.d("Trakt it", "Download finished");
-        }catch(Exception e){
-            Log.d("trakt it", "error Downloading message:"+e.getMessage());
+        } catch (Exception e) {
+            Log.d("trakt it", "error Downloading message:" + e.getMessage());
 //            Toast.makeText(mContext, "Error updating the widget, are you connected?",Toast.LENGTH_SHORT).show();
         }
-
 
 
     }
@@ -203,21 +202,21 @@ class ListProvider implements RemoteViewsService.RemoteViewsFactory {
         rv.setTextViewText(R.id.textViewWidgetShowTitle, mTonightShows.get(position).show.title);
         rv.setTextViewText(R.id.textViewWidgetEpisodeInfo, "S" + mTonightShows.get(position).episode.season + "E" + mTonightShows.get(position).episode.number + " " + mTonightShows.get(position).episode.title);
 
-        if(mTonightShows.get(position).show.airDayLocalized!=null)
-        rv.setTextViewText(R.id.textViewWidgetEpisodeSchedule, mTonightShows.get(position).show.airDayLocalized.substring(0,3) + ", " + mTonightShows.get(position).show.airTimeLocalized);
+        if (mTonightShows.get(position).show.airDayLocalized != null)
+            rv.setTextViewText(R.id.textViewWidgetEpisodeSchedule, mTonightShows.get(position).show.airDayLocalized.substring(0, 3) + ", " + mTonightShows.get(position).show.airTimeLocalized);
         else
-        rv.setTextViewText(R.id.textViewWidgetEpisodeSchedule, mTonightShows.get(position).show.airTimeLocalized);
+            rv.setTextViewText(R.id.textViewWidgetEpisodeSchedule, mTonightShows.get(position).show.airTimeLocalized);
         rv.setTextViewText(R.id.textViewWidgetEpisodeNetwork, mTonightShows.get(position).show.network);
 //        AQuery aq = new AQuery(mContext);
 
         try {
 
-           Bitmap screen= BitmapFactory.decodeStream(new URL(mTonightShows.get(position).episode.images.screen).openConnection().getInputStream());
+            Bitmap screen = BitmapFactory.decodeStream(new URL(mTonightShows.get(position).episode.images.screen).openConnection().getInputStream());
 
-        //  Bitmap screen = aq.getCachedImage(, 300);
-        rv.setImageViewBitmap(R.id.imageViewWidgetScreen, screen);
+            //  Bitmap screen = aq.getCachedImage(, 300);
+            rv.setImageViewBitmap(R.id.imageViewWidgetScreen, screen);
         } catch (IOException e) {
-           Log.e("trakt", "error downloading screen for widget, show: "+mTonightShows.get(position).show.title);
+            Log.e("trakt", "error downloading screen for widget, show: " + mTonightShows.get(position).show.title);
         }
 
         Bundle extras = new Bundle();
