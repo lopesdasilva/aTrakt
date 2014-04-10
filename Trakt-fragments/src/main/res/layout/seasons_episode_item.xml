@@ -74,11 +74,43 @@
         android:layout_alignRight="@+id/imageViewSeasonsEpisodeScreen"
         android:layout_alignTop="@+id/imageViewSeasonsEpisodeScreen"
         android:src="@drawable/hated_tag" />
+    <RelativeLayout
+        android:id="@+id/relativeLayoutAdvanceRating"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true">
+        <RelativeLayout
+            android:id="@+id/relativeLayoutAdvanceRatingBackground"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/rate_tag_triangle"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:rotation="-135"
+            android:transformPivotX="33dp"
+            android:transformPivotY="7dp">
 
+        </RelativeLayout>
+        <TextView
+            android:layout_marginRight="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="9"
+            android:textAlignment="center"
+            android:rotation="45"
+            android:textSize="17dp"
+            android:textColor="@color/white"
+            android:id="@+id/textViewEpisodeRatingAdvance"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true" />
+    </RelativeLayout>
     <ImageView
+
         android:id="@+id/imageViewSeasonsEpisodeSeenTag"
-        android:layout_width="55dp"
-        android:layout_height="55dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_alignRight="@+id/imageViewSeasonsEpisodeScreen"
         android:layout_alignTop="@+id/imageViewSeasonsEpisodeScreen"
         android:src="@drawable/seen_tag" />

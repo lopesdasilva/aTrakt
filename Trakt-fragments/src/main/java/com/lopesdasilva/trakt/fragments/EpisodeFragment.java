@@ -325,21 +325,59 @@ public class EpisodeFragment extends Fragment implements DownloadEpisodeInfo.onE
             aq.id(R.id.imageViewCollectionTag).visible();
 
 
-        if (episode_info.episode.rating == null) {
-            aq.id(R.id.imageViewHatedTag).gone();
-            aq.id(R.id.imageViewLovedTag).gone();
-        } else
-            switch (episode_info.episode.rating) {
+        if("0".equals(episode_info.episode.ratingAdvanced)) {
+            aq.id(R.id.relativeLayoutAdvanceRating).gone();
+        } else if("1".equals(episode_info.episode.ratingAdvanced)){
+            aq.id(R.id.relativeLayoutAdvanceRatingBackground).background(R.drawable.rate_tag_triangle_1);
+            aq.id(R.id.relativeLayoutAdvanceRating).visible();
+            aq.id(R.id.textViewShowRatingAdvance).text(episode_info.episode.ratingAdvanced);
+        } else if("2".equals(episode_info.episode.ratingAdvanced)){
 
-                case Love:
-                    aq.id(R.id.imageViewHatedTag).gone();
-                    aq.id(R.id.imageViewLovedTag).visible();
-                    break;
-                case Hate:
-                    aq.id(R.id.imageViewLovedTag).gone();
-                    aq.id(R.id.imageViewHatedTag).visible();
-                    break;
-            }
+            aq.id(R.id.relativeLayoutAdvanceRatingBackground).background(R.drawable.rate_tag_triangle_2);
+            aq.id(R.id.relativeLayoutAdvanceRating).visible();
+            aq.id(R.id.textViewShowRatingAdvance).text(episode_info.episode.ratingAdvanced);
+        } else if("3".equals(episode_info.episode.ratingAdvanced)){
+
+            aq.id(R.id.relativeLayoutAdvanceRatingBackground).background(R.drawable.rate_tag_triangle_3);
+            aq.id(R.id.relativeLayoutAdvanceRating).visible();
+            aq.id(R.id.textViewShowRatingAdvance).text(episode_info.episode.ratingAdvanced);
+        } else if("4".equals(episode_info.episode.ratingAdvanced)){
+
+            aq.id(R.id.relativeLayoutAdvanceRatingBackground).background(R.drawable.rate_tag_triangle_4);
+            aq.id(R.id.relativeLayoutAdvanceRating).visible();
+            aq.id(R.id.textViewMovieRatingAdvance).text(episode_info.episode.ratingAdvanced);
+        } else if("5".equals(episode_info.episode.ratingAdvanced)){
+
+            aq.id(R.id.relativeLayoutAdvanceRatingBackground).background(R.drawable.rate_tag_triangle_5);
+            aq.id(R.id.relativeLayoutAdvanceRating).visible();
+            aq.id(R.id.textViewShowRatingAdvance).text(episode_info.episode.ratingAdvanced);
+        } else if("6".equals(episode_info.episode.ratingAdvanced)){
+
+            aq.id(R.id.relativeLayoutAdvanceRatingBackground).background(R.drawable.rate_tag_triangle_6);
+            aq.id(R.id.relativeLayoutAdvanceRating).visible();
+            aq.id(R.id.textViewShowRatingAdvance).text(episode_info.episode.ratingAdvanced);
+        } else if("7".equals(episode_info.episode.ratingAdvanced)){
+
+            aq.id(R.id.relativeLayoutAdvanceRatingBackground).background(R.drawable.rate_tag_triangle_7);
+            aq.id(R.id.relativeLayoutAdvanceRating).visible();
+            aq.id(R.id.textViewShowRatingAdvance).text(episode_info.episode.ratingAdvanced);
+        } else if("8".equals(episode_info.episode.ratingAdvanced)){
+
+            aq.id(R.id.relativeLayoutAdvanceRatingBackground).background(R.drawable.rate_tag_triangle_8);
+            aq.id(R.id.relativeLayoutAdvanceRating).visible();
+            aq.id(R.id.textViewShowRatingAdvance).text(episode_info.episode.ratingAdvanced);
+        } else if("9".equals(episode_info.episode.ratingAdvanced)){
+
+            aq.id(R.id.relativeLayoutAdvanceRatingBackground).background(R.drawable.rate_tag_triangle_9);
+            aq.id(R.id.relativeLayoutAdvanceRating).visible();
+            aq.id(R.id.textViewShowRatingAdvance).text(episode_info.episode.ratingAdvanced);
+        } else if("10".equals(episode_info.episode.ratingAdvanced)){
+
+            aq.id(R.id.relativeLayoutAdvanceRatingBackground).background(R.drawable.rate_tag_triangle_10);
+            aq.id(R.id.relativeLayoutAdvanceRating).visible();
+            aq.id(R.id.textViewShowRatingAdvance).text(episode_info.episode.ratingAdvanced);
+            aq.id(R.id.textViewShowRatingAdvance).margin(0,0,1,0);
+        }
 
         aq.id(R.id.relativeLayoutEpisodeLoading).invisible();
         aq.id(R.id.scrollViewepisodeInfoLayout).visible();
@@ -357,25 +395,62 @@ public class EpisodeFragment extends Fragment implements DownloadEpisodeInfo.onE
     }
 
     private void updateRatings(RatingResponse response) {
-        episode_info.episode.rating=response.rating;
+        episode_info.episode.rating = response.rating;
         AQuery aq = new AQuery(getActivity());
 
-        if (episode_info.episode.rating == null) {
-            aq.id(R.id.imageViewHatedTag).gone();
-            aq.id(R.id.imageViewLovedTag).gone();
-        } else
-            switch (episode_info.episode.rating) {
+        if ("0".equals(episode_info.episode.ratingAdvanced)) {
+            aq.id(R.id.relativeLayoutAdvanceRating).gone();
+        } else if ("1".equals(episode_info.episode.ratingAdvanced)) {
+            aq.id(R.id.relativeLayoutAdvanceRatingBackground).background(R.drawable.rate_tag_triangle_1);
+            aq.id(R.id.relativeLayoutAdvanceRating).visible();
+            aq.id(R.id.textViewShowRatingAdvance).text(episode_info.episode.ratingAdvanced);
+        } else if ("2".equals(episode_info.episode.ratingAdvanced)) {
 
-                case Love:
-                    aq.id(R.id.imageViewHatedTag).gone();
-                    aq.id(R.id.imageViewLovedTag).visible();
-                    break;
-                case Hate:
-                    aq.id(R.id.imageViewLovedTag).gone();
-                    aq.id(R.id.imageViewHatedTag).visible();
-                    break;
-            }
+            aq.id(R.id.relativeLayoutAdvanceRatingBackground).background(R.drawable.rate_tag_triangle_2);
+            aq.id(R.id.relativeLayoutAdvanceRating).visible();
+            aq.id(R.id.textViewShowRatingAdvance).text(episode_info.episode.ratingAdvanced);
+        } else if ("3".equals(episode_info.episode.ratingAdvanced)) {
 
+            aq.id(R.id.relativeLayoutAdvanceRatingBackground).background(R.drawable.rate_tag_triangle_3);
+            aq.id(R.id.relativeLayoutAdvanceRating).visible();
+            aq.id(R.id.textViewShowRatingAdvance).text(episode_info.episode.ratingAdvanced);
+        } else if ("4".equals(episode_info.episode.ratingAdvanced)) {
+
+            aq.id(R.id.relativeLayoutAdvanceRatingBackground).background(R.drawable.rate_tag_triangle_4);
+            aq.id(R.id.relativeLayoutAdvanceRating).visible();
+            aq.id(R.id.textViewMovieRatingAdvance).text(episode_info.episode.ratingAdvanced);
+        } else if ("5".equals(episode_info.episode.ratingAdvanced)) {
+
+            aq.id(R.id.relativeLayoutAdvanceRatingBackground).background(R.drawable.rate_tag_triangle_5);
+            aq.id(R.id.relativeLayoutAdvanceRating).visible();
+            aq.id(R.id.textViewShowRatingAdvance).text(episode_info.episode.ratingAdvanced);
+        } else if ("6".equals(episode_info.episode.ratingAdvanced)) {
+
+            aq.id(R.id.relativeLayoutAdvanceRatingBackground).background(R.drawable.rate_tag_triangle_6);
+            aq.id(R.id.relativeLayoutAdvanceRating).visible();
+            aq.id(R.id.textViewShowRatingAdvance).text(episode_info.episode.ratingAdvanced);
+        } else if ("7".equals(episode_info.episode.ratingAdvanced)) {
+
+            aq.id(R.id.relativeLayoutAdvanceRatingBackground).background(R.drawable.rate_tag_triangle_7);
+            aq.id(R.id.relativeLayoutAdvanceRating).visible();
+            aq.id(R.id.textViewShowRatingAdvance).text(episode_info.episode.ratingAdvanced);
+        } else if ("8".equals(episode_info.episode.ratingAdvanced)) {
+
+            aq.id(R.id.relativeLayoutAdvanceRatingBackground).background(R.drawable.rate_tag_triangle_8);
+            aq.id(R.id.relativeLayoutAdvanceRating).visible();
+            aq.id(R.id.textViewShowRatingAdvance).text(episode_info.episode.ratingAdvanced);
+        } else if ("9".equals(episode_info.episode.ratingAdvanced)) {
+
+            aq.id(R.id.relativeLayoutAdvanceRatingBackground).background(R.drawable.rate_tag_triangle_9);
+            aq.id(R.id.relativeLayoutAdvanceRating).visible();
+            aq.id(R.id.textViewShowRatingAdvance).text(episode_info.episode.ratingAdvanced);
+        } else if ("10".equals(episode_info.episode.ratingAdvanced)) {
+
+            aq.id(R.id.relativeLayoutAdvanceRatingBackground).background(R.drawable.rate_tag_triangle_10);
+            aq.id(R.id.relativeLayoutAdvanceRating).visible();
+            aq.id(R.id.textViewShowRatingAdvance).text(episode_info.episode.ratingAdvanced);
+            aq.id(R.id.textViewShowRatingAdvance).margin(0, 0, 1, 0);
+        }
     }
 
     @Override

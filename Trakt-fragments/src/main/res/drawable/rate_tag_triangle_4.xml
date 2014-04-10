@@ -10,7 +10,7 @@
             >
             <shape android:shape="rectangle" >
 
-                <solid android:color="@color/rating_10" />
+                <solid android:color="@color/rating_4" />
             </shape>
         </rotate>
     </item>

@@ -131,22 +131,62 @@ public class MoviesFragment extends Fragment implements DownloadTrendingMovies.o
             aq.id(R.id.imageViewMoviesSeenTag).visible();
         else
             aq.id(R.id.imageViewMoviesSeenTag).gone();
-        if (m.rating != null) {
-            switch (m.rating) {
 
-                case Love:
-                    aq.id(R.id.imageViewMoviesLovedTag).visible();
-                    aq.id(R.id.imageViewMoviesHatedTag).gone();
-                    break;
-                case Hate:
-                    aq.id(R.id.imageViewMoviesLovedTag).gone();
-                    aq.id(R.id.imageViewMoviesHatedTag).visible();
-                    break;
-            }
-        }else{
-            aq.id(R.id.imageViewMoviesHatedTag).gone();
-            aq.id(R.id.imageViewMoviesLovedTag).gone();
+
+        if("0".equals(m.ratingAdvanced)) {
+            aq.id(R.id.relativeLayoutAdvanceRating).gone();
+        } else if("1".equals(m.ratingAdvanced)){
+            aq.id(R.id.relativeLayoutAdvanceRatingBackground).background(R.drawable.rate_tag_triangle_1);
+            aq.id(R.id.relativeLayoutAdvanceRating).visible();
+            aq.id(R.id.textViewMovieRatingAdvance).text(m.ratingAdvanced);
+        } else if("2".equals(m.ratingAdvanced)){
+
+            aq.id(R.id.relativeLayoutAdvanceRatingBackground).background(R.drawable.rate_tag_triangle_2);
+            aq.id(R.id.relativeLayoutAdvanceRating).visible();
+            aq.id(R.id.textViewMovieRatingAdvance).text(m.ratingAdvanced);
+        } else if("3".equals(m.ratingAdvanced)){
+
+            aq.id(R.id.relativeLayoutAdvanceRatingBackground).background(R.drawable.rate_tag_triangle_3);
+            aq.id(R.id.relativeLayoutAdvanceRating).visible();
+            aq.id(R.id.textViewMovieRatingAdvance).text(m.ratingAdvanced);
+        } else if("4".equals(m.ratingAdvanced)){
+
+            aq.id(R.id.relativeLayoutAdvanceRatingBackground).background(R.drawable.rate_tag_triangle_4);
+            aq.id(R.id.relativeLayoutAdvanceRating).visible();
+            aq.id(R.id.textViewMovieRatingAdvance).text(m.ratingAdvanced);
+        } else if("5".equals(m.ratingAdvanced)){
+
+            aq.id(R.id.relativeLayoutAdvanceRatingBackground).background(R.drawable.rate_tag_triangle_5);
+            aq.id(R.id.relativeLayoutAdvanceRating).visible();
+            aq.id(R.id.textViewMovieRatingAdvance).text(m.ratingAdvanced);
+        } else if("6".equals(m.ratingAdvanced)){
+
+            aq.id(R.id.relativeLayoutAdvanceRatingBackground).background(R.drawable.rate_tag_triangle_6);
+            aq.id(R.id.relativeLayoutAdvanceRating).visible();
+            aq.id(R.id.textViewMovieRatingAdvance).text(m.ratingAdvanced);
+        } else if("7".equals(m.ratingAdvanced)){
+
+            aq.id(R.id.relativeLayoutAdvanceRatingBackground).background(R.drawable.rate_tag_triangle_7);
+            aq.id(R.id.relativeLayoutAdvanceRating).visible();
+            aq.id(R.id.textViewMovieRatingAdvance).text(m.ratingAdvanced);
+        } else if("8".equals(m.ratingAdvanced)){
+
+            aq.id(R.id.relativeLayoutAdvanceRatingBackground).background(R.drawable.rate_tag_triangle_8);
+            aq.id(R.id.relativeLayoutAdvanceRating).visible();
+            aq.id(R.id.textViewMovieRatingAdvance).text(m.ratingAdvanced);
+        } else if("9".equals(m.ratingAdvanced)){
+
+            aq.id(R.id.relativeLayoutAdvanceRatingBackground).background(R.drawable.rate_tag_triangle_9);
+            aq.id(R.id.relativeLayoutAdvanceRating).visible();
+            aq.id(R.id.textViewMovieRatingAdvance).text(m.ratingAdvanced);
+        } else if("10".equals(m.ratingAdvanced)){
+
+            aq.id(R.id.relativeLayoutAdvanceRatingBackground).background(R.drawable.rate_tag_triangle_10);
+            aq.id(R.id.relativeLayoutAdvanceRating).visible();
+            aq.id(R.id.textViewMovieRatingAdvance).text(m.ratingAdvanced);
+            aq.id(R.id.textViewMovieRatingAdvance).margin(0,0,1,0);
         }
+
 
         movieItem.setOnTouchListener(new View.OnTouchListener() {
             @Override

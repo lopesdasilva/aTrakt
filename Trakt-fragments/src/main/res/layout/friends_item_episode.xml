@@ -12,8 +12,9 @@
 
         <ImageView
             android:id="@+id/imageViewFriendsPoster"
-            android:layout_width="wrap_content"
+            android:layout_width="120dp"
             android:layout_height="80dp"
+            android:scaleType="centerCrop"
             android:src="@drawable/episode_backdrop_small"
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true" />

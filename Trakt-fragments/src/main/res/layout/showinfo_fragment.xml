@@ -173,31 +173,32 @@
                 android:layout_alignLeft="@+id/imageViewShowLovedTag"
                 android:layout_marginLeft="10dp" />
             <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/relativeLayoutAdvanceRating"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
                 android:layout_alignParentTop="true"
-                android:layout_alignParentRight="true"
-                android:layout_toRightOf="@+id/textViewShowNextEpisode">
+                android:layout_alignParentRight="true">
                 <RelativeLayout
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                    android:id="@+id/relativeLayoutAdvanceRatingBackground"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
                     android:background="@drawable/rate_tag_triangle"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentRight="true"
                     android:rotation="-135"
-                    android:transformPivotX="32dp"
-                    android:transformPivotY="8dp">
+                    android:transformPivotX="53dp"
+                    android:transformPivotY="10dp">
 
                 </RelativeLayout>
                 <TextView
-                    android:padding="1dp"
+                    android:layout_marginRight="6dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="10"
+                    android:text="9"
                     android:textAlignment="center"
                     android:rotation="45"
-                    android:textSize="20dp"
+                    android:textSize="25dp"
                     android:textColor="@color/white"
                     android:id="@+id/textViewShowRatingAdvance"
                     android:layout_alignParentTop="true"

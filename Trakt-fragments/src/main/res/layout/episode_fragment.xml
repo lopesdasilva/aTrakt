@@ -90,13 +90,7 @@
             android:text="Medium Text"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
-        <ImageView
-            android:id="@+id/imageViewEpisodeSeen"
-            android:layout_width="75dp"
-            android:layout_height="75dp"
-            android:layout_alignRight="@+id/imageViewEpisodeScreen"
-            android:layout_alignTop="@+id/imageViewEpisodeScreen"
-            android:src="@drawable/seen_tag" />
+
 
         <TextView
             android:id="@+id/text2"
@@ -140,14 +134,59 @@
             android:id="@+id/imageViewLovedTag"
             android:layout_alignRight="@+id/imageViewEpisodeScreen"
             android:layout_alignTop="@+id/imageViewEpisodeScreen"
-            android:src="@drawable/hearth_tag"/>
+            android:src="@drawable/hearth_tag"
+            android:visibility="gone"/>
+        <RelativeLayout
+            android:id="@+id/relativeLayoutAdvanceRating"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_toRightOf="@+id/textViewShowNextEpisode">
+            <RelativeLayout
+                android:id="@+id/relativeLayoutAdvanceRatingBackground"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:background="@drawable/rate_tag_triangle"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:rotation="-135"
+                android:transformPivotX="53dp"
+                android:transformPivotY="10dp">
+
+            </RelativeLayout>
+            <TextView
+
+                android:paddingLeft="1dp"
+                android:paddingRight="1dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="10"
+                android:textAlignment="center"
+                android:rotation="45"
+                android:textSize="25dp"
+                android:textColor="@color/white"
+                android:id="@+id/textViewShowRatingAdvance"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true" />
+        </RelativeLayout>
+        <ImageView
+            android:id="@+id/imageViewEpisodeSeen"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:layout_alignRight="@+id/imageViewEpisodeScreen"
+            android:layout_alignTop="@+id/imageViewEpisodeScreen"
+            android:src="@drawable/seen_tag" />
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/imageViewHatedTag"
             android:layout_alignRight="@+id/imageViewEpisodeScreen"
             android:layout_alignTop="@+id/imageViewEpisodeScreen"
-            android:src="@drawable/hated_tag"/>
+            android:src="@drawable/hated_tag"
+            android:visibility="gone"/>
+
 
         <TextView
             style="@style/CardTitleBold.Blue"

@@ -145,21 +145,77 @@ public class MovieInfoFragment extends Fragment{
                 aq.id(R.id.imageViewCollectionTag).visible();
 
 
-            if (movie.rating == null) {
-                aq.id(R.id.imageViewHatedTag).gone();
-                aq.id(R.id.imageViewLovedTag).gone();
-            } else
-                switch (movie.rating) {
+//            if (movie.rating == null) {
+//                aq.id(R.id.imageViewHatedTag).gone();
+//                aq.id(R.id.imageViewLovedTag).gone();
+//            } else
+//                switch (movie.rating) {
+//
+//                    case Love:
+//                        aq.id(R.id.imageViewHatedTag).gone();
+//                        aq.id(R.id.imageViewLovedTag).visible();
+//                        break;
+//                    case Hate:
+//                        aq.id(R.id.imageViewLovedTag).gone();
+//                        aq.id(R.id.imageViewHatedTag).visible();
+//                        break;
+//                }
+            if("0".equals(movie.ratingAdvanced)) {
+                aq.id(R.id.relativeLayoutAdvanceRating).gone();
+            } else if("1".equals(movie.ratingAdvanced)){
+                aq.id(R.id.relativeLayoutAdvanceRatingBackground).background(R.drawable.rate_tag_triangle_1);
+                aq.id(R.id.relativeLayoutAdvanceRating).visible();
+                aq.id(R.id.textViewMovieRatingAdvance).text(movie.ratingAdvanced);
+            } else if("2".equals(movie.ratingAdvanced)){
 
-                    case Love:
-                        aq.id(R.id.imageViewHatedTag).gone();
-                        aq.id(R.id.imageViewLovedTag).visible();
-                        break;
-                    case Hate:
-                        aq.id(R.id.imageViewLovedTag).gone();
-                        aq.id(R.id.imageViewHatedTag).visible();
-                        break;
-                }
+                aq.id(R.id.relativeLayoutAdvanceRatingBackground).background(R.drawable.rate_tag_triangle_2);
+                aq.id(R.id.relativeLayoutAdvanceRating).visible();
+                aq.id(R.id.textViewMovieRatingAdvance).text(movie.ratingAdvanced);
+            } else if("3".equals(movie.ratingAdvanced)){
+
+                aq.id(R.id.relativeLayoutAdvanceRatingBackground).background(R.drawable.rate_tag_triangle_3);
+                aq.id(R.id.relativeLayoutAdvanceRating).visible();
+                aq.id(R.id.textViewMovieRatingAdvance).text(movie.ratingAdvanced);
+            } else if("4".equals(movie.ratingAdvanced)){
+
+                aq.id(R.id.relativeLayoutAdvanceRatingBackground).background(R.drawable.rate_tag_triangle_4);
+                aq.id(R.id.relativeLayoutAdvanceRating).visible();
+                aq.id(R.id.textViewMovieRatingAdvance).text(movie.ratingAdvanced);
+            } else if("5".equals(movie.ratingAdvanced)){
+
+                aq.id(R.id.relativeLayoutAdvanceRatingBackground).background(R.drawable.rate_tag_triangle_5);
+                aq.id(R.id.relativeLayoutAdvanceRating).visible();
+                aq.id(R.id.textViewMovieRatingAdvance).text(movie.ratingAdvanced);
+            } else if("6".equals(movie.ratingAdvanced)){
+
+                aq.id(R.id.relativeLayoutAdvanceRatingBackground).background(R.drawable.rate_tag_triangle_6);
+                aq.id(R.id.relativeLayoutAdvanceRating).visible();
+                aq.id(R.id.textViewMovieRatingAdvance).text(movie.ratingAdvanced);
+            } else if("7".equals(movie.ratingAdvanced)){
+
+                aq.id(R.id.relativeLayoutAdvanceRatingBackground).background(R.drawable.rate_tag_triangle_7);
+                aq.id(R.id.relativeLayoutAdvanceRating).visible();
+                aq.id(R.id.textViewMovieRatingAdvance).text(movie.ratingAdvanced);
+            } else if("8".equals(movie.ratingAdvanced)){
+
+                aq.id(R.id.relativeLayoutAdvanceRatingBackground).background(R.drawable.rate_tag_triangle_8);
+                aq.id(R.id.relativeLayoutAdvanceRating).visible();
+                aq.id(R.id.textViewMovieRatingAdvance).text(movie.ratingAdvanced);
+            } else if("9".equals(movie.ratingAdvanced)){
+
+                aq.id(R.id.relativeLayoutAdvanceRatingBackground).background(R.drawable.rate_tag_triangle_9);
+                aq.id(R.id.relativeLayoutAdvanceRating).visible();
+                aq.id(R.id.textViewMovieRatingAdvance).text(movie.ratingAdvanced);
+            } else if("10".equals(movie.ratingAdvanced)){
+
+                aq.id(R.id.relativeLayoutAdvanceRatingBackground).background(R.drawable.rate_tag_triangle_10);
+                aq.id(R.id.relativeLayoutAdvanceRating).visible();
+                aq.id(R.id.textViewMovieRatingAdvance).text(movie.ratingAdvanced);
+               aq.id(R.id.textViewMovieRatingAdvance).margin(0,0,1,0);
+            }
+
+
+
 
 
 //            setHasOptionsMenu(true);

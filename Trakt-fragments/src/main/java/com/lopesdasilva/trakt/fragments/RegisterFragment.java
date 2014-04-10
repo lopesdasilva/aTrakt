@@ -109,7 +109,7 @@ public class RegisterFragment extends Fragment implements RegisterUserTask.OnReg
         try {
             password_sha1 = HashText.sha1(mPasswordView.getText().toString());
         } catch (NoSuchAlgorithmException e) {
-            Log.d("Trakt it", "Eror creating sha1 hash");
+            Log.d("Trakt it", "Error creating sha1 hash");
             Toast.makeText(getActivity(), "Error creating hash", Toast.LENGTH_SHORT).show();
             all_ok = false;
         }

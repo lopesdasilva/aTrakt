@@ -192,8 +192,35 @@ public class FriendsFragment extends Fragment {
 
         LinearLayout relativeLayoutFriends = (LinearLayout) inflater.inflate(R.layout.friends_item_episode, null).findViewById(R.id.linearLayoutFriendsItem);
         final AQuery aq = new AQuery(relativeLayoutFriends);
+        switch (activityItem.type) {
+
+            case All:
+                break;
+            case Episode:
+                aq.id(R.id.imageViewFriendsPoster).image(activityItem.episode.images.screen, false, true, 150, R.drawable.episode_backdrop,aq.getCachedImage(R.drawable.episode_backdrop_small),AQuery.FADE_IN,AQuery.RATIO_PRESERVE);
+                aq.id(R.id.textViewFriendsItemTitle).text(activityItem.show.title + " S" + activityItem.episode.season + "E" + activityItem.episode.number);
+                break;
+            case Show:
+                aq.id(R.id.imageViewFriendsPoster).image(activityItem.show.images.poster, false, true, 150, R.drawable.poster_small,aq.getCachedImage(R.drawable.poster_small),AQuery.FADE_IN);
+                aq.id(R.id.textViewFriendsItemTitle).text(activityItem.show.title);
+
+                break;
+            case Movie:
+                aq.id(R.id.imageViewFriendsPoster).image(activityItem.movie.images.fanart, false, true, 150, R.drawable.poster_small,aq.getCachedImage(R.drawable.poster_small),AQuery.FADE_IN);
+                aq.id(R.id.textViewFriendsItemTitle).text(activityItem.movie.title);
+                break;
+            case List:
+                break;
+        }
+
+
+
         aq.id(R.id.textViewFriendsUsername).text(activityItem.user.username);
         aq.id(R.id.textViewFriendsAction).text(activityItem.action.toString());
+
+
+
+
 
         switch (activityItem.action) {
 
@@ -226,26 +253,7 @@ public class FriendsFragment extends Fragment {
         }
 
         aq.id(R.id.textViewFriendsTime).text(activityItem.when.day + " " + activityItem.when.time);
-        switch (activityItem.type) {
 
-            case All:
-                break;
-            case Episode:
-                aq.id(R.id.imageViewFriendsPoster).image(activityItem.episode.images.screen, false, true, 150, R.drawable.episode_backdrop,aq.getCachedImage(R.drawable.episode_backdrop_small),AQuery.FADE_IN,AQuery.RATIO_PRESERVE);
-                aq.id(R.id.textViewFriendsItemTitle).text(activityItem.show.title + " S" + activityItem.episode.season + "E" + activityItem.episode.number);
-                break;
-            case Show:
-                aq.id(R.id.imageViewFriendsPoster).image(activityItem.show.images.poster, false, true, 150, R.drawable.poster_small,aq.getCachedImage(R.drawable.poster_small),AQuery.FADE_IN);
-                aq.id(R.id.textViewFriendsItemTitle).text(activityItem.show.title);
-
-                break;
-            case Movie:
-                aq.id(R.id.imageViewFriendsPoster).image(activityItem.movie.images.fanart, false, true, 150, R.drawable.poster_small,aq.getCachedImage(R.drawable.poster_small),AQuery.FADE_IN);
-                aq.id(R.id.textViewFriendsItemTitle).text(activityItem.movie.title);
-                break;
-            case List:
-                break;
-        }
 
 
 //        relativeLayoutFriends.setOnTouchListener(new View.OnTouchListener() {

@@ -23,6 +23,16 @@
     <color name="card_pressed">#ebebeb</color>
     <color name="card_gray">#e5e5e5</color>
     <color name="card_focused">#ebebeb</color>
-    <color name="red">#ff0000</color>
+    <color name="rating_10">#ff0000</color>
+    <color name="rating_9">#ef0000</color>
+    <color name="rating_8">#cf0000</color>
+    <color name="rating_7">#af0000</color>
+    <color name="rating_6">#9f0000</color>
+    <color name="rating_5">#8f0000</color>
+    <color name="rating_4">#7f0000</color>
+    <color name="rating_3">#5f0000</color>
+    <color name="rating_2">#3f0000</color>
+    <color name="rating_1">#1f0000</color>
+
 
 </resources>

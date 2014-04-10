@@ -299,23 +299,66 @@ public class ShowSeasonsFragment extends Fragment implements MarkEpisodeSeenUnse
                     }
                 });
             }
-            if (lista.get(position).rating != null) {
-                switch (lista.get(position).rating) {
-                    case Love:
-                        aq.id(R.id.imageViewSeasonsEpisodeLoveTag).visible();
-                        aq.id(R.id.imageViewSeasonsEpisodeHateTag).gone();
-                        break;
-                    case Hate:
-                        aq.id(R.id.imageViewSeasonsEpisodeLoveTag).gone();
-                        aq.id(R.id.imageViewSeasonsEpisodeHateTag).visible();
-                        break;
 
-                }
-            } else {
                 aq.id(R.id.imageViewSeasonsEpisodeLoveTag).gone();
                 aq.id(R.id.imageViewSeasonsEpisodeHateTag).gone();
 
+
+
+            if ("0".equals(lista.get(position).ratingAdvanced)) {
+                aq.id(R.id.relativeLayoutAdvanceRating).gone();
+            } else if ("1".equals(lista.get(position).ratingAdvanced)) {
+                aq.id(R.id.relativeLayoutAdvanceRatingBackground).background(R.drawable.rate_tag_triangle_1);
+                aq.id(R.id.relativeLayoutAdvanceRating).visible();
+                aq.id(R.id.textViewEpisodeRatingAdvance).text(lista.get(position).ratingAdvanced);
+            } else if ("2".equals(lista.get(position).ratingAdvanced)) {
+
+                aq.id(R.id.relativeLayoutAdvanceRatingBackground).background(R.drawable.rate_tag_triangle_2);
+                aq.id(R.id.relativeLayoutAdvanceRating).visible();
+                aq.id(R.id.textViewEpisodeRatingAdvance).text(lista.get(position).ratingAdvanced);
+            } else if ("3".equals(lista.get(position).ratingAdvanced)) {
+
+                aq.id(R.id.relativeLayoutAdvanceRatingBackground).background(R.drawable.rate_tag_triangle_3);
+                aq.id(R.id.relativeLayoutAdvanceRating).visible();
+                aq.id(R.id.textViewEpisodeRatingAdvance).text(lista.get(position).ratingAdvanced);
+            } else if ("4".equals(lista.get(position).ratingAdvanced)) {
+
+                aq.id(R.id.relativeLayoutAdvanceRatingBackground).background(R.drawable.rate_tag_triangle_4);
+                aq.id(R.id.relativeLayoutAdvanceRating).visible();
+                aq.id(R.id.textViewMovieRatingAdvance).text(lista.get(position).ratingAdvanced);
+            } else if ("5".equals(lista.get(position).ratingAdvanced)) {
+
+                aq.id(R.id.relativeLayoutAdvanceRatingBackground).background(R.drawable.rate_tag_triangle_5);
+                aq.id(R.id.relativeLayoutAdvanceRating).visible();
+                aq.id(R.id.textViewEpisodeRatingAdvance).text(lista.get(position).ratingAdvanced);
+            } else if ("6".equals(lista.get(position).ratingAdvanced)) {
+
+                aq.id(R.id.relativeLayoutAdvanceRatingBackground).background(R.drawable.rate_tag_triangle_6);
+                aq.id(R.id.relativeLayoutAdvanceRating).visible();
+                aq.id(R.id.textViewEpisodeRatingAdvance).text(lista.get(position).ratingAdvanced);
+            } else if ("7".equals(lista.get(position).ratingAdvanced)) {
+
+                aq.id(R.id.relativeLayoutAdvanceRatingBackground).background(R.drawable.rate_tag_triangle_7);
+                aq.id(R.id.relativeLayoutAdvanceRating).visible();
+                aq.id(R.id.textViewEpisodeRatingAdvance).text(lista.get(position).ratingAdvanced);
+            } else if ("8".equals(lista.get(position).ratingAdvanced)) {
+
+                aq.id(R.id.relativeLayoutAdvanceRatingBackground).background(R.drawable.rate_tag_triangle_8);
+                aq.id(R.id.relativeLayoutAdvanceRating).visible();
+                aq.id(R.id.textViewEpisodeRatingAdvance).text(lista.get(position).ratingAdvanced);
+            } else if ("9".equals(lista.get(position).ratingAdvanced)) {
+
+                aq.id(R.id.relativeLayoutAdvanceRatingBackground).background(R.drawable.rate_tag_triangle_9);
+                aq.id(R.id.relativeLayoutAdvanceRating).visible();
+                aq.id(R.id.textViewShowRatingAdvance).text(lista.get(position).ratingAdvanced);
+            } else if ("10".equals(lista.get(position).ratingAdvanced)) {
+
+                aq.id(R.id.relativeLayoutAdvanceRatingBackground).background(R.drawable.rate_tag_triangle_10);
+                aq.id(R.id.relativeLayoutAdvanceRating).visible();
+                aq.id(R.id.textViewEpisodeRatingAdvance).text(lista.get(position).ratingAdvanced);
+                aq.id(R.id.textViewEpisodeRatingAdvance).margin(0, 0, 1, 0);
             }
+
 
             if (lista.get(position).inWatchlist)
                 aq.id(R.id.imageViewSeasonsEpisodeWatchlistTag).visible();
