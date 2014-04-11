@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -26,9 +27,11 @@ public class RatingAdvance extends DialogFragment {
         // Get the layout inflater
         LayoutInflater inflater = getActivity().getLayoutInflater();
 
+        View view = inflater.inflate(R.layout.rate_advance, null);
+
         // Inflate and set the layout for the dialog
         // Pass null as the parent view because its going in the dialog layout
-        builder.setView(inflater.inflate(R.layout.rate_advance, null))
+        builder.setView(view)
                 // Add action buttons
                 .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                     @Override
@@ -43,9 +46,9 @@ public class RatingAdvance extends DialogFragment {
                 });
 
 
-        ratingBar = (RatingBar) inflater.inflate(R.layout.rate_advance, null).findViewById(R.id.ratingBar);
-        txtRatingValue = (TextView) inflater.inflate(R.layout.rate_advance, null).findViewById(R.id.textViewRatingBar);
-
+        ratingBar = (RatingBar) view.findViewById(R.id.ratingBar);
+        txtRatingValue = (TextView) view.findViewById(R.id.textViewRatingBar);
+        txtRatingValue.setText("asdasd");
         //if rating value is changed,
         //display the current rating value in the result (textview) automatically
         ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
