@@ -140,6 +140,9 @@ public class ShowsFragment extends Fragment implements DownloadTrendingShows.onT
             aq.id(R.id.imageViewShowsShowSeenTag).visible();
         else
             aq.id(R.id.imageViewShowsShowSeenTag).gone();
+
+
+
         if("0".equals(show.ratingAdvanced)) {
             aq.id(R.id.relativeLayoutAdvanceRating).gone();
         } else if("1".equals(show.ratingAdvanced)){

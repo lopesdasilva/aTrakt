@@ -136,24 +136,60 @@ public class EpisodesTonightFragment extends ListFragment implements DownloadDay
             aq.id(R.id.textViewEpisodeTonightShowNetwork).text(mListEpisodes.get(position).show.network);
             aq.id(R.id.textViewEpisodeTonightRatingsPercentage).text(mListEpisodes.get(position).episode.ratings.percentage + "%");
 
-            if (mListEpisodes.get(position).episode.rating != null) {
-                switch (mListEpisodes.get(position).episode.rating) {
 
-                    case Love:
-                        aq.id(R.id.imageViewEpsiodeTonightLoveTag).visible();
-                        break;
-                    case Hate:
+                if("0".equals(mListEpisodes.get(position).episode.ratingAdvanced)) {
+                    aq.id(R.id.relativeLayoutAdvanceRating).gone();
+                } else if("1".equals(mListEpisodes.get(position).episode.ratingAdvanced)){
+                    aq.id(R.id.relativeLayoutAdvanceRatingBackground).background(R.drawable.rate_tag_triangle_1);
+                    aq.id(R.id.relativeLayoutAdvanceRating).visible();
+                    aq.id(R.id.textViewShowRatingAdvance).text(mListEpisodes.get(position).episode.ratingAdvanced);
+                } else if("2".equals(mListEpisodes.get(position).episode.ratingAdvanced)){
 
-                        aq.id(R.id.imageViewEpsiodeTonightLoveTag).gone();
-                        break;
-                    case Unrate:
+                    aq.id(R.id.relativeLayoutAdvanceRatingBackground).background(R.drawable.rate_tag_triangle_2);
+                    aq.id(R.id.relativeLayoutAdvanceRating).visible();
+                    aq.id(R.id.textViewShowRatingAdvance).text(mListEpisodes.get(position).episode.ratingAdvanced);
+                } else if("3".equals(mListEpisodes.get(position).episode.ratingAdvanced)){
 
-                        aq.id(R.id.imageViewEpsiodeTonightLoveTag).gone();
-                        break;
+                    aq.id(R.id.relativeLayoutAdvanceRatingBackground).background(R.drawable.rate_tag_triangle_3);
+                    aq.id(R.id.relativeLayoutAdvanceRating).visible();
+                    aq.id(R.id.textViewShowRatingAdvance).text(mListEpisodes.get(position).episode.ratingAdvanced);
+                } else if("4".equals(mListEpisodes.get(position).episode.ratingAdvanced)){
+
+                    aq.id(R.id.relativeLayoutAdvanceRatingBackground).background(R.drawable.rate_tag_triangle_4);
+                    aq.id(R.id.relativeLayoutAdvanceRating).visible();
+                    aq.id(R.id.textViewMovieRatingAdvance).text(mListEpisodes.get(position).episode.ratingAdvanced);
+                } else if("5".equals(mListEpisodes.get(position).episode.ratingAdvanced)){
+
+                    aq.id(R.id.relativeLayoutAdvanceRatingBackground).background(R.drawable.rate_tag_triangle_5);
+                    aq.id(R.id.relativeLayoutAdvanceRating).visible();
+                    aq.id(R.id.textViewShowRatingAdvance).text(mListEpisodes.get(position).episode.ratingAdvanced);
+                } else if("6".equals(mListEpisodes.get(position).episode.ratingAdvanced)){
+
+                    aq.id(R.id.relativeLayoutAdvanceRatingBackground).background(R.drawable.rate_tag_triangle_6);
+                    aq.id(R.id.relativeLayoutAdvanceRating).visible();
+                    aq.id(R.id.textViewShowRatingAdvance).text(mListEpisodes.get(position).episode.ratingAdvanced);
+                } else if("7".equals(mListEpisodes.get(position).episode.ratingAdvanced)){
+
+                    aq.id(R.id.relativeLayoutAdvanceRatingBackground).background(R.drawable.rate_tag_triangle_7);
+                    aq.id(R.id.relativeLayoutAdvanceRating).visible();
+                    aq.id(R.id.textViewShowRatingAdvance).text(mListEpisodes.get(position).episode.ratingAdvanced);
+                } else if("8".equals(mListEpisodes.get(position).episode.ratingAdvanced)){
+
+                    aq.id(R.id.relativeLayoutAdvanceRatingBackground).background(R.drawable.rate_tag_triangle_8);
+                    aq.id(R.id.relativeLayoutAdvanceRating).visible();
+                    aq.id(R.id.textViewShowRatingAdvance).text(mListEpisodes.get(position).episode.ratingAdvanced);
+                } else if("9".equals(mListEpisodes.get(position).episode.ratingAdvanced)){
+
+                    aq.id(R.id.relativeLayoutAdvanceRatingBackground).background(R.drawable.rate_tag_triangle_9);
+                    aq.id(R.id.relativeLayoutAdvanceRating).visible();
+                    aq.id(R.id.textViewShowRatingAdvance).text(mListEpisodes.get(position).episode.ratingAdvanced);
+                } else if("10".equals(mListEpisodes.get(position).episode.ratingAdvanced)){
+
+                    aq.id(R.id.relativeLayoutAdvanceRatingBackground).background(R.drawable.rate_tag_triangle_10);
+                    aq.id(R.id.relativeLayoutAdvanceRating).visible();
+                    aq.id(R.id.textViewShowRatingAdvance).text(mListEpisodes.get(position).episode.ratingAdvanced);
+                    aq.id(R.id.textViewShowRatingAdvance).margin(0,0,1,0);
                 }
-
-            } else
-                aq.id(R.id.imageViewEpsiodeTonightLoveTag).gone();
 
             if (mListEpisodes.get(position).episode.watched != null || !mListEpisodes.get(position).episode.watched)
                 aq.id(R.id.imageViewEpsiodeTonightSeenTag).gone();

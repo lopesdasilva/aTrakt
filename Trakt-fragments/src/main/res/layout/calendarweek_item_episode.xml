@@ -58,6 +58,7 @@
     </RelativeLayout>
 
     <ImageView
+        android:visibility="gone"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:id="@+id/imageViewCalendarEpisodeLoveTag"
@@ -66,12 +67,48 @@
         android:layout_alignRight="@+id/imageViewCalendarEpisodeBackdrop"/>
 
     <ImageView
+        android:visibility="gone"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:id="@+id/imageViewCalendarEpisodeHateTag"
         android:src="@drawable/hated_tag"
         android:layout_alignParentTop="true"
         android:layout_alignRight="@+id/imageViewCalendarEpisodeBackdrop"/>
+
+
+    <RelativeLayout
+        android:id="@+id/relativeLayoutAdvanceRating"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignTop="@+id/imageViewCalendarEpisodeBackdrop"
+        android:layout_alignRight="@+id/imageViewCalendarEpisodeBackdrop">
+        <RelativeLayout
+            android:id="@+id/relativeLayoutAdvanceRatingBackground"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/rate_tag_triangle"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:rotation="-135"
+            android:transformPivotX="33dp"
+            android:transformPivotY="7dp">
+
+        </RelativeLayout>
+        <TextView
+            android:layout_marginRight="3dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="9"
+            android:textAlignment="center"
+            android:rotation="45"
+            android:textSize="15dp"
+            android:textColor="@color/white"
+            android:id="@+id/textViewEpisodeRatingAdvance"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true" />
+    </RelativeLayout>
+
 
     <ImageView
         android:layout_width="50dp"

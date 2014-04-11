@@ -120,9 +120,44 @@
         android:layout_marginRight="2dp"
         android:layout_alignLeft="@+id/textViewEpisodeTonightEpisodeTitle"/>
 
+    <RelativeLayout
+        android:id="@+id/relativeLayoutAdvanceRating"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_below="@+id/textViewEpisodeTonightSeasonEpisodeNumber"
+        android:layout_alignParentRight="true">
+        <RelativeLayout
+            android:id="@+id/relativeLayoutAdvanceRatingBackground"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:background="@drawable/rate_tag_triangle"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:rotation="-135"
+            android:transformPivotX="53dp"
+            android:transformPivotY="10dp">
+
+        </RelativeLayout>
+        <TextView
+
+            android:paddingLeft="1dp"
+            android:paddingRight="1dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="10"
+            android:textAlignment="center"
+            android:rotation="45"
+            android:textSize="25dp"
+            android:textColor="@color/white"
+            android:id="@+id/textViewShowRatingAdvance"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true" />
+    </RelativeLayout>
+
     <ImageView
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:id="@+id/imageViewEpsiodeTonightSeenTag"
         android:layout_below="@+id/textViewEpisodeTonightSeasonEpisodeNumber"
         android:layout_alignParentRight="true"

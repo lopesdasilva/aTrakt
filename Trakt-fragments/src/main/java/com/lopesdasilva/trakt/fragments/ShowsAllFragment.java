@@ -152,22 +152,61 @@ public class ShowsAllFragment extends Fragment implements DownloadTrendingShows.
                 aq.id(R.id.imageViewShowsShowSeenTag).visible();
             else
                 aq.id(R.id.imageViewShowsShowSeenTag).gone();
-            if (mList.get(position).rating != null) {
-                switch (mList.get(position).rating) {
 
-                    case Love:
-                        aq.id(R.id.imageViewShowsShowLovedTag).visible();
-                        aq.id(R.id.imageViewShowsShowHatedTag).gone();
-                        break;
-                    case Hate:
-                        aq.id(R.id.imageViewShowsShowLovedTag).gone();
-                        aq.id(R.id.imageViewShowsShowHatedTag).visible();
-                        break;
+
+                if(mList.get(position).ratingAdvanced==null || "0".equals(mList.get(position).ratingAdvanced)) {
+                    aq.id(R.id.relativeLayoutAdvanceRating).gone();
+                } else if("1".equals(mList.get(position).ratingAdvanced)){
+                    aq.id(R.id.relativeLayoutAdvanceRatingBackground).background(R.drawable.rate_tag_triangle_1);
+                    aq.id(R.id.relativeLayoutAdvanceRating).visible();
+                    aq.id(R.id.textViewShowRatingAdvance).text(mList.get(position).ratingAdvanced);
+                } else if("2".equals(mList.get(position).ratingAdvanced)){
+
+                    aq.id(R.id.relativeLayoutAdvanceRatingBackground).background(R.drawable.rate_tag_triangle_2);
+                    aq.id(R.id.relativeLayoutAdvanceRating).visible();
+                    aq.id(R.id.textViewShowRatingAdvance).text(mList.get(position).ratingAdvanced);
+                } else if("3".equals(mList.get(position).ratingAdvanced)){
+
+                    aq.id(R.id.relativeLayoutAdvanceRatingBackground).background(R.drawable.rate_tag_triangle_3);
+                    aq.id(R.id.relativeLayoutAdvanceRating).visible();
+                    aq.id(R.id.textViewShowRatingAdvance).text(mList.get(position).ratingAdvanced);
+                } else if("4".equals(mList.get(position).ratingAdvanced)){
+
+                    aq.id(R.id.relativeLayoutAdvanceRatingBackground).background(R.drawable.rate_tag_triangle_4);
+                    aq.id(R.id.relativeLayoutAdvanceRating).visible();
+                    aq.id(R.id.textViewShowRatingAdvance).text(mList.get(position).ratingAdvanced);
+                } else if("5".equals(mList.get(position).ratingAdvanced)){
+
+                    aq.id(R.id.relativeLayoutAdvanceRatingBackground).background(R.drawable.rate_tag_triangle_5);
+                    aq.id(R.id.relativeLayoutAdvanceRating).visible();
+                    aq.id(R.id.textViewShowRatingAdvance).text(mList.get(position).ratingAdvanced);
+                } else if("6".equals(mList.get(position).ratingAdvanced)){
+
+                    aq.id(R.id.relativeLayoutAdvanceRatingBackground).background(R.drawable.rate_tag_triangle_6);
+                    aq.id(R.id.relativeLayoutAdvanceRating).visible();
+                    aq.id(R.id.textViewShowRatingAdvance).text(mList.get(position).ratingAdvanced);
+                } else if("7".equals(mList.get(position).ratingAdvanced)){
+
+                    aq.id(R.id.relativeLayoutAdvanceRatingBackground).background(R.drawable.rate_tag_triangle_7);
+                    aq.id(R.id.relativeLayoutAdvanceRating).visible();
+                    aq.id(R.id.textViewShowRatingAdvance).text(mList.get(position).ratingAdvanced);
+                } else if("8".equals(mList.get(position).ratingAdvanced)){
+
+                    aq.id(R.id.relativeLayoutAdvanceRatingBackground).background(R.drawable.rate_tag_triangle_8);
+                    aq.id(R.id.relativeLayoutAdvanceRating).visible();
+                    aq.id(R.id.textViewShowRatingAdvance).text(mList.get(position).ratingAdvanced);
+                } else if("9".equals(mList.get(position).ratingAdvanced)){
+
+                    aq.id(R.id.relativeLayoutAdvanceRatingBackground).background(R.drawable.rate_tag_triangle_9);
+                    aq.id(R.id.relativeLayoutAdvanceRating).visible();
+                    aq.id(R.id.textViewShowRatingAdvance).text(mList.get(position).ratingAdvanced);
+                } else if("10".equals(mList.get(position).ratingAdvanced)){
+
+                    aq.id(R.id.relativeLayoutAdvanceRatingBackground).background(R.drawable.rate_tag_triangle_10);
+                    aq.id(R.id.relativeLayoutAdvanceRating).visible();
+                    aq.id(R.id.textViewShowRatingAdvance).text(mList.get(position).ratingAdvanced);
+                    aq.id(R.id.textViewShowRatingAdvance).margin(0,0,1,0);
                 }
-            }else{
-                aq.id(R.id.imageViewShowsShowLovedTag).gone();
-                aq.id(R.id.imageViewShowsShowHatedTag).gone();
-            }
 
 
             return convertView;

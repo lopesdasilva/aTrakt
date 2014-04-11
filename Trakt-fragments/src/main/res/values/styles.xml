@@ -289,9 +289,9 @@
         <item name="android:layout_centerVertical">true</item>
         <item name="android:scaleType">fitXY</item>
     </style>
-    <style name="ratingAdvance" parent="android:Widget.Holo.RatingBar">
+    <style name="ratingAdvance" parent="android:Widget.Holo.RatingBar.Small">
         <item name="android:progressDrawable">@drawable/apptheme_ratingbar_full_holo_light</item>
-        <item name="android:minHeight">48dp</item>
-        <item name="android:maxHeight">48dp</item>
+        <item name="android:minHeight">40dp</item>
+        <item name="android:maxHeight">40dp</item>
     </style>
 </resources>
