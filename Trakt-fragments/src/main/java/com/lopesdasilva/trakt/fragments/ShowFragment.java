@@ -23,6 +23,7 @@ import com.jakewharton.trakt.entities.TvShow;
 import com.lopesdasilva.trakt.R;
 import com.lopesdasilva.trakt.Tasks.AddShowToWatchlist;
 import com.lopesdasilva.trakt.Tasks.DownloadShowInfo;
+import com.lopesdasilva.trakt.Tasks.RateAdvancedShow;
 import com.lopesdasilva.trakt.Tasks.RateShowHate;
 import com.lopesdasilva.trakt.Tasks.RateShowLove;
 import com.lopesdasilva.trakt.Tasks.RemoveShowFromWatchlist;
@@ -31,7 +32,7 @@ import com.lopesdasilva.trakt.extras.UserChecker;
 
 import java.util.Locale;
 
-public class ShowFragment extends Fragment implements ActionBar.TabListener, DownloadShowInfo.onShowInfoTaskComplete, RateShowLove.OnRatingShowLoveCompleted, UnrateShow.OnUnratingShowCompleted, RateShowHate.OnRatingShowHateCompleted, AddShowToWatchlist.OnAddShowToWatchlistCompleted, RemoveShowFromWatchlist.OnRemovingShowFromWatchlistCompleted {
+public class ShowFragment extends Fragment implements ActionBar.TabListener, DownloadShowInfo.onShowInfoTaskComplete, UnrateShow.OnUnratingShowCompleted, RateShowHate.OnRatingShowHateCompleted, AddShowToWatchlist.OnAddShowToWatchlistCompleted, RemoveShowFromWatchlist.OnRemovingShowFromWatchlistCompleted, RateShowLove.OnRatingShowLoveCompleted, RatingAdvance.OnRatingComplete, RateAdvancedShow.OnRatingAdvancedShowCompleted {
 
     private View rootView;
     private ServiceManager manager;
@@ -40,6 +41,7 @@ public class ShowFragment extends Fragment implements ActionBar.TabListener, Dow
     private TvShow mTVshow;
     private Menu mMenu;
     private ShowInfoFragment mInfoFragment;
+    private int rating_temp;
 
     public ShowFragment() {
 
@@ -80,7 +82,7 @@ public class ShowFragment extends Fragment implements ActionBar.TabListener, Dow
 
                 return true;
             case 3:
-                RatingAdvance  dialog=new RatingAdvance();
+                RatingAdvance  dialog=new RatingAdvance(this,mTVshow.ratingAdvanced);
                 dialog.show(getFragmentManager(), "NoticeDialogFragment");
 //                new RateShowHate(getActivity(),ShowFragment.this,manager,mTVshow,0).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
@@ -271,6 +273,19 @@ public class ShowFragment extends Fragment implements ActionBar.TabListener, Dow
     public void OnRemovingShowfromWatchlistCompleted(int position) {
         mTVshow.inWatchlist=false;
         updateOptionsMenu(mMenu);
+        mInfoFragment.updateInfo(mTVshow);
+    }
+
+    @Override
+    public void onRatingComplete(int rating) {
+        new RateAdvancedShow(getActivity(),this,manager,mTVshow,rating,rating).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+        rating_temp=rating;
+
+    }
+
+    @Override
+    public void OnRatingAdvancedShowCompleted(int position, RatingResponse response) {
+        mTVshow.ratingAdvanced=rating_temp+"";
         mInfoFragment.updateInfo(mTVshow);
     }
 

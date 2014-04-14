@@ -10,17 +10,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="10"
+        android:text="1"
         android:id="@+id/textViewRatingBar"
         android:layout_gravity="center_horizontal"
         style="@style/CardTitleBold.1Lines"/>
 
-    <RatingBar
-        android:id="@+id/ratingBar"
-        android:numStars="10"
-        android:stepSize="1"
-        android:layout_width="wrap_content"
+
+    <SeekBar
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:isIndicator="false"
-        style="@style/ratingAdvance"/>
+        android:id="@+id/ratingBar"
+        android:layout_gravity="center_horizontal"
+        android:max="10"
+        android:progress="1"
+        android:indeterminate="false" />
+
 </LinearLayout>

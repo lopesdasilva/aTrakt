@@ -8,7 +8,7 @@ import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.RatingBar;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.lopesdasilva.trakt.R;
@@ -18,8 +18,16 @@ import com.lopesdasilva.trakt.R;
  */
 public class RatingAdvance extends DialogFragment {
 
-    private RatingBar ratingBar;
+    private final String currentRating;
+    private SeekBar ratingBar;
     private TextView txtRatingValue;
+    private OnRatingComplete listener;
+
+    public RatingAdvance(OnRatingComplete listener, String ratingAdvanced){
+        this.listener=listener;
+        this.currentRating=ratingAdvanced;
+
+    }
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -36,7 +44,8 @@ public class RatingAdvance extends DialogFragment {
                 .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
-                        // sign in the user ...
+
+                        listener.onRatingComplete(Integer.parseInt(txtRatingValue.getText().toString()));
                     }
                 })
                 .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
@@ -46,20 +55,35 @@ public class RatingAdvance extends DialogFragment {
                 });
 
 
-        ratingBar = (RatingBar) view.findViewById(R.id.ratingBar);
+        ratingBar = (SeekBar) view.findViewById(R.id.ratingBar);
+        ratingBar.setProgress(Integer.parseInt(currentRating));
         txtRatingValue = (TextView) view.findViewById(R.id.textViewRatingBar);
-        txtRatingValue.setText("asdasd");
+        txtRatingValue.setText(currentRating);
         //if rating value is changed,
         //display the current rating value in the result (textview) automatically
-        ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
-            public void onRatingChanged(RatingBar ratingBar, float rating,
-                                        boolean fromUser) {
+        ratingBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
-                txtRatingValue.setText(String.valueOf(rating));
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                txtRatingValue.setText(String.valueOf(i));
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
 
             }
         });
 
         return builder.create();
     }
+
+    public interface OnRatingComplete{
+        void onRatingComplete(int rating);
+    }
+
 }
