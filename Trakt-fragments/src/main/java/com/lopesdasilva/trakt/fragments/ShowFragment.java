@@ -109,22 +109,8 @@ public class ShowFragment extends Fragment implements ActionBar.TabListener, Dow
         menu.add(0, 0, 0,  R.string.remove_watchlist);
         else
         menu.add(0, 1, 1, R.string.watchlist);
-        if(mTVshow.rating!=null){
-            switch (mTVshow.rating){
 
-                case Love:
-                    menu.add(0, 2, 2,  R.string.unrate);
-                    menu.add(0, 3, 3,  R.string.hated);
-                    break;
-                case Hate:
-                    menu.add(0, 2, 2,  R.string.unrate);
-                    menu.add(0, 4, 4,  R.string.loved);
-                    break;
-            }
-        }else{
-            menu.add(0, 3, 3,  R.string.hated);
-            menu.add(0, 4, 4,  R.string.loved);
-        }
+            menu.add(0, 3, 3,  R.string.rate);
 
       //  menu.add(0, 4, 4, R.string.seen);
         menu.add(0,5,5, R.string.share).setIcon(android.R.drawable.ic_menu_share).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);

@@ -175,23 +175,23 @@ public class WatchlistEpisodes extends DialogFragment implements MarkEpisodeSeen
             aq.id(R.id.textViewSeasonsEpisodeDate).text("" + dateFormat.format(lista.get(position).firstAired));
             aq.id(R.id.imageViewSeasonsEpisodeScreen).image(lista.get(position).images.screen, false, true, 200, 0);
 
-//            if (lista.get(position).watched) {
-//                aq.id(R.id.imageViewSeasonsEpisodeSeenTag).visible();
+            if (lista.get(position).watched) {
+                aq.id(R.id.imageViewSeasonsEpisodeSeenTag).visible();
 //                aq.id(R.id.imageViewSeasonsEpisodeOptions).clicked(new View.OnClickListener() {
 //                    @Override
 //                    public void onClick(View view) {
 //                        showContextMenu(view, lista.get(position), position);
 //                    }
 //                });
-//            } else {
-//                aq.id(R.id.imageViewSeasonsEpisodeSeenTag).gone();
-            aq.id(R.id.imageViewSeasonsEpisodeOptions).clicked(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    showSeenMenu(view, currentShow.episodes.get(position), position);
-                }
-            });
-//            }
+            } else {
+                aq.id(R.id.imageViewSeasonsEpisodeSeenTag).gone();
+//            aq.id(R.id.imageViewSeasonsEpisodeOptions).clicked(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    showSeenMenu(view, currentShow.episodes.get(position), position);
+//                }
+//            });
+            }
 //            if (lista.get(position).rating != null) {
 //                switch (lista.get(position).rating) {
 //                    case Love:
@@ -205,7 +205,7 @@ public class WatchlistEpisodes extends DialogFragment implements MarkEpisodeSeen
 //
 //                }
 //            } else {
-//                aq.id(R.id.imageViewSeasonsEpisodeLoveTag).gone();
+                aq.id(R.id.relativeLayoutAdvanceRating).gone();
 //                aq.id(R.id.imageViewSeasonsEpisodeHateTag).gone();
 //
 //            }

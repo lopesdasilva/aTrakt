@@ -70,6 +70,7 @@
     <string name="cancel">Cancel</string>
     <string name="ok">Ok</string>
     <string name="widget_tonight_episodes_empty">No shows tonight</string>
+    <string name="rate">Rate</string>
     <array name="watchlist">
 
 

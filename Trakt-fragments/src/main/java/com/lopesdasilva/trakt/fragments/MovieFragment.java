@@ -28,6 +28,7 @@ import com.jakewharton.trakt.entities.Response;
 import com.lopesdasilva.trakt.R;
 import com.lopesdasilva.trakt.Tasks.CheckInChecker;
 import com.lopesdasilva.trakt.Tasks.DownloadMovieInfo;
+import com.lopesdasilva.trakt.Tasks.RateAdvancedMovie;
 import com.lopesdasilva.trakt.Tasks.RateMovieHate;
 import com.lopesdasilva.trakt.Tasks.RateMovieLove;
 import com.lopesdasilva.trakt.Tasks.UnrateMovie;
@@ -36,7 +37,7 @@ import com.lopesdasilva.trakt.extras.UserChecker;
 import java.util.Date;
 import java.util.Locale;
 
-public class MovieFragment extends Fragment implements ActionBar.TabListener, DownloadMovieInfo.OnMovieTaskCompleted, RateMovieHate.OnRatingMovieHateCompleted, RateMovieLove.OnRatingMovieLoveCompleted, UnrateMovie.OnUnratingMovieCompleted {
+public class MovieFragment extends Fragment implements ActionBar.TabListener, DownloadMovieInfo.OnMovieTaskCompleted, RateMovieHate.OnRatingMovieHateCompleted, RateMovieLove.OnRatingMovieLoveCompleted, UnrateMovie.OnUnratingMovieCompleted, RatingAdvance.OnRatingComplete, RateAdvancedMovie.OnRatingAdvancedMovieCompleted {
 
     private View rootView;
     private ServiceManager manager;
@@ -49,6 +50,7 @@ public class MovieFragment extends Fragment implements ActionBar.TabListener, Do
     private ImageView mRefreshView;
     private DownloadMovieInfo mTaskDownloadMovie;
     private String mUsername;
+    private int rating;
 
     public MovieFragment() {
 
@@ -128,7 +130,9 @@ public class MovieFragment extends Fragment implements ActionBar.TabListener, Do
                 new MovieWatchlist().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
                 return true;
             case 4:
-                new RateMovieLove(getActivity(), MovieFragment.this, manager, mMovie, 0).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+                RatingAdvance  dialog=new RatingAdvance(this,mMovie.ratingAdvanced);
+                dialog.show(getFragmentManager(), "NoticeDialogFragment");
+
                 break;
             case 5:
                 new RateMovieHate(getActivity(), MovieFragment.this, manager, mMovie, 0).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
@@ -191,24 +195,9 @@ public class MovieFragment extends Fragment implements ActionBar.TabListener, Do
             menu.add(0, 3, 3, R.string.watchlist);
 
         menu.add(0, 7, 7, R.string.checkin);
+        menu.add(0, 4, 4, R.string.rate);
 
-        if(mMovie.rating!=null){
-            switch (mMovie.rating){
 
-                case Love:
-                    menu.add(0, 6, 6, R.string.unrate);
-                    menu.add(0, 5, 5,  R.string.hated);
-                    break;
-                case Hate:
-                    menu.add(0, 6, 6,  R.string.unrate);
-                    menu.add(0, 4, 4, R.string.loved);
-
-                    break;
-            }
-        }   else{
-            menu.add(0, 4, 4, R.string.loved);
-            menu.add(0, 5, 5, R.string.hated);
-        }
 
     }
 
@@ -315,6 +304,19 @@ public class MovieFragment extends Fragment implements ActionBar.TabListener, Do
     @Override
     public void onDownloadMovieInfoComplete(Movie response) {
          updateMovie(response);
+    }
+
+    @Override
+    public void onRatingComplete(int rating) {
+        this.rating=rating;
+        new RateAdvancedMovie(getActivity(), MovieFragment.this, manager, mMovie,rating, 0)
+                .executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+    }
+
+    @Override
+    public void OnRatingAdvancedMovieCompleted(int position, RatingResponse response) {
+        mMovie.ratingAdvanced=rating+"";
+        updateMovie(mMovie);
     }
 
 
@@ -427,10 +429,10 @@ public class MovieFragment extends Fragment implements ActionBar.TabListener, Do
             try {
                 if (mMovie.inWatchlist) {
                     Log.d("Trakt", "Adding to Unwatchlist");
-                    return manager.movieService().unwatchlist().movie(mMovie.title).fire();
+                    return manager.movieService().unwatchlist().movie(mMovie.title,mMovie.year).fire();
                 } else {
                     Log.d("Trakt", "Adding to Watchlist");
-                    return manager.movieService().watchlist().movie(mMovie.title).fire();
+                    return manager.movieService().watchlist().movie(mMovie.title,mMovie.year).fire();
                 }
             } catch (Exception e) {
                 this.e = e;

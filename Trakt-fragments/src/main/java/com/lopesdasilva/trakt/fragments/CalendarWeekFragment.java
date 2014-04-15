@@ -22,6 +22,7 @@ import com.lopesdasilva.trakt.R;
 import com.lopesdasilva.trakt.Tasks.DownloadWeekCalendar;
 import com.lopesdasilva.trakt.Tasks.EpisodeWatchlistUnWatchlist;
 import com.lopesdasilva.trakt.Tasks.MarkEpisodeSeenUnseen;
+import com.lopesdasilva.trakt.Tasks.RateAdvancedEpisode;
 import com.lopesdasilva.trakt.Tasks.RateEpisodeHate;
 import com.lopesdasilva.trakt.Tasks.RateEpisodeLove;
 import com.lopesdasilva.trakt.Tasks.UnrateEpisode;
@@ -39,7 +40,7 @@ import java.util.List;
 /**
  * Created by lopesdasilva on 27/05/13.
  */
-public class CalendarWeekFragment extends Fragment implements DownloadWeekCalendar.OnWeekTaskCompleted, MarkEpisodeSeenUnseen.OnMarkSeenUnseenCompleted, EpisodeWatchlistUnWatchlist.WatchlistUnWatchlistCompleted, RateEpisodeHate.OnMarkEpisodeHateCompleted, RateEpisodeLove.OnMarkEpisodeLoveCompleted, UnrateEpisode.OnMarkEpisodeNoneCompleted {
+public class CalendarWeekFragment extends Fragment implements DownloadWeekCalendar.OnWeekTaskCompleted, MarkEpisodeSeenUnseen.OnMarkSeenUnseenCompleted, EpisodeWatchlistUnWatchlist.WatchlistUnWatchlistCompleted, RateEpisodeHate.OnMarkEpisodeHateCompleted, RateEpisodeLove.OnMarkEpisodeLoveCompleted, UnrateEpisode.OnMarkEpisodeNoneCompleted, RatingAdvance.OnRatingComplete, RateAdvancedEpisode.OnRatingAdvancedEpisodeCompleted {
 
     private ServiceManager manager;
     private DownloadWeekCalendar mTaskDownloadWeekCalendar;
@@ -50,6 +51,8 @@ public class CalendarWeekFragment extends Fragment implements DownloadWeekCalend
     private List<CalendarDate.CalendarTvShowEpisode> lista = new LinkedList<CalendarDate.CalendarTvShowEpisode>();
     private View rootView;
     private StickyGridHeadersGridView l;
+    private int rating;
+    private int temp_position;
 
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -140,23 +143,9 @@ public class CalendarWeekFragment extends Fragment implements DownloadWeekCalend
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                 builder.setTitle(lista.get(position).show.title +" - S"+lista.get(position).episode.season+"E"+lista.get(position).episode.number);
-                String[] options = new String[4];
-                if (lista.get(position).episode.rating != null) {
+                String[] options = new String[3];
 
-                    switch (lista.get(position).episode.rating) {
-                        case Love:
-                            options[1] = "Remove Rating";
-                            options[2] = "Mark as Hated";
-                            break;
-                        case Hate:
-                            options[2] = "Remove Rating";
-                            options[1] = "Mark as Loved";
-                            break;
-                    }
-                } else {
-                    options[1] = "Mark as Loved";
-                    options[2] = "Mark as Hated";
-                }
+                    options[1] = getResources().getString(R.string.rate);
                 if (lista.get(position).episode.watched)
                     options[0] = "Mark as unwatched";
                 else
@@ -164,9 +153,9 @@ public class CalendarWeekFragment extends Fragment implements DownloadWeekCalend
 
 
                 if (lista.get(position).episode.inWatchlist)
-                    options[3] = "Remove from watchlist";
+                    options[2] = "Remove from watchlist";
                 else
-                    options[3] = "Add to watchlist";
+                    options[2] = "Add to watchlist";
 
                 //options[4] = "Hide this movie";
 
@@ -179,20 +168,11 @@ public class CalendarWeekFragment extends Fragment implements DownloadWeekCalend
                                 new MarkEpisodeSeenUnseen(getActivity(), CalendarWeekFragment.this, manager, lista.get(position).show, lista.get(position).episode, position).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
                                 break;
                             case 1:
-                                if (lista.get(position).episode.rating != null)
-                                    new UnrateEpisode(getActivity(),CalendarWeekFragment.this,manager,lista.get(position).show,lista.get(position).episode,position).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-                                else
-                                new RateEpisodeLove(getActivity(),CalendarWeekFragment.this,manager,lista.get(position).show,lista.get(position).episode,position).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-
+                                RatingAdvance  dialogRatingAdvance=new RatingAdvance(CalendarWeekFragment.this,lista.get(position).episode.ratingAdvanced);
+                                dialogRatingAdvance.show(getFragmentManager(), "NoticeDialogFragment");
+                                temp_position=position;
                                 break;
                             case 2:
-                                if (lista.get(position).episode.rating != null)
-                                    new UnrateEpisode(getActivity(),CalendarWeekFragment.this,manager,lista.get(position).show,lista.get(position).episode,position).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-                                else
-                                new RateEpisodeHate(getActivity(),CalendarWeekFragment.this,manager,lista.get(position).show,lista.get(position).episode,position).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-
-                                break;
-                            case 3:
                                 new EpisodeWatchlistUnWatchlist(getActivity(), CalendarWeekFragment.this, manager, lista.get(position).show, lista.get(position).episode, position).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
                                 break;
                         }
@@ -250,6 +230,18 @@ public class CalendarWeekFragment extends Fragment implements DownloadWeekCalend
     @Override
     public void OnMarkEpisodeNoneCompleted(int position, RatingResponse response) {
         lista.get(position).episode.rating = null;
+        mAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onRatingComplete(int rating) {
+        this.rating=rating;
+        new RateAdvancedEpisode(getActivity(),this,manager,lista.get(temp_position).show,lista.get(temp_position).episode,rating,temp_position).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+    }
+
+    @Override
+    public void OnRatingAdvancedEpisodeCompleted(int position, RatingResponse response) {
+        lista.get(position).episode.ratingAdvanced=rating+"";
         mAdapter.notifyDataSetChanged();
     }
 

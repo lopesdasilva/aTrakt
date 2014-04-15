@@ -27,6 +27,7 @@ import com.lopesdasilva.trakt.Tasks.CheckInChecker;
 import com.lopesdasilva.trakt.Tasks.DownloadEpisodeInfo;
 import com.lopesdasilva.trakt.Tasks.EpisodeWatchlistUnWatchlist;
 import com.lopesdasilva.trakt.Tasks.MarkEpisodeSeenUnseen;
+import com.lopesdasilva.trakt.Tasks.RateAdvancedEpisode;
 import com.lopesdasilva.trakt.Tasks.RateEpisodeHate;
 import com.lopesdasilva.trakt.Tasks.RateEpisodeLove;
 import com.lopesdasilva.trakt.Tasks.UnrateEpisode;
@@ -39,7 +40,7 @@ import java.util.Date;
 /**
  * Created by lopesdasilva on 17/05/13.
  */
-public class EpisodeFragment extends Fragment implements DownloadEpisodeInfo.onEpisodeTaskComplete, MarkEpisodeSeenUnseen.OnMarkSeenUnseenCompleted, EpisodeWatchlistUnWatchlist.WatchlistUnWatchlistCompleted, RateEpisodeHate.OnMarkEpisodeHateCompleted, RateEpisodeLove.OnMarkEpisodeLoveCompleted, UnrateEpisode.OnMarkEpisodeNoneCompleted {
+public class EpisodeFragment extends Fragment implements DownloadEpisodeInfo.onEpisodeTaskComplete, MarkEpisodeSeenUnseen.OnMarkSeenUnseenCompleted, EpisodeWatchlistUnWatchlist.WatchlistUnWatchlistCompleted, RateEpisodeHate.OnMarkEpisodeHateCompleted, RateEpisodeLove.OnMarkEpisodeLoveCompleted, UnrateEpisode.OnMarkEpisodeNoneCompleted, RatingAdvance.OnRatingComplete, RateAdvancedEpisode.OnRatingAdvancedEpisodeCompleted {
     private View rootView;
     private String show;
     private int season;
@@ -52,6 +53,7 @@ public class EpisodeFragment extends Fragment implements DownloadEpisodeInfo.onE
     private DownloadEpisodeInfo mTaskDownloadEpisode;
     private String mUsername;
     private AQuery aq;
+    private int rating_temp;
 
 
     public EpisodeFragment() {
@@ -125,22 +127,8 @@ public class EpisodeFragment extends Fragment implements DownloadEpisodeInfo.onE
             menu.add(0, 2, 2, "Watchlist");
 
         menu.add(0, 3, 3, "Checkin");
-        if (episode_info.episode.rating != null) {
 
-            switch (episode_info.episode.rating) {
-                case Love:
-                    menu.add(0, 4, 4, "Hated");
-                    menu.add(0, 6, 6, "Remove rating");
-                    break;
-                case Hate:
-                    menu.add(0, 5, 5, "Loved");
-                    menu.add(0, 6, 6, "Remove rating");
-                    break;
-            }
-        }else {
-            menu.add(0, 4, 4, "Hated");
-            menu.add(0, 5, 5, "Loved");
-        }
+            menu.add(0, 4, 4, R.string.rate);
         menu.add(0,7,7,R.string.youtube);
     }
 
@@ -203,8 +191,10 @@ public class EpisodeFragment extends Fragment implements DownloadEpisodeInfo.onE
 
                 return true;
             case 4:
-                new RateEpisodeHate(getActivity(),EpisodeFragment.this,manager,episode_info.show,episode_info.episode,0).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-
+                RatingAdvance  dialog=new RatingAdvance(this,episode_info.episode.ratingAdvanced);
+                dialog.show(getFragmentManager(), "NoticeDialogFragment");
+//                new RateEpisodeHate(getActivity(),EpisodeFragment.this,manager,episode_info.show,episode_info.episode,0).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+//
                 return true;
             case 5:
                 new RateEpisodeLove(getActivity(),EpisodeFragment.this,manager,episode_info.show,episode_info.episode,0).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
@@ -461,6 +451,18 @@ public class EpisodeFragment extends Fragment implements DownloadEpisodeInfo.onE
     @Override
     public void OnMarkEpisodeNoneCompleted(int position, RatingResponse response) {
         updateRatings(response);
+    }
+
+    @Override
+    public void onRatingComplete(int rating) {
+        new RateAdvancedEpisode(getActivity(),this,manager,episode_info.show,episode_info.episode,rating,rating).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+        rating_temp=rating;
+    }
+
+    @Override
+    public void OnRatingAdvancedEpisodeCompleted(int position, RatingResponse response) {
+        episode_info.episode.ratingAdvanced=rating_temp+"";
+        updateUI();
     }
 
     private class EpisodeCheckIn extends AsyncTask<Void, Void, Response> {
