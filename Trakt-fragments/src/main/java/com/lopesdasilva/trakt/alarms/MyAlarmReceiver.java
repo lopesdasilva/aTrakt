@@ -8,6 +8,7 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -28,7 +29,10 @@ import java.util.List;
 /**
  * Created by lopesdasilva on 18/05/13.
  */
+
+
 public class MyAlarmReceiver extends BroadcastReceiver implements DownloadDayCalendar.OnDayCalendarTaskCompleted {
+    public static final String PREFS_NAME = "TraktPrefsFile";
     private final String REMINDER_BUNDLE = "MyReminderBundle";
     private ServiceManager manager;
     private Context context;
@@ -45,7 +49,7 @@ public class MyAlarmReceiver extends BroadcastReceiver implements DownloadDayCal
         AlarmManager alarmMgr = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(context, MyAlarmReceiver.class);
         intent.putExtra(REMINDER_BUNDLE, extras);
-        PendingIntent pendingIntent =  PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 //        Calendar time = Calendar.getInstance();
 //        time.setTimeInMillis(System.currentTimeMillis());
 //        time.add(Calendar.SECOND, 60);
@@ -69,32 +73,34 @@ public class MyAlarmReceiver extends BroadcastReceiver implements DownloadDayCal
 
 // With setInexactRepeating(), you have to use one of the AlarmManager interval
 // constants--in this case, AlarmManager.INTERVAL_DAY.
-        alarmMgr.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),  AlarmManager.INTERVAL_DAY, pendingIntent);
+        alarmMgr.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
 
     }
 
     @Override
     public void onReceive(Context context, Intent intent) {
+        SharedPreferences settings = context.getSharedPreferences(PREFS_NAME, 0);
+        String mUsername = settings.getString("username", null);
+        if (mUsername != null) {
+            if (intent != null && intent.getAction() != null && intent.getAction().equals("android.intent.action.BOOT_COMPLETED")) {
+                Log.d("Trakt it", "Android reboot rescheduling alarm to get shows tonight");
+                Bundle bundle = new Bundle();
+                // add extras here..
+                MyAlarmReceiver alarm = new MyAlarmReceiver(context, bundle, 24);
+            } else {
+                this.context = context;
+                // here you can get the extras you passed in when creating the alarm
+                //intent.getBundleExtra(REMINDER_BUNDLE));
+                Log.d("Trakt Fragments", "The alarm has ended");
+                Toast.makeText(context, "Alarm went off", Toast.LENGTH_SHORT).show();
 
-        if (intent!=null && intent.getAction()!=null && intent.getAction().equals("android.intent.action.BOOT_COMPLETED")) {
-            Log.d("Trakt it", "Android reboot rescheduling alarm to get shows tonight");
-            Bundle bundle = new Bundle();
-            // add extras here..
-            MyAlarmReceiver alarm = new MyAlarmReceiver(context, bundle, 24);
-        }else {
-            this.context = context;
-            // here you can get the extras you passed in when creating the alarm
-            //intent.getBundleExtra(REMINDER_BUNDLE));
-            Log.d("Trakt Fragments", "The alarm has ended");
-            Toast.makeText(context, "Alarm went off", Toast.LENGTH_SHORT).show();
+
+                manager = UserChecker.checkUserLogin(context);
 
 
-            manager = UserChecker.checkUserLogin(context);
-
-
-            new DownloadDayCalendar(this, manager, new Date()).execute();
+                new DownloadDayCalendar(this, manager, new Date()).execute();
+            }
         }
-
     }
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)

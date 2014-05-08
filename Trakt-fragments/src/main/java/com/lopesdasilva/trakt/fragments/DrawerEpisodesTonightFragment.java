@@ -16,15 +16,12 @@ import android.widget.TextView;
 
 import com.androidquery.AQuery;
 import com.jakewharton.trakt.ServiceManager;
-import com.jakewharton.trakt.entities.Activity;
 import com.jakewharton.trakt.entities.CalendarDate;
 import com.lopesdasilva.trakt.R;
 import com.lopesdasilva.trakt.Tasks.DownloadDayCalendar;
 import com.lopesdasilva.trakt.activities.EpisodeActivity;
 import com.lopesdasilva.trakt.activities.EpisodesTonightActivity;
-import com.lopesdasilva.trakt.activities.LoginActivity;
 import com.lopesdasilva.trakt.extras.UserChecker;
-import com.lopesdasilva.trakt.widgets.TonightEpisodesWidget;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -156,10 +153,13 @@ public class DrawerEpisodesTonightFragment extends ListFragment implements Downl
             aq.id(R.id.textViewDrawerEpisodeNumber).text("S" + mListEpisodes.get(position).episode.season + "E" + mListEpisodes.get(position).episode.number);
             aq.id(R.id.textViewDrawerEpisodeDate).text(mListEpisodes.get(position).show.title);
             aq.id(R.id.textViewDrawerEpisodeNetwork).text(mListEpisodes.get(position).show.network);
-            if (mListEpisodes.get(position).episode.watched)
-                aq.id(R.id.imageViewDrawerEpisodeSeenTag).visible();
-            else
-                aq.id(R.id.imageViewDrawerEpisodeSeenTag).gone();
+
+            if(mListEpisodes.get(position).episode.watched!=null) {
+                if (mListEpisodes.get(position).episode.watched)
+                    aq.id(R.id.imageViewDrawerEpisodeSeenTag).visible();
+                else
+                    aq.id(R.id.imageViewDrawerEpisodeSeenTag).gone();
+            }
             return convertView;
         }
     }

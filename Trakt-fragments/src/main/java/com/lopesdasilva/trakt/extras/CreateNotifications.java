@@ -23,6 +23,7 @@ public class CreateNotifications {
 
     public static void EpisodeNotification(FragmentActivity activity, TvEntity episode_info, Bitmap episodeScreen) {
 
+        NotificationManager mNotificationManager = (NotificationManager) activity.getSystemService(Context.NOTIFICATION_SERVICE);
 
         Log.d("Trakt Fragments", episode_info.show.images.poster);
         Bundle arguments = new Bundle();
@@ -33,19 +34,21 @@ public class CreateNotifications {
         information_episode.putExtras(arguments);
         PendingIntent intent = PendingIntent.getActivity(activity, 0, information_episode, PendingIntent.FLAG_ONE_SHOT);
 
-        Notification.Builder build = new Notification.Builder(activity)
-                .setContentTitle(episode_info.show.title)
-                .setContentText(episode_info.episode.title)
-                .setContentInfo("S" + episode_info.episode.season + "E" + episode_info.episode.number)
-                .setTicker("You are watching " + episode_info.show.title + " S" + episode_info.episode.season + "E" + episode_info.episode.number + " " + episode_info.episode.title)
-                .setSmallIcon(R.drawable.ic_notifications)
-                .setContentIntent(intent);
 
-        NotificationManager mNotificationManager = (NotificationManager) activity.getSystemService(Context.NOTIFICATION_SERVICE);
+
 
 
 //                //CHECK WHAT IS YOUR ANDROID VERSION TODO: USE ANOTATIONS
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+
+            Notification.Builder build = new Notification.Builder(activity)
+                    .setContentTitle(episode_info.show.title)
+                    .setContentText(episode_info.episode.title)
+                    .setContentInfo("S" + episode_info.episode.season + "E" + episode_info.episode.number)
+                    .setTicker("You are watching " + episode_info.show.title + " S" + episode_info.episode.season + "E" + episode_info.episode.number + " " + episode_info.episode.title)
+                    .setSmallIcon(R.drawable.ic_notifications)
+                    .setContentIntent(intent);
+
             build.addAction(R.drawable.ic_action_info, "Episode Info", intent);
 
             Intent cancelIntent_episode = new Intent(activity, CheckInReceiver.class);
@@ -60,30 +63,39 @@ public class CreateNotifications {
                     .build();
             mNotificationManager.notify(0, notification);
         } else {
-            mNotificationManager.notify(0, build.build());
+
+            Notification notification = new Notification.Builder(activity)
+                    .setContentTitle(episode_info.show.title).setContentText("You are watching " + episode_info.show.title + " S" + episode_info.episode.season + "E" + episode_info.episode.number + " " + episode_info.episode.title)
+                    .setSmallIcon(R.drawable.ic_notifications).getNotification();
+
+            mNotificationManager.notify(0, notification);
         }
 
     }
 
     public static void MovieNotification(final FragmentActivity activity, final Movie movie, Bitmap movieFanArt) {
-
-
-//        PendingIntent intent = PendingIntent.getActivity(activity, 0, new Intent(activity, EpisodeActivity.class), 0);
-        Notification.Builder build = new Notification.Builder(activity)
-                .setContentTitle(movie.title)
-                .setContentText(movie.year + "")
-                .setContentInfo(movie.runtime + " minutes")
-                .setTicker("You are watching " + movie.title + " (" + movie.year + ")")
-//                .setLargeIcon(movieFanArt)
-//                .setContentIntent(intent)
-                .setSmallIcon(R.drawable.ic_notifications);
-//
-
         NotificationManager mNotificationManager = (NotificationManager) activity.getSystemService(Context.NOTIFICATION_SERVICE);
+
+
+
+
 
 
 //                //CHECK WHAT IS YOUR ANDROID VERSION
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+
+
+            //        PendingIntent intent = PendingIntent.getActivity(activity, 0, new Intent(activity, EpisodeActivity.class), 0);
+            Notification.Builder build = new Notification.Builder(activity)
+                    .setContentTitle(movie.title)
+                    .setContentText(movie.year + "")
+                    .setContentInfo(movie.runtime + " minutes")
+                    .setTicker("You are watching " + movie.title + " (" + movie.year + ")")
+//                .setLargeIcon(movieFanArt)
+//                .setContentIntent(intent)
+                    .setSmallIcon(R.drawable.ic_notifications);
+//
+
 //            build.addAction(R.drawable.ic_action_info, "Episode Info", intent);
 
             Notification notification = new Notification
@@ -95,7 +107,13 @@ public class CreateNotifications {
                     .build();
             mNotificationManager.notify(0, notification);
         } else {
-            mNotificationManager.notify(0, build.build());
+
+
+            Notification notification = new Notification.Builder(activity)
+                    .setContentTitle(movie.title+" "+movie.year).setContentText("You are watching " + movie.title + " (" + movie.year + ")")
+                    .setSmallIcon(R.drawable.ic_notifications).getNotification();
+
+            mNotificationManager.notify(0, notification);
         }
 
     }

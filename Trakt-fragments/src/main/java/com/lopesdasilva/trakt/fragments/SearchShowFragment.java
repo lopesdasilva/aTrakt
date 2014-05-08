@@ -71,6 +71,7 @@ public class SearchShowFragment extends ListFragment implements SearchShowTask.o
         Bundle arguments = new Bundle();
         arguments.putString("show_imdb", mShowlist.get(position).imdbId);
 
+
         Intent i = new Intent(getActivity(), ShowActivity.class);
         i.putExtras(arguments);
 

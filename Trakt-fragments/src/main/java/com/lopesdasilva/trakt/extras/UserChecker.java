@@ -69,6 +69,7 @@ public class UserChecker {
             if(mUsername==null || mPassword_SHA1==null){
                 //TODO: launch login SCREEN
                 Log.d("Trakt","Not Logged implement login, finishing now");
+
             }else{
                 manager=new ServiceManager();
 //                manager.setUseSsl(true);
