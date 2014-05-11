@@ -43,6 +43,7 @@ public class ShowSeasonsFragment extends Fragment implements MarkEpisodeSeenUnse
     private List<TvShowSeason> mListHeaders = new LinkedList<TvShowSeason>();
     private List<TvShowEpisode> lista = new LinkedList<TvShowEpisode>();
     private Bundle savedInstanceState;
+    private String mShow;
 
     public ShowSeasonsFragment() {
     }
@@ -62,7 +63,7 @@ public class ShowSeasonsFragment extends Fragment implements MarkEpisodeSeenUnse
 
         setRetainInstance(true);
         show = (TvShow) getArguments().getSerializable("show");
-
+        mShow = (String) getArguments().getSerializable("show_imdb");
         manager = UserChecker.checkUserLogin(getActivity());
         this.savedInstanceState=savedInstanceState;
 
@@ -206,7 +207,7 @@ public class ShowSeasonsFragment extends Fragment implements MarkEpisodeSeenUnse
                     }
                 });
             } else {
-                new DownloadSeasonsInfo(ShowSeasonsFragment.this,getActivity(),manager,show.imdbId).execute();
+                new DownloadSeasonsInfo(ShowSeasonsFragment.this,getActivity(),manager,mShow).execute();
             }
     }
 

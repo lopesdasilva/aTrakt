@@ -61,6 +61,9 @@ public class ActivityWeekFragment extends Fragment implements DownloadWeekActivi
         rootView = inflater.inflate(R.layout.calendarweek_fragment, container, false);
 //        Log.d("Trakt", "OnCreateView");
 
+        getActivity().getActionBar().setSubtitle(getResources().getString(R.string.UserActivity));
+
+
         mStart_ts = getArguments().getLong("start_ts");
         mEnd_ts = getArguments().getLong("end_ts");
         username = UserChecker.getUsername(getActivity());

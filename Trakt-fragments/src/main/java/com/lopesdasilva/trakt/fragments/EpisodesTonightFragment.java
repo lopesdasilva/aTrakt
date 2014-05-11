@@ -191,7 +191,7 @@ public class EpisodesTonightFragment extends ListFragment implements DownloadDay
                     aq.id(R.id.textViewShowRatingAdvance).margin(0,0,1,0);
                 }
 
-            if (mListEpisodes.get(position).episode.watched != null || !mListEpisodes.get(position).episode.watched)
+            if (mListEpisodes.get(position).episode.watched != null && !mListEpisodes.get(position).episode.watched)
                 aq.id(R.id.imageViewEpsiodeTonightSeenTag).gone();
             else
                 aq.id(R.id.imageViewEpsiodeTonightSeenTag).visible();

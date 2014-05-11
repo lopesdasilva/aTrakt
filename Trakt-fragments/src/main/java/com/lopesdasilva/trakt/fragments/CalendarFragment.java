@@ -31,7 +31,7 @@ public class CalendarFragment extends Fragment {
             return null;
         rootView = inflater.inflate(R.layout.calendar_fragment, container, false);
         Log.d("Trakt", "CalendarFragment On CreateView savedinstace:" + savedInstanceState);
-
+        getActivity().getActionBar().setSubtitle(getResources().getString(R.string.Calendar));
 
         mViewPager = (ViewPager) rootView.findViewById(R.id.calendar_pager);
         mWeekPagerAdapter = new WeekPager(getActivity().getSupportFragmentManager());

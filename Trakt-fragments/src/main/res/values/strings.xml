@@ -71,6 +71,8 @@
     <string name="ok">Ok</string>
     <string name="widget_tonight_episodes_empty">No shows tonight</string>
     <string name="rate">Rate</string>
+    <string name="Calendar">Calendar</string>
+    <string name="UserActivity">User activity</string>
     <array name="watchlist">
 
 
