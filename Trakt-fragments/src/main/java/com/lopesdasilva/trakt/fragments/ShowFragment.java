@@ -192,7 +192,7 @@ public class ShowFragment extends Fragment implements ActionBar.TabListener, Dow
     }
 
     private void updateShow(TvShow response) {
-        if (getActivity() != null) {
+        if (getActivity() != null && response!=null) {
             actionBar = getActivity().getActionBar();
             actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
             actionBar.setDisplayHomeAsUpEnabled(true);
