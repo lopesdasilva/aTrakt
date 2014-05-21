@@ -14,10 +14,7 @@ import com.jakewharton.trakt.entities.TvShow;
 import com.jakewharton.trakt.entities.TvShowEpisode;
 import com.jakewharton.trakt.entities.TvShowSeason;
 import com.lopesdasilva.trakt.R;
-import com.lopesdasilva.trakt.Tasks.DownloadSeasonsInfo;
-import com.lopesdasilva.trakt.Tasks.EpisodeWatchlistUnWatchlist;
-import com.lopesdasilva.trakt.Tasks.MarkEpisodeSeenUnseen;
-import com.lopesdasilva.trakt.Tasks.MultipleSeenUnseenTask;
+import com.lopesdasilva.trakt.Tasks.*;
 import com.lopesdasilva.trakt.activities.EpisodeActivity;
 import com.lopesdasilva.trakt.extras.UserChecker;
 import com.tonicartos.widget.stickygridheaders.StickyGridHeadersBaseAdapter;
@@ -30,7 +27,7 @@ import java.util.List;
 /**
  * Created by lopesdasilva on 22/05/13.
  */
-public class ShowSeasonsFragment extends Fragment implements MarkEpisodeSeenUnseen.OnMarkSeenUnseenCompleted, MultipleSeenUnseenTask.OnMarkSeenUnseenCompleted, EpisodeWatchlistUnWatchlist.WatchlistUnWatchlistCompleted, DownloadSeasonsInfo.onSeasonsTaskComplete {
+public class ShowSeasonsFragment extends Fragment implements MarkEpisodeSeenUnseen.OnMarkSeenUnseenCompleted, MultipleSeenUnseenTask.OnMarkSeenUnseenCompleted, EpisodeWatchlistUnWatchlist.WatchlistUnWatchlistCompleted, DownloadSeasonsInfo.onSeasonsTaskComplete, DownloadShowInfo.onShowInfoTaskComplete {
 
 
     List<TvShowEpisode> mSelectedEpisodes = new LinkedList<TvShowEpisode>();
@@ -62,153 +59,156 @@ public class ShowSeasonsFragment extends Fragment implements MarkEpisodeSeenUnse
         super.onActivityCreated(savedInstanceState);
 
         setRetainInstance(true);
+        if(show==null)
         show = (TvShow) getArguments().getSerializable("show");
         mShow = (String) getArguments().getSerializable("show_imdb");
-        manager = UserChecker.checkUserLogin(getActivity());
-        this.savedInstanceState=savedInstanceState;
+        if(getActivity()!=null) {
+            manager = UserChecker.checkUserLogin(getActivity());
+            this.savedInstanceState = savedInstanceState;
 
-        if (savedInstanceState == null)
-            if (show != null && show.seasons != null) {
-                Log.d("Trakt Fragments", "ServiceManager: " + manager);
-
-
-
-                mListHeaders.addAll(show.seasons);
-                for (TvShowSeason season : show.seasons) {
-                    lista.addAll(season.episodes.episodes);
-                }
-
-                mListView = (StickyGridHeadersGridView) rootView.findViewById(R.id.listViewSeasons);
-                mAdapter = new ShowSeasonsAdapter(getActivity(), mListHeaders, lista);
-                mListView.setAdapter(mAdapter);
-                mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-
-                        if (getActivity().findViewById(R.id.episode_list) != null) {
-
-                            Bundle arguments = new Bundle();
-                            arguments.putString("show_imdb", show.imdbId);
-                            arguments.putInt("show_season", lista.get(position).season);
-                            arguments.putInt("show_episode", lista.get(position).number);
-
-                            Fragment fragment = new EpisodeFragment();
-                            fragment.setArguments(arguments);
+            if (savedInstanceState == null)
+                if (show != null && show.seasons != null) {
+                    Log.d("Trakt Fragments", "ServiceManager: " + manager);
 
 
-                            mListView.setSelection(position);
-
-                            Log.d("Trakt", "Launching new fragment EpisodeFragment");
-                            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.episode_activity, fragment).commit();
-
-                        } else {
-
-                            Log.d("Trakt", "Launching Episode Activity");
-                            Log.d("Trakt", "Episode: S" + lista.get(position).season + "E" + lista.get(position).number);
-
-                            Bundle arguments = new Bundle();
-                            arguments.putString("show_imdb", show.imdbId);
-                            arguments.putInt("show_season", lista.get(position).season);
-                            arguments.putInt("show_episode", lista.get(position).number);
-                            arguments.putSerializable("show", show);
-
-                            Intent intent = new Intent(getActivity(), EpisodeActivity.class);
-                            intent.putExtras(arguments);
-
-                            startActivity(intent);
-                            getActivity().overridePendingTransition(R.anim.push_left_out, R.anim.push_left_in);
-                        }
+                    mListHeaders.addAll(show.seasons);
+                    for (TvShowSeason season : show.seasons) {
+                        lista.addAll(season.episodes.episodes);
                     }
-                });
-                mListView.setChoiceMode(StickyGridHeadersGridView.CHOICE_MODE_MULTIPLE_MODAL);
-                mListView.setMultiChoiceModeListener(new AbsListView.MultiChoiceModeListener() {
+
+                    mListView = (StickyGridHeadersGridView) rootView.findViewById(R.id.listViewSeasons);
+                    mAdapter = new ShowSeasonsAdapter(getActivity(), mListHeaders, lista);
+                    mListView.setAdapter(mAdapter);
+                    mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+
+                            if (getActivity().findViewById(R.id.episode_list) != null) {
+
+                                Bundle arguments = new Bundle();
+                                arguments.putString("show_imdb", show.imdbId);
+                                arguments.putInt("show_season", lista.get(position).season);
+                                arguments.putInt("show_episode", lista.get(position).number);
+
+                                Fragment fragment = new EpisodeFragment();
+                                fragment.setArguments(arguments);
 
 
-                    @Override
-                    public void onItemCheckedStateChanged(ActionMode mode, int position,
-                                                          long id, boolean checked) {
+                                mListView.setSelection(position);
+
+                                Log.d("Trakt", "Launching new fragment EpisodeFragment");
+                                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.episode_activity, fragment).commit();
+
+                            } else {
+
+                                Log.d("Trakt", "Launching Episode Activity");
+                                Log.d("Trakt", "Episode: S" + lista.get(position).season + "E" + lista.get(position).number);
+
+                                Bundle arguments = new Bundle();
+                                arguments.putString("show_imdb", show.imdbId);
+                                arguments.putInt("show_season", lista.get(position).season);
+                                arguments.putInt("show_episode", lista.get(position).number);
+                                arguments.putSerializable("show", show);
+
+                                Intent intent = new Intent(getActivity(), EpisodeActivity.class);
+                                intent.putExtras(arguments);
+
+                                startActivity(intent);
+                                getActivity().overridePendingTransition(R.anim.push_left_out, R.anim.push_left_in);
+                            }
+                        }
+                    });
+                    mListView.setChoiceMode(StickyGridHeadersGridView.CHOICE_MODE_MULTIPLE_MODAL);
+                    mListView.setMultiChoiceModeListener(new AbsListView.MultiChoiceModeListener() {
 
 
-                        int realPosition = mListView.mAdapter.translatePosition(position).mPosition;
+                        @Override
+                        public void onItemCheckedStateChanged(ActionMode mode, int position,
+                                                              long id, boolean checked) {
+
+
+                            int realPosition = mListView.mAdapter.translatePosition(position).mPosition;
 
 //                    Log.d("Trakt", "postion: " + position + " checked:" + checked);
 //                    Log.d("Trakt", "postion: " + postion.mPosition + " checked:" + checked);
 //                    Log.d("Trakt","Seasons:"+mListHeaders.size());
 
-                        Log.d("Trakt", "Episode: S" + lista.get(realPosition).season + "E" + lista.get(realPosition).number);
-                        if (checked)
-                            mSelectedEpisodes.add(lista.get(realPosition));
-                        else
-                            mSelectedEpisodes.remove(lista.get(realPosition));
+                            Log.d("Trakt", "Episode: S" + lista.get(realPosition).season + "E" + lista.get(realPosition).number);
+                            if (checked)
+                                mSelectedEpisodes.add(lista.get(realPosition));
+                            else
+                                mSelectedEpisodes.remove(lista.get(realPosition));
 
 
-                        // Here you can do something when items are selected/de-selected,
-                        // such as update the title in the CAB
-                    }
-
-                    @Override
-                    public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
-                        // Respond to clicks on the actions in the CAB
-
-                        switch (item.getItemId()) {
-                            case R.id.action_episode_seen:
-                                Toast.makeText(getActivity(), "Mark as seen", Toast.LENGTH_SHORT).show();
-                                MultipleSeenUnseenTask mMultipleSeenTask = new MultipleSeenUnseenTask(getActivity(), ShowSeasonsFragment.this, manager, show, mSelectedEpisodes, true, mode);
-                                mMultipleSeenTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-//                            deleteSelectedItems();
-
-                                return true;
-                            case R.id.action_episode_unseen:
-                                Toast.makeText(getActivity(), "Mark as unseen", Toast.LENGTH_SHORT).show();
-                                MultipleSeenUnseenTask mMultipleUnseenTask = new MultipleSeenUnseenTask(getActivity(), ShowSeasonsFragment.this, manager, show, mSelectedEpisodes, false, mode);
-                                mMultipleUnseenTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-//                            deleteSelectedItems();
-
-                                return true;
-                            default:
-                                return false;
+                            // Here you can do something when items are selected/de-selected,
+                            // such as update the title in the CAB
                         }
-                    }
 
-                    @Override
-                    public boolean onCreateActionMode(ActionMode mode, Menu menu) {
-                        // Inflate the menu for the CAB
-                        MenuInflater inflater = mode.getMenuInflater();
-                        inflater.inflate(R.menu.seasons_episode_actions_seen, menu);
-                        return true;
-                    }
+                        @Override
+                        public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+                            // Respond to clicks on the actions in the CAB
 
-                    @Override
-                    public void onDestroyActionMode(ActionMode mode) {
-                        mSelectedEpisodes.clear();
-                        // Here you can make any necessary updates to the activity when
-                        // the CAB is removed. By default, selected items are deselected/unchecked.
-                    }
+                            switch (item.getItemId()) {
+                                case R.id.action_episode_seen:
+                                    Toast.makeText(getActivity(), "Mark as seen", Toast.LENGTH_SHORT).show();
+                                    MultipleSeenUnseenTask mMultipleSeenTask = new MultipleSeenUnseenTask(getActivity(), ShowSeasonsFragment.this, manager, show, mSelectedEpisodes, true, mode);
+                                    mMultipleSeenTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+//                            deleteSelectedItems();
 
-                    @Override
-                    public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
-                        // Here you can perform updates to the CAB due to
-                        // an invalidate() request
-                        return false;
-                    }
-                });
-                mListView.setOnHeaderClickListener(new StickyGridHeadersGridView.OnHeaderClickListener() {
-                    @Override
-                    public void onHeaderClick(AdapterView<?> parent, View view, long id) {
+                                    return true;
+                                case R.id.action_episode_unseen:
+                                    Toast.makeText(getActivity(), "Mark as unseen", Toast.LENGTH_SHORT).show();
+                                    MultipleSeenUnseenTask mMultipleUnseenTask = new MultipleSeenUnseenTask(getActivity(), ShowSeasonsFragment.this, manager, show, mSelectedEpisodes, false, mode);
+                                    mMultipleUnseenTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+//                            deleteSelectedItems();
 
-                        int position = mListHeaders.get((int) id).season;
-                        for (int i = 0; i != lista.size(); i++) {
-                            if (lista.get(i).season == position) {
-                                int tranlatedposition = mListView.mAdapter.translatePosition(i).mPosition;
-                                mListView.setItemChecked(i + 1 + (int) id, true);
+                                    return true;
+                                default:
+                                    return false;
                             }
                         }
 
-                    }
-                });
-            } else {
-                new DownloadSeasonsInfo(ShowSeasonsFragment.this,getActivity(),manager,mShow).execute();
-            }
+                        @Override
+                        public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+                            // Inflate the menu for the CAB
+                            MenuInflater inflater = mode.getMenuInflater();
+                            inflater.inflate(R.menu.seasons_episode_actions_seen, menu);
+                            return true;
+                        }
+
+                        @Override
+                        public void onDestroyActionMode(ActionMode mode) {
+                            mSelectedEpisodes.clear();
+                            // Here you can make any necessary updates to the activity when
+                            // the CAB is removed. By default, selected items are deselected/unchecked.
+                        }
+
+                        @Override
+                        public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
+                            // Here you can perform updates to the CAB due to
+                            // an invalidate() request
+                            return false;
+                        }
+                    });
+                    mListView.setOnHeaderClickListener(new StickyGridHeadersGridView.OnHeaderClickListener() {
+                        @Override
+                        public void onHeaderClick(AdapterView<?> parent, View view, long id) {
+
+                            int position = mListHeaders.get((int) id).season;
+                            for (int i = 0; i != lista.size(); i++) {
+                                if (lista.get(i).season == position) {
+                                    int tranlatedposition = mListView.mAdapter.translatePosition(i).mPosition;
+                                    mListView.setItemChecked(i + 1 + (int) id, true);
+                                }
+                            }
+
+                        }
+                    });
+                } else {
+                    new DownloadShowInfo(ShowSeasonsFragment.this, getActivity(), manager, mShow).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+//                new DownloadSeasonsInfo(ShowSeasonsFragment.this,getActivity(),manager,mShow).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+                }
+        }
     }
 
     @Override
@@ -236,7 +236,17 @@ public class ShowSeasonsFragment extends Fragment implements MarkEpisodeSeenUnse
 
     @Override
     public void onSeasonsTaskComplete(List<TvShowSeason> response) {
+       if(show==null){
+        show = new TvShow();
+        show.imdbId = mShow;
+    }
         show.seasons=response;
+        onActivityCreated(savedInstanceState);
+    }
+
+    @Override
+    public void onShowInfoTaskComplete(TvShow response) {
+        show=response;
         onActivityCreated(savedInstanceState);
     }
 

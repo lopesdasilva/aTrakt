@@ -38,10 +38,10 @@ public class MarkMovieSeenUnseen extends AsyncTask<Void, Void, Void> {
         try {
             if (movie.watched) {
                 Log.d("Trakt Fragments", "Changing to unseen");
-                return manager.movieService().unseen().movie(movie.imdbId).fire();
+                return manager.movieService().unseen().movie(movie.title,movie.year).fire();
             } else {
                 Log.d("Trakt Fragments", "Changing to seen");
-                return manager.movieService().seen().movie(movie.imdbId, 1, new Date()).fire();
+                return manager.movieService().seen().movie(movie.title,movie.year, 1, new Date()).fire();
             }
         } catch (Exception e) {
             this.e = e;
