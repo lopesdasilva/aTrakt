@@ -3,6 +3,7 @@ package com.lopesdasilva.trakt;
 
 import android.app.SearchManager;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -23,6 +24,7 @@ import android.widget.ListView;
 import android.widget.SearchView;
 
 import com.androidquery.util.AQUtility;
+import com.lopesdasilva.trakt.activities.SettingsActivity;
 import com.lopesdasilva.trakt.alarms.MyAlarmReceiver;
 import com.lopesdasilva.trakt.extras.UserChecker;
 import com.lopesdasilva.trakt.fragments.CalendarFragment;
@@ -229,11 +231,22 @@ public class MainActivity extends FragmentActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         // The action bar home/up action should open or close the drawer.
         // ActionBarDrawerToggle will take care of this.
-        if (mDrawerToggle.onOptionsItemSelected(item)) {
-            return true;
+        switch (item.getItemId()) {
+            case R.id.search:
+                return true;
+            case R.id.settings:
+                Intent i = new Intent(getBaseContext(), SettingsActivity.class);
+//                i.putExtras(arguments);
+//
+                startActivity(i);
+//                Toast.makeText(this,"SETTINGS",Toast.LENGTH_SHORT).show();
+                return true;
+            default:
+                if (mDrawerToggle.onOptionsItemSelected(item)) {
+                    return true;
+                }else
+                    return super.onOptionsItemSelected(item);
         }
-        return super.onOptionsItemSelected(item);
-
     }
 
     /* The click listner for ListView in the navigation drawer */

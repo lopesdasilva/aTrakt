@@ -91,7 +91,7 @@ public class MyAlarmReceiver extends BroadcastReceiver implements DownloadDayCal
 
             manager = UserChecker.checkUserLogin(context);
 
-
+            if(manager!=null)
             new DownloadDayCalendar(this, manager, new Date()).execute();
         }
 
