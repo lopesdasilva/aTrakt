@@ -9,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-
 import com.androidquery.AQuery;
 import com.jakewharton.trakt.ServiceManager;
 import com.jakewharton.trakt.entities.ActivityItem;
@@ -73,34 +72,6 @@ public class FriendsFragment extends Fragment {
         outState.putSerializable("friendsActivity", (Serializable) activityList);
     }
 
-    public class FriendsTaskDownload extends AsyncTask<Void, Void, List<ActivityItem>> {
-
-        private Exception e;
-
-        @Override
-        protected List<ActivityItem> doInBackground(Void... voids) {
-            try {
-                Date d = new Date();
-                int onWeekInMIliSecconds = 604800000;
-                d.setTime(d.getTime() - onWeekInMIliSecconds);
-                return manager.activityService().friends().timestamp(d).fire().activity;
-            } catch (Exception e) {
-                this.e = e;
-                return null;
-            }
-        }
-
-        @Override
-        protected void onPostExecute(List<ActivityItem> result) {
-            if (e == null) {
-                updateList(result);
-            }else
-            Log.d("Trakt", "Error downloading Friends list");
-
-        }
-
-    }
-
     private void updateList(List<ActivityItem> result) {
 
         activityList = result;
@@ -116,7 +87,7 @@ public class FriendsFragment extends Fragment {
 
 //            try {
             View activityItemLayout = setActivity(activityItem);
-            activityItemLayout.setPadding(0,0,0,2);
+            activityItemLayout.setPadding(0, 0, 0, 2);
             activityItemLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -189,71 +160,67 @@ public class FriendsFragment extends Fragment {
 
     private View setActivity(ActivityItem activityItem) {
 
+        if (getActivity() != null) {
+            LinearLayout relativeLayoutFriends = (LinearLayout) inflater.inflate(R.layout.friends_item_episode, null).findViewById(R.id.linearLayoutFriendsItem);
+            final AQuery aq = new AQuery(relativeLayoutFriends);
+            switch (activityItem.type) {
 
-        LinearLayout relativeLayoutFriends = (LinearLayout) inflater.inflate(R.layout.friends_item_episode, null).findViewById(R.id.linearLayoutFriendsItem);
-        final AQuery aq = new AQuery(relativeLayoutFriends);
-        switch (activityItem.type) {
+                case All:
+                    break;
+                case Episode:
+                    aq.id(R.id.imageViewFriendsPoster).image(activityItem.episode.images.screen, false, true, 150, R.drawable.episode_backdrop, aq.getCachedImage(R.drawable.episode_backdrop_small), AQuery.FADE_IN, AQuery.RATIO_PRESERVE);
+                    aq.id(R.id.textViewFriendsItemTitle).text(activityItem.show.title + " S" + activityItem.episode.season + "E" + activityItem.episode.number);
+                    break;
+                case Show:
+                    aq.id(R.id.imageViewFriendsPoster).image(activityItem.show.images.poster, false, true, 150, R.drawable.poster_small, aq.getCachedImage(R.drawable.poster_small), AQuery.FADE_IN);
+                    aq.id(R.id.textViewFriendsItemTitle).text(activityItem.show.title);
 
-            case All:
-                break;
-            case Episode:
-                aq.id(R.id.imageViewFriendsPoster).image(activityItem.episode.images.screen, false, true, 150, R.drawable.episode_backdrop,aq.getCachedImage(R.drawable.episode_backdrop_small),AQuery.FADE_IN,AQuery.RATIO_PRESERVE);
-                aq.id(R.id.textViewFriendsItemTitle).text(activityItem.show.title + " S" + activityItem.episode.season + "E" + activityItem.episode.number);
-                break;
-            case Show:
-                aq.id(R.id.imageViewFriendsPoster).image(activityItem.show.images.poster, false, true, 150, R.drawable.poster_small,aq.getCachedImage(R.drawable.poster_small),AQuery.FADE_IN);
-                aq.id(R.id.textViewFriendsItemTitle).text(activityItem.show.title);
-
-                break;
-            case Movie:
-                aq.id(R.id.imageViewFriendsPoster).image(activityItem.movie.images.fanart, false, true, 150, R.drawable.poster_small,aq.getCachedImage(R.drawable.poster_small),AQuery.FADE_IN);
-                aq.id(R.id.textViewFriendsItemTitle).text(activityItem.movie.title);
-                break;
-            case List:
-                break;
-        }
-
-
-
-        aq.id(R.id.textViewFriendsUsername).text(activityItem.user.username);
-        aq.id(R.id.textViewFriendsAction).text(activityItem.action.toString());
+                    break;
+                case Movie:
+                    aq.id(R.id.imageViewFriendsPoster).image(activityItem.movie.images.fanart, false, true, 150, R.drawable.poster_small, aq.getCachedImage(R.drawable.poster_small), AQuery.FADE_IN);
+                    aq.id(R.id.textViewFriendsItemTitle).text(activityItem.movie.title);
+                    break;
+                case List:
+                    break;
+            }
 
 
+            if (activityItem.user != null && activityItem.user.username != null)
+                aq.id(R.id.textViewFriendsUsername).text(activityItem.user.username);
+            aq.id(R.id.textViewFriendsAction).text(activityItem.action.toString());
 
 
+            switch (activityItem.action) {
 
-        switch (activityItem.action) {
+                case All:
+                    break;
+                case Watching:
+                    aq.id(R.id.textViewFriendsAction).text("is " + activityItem.action.toString());
+                    break;
+                case Scrobble:
+                    aq.id(R.id.textViewFriendsAction).text("watched");
+                    break;
+                case Checkin:
+                    break;
+                case Seen:
+                    break;
+                case Collection:
+                    break;
+                case Rating:
+                    aq.id(R.id.textViewFriendsAction).text("rated as " + activityItem.rating);
+                    break;
+                case Watchlist:
+                    aq.id(R.id.textViewFriendsAction).text("added to their " + activityItem.action.toString());
+                    break;
+                case Shout:
+                    break;
+                case Created:
+                    break;
+                case ItemAdded:
+                    break;
+            }
 
-            case All:
-                break;
-            case Watching:
-                aq.id(R.id.textViewFriendsAction).text("is " + activityItem.action.toString());
-                break;
-            case Scrobble:
-                aq.id(R.id.textViewFriendsAction).text("watched");
-                break;
-            case Checkin:
-                break;
-            case Seen:
-                break;
-            case Collection:
-                break;
-            case Rating:
-                aq.id(R.id.textViewFriendsAction).text("rated as " + activityItem.rating);
-                break;
-            case Watchlist:
-                aq.id(R.id.textViewFriendsAction).text("added to their " + activityItem.action.toString());
-                break;
-            case Shout:
-                break;
-            case Created:
-                break;
-            case ItemAdded:
-                break;
-        }
-
-        aq.id(R.id.textViewFriendsTime).text(activityItem.when.day + " " + activityItem.when.time);
-
+            aq.id(R.id.textViewFriendsTime).text(activityItem.when.day + " " + activityItem.when.time);
 
 
 //        relativeLayoutFriends.setOnTouchListener(new View.OnTouchListener() {
@@ -276,9 +243,39 @@ public class FriendsFragment extends Fragment {
 //                return false;
 //            }
 //        });
+            return relativeLayoutFriends;
+        }else
+            return null;
 
 
-        return relativeLayoutFriends;
+
+    }
+
+    public class FriendsTaskDownload extends AsyncTask<Void, Void, List<ActivityItem>> {
+
+        private Exception e;
+
+        @Override
+        protected List<ActivityItem> doInBackground(Void... voids) {
+            try {
+                Date d = new Date();
+                int onWeekInMIliSecconds = 604800000;
+                d.setTime(d.getTime() - onWeekInMIliSecconds);
+                return manager.activityService().friends().timestamp(d).fire().activity;
+            } catch (Exception e) {
+                this.e = e;
+                return null;
+            }
+        }
+
+        @Override
+        protected void onPostExecute(List<ActivityItem> result) {
+            if (e == null) {
+                updateList(result);
+            } else
+                Log.d("Trakt", "Error downloading Friends list");
+
+        }
 
     }
 

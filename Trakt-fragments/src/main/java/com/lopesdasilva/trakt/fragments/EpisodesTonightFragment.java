@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
-
 import com.androidquery.AQuery;
 import com.jakewharton.trakt.ServiceManager;
 import com.jakewharton.trakt.entities.CalendarDate;
@@ -31,8 +30,8 @@ import java.util.List;
 public class EpisodesTonightFragment extends ListFragment implements DownloadDayCalendar.OnDayCalendarTaskCompleted {
 
 
-    private ServiceManager manager;
     List<CalendarDate.CalendarTvShowEpisode> mListepisodes = new LinkedList<CalendarDate.CalendarTvShowEpisode>();
+    private ServiceManager manager;
     private EpisodeTonightAdapter mAdapter;
 
 
@@ -135,7 +134,6 @@ public class EpisodesTonightFragment extends ListFragment implements DownloadDay
             }
             aq.id(R.id.textViewEpisodeTonightShowNetwork).text(mListEpisodes.get(position).show.network);
             aq.id(R.id.textViewEpisodeTonightRatingsPercentage).text(mListEpisodes.get(position).episode.ratings.percentage + "%");
-
 
                 if("0".equals(mListEpisodes.get(position).episode.ratingAdvanced)) {
                     aq.id(R.id.relativeLayoutAdvanceRating).gone();

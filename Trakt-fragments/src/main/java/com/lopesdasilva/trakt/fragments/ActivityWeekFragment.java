@@ -61,6 +61,9 @@ public class ActivityWeekFragment extends Fragment implements DownloadWeekActivi
         rootView = inflater.inflate(R.layout.calendarweek_fragment, container, false);
 //        Log.d("Trakt", "OnCreateView");
 
+        getActivity().getActionBar().setSubtitle(getResources().getString(R.string.UserActivity));
+
+
         mStart_ts = getArguments().getLong("start_ts");
         mEnd_ts = getArguments().getLong("end_ts");
         username = UserChecker.getUsername(getActivity());
@@ -270,7 +273,8 @@ public class ActivityWeekFragment extends Fragment implements DownloadWeekActivi
                     } else if (mListActivity.get(position).action == ActivityAction.Checkin) {
                         aq.id(R.id.imageViewCalendarEpisodeCheckInTag).visible();
                         aq.id(R.id.imageViewCalendarEpisodeSeenTag).gone();
-                    } else {
+                    } else if (mListActivity.get(position).action == ActivityAction.Scrobble){
+                        aq.id(R.id.imageViewCalendarEpisodeScrobbleTag).visible();
                         aq.id(R.id.imageViewCalendarEpisodeCheckInTag).gone();
                         aq.id(R.id.imageViewCalendarEpisodeSeenTag).gone();
                     }
@@ -451,12 +455,12 @@ public class ActivityWeekFragment extends Fragment implements DownloadWeekActivi
 
         @Override
         public int getItemViewType(int position) {
-            return mListActivity.get(position).type == ActivityType.Episode ? 1 : 0;
+            return mListActivity.get(position).action.ordinal();
         }
 
         @Override
         public int getViewTypeCount() {
-            return 2;
+            return 11;
         }
 
     }

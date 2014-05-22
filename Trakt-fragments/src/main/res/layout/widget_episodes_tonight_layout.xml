@@ -7,7 +7,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="55dp"
+        android:layout_height="50dp"
         android:background="@drawable/bg_header_widget">
 
         <TextView
@@ -64,6 +64,7 @@
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:minHeight="?android:attr/listPreferredItemHeight"
         android:id="@+id/listViewWidgetTonight"
         tools:listitem="@layout/widget_tonight_item"
         android:background="@color/light_grey"

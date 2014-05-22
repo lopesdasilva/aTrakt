@@ -22,7 +22,7 @@ public class HomeFragment extends Fragment {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.home_fragment, container, false);
-
+        getActivity().getActionBar().setSubtitle("Trending");
         if (savedInstanceState == null) {
             getFragmentManager().beginTransaction().replace(R.id.viewTrendingShows, new ShowsFragment(), "trending_shows").commit();
             getFragmentManager().beginTransaction().replace(R.id.viewTrendingMovies, new MoviesFragment(), "trending_movies").commit();

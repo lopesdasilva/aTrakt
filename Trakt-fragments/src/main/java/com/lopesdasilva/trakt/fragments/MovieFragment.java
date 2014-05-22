@@ -26,18 +26,13 @@ import com.jakewharton.trakt.entities.Movie;
 import com.jakewharton.trakt.entities.RatingResponse;
 import com.jakewharton.trakt.entities.Response;
 import com.lopesdasilva.trakt.R;
-import com.lopesdasilva.trakt.Tasks.CheckInChecker;
-import com.lopesdasilva.trakt.Tasks.DownloadMovieInfo;
-import com.lopesdasilva.trakt.Tasks.RateAdvancedMovie;
-import com.lopesdasilva.trakt.Tasks.RateMovieHate;
-import com.lopesdasilva.trakt.Tasks.RateMovieLove;
-import com.lopesdasilva.trakt.Tasks.UnrateMovie;
+import com.lopesdasilva.trakt.Tasks.*;
 import com.lopesdasilva.trakt.extras.UserChecker;
 
 import java.util.Date;
 import java.util.Locale;
 
-public class MovieFragment extends Fragment implements ActionBar.TabListener, DownloadMovieInfo.OnMovieTaskCompleted, RateMovieHate.OnRatingMovieHateCompleted, RateMovieLove.OnRatingMovieLoveCompleted, UnrateMovie.OnUnratingMovieCompleted, RatingAdvance.OnRatingComplete, RateAdvancedMovie.OnRatingAdvancedMovieCompleted {
+public class MovieFragment extends Fragment implements ActionBar.TabListener, DownloadMovieInfo.OnMovieTaskCompleted, RateMovieHate.OnRatingMovieHateCompleted, RateMovieLove.OnRatingMovieLoveCompleted, UnrateMovie.OnUnratingMovieCompleted, RatingAdvance.OnRatingComplete, RateAdvancedMovie.OnRatingAdvancedMovieCompleted, MarkMovieSeenUnseen.OnMovieMarkSeenUnseenCompleted {
 
     private View rootView;
     private ServiceManager manager;
@@ -121,7 +116,10 @@ public class MovieFragment extends Fragment implements ActionBar.TabListener, Do
                 item.setActionView(mRefreshView);
 
                 Log.d("Trakt Fragments", "Unseen button clicked");
-                new MovieSeenUnseen().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+
+                    new MarkMovieSeenUnseen(getActivity(),MovieFragment.this,manager,mMovie,0).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+
+
                 // do whatever
                 return true;
             case 3:
@@ -319,6 +317,15 @@ public class MovieFragment extends Fragment implements ActionBar.TabListener, Do
         updateMovie(mMovie);
     }
 
+    @Override
+    public void OnMovieMarkSeenUnseenCompleted(int position) {
+
+        mMovie.watched=!mMovie.watched;
+        mMovie.plays+=1;
+        mInfoFragment.updateUI(mMovie);
+
+    }
+
 
     /**
      * A {@link android.support.v4.app.FragmentPagerAdapter} that returns a fragment corresponding to
@@ -393,10 +400,10 @@ public class MovieFragment extends Fragment implements ActionBar.TabListener, Do
             try {
                 if (mMovie.watched) {
                     Log.d("Trakt Fragments", "Changing to unseen");
-                    return manager.movieService().unseen().movie(mMovie.title).fire();
+                    return manager.movieService().unseen().movie(mMovie.title,mMovie.year).fire();
                 } else {
                     Log.d("Trakt Fragments", "Changing to seen");
-                    return manager.movieService().seen().movie(mMovie.title, 1, new Date()).fire();
+                    return manager.movieService().seen().movie(mMovie.title,mMovie.year, 1, new Date()).fire();
                 }
             } catch (Exception e) {
                 this.e = e;

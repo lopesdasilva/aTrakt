@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.lopesdasilva.trakt"
-          android:versionCode="28"
-          android:versionName="1.28">
+          android:versionCode="30"
+          android:versionName="1.30">
 
     <uses-sdk
         android:minSdkVersion="14"
@@ -173,6 +173,13 @@
 
         <activity
             android:name="com.lopesdasilva.trakt.activities.UserActivityActivity">
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity"/>
+        </activity>
+        <activity
+            android:name="com.lopesdasilva.trakt.activities.SettingsActivity">
             android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

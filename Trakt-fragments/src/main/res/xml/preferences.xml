@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<PreferenceScreen  xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- opens a subscreen of settings -->
+    <PreferenceCategory
+        android:title="@string/pref_notifications"
+        android:key="pref_key_storage_settings">
+    <CheckBoxPreference
+        android:key="pref_key_enable_notifications"
+        android:summary="@string/prefs_enable_notifications_summary"
+        android:title="@string/prefs_enable_notifications"
+        android:defaultValue="true" />
+    <CheckBoxPreference
+        android:key="pref_key_tonight_shows_notifications"
+        android:dependency="pref_key_enable_notifications"
+        android:summary="@string/prefs_enable_tonight_shows_notifications_summary"
+        android:title="@string/prefs_enable_tonight_shows_notifications"
+        android:defaultValue="true"/>
+    <CheckBoxPreference
+        android:key="pref_key_checkin_notifications"
+        android:dependency="pref_key_enable_notifications"
+        android:summary="@string/prefs_enable_checkin_notifications_summary"
+        android:title="@string/prefs_enable_checkin_notifications"
+        android:defaultValue="true"/>
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:title="@string/prefs_account"
+        android:key="pref_key_storage_settings">
+    <Preference
+        android:key="pref_key_logout"
+        android:title="@string/logout"  />
+    </PreferenceCategory>
+
+</PreferenceScreen>
