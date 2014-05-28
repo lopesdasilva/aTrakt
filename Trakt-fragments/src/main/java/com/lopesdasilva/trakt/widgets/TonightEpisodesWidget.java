@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
+
 import com.jakewharton.trakt.ServiceManager;
 import com.jakewharton.trakt.entities.CalendarDate;
 import com.lopesdasilva.trakt.MainActivity;

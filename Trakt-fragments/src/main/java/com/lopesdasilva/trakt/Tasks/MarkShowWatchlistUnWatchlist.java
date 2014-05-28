@@ -6,9 +6,9 @@ import android.os.AsyncTask;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.widget.Toast;
+
 import com.jakewharton.trakt.ServiceManager;
 import com.jakewharton.trakt.entities.TvShow;
-import com.jakewharton.trakt.entities.TvShowEpisode;
 
 /**
  * Created by lopesdasilva on 30/05/13.

@@ -3,6 +3,7 @@ package com.lopesdasilva.trakt.Tasks;
 import android.os.AsyncTask;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
+
 import com.jakewharton.trakt.ServiceManager;
 import com.jakewharton.trakt.entities.TvShowSeason;
 

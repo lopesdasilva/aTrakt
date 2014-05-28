@@ -1,6 +1,7 @@
 package com.lopesdasilva.trakt.Tasks;
 
 import android.os.AsyncTask;
+
 import com.jakewharton.trakt.ServiceManager;
 import com.jakewharton.trakt.entities.Response;
 import com.jakewharton.trakt.enumerations.MediaType;

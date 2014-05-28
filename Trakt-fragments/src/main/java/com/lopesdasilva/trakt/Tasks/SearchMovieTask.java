@@ -1,13 +1,13 @@
 package com.lopesdasilva.trakt.Tasks;
 
 import android.os.AsyncTask;
+import android.support.v4.app.FragmentActivity;
 import android.widget.Toast;
+
 import com.jakewharton.trakt.ServiceManager;
 import com.jakewharton.trakt.entities.Movie;
 
 import java.util.List;
-
-import android.support.v4.app.FragmentActivity;
 /**
  * Created by lopesdasilva on 03/06/13.
  */

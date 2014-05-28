@@ -26,7 +26,13 @@ import com.jakewharton.trakt.entities.Movie;
 import com.jakewharton.trakt.entities.RatingResponse;
 import com.jakewharton.trakt.entities.Response;
 import com.lopesdasilva.trakt.R;
-import com.lopesdasilva.trakt.Tasks.*;
+import com.lopesdasilva.trakt.Tasks.CheckInChecker;
+import com.lopesdasilva.trakt.Tasks.DownloadMovieInfo;
+import com.lopesdasilva.trakt.Tasks.MarkMovieSeenUnseen;
+import com.lopesdasilva.trakt.Tasks.RateAdvancedMovie;
+import com.lopesdasilva.trakt.Tasks.RateMovieHate;
+import com.lopesdasilva.trakt.Tasks.RateMovieLove;
+import com.lopesdasilva.trakt.Tasks.UnrateMovie;
 import com.lopesdasilva.trakt.extras.UserChecker;
 
 import java.util.Date;

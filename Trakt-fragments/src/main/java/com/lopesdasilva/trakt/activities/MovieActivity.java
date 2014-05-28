@@ -8,9 +8,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.MenuItem;
+
 import com.lopesdasilva.trakt.R;
 import com.lopesdasilva.trakt.fragments.MovieFragment;
-import com.lopesdasilva.trakt.fragments.MovieInfoFragment;
 
 import java.net.URL;
 

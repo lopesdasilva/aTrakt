@@ -5,9 +5,10 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
+
 import com.jakewharton.trakt.ServiceManager;
-import com.lopesdasilva.trakt.activities.LoginActivity;
 import com.lopesdasilva.trakt.TVtraktApp;
+import com.lopesdasilva.trakt.activities.LoginActivity;
 
 /**
  * Created by lopesdasilva on 21/05/13.

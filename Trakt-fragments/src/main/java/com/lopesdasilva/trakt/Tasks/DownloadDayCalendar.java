@@ -1,6 +1,7 @@
 package com.lopesdasilva.trakt.Tasks;
 
 import android.os.AsyncTask;
+
 import com.jakewharton.trakt.ServiceManager;
 import com.jakewharton.trakt.entities.CalendarDate;
 

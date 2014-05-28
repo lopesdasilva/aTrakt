@@ -5,9 +5,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.MenuItem;
+
 import com.lopesdasilva.trakt.R;
 import com.lopesdasilva.trakt.fragments.MoviesAllFragment;
-import com.lopesdasilva.trakt.fragments.ShowsAllFragment;
 
 /**
  * Created by lopesdasilva on 19/06/13.

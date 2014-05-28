@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
+
 import com.androidquery.AQuery;
 import com.jakewharton.trakt.ServiceManager;
 import com.jakewharton.trakt.entities.CalendarDate;
