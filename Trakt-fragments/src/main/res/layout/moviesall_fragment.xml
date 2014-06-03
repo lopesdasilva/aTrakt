@@ -12,3 +12,4 @@
           tools:listitem="@layout/movies_grid_item">
 
 </GridView>
+

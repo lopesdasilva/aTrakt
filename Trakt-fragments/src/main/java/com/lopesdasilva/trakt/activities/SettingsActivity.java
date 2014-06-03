@@ -2,6 +2,8 @@ package com.lopesdasilva.trakt.activities;
 
 import android.app.Activity;
 import android.os.Bundle;
+
+import com.lopesdasilva.trakt.fragments.SettingsFragment;
 import com.lopesdasilva.trakt.preferences.UserSettingFragment;
 
 /**
@@ -14,7 +16,7 @@ public class SettingsActivity extends Activity {
 
         // Display the fragment as the main content.
         getFragmentManager().beginTransaction()
-                .replace(android.R.id.content, new UserSettingFragment())
+                .replace(android.R.id.content, new SettingsFragment())
                 .commit();
     }
 }

@@ -1,6 +1,7 @@
 package com.lopesdasilva.trakt.fragments;
 
 
+import android.app.ActionBar;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -54,6 +55,7 @@ public class EpisodeFragment extends Fragment implements DownloadEpisodeInfo.onE
     private String mUsername;
     private AQuery aq;
     private int rating_temp;
+    private ActionBar actionBar;
 
 
     public EpisodeFragment() {
@@ -101,10 +103,6 @@ public class EpisodeFragment extends Fragment implements DownloadEpisodeInfo.onE
             }else
                 updateUI();
         }
-
-
-
-
 
         return rootView;
     }
@@ -216,6 +214,10 @@ public class EpisodeFragment extends Fragment implements DownloadEpisodeInfo.onE
 
     @Override
     public void onDownloadEpisodeInfoComplete(TvEntity response) {
+        if (getActivity() != null){
+            getActivity().getActionBar().setSubtitle(response.episode.title);
+        }
+
         episode_info = response;
         updateUI();
         mTaskDownloadEpisode = null;

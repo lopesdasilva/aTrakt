@@ -53,6 +53,10 @@ public class SearchShowFragment extends ListFragment implements SearchShowTask.o
         getListView().setDivider(null);
         setListAdapter(mAdapter);
 
+        if (getActivity() != null){
+            getActivity().getActionBar().setSubtitle("Search results");
+        }
+
     }
 
     @Override

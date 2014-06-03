@@ -81,6 +81,7 @@
         android:src="@drawable/hearth_tag"
         android:layout_alignTop="@+id/imageViewMoviesPoster"
         android:layout_alignRight="@+id/textViewMoviesMovieTitle"/>
+
     <ImageView
         android:visibility="gone"
         android:layout_width="50dp"
@@ -89,6 +90,7 @@
         android:src="@drawable/hated_tag"
         android:layout_alignTop="@+id/imageViewMoviesPoster"
         android:layout_alignRight="@+id/textViewMoviesMovieTitle"/>
+
     <RelativeLayout
         android:id="@+id/relativeLayoutAdvanceRating"
         android:layout_width="50dp"
@@ -121,6 +123,7 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true" />
     </RelativeLayout>
+
     <ImageView
         android:layout_width="55dp"
         android:layout_height="55dp"
@@ -128,5 +131,7 @@
         android:src="@drawable/seen_tag"
         android:layout_alignTop="@+id/imageViewMoviesPoster"
         android:layout_alignRight="@+id/textViewMoviesMovieTitle"/>
+
+
 
 </RelativeLayout>

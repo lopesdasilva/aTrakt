@@ -36,12 +36,14 @@ public class MoviesAllFragment extends Fragment implements DownloadTrendingMovie
     private ServiceManager manager;
     private MoviesGridAdapter mAdapter;
     private DownloadTrendingMovies mTrendingMoviesTask;
+    private AQuery aq;
 
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.moviesall_fragment, container, false);
 
         Log.d("Trakt", "MoviesAllFragment saveInstance: " + savedInstanceState);
+
         if (savedInstanceState == null) {
             manager = UserChecker.checkUserLogin(getActivity());
             mTrendingMoviesTask = new DownloadTrendingMovies(this, getActivity(), manager);
@@ -72,6 +74,8 @@ public class MoviesAllFragment extends Fragment implements DownloadTrendingMovie
     public void updateView(List<Movie> response) {
 //        mMoviesListShowing.clear();
         mMoviesListShowing.addAll(response);
+
+
 
         if (getActivity() != null) {
 
