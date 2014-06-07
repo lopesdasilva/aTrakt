@@ -83,7 +83,14 @@ public class LibraryMoviesFragment extends Fragment implements DownloadLibraryMo
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                     Bundle arguments = new Bundle();
-                    arguments.putString("movie_imdb", mMoviesListShowing.get(i).imdbId);
+
+                    if(mMoviesListShowing.get(i).imdbId!=null && !"".equals(mMoviesListShowing.get(i).imdbId))
+                        arguments.putString("movie_imdb", mMoviesListShowing.get(i).imdbId);
+                    else if(mMoviesListShowing.get(i).tmdbId!=null && !"".equals(mMoviesListShowing.get(i).tmdbId))
+                        arguments.putString("movie_imdb", mMoviesListShowing.get(i).tmdbId);
+                    else
+                        arguments.putString("movie_imdb", mMoviesListShowing.get(i).title.replace(" ","-")+"-"+mMoviesListShowing.get(i).year);
+
 
                     Intent intent = new Intent(getActivity(), MovieActivity.class);
                     intent.putExtras(arguments);

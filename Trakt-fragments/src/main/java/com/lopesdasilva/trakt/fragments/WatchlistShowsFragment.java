@@ -87,7 +87,14 @@ public class WatchlistShowsFragment extends Fragment implements DownloadWatchlis
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                     Bundle arguments = new Bundle();
-                    arguments.putString("show_imdb", mShowsListShowing.get(i).imdbId);
+
+                    if(mShowsListShowing.get(i).imdbId!=null && !"".equals(mShowsListShowing.get(i).imdbId))
+                        arguments.putString("show_imdb", mShowsListShowing.get(i).imdbId);
+                    else if(mShowsListShowing.get(i).tvdbId!=null && !"".equals(mShowsListShowing.get(i).tvdbId))
+                        arguments.putString("show_imdb", mShowsListShowing.get(i).tvdbId);
+                    else
+                        arguments.putString("show_imdb", mShowsListShowing.get(i).title.replace(" ","-")+"-"+mShowsListShowing.get(i).year);
+
 
                     Intent intent = new Intent(getActivity(), ShowActivity.class);
                     intent.putExtras(arguments);

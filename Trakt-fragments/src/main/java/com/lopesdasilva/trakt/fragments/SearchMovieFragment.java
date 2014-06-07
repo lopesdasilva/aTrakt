@@ -67,7 +67,14 @@ public class SearchMovieFragment extends ListFragment implements SearchMovieTask
 
 
         Bundle arguments = new Bundle();
-        arguments.putString("movie_imdb", mMovielist.get(position).imdbId);
+        if(mMovielist.get(position).imdbId!=null && !"".equals(mMovielist.get(position).imdbId))
+            arguments.putString("movie_imdb", mMovielist.get(position).imdbId);
+        else if(mMovielist.get(position).tmdbId!=null && !"".equals(mMovielist.get(position).tmdbId))
+            arguments.putString("movie_imdb", mMovielist.get(position).tmdbId);
+        else
+        arguments.putString("movie_imdb", mMovielist.get(position).title.replace(" ","-")+"-"+mMovielist.get(position).year);
+
+
         Intent i = new Intent(getActivity(), MovieActivity.class);
         i.putExtras(arguments);
 

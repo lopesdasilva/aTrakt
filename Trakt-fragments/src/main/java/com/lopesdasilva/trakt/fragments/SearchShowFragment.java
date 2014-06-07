@@ -73,7 +73,14 @@ public class SearchShowFragment extends ListFragment implements SearchShowTask.o
 
 
         Bundle arguments = new Bundle();
-        arguments.putString("show_imdb", mShowlist.get(position).imdbId);
+
+        if(mShowlist.get(position).imdbId!=null && !"".equals(mShowlist.get(position).imdbId))
+            arguments.putString("show_imdb", mShowlist.get(position).imdbId);
+        else if(mShowlist.get(position).tvdbId!=null && !"".equals(mShowlist.get(position).tvdbId))
+            arguments.putString("show_imdb", mShowlist.get(position).tvdbId);
+        else
+            arguments.putString("show_imdb", mShowlist.get(position).title.replace(" ","-")+"-"+mShowlist.get(position).year);
+
 
 
         Intent i = new Intent(getActivity(), ShowActivity.class);

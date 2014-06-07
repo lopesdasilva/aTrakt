@@ -67,7 +67,15 @@ public class EpisodesTonightFragment extends ListFragment implements DownloadDay
         super.onListItemClick(l, v, position, id);
 
         Bundle arguments = new Bundle();
-        arguments.putString("show_imdb", mListepisodes.get(position).show.imdbId);
+
+        if(mListepisodes.get(position).show.imdbId!=null && !"".equals(mListepisodes.get(position).show.imdbId))
+            arguments.putString("show_imdb", mListepisodes.get(position).show.imdbId);
+        else if(mListepisodes.get(position).show.tvdbId!=null && !"".equals(mListepisodes.get(position).show.tvdbId))
+            arguments.putString("show_imdb", mListepisodes.get(position).show.tvdbId);
+        else
+            arguments.putString("show_imdb", mListepisodes.get(position).show.title.replace(" ","-")+"-"+mListepisodes.get(position).show.year);
+
+
         arguments.putInt("show_season", mListepisodes.get(position).episode.season);
         arguments.putInt("show_episode", mListepisodes.get(position).episode.number);
         Intent i = new Intent(getActivity(), EpisodeActivity.class);

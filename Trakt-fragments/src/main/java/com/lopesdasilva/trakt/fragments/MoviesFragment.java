@@ -214,7 +214,15 @@ public class MoviesFragment extends Fragment implements DownloadTrendingMovies.o
                 Log.d("Trakt Fragments", "Launching Movie Activity");
 
                 Bundle arguments = new Bundle();
-                arguments.putString("movie_imdb", m.imdbId);
+
+                if(m.imdbId!=null && !"".equals(m.imdbId))
+                    arguments.putString("movie_imdb", m.imdbId);
+                else if(m.tmdbId!=null && !"".equals(m.imdbId))
+                    arguments.putString("movie_imdb", m.tmdbId);
+                else
+                    arguments.putString("movie_imdb", m.title.replace(" ","-")+"-"+m.year);
+
+
                 Intent intent = new Intent(getActivity(), MovieActivity.class);
                 intent.putExtras(arguments);
 

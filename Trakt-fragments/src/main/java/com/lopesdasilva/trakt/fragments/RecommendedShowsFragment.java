@@ -94,7 +94,15 @@ public class RecommendedShowsFragment extends Fragment implements DownloadRecomm
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                     Bundle arguments = new Bundle();
-                    arguments.putString("show_imdb", mRecommendationsList.get(i).imdbId);
+
+
+                    if(mRecommendationsList.get(i).imdbId!=null && !"".equals(mRecommendationsList.get(i).imdbId))
+                        arguments.putString("show_imdb", mRecommendationsList.get(i).imdbId);
+                    else if(mRecommendationsList.get(i).tvdbId!=null && !"".equals(mRecommendationsList.get(i).tvdbId))
+                        arguments.putString("show_imdb", mRecommendationsList.get(i).tvdbId);
+                    else
+                        arguments.putString("show_imdb", mRecommendationsList.get(i).title.replace(" ","-")+"-"+mRecommendationsList.get(i).year);
+
 
                     Intent intent = new Intent(getActivity(), ShowActivity.class);
                     intent.putExtras(arguments);

@@ -124,7 +124,15 @@ public class CalendarWeekFragment extends Fragment implements DownloadWeekCalend
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
 
                 Bundle arguments = new Bundle();
-                arguments.putString("show_imdb", lista.get(position).show.imdbId);
+
+                if(lista.get(position).show.imdbId!=null && !"".equals(lista.get(position).show.imdbId))
+                    arguments.putString("show_imdb", lista.get(position).show.imdbId);
+                else if(lista.get(position).show.tvdbId!=null && !"".equals(lista.get(position).show.tvdbId))
+                    arguments.putString("show_imdb", lista.get(position).show.tvdbId);
+                else
+                    arguments.putString("show_imdb", lista.get(position).show.title.replace(" ","-")+"-"+lista.get(position).show.year);
+
+
                 arguments.putInt("show_season", lista.get(position).episode.season);
                 arguments.putInt("show_episode", lista.get(position).episode.number);
                 Intent i = new Intent(getActivity(), EpisodeActivity.class);

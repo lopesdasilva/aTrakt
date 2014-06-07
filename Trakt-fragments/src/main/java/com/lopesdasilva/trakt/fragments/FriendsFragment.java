@@ -118,7 +118,15 @@ public class FriendsFragment extends Fragment {
 
 
                 arguments = new Bundle();
-                arguments.putString("show_imdb", activityItem.show.imdbId);
+
+                if(activityItem.show.imdbId!=null && !"".equals(activityItem.show.imdbId))
+                    arguments.putString("show_imdb", activityItem.show.imdbId);
+                else if(activityItem.show.tvdbId!=null && !"".equals(activityItem.show.tvdbId))
+                    arguments.putString("show_imdb", activityItem.show.tvdbId);
+                else
+                    arguments.putString("show_imdb", activityItem.show.title.replace(" ","-")+"-"+activityItem.show.year);
+
+
                 arguments.putInt("show_season", activityItem.episode.season);
                 arguments.putInt("show_episode", activityItem.episode.number);
                 i = new Intent(getActivity(), EpisodeActivity.class);
@@ -146,7 +154,14 @@ public class FriendsFragment extends Fragment {
 
 
                 arguments = new Bundle();
-                arguments.putString("movie_imdb", activityItem.movie.imdbId);
+                if(activityItem.movie.imdbId!=null && !"".equals(activityItem.movie.imdbId))
+                    arguments.putString("movie_imdb", activityItem.movie.imdbId);
+                else if(activityItem.movie.tmdbId!=null && !"".equals(activityItem.movie.tmdbId))
+                    arguments.putString("movie_imdb", activityItem.movie.tmdbId);
+                else
+                    arguments.putString("movie_imdb", activityItem.movie.title.replace(" ","-")+"-"+activityItem.movie.year);
+
+
                 i = new Intent(getActivity(), MovieActivity.class);
                 i.putExtras(arguments);
 

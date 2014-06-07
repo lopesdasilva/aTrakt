@@ -101,7 +101,15 @@ public class WatchlistEpisodes extends DialogFragment implements MarkEpisodeSeen
 
                 Log.d("Trakt", "position" + position + " size" + lista.size());
                 Bundle arguments = new Bundle();
-                arguments.putString("show_imdb", currentShow.imdbId);
+
+                if(currentShow.imdbId!=null && !"".equals(currentShow.imdbId))
+                    arguments.putString("show_imdb", currentShow.imdbId);
+                else if(currentShow.tvdbId!=null && !"".equals(currentShow.tvdbId))
+                    arguments.putString("show_imdb", currentShow.tvdbId);
+                else
+                    arguments.putString("show_imdb", currentShow.title.replace(" ","-")+"-"+currentShow.year);
+
+
                 arguments.putInt("show_season", currentShow.episodes.get(position).season);
                 arguments.putInt("show_episode", currentShow.episodes.get(position).number);
                 Intent i = new Intent(getActivity(), EpisodeActivity.class);

@@ -185,7 +185,15 @@ public class ActivityWeekFragment extends Fragment implements DownloadWeekActivi
                             break;
                         case Show:
                             Log.d("Trakt it", "Launching Show Activity");
-                            arguments.putString("show_imdb", weekActivity.get(i).show.imdbId);
+
+                            if(weekActivity.get(i).show.imdbId!=null && !"".equals(weekActivity.get(i).show.imdbId))
+                                arguments.putString("show_imdb", weekActivity.get(i).show.imdbId);
+                            else if(weekActivity.get(i).show.tvdbId!=null && !"".equals(weekActivity.get(i).show.tvdbId))
+                                arguments.putString("show_imdb", weekActivity.get(i).show.tvdbId);
+                            else
+                                arguments.putString("show_imdb", weekActivity.get(i).show.title.replace(" ","-")+"-"+weekActivity.get(i).show.year);
+
+
                             intent = new Intent(getActivity(), ShowActivity.class);
                             intent.putExtras(arguments);
                             startActivity(intent);
@@ -194,7 +202,14 @@ public class ActivityWeekFragment extends Fragment implements DownloadWeekActivi
                             break;
                         case Movie:
                             Log.d("Trakt Fragments", "Launching Movie Activity");
-                            arguments.putString("movie_imdb", weekActivity.get(i).movie.imdbId);
+
+                            if(weekActivity.get(i).movie.imdbId!=null && !"".equals(weekActivity.get(i).movie.imdbId))
+                                arguments.putString("movie_imdb", weekActivity.get(i).movie.imdbId);
+                            else if(weekActivity.get(i).movie.tmdbId!=null && !"".equals(weekActivity.get(i).movie.tmdbId))
+                                arguments.putString("movie_imdb", weekActivity.get(i).movie.tmdbId);
+                            else
+                                arguments.putString("movie_imdb", weekActivity.get(i).movie.title.replace(" ","-")+"-"+weekActivity.get(i).movie.year);
+
                             intent = new Intent(getActivity(), MovieActivity.class);
                             intent.putExtras(arguments);
 

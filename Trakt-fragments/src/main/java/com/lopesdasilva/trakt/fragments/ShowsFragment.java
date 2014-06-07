@@ -224,7 +224,14 @@ public class ShowsFragment extends Fragment implements DownloadTrendingShows.onT
                 Log.d("Trakt Fragments", "Launching Show Activity");
 
                 Bundle arguments = new Bundle();
-                arguments.putString("show_imdb", show.imdbId);
+
+                if(show.imdbId!=null && !"".equals(show.imdbId))
+                    arguments.putString("show_imdb", show.imdbId);
+                else if(show.tvdbId!=null && !"".equals(show.tvdbId))
+                    arguments.putString("show_imdb", show.tvdbId);
+                else
+                    arguments.putString("show_imdb", show.title.replace(" ","-")+"-"+show.year);
+
 
                 Intent intent = new Intent(getActivity(), ShowActivity.class);
                 intent.putExtras(arguments);

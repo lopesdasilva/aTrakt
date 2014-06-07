@@ -96,7 +96,14 @@ public class RecommendedMoviesFragment extends Fragment implements DismissRecome
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                     Bundle arguments = new Bundle();
-                    arguments.putString("movie_imdb", mRecommendationsList.get(i).imdbId);
+
+
+                    if(mRecommendationsList.get(i).imdbId!=null && !"".equals(mRecommendationsList.get(i).imdbId))
+                        arguments.putString("movie_imdb", mRecommendationsList.get(i).imdbId);
+                    else if(mRecommendationsList.get(i).tmdbId!=null && !"".equals(mRecommendationsList.get(i).tmdbId))
+                        arguments.putString("movie_imdb", mRecommendationsList.get(i).tmdbId);
+                    else
+                        arguments.putString("movie_imdb", mRecommendationsList.get(i).title.replace(" ","-")+"-"+mRecommendationsList.get(i).year);
 
                     Intent intent = new Intent(getActivity(), MovieActivity.class);
                     intent.putExtras(arguments);
