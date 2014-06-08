@@ -10,6 +10,6 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="SUN FRAGMENT"
-        android:id="@+id/textView"
+        android:id="@+id/textViewMovieInfoRuntime"
         android:layout_gravity="center"/>
 </LinearLayout>

@@ -122,6 +122,17 @@ public class MovieInfoFragment extends Fragment{
             aq.id(R.id.textViewEpisodeOverview).text(movie.overview);
             aq.id(R.id.textViewEpisodeRatingsPercentage).text(movie.ratings.percentage + "%");
             aq.id(R.id.textViewEpisodeRatingsVotes).text(movie.ratings.votes + " votes");
+            aq.id(R.id.textViewMovieInfoRuntime).text(movie.runtime+" minutes");
+            StringBuilder genres= new StringBuilder();
+            for(int index=0; index!=movie.genres.length;index++){
+                genres.append(movie.genres[index]);
+                if(index!=movie.genres.length-1)
+                    genres.append(" | ");
+
+            }
+
+            aq.id(R.id.textViewMovieInfoGenre).text(genres.toString());
+
 
             SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d, yyyy");
 

@@ -10,5 +10,5 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="PLANET FRAGMENT"
-        android:id="@+id/textView"/>
+        android:id="@+id/textViewMovieInfoRuntime"/>
 </LinearLayout>

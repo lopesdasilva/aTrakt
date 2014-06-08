@@ -141,7 +141,12 @@
     <style name="Item.Sticky.1Line">
         <item name="android:ellipsize">end</item>
         <item name="android:maxLines">1</item>
+        <item name="android:gravity">center</item>
     </style>
+    <style name="Item.Sticky.1Line.Small">
+
+        <item name="android:textAppearance">?android:textAppearanceMedium</item>
+        </style>
     <style name="Item.Sticky.1Line.Left">
 
         <item name="android:gravity">left</item>

@@ -189,7 +189,7 @@ public class EpisodeFragment extends Fragment implements DownloadEpisodeInfo.onE
 
                 return true;
             case 4:
-                RatingAdvance  dialog=new RatingAdvance(this,episode_info.episode.ratingAdvanced);
+                RatingAdvance  dialog=new RatingAdvance(this,episode_info.episode.ratingAdvanced,-1);
                 dialog.show(getFragmentManager(), "NoticeDialogFragment");
 //                new RateEpisodeHate(getActivity(),EpisodeFragment.this,manager,episode_info.show,episode_info.episode,0).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 //
@@ -278,6 +278,10 @@ public class EpisodeFragment extends Fragment implements DownloadEpisodeInfo.onE
         aq.id(R.id.textViewEpisodeOverview).text(episode_info.episode.overview);
         aq.id(R.id.textViewEpisodeRatingsPercentage).text(episode_info.episode.ratings.percentage + "%");
         aq.id(R.id.textViewEpisodeRatingsVotes).text(episode_info.episode.ratings.votes + " votes");
+        aq.id(R.id.textViewEpisodeInfoRuntime).text(episode_info.show.runtime+" minutes");
+        aq.id(R.id.textViewEpisodeInfoNetwork).text(episode_info.show.network);
+
+
         aq.id(R.id.textViewEpisodeShow).text(episode_info.show.title).clicked(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -455,8 +459,9 @@ public class EpisodeFragment extends Fragment implements DownloadEpisodeInfo.onE
         updateRatings(response);
     }
 
+
     @Override
-    public void onRatingComplete(int rating) {
+    public void onRatingComplete(int rating, int position) {
         new RateAdvancedEpisode(getActivity(),this,manager,episode_info.show,episode_info.episode,rating,rating).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
         rating_temp=rating;
     }

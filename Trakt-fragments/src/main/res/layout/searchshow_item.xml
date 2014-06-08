@@ -35,7 +35,7 @@
         android:id="@+id/textViewSearchShowTag"
         android:layout_below="@+id/textViewSearchShowTitle"
         android:layout_alignRight="@+id/textViewSearchShowRatingsPercentage"
-        android:layout_toRightOf="@+id/textView"/>
+        android:layout_toRightOf="@+id/textViewMovieInfoRuntime"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -63,14 +63,14 @@
         android:id="@+id/textViewSearchShowOverview"
         android:layout_below="@+id/textViewSearchShowTag"
         android:layout_alignRight="@+id/textViewSearchShowTag"
-        android:layout_alignLeft="@+id/textView"/>
+        android:layout_alignLeft="@+id/textViewMovieInfoRuntime"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Seasons:"
-        android:id="@+id/textView"
+        android:id="@+id/textViewMovieInfoRuntime"
         android:layout_below="@+id/textViewSearchShowTitle"
         android:layout_alignLeft="@+id/textViewSearchShowTitle"
         style="@style/CardText.1Line.Bigger"

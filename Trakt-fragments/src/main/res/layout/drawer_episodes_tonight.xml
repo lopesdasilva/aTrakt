@@ -55,7 +55,7 @@
             android:text="No shows on tonight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/textView2"
+            android:id="@+id/textViewShowInfoVotes"
             style="@style/CardText.1Line"
             android:layout_below="@+id/imageView"></TextView>
 

@@ -31,7 +31,7 @@ android:orientation="vertical" android:layout_width="match_parent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/phrase_trakt"
-                android:id="@+id/textView"
+                android:id="@+id/textViewMovieInfoRuntime"
                 style="@style/CardTitle"
                 android:layout_gravity="center"
                 android:layout_below="@+id/imageView"
@@ -64,15 +64,15 @@ android:orientation="vertical" android:layout_width="match_parent"
                 android:hint="@string/prompt_username"
                 android:ems="10"
                 android:id="@+id/editTextRegisterUsername"
-                android:layout_below="@+id/textView2"
+                android:layout_below="@+id/textViewShowInfoVotes"
                 android:layout_centerHorizontal="true" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/register_info"
-                android:id="@+id/textView2"
-                android:layout_below="@+id/textView"
+                android:id="@+id/textViewShowInfoVotes"
+                android:layout_below="@+id/textViewMovieInfoRuntime"
                 android:layout_centerHorizontal="true"
                 style="@style/CardText.1Line"/>
 

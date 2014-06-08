@@ -52,7 +52,7 @@
         android:layout_width="wrap_content"
         android:layout_height="30dp"
         android:text="Fri 10:30"
-        android:id="@+id/textView"
+        android:id="@+id/textViewMovieInfoRuntime"
         android:gravity="center_vertical|right"
         android:layout_alignBottom="@+id/imageViewFriendsPoster"
         android:layout_alignParentRight="true"

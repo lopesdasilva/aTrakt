@@ -2,11 +2,14 @@
 
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
              android:layout_width="match_parent"
-             android:layout_height="match_parent">
+             android:layout_height="match_parent"
+
+             android:background="@color/light_grey" >
     <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/nowCardStyle">
+            style="@style/nowCardStyle"
+        >
 
         <ImageView
             android:layout_width="match_parent"
@@ -25,7 +28,8 @@
             android:layout_below="@+id/imageViewEpisodeScreen"
             android:layout_alignLeft="@+id/imageViewEpisodeScreen"
             android:text="@string/movie"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_alignParentRight="true"/>
         <View
             android:id="@+id/view1"
             android:layout_width="fill_parent"
@@ -38,8 +42,9 @@
             android:id="@+id/Layoutstats"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/view1"
-            android:layout_centerHorizontal="true" >
+            android:layout_below="@+id/textViewMovieTitle"
+            android:layout_alignParentLeft="true"
+            android:layout_alignRight="@+id/relativeLayoutAdvanceRating">
 
             <ImageView
                 android:id="@+id/imageViewFavoriteImage"
@@ -53,11 +58,13 @@
                 style="@style/CardText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="10dp"
-                android:layout_toRightOf="@+id/textViewEpisodeRatingsPercentage"
                 android:text="@string/votes"
-                android:textAppearance="?android:attr/textAppearanceSmall" />
+                android:layout_marginLeft="3dp"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:layout_gravity="center"
+                android:gravity="center_vertical"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/textViewEpisodeRatingsPercentage"/>
 
             <TextView
                 android:id="@+id/textViewEpisodeRatingsPercentage"
@@ -67,8 +74,26 @@
                 android:layout_alignParentBottom="true"
                 android:layout_toRightOf="@+id/imageViewFavoriteImage"
                 android:text="93%"
-                android:textAppearance="?android:attr/textAppearanceLarge" />
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:layout_alignParentTop="true"/>
 
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_action_clock"
+                android:layout_alignParentTop="true"
+                android:layout_toLeftOf="@+id/textViewMovieInfoRuntime"/>
+
+            <TextView
+                style="@style/CardTitleBold.Blue"
+                android:id="@+id/textViewMovieInfoRuntime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="100 minutes"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"/>
 
 
         </RelativeLayout>
@@ -76,12 +101,18 @@
 
         <TextView
             android:id="@+id/textViewEpisodeAirDate"
-            style="@style/Item.Sticky.1Line"
+            style="@style/Item.Sticky.1Line.Left"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="Released Fev 7, 2014"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textAlignment="viewStart"
             android:layout_below="@+id/Layoutstats"
-            android:text="Medium Text"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:layout_toRightOf="@+id/imageView2"
+            android:layout_alignBottom="@+id/imageView2"
+            android:layout_alignParentRight="true"
+            android:autoText="false"
+            android:gravity="center_vertical"/>
 
         <ImageView
             android:id="@+id/imageViewEpisodeSeen"
@@ -133,7 +164,7 @@
             android:text="@string/overview"
             android:layout_marginTop="2dp"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:layout_below="@+id/textViewEpisodeAirDate"/>
+            android:layout_below="@+id/imageView3"/>
 
         <TextView
             android:id="@+id/textViewEpisodeOverview"
@@ -141,7 +172,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="3dp"
-            android:text="Small Text"
+            android:text="@string/lorem_ipsum"
             android:layout_below="@+id/text2"
             android:textAppearance="?android:attr/textAppearanceSmall" />
 
@@ -199,6 +230,36 @@
             android:layout_alignLeft="@+id/imageViewEpisodeScreen"
             android:layout_above="@+id/textViewMovieTitle"
             android:layout_alignRight="@+id/imageViewEpisodeSeen"/>
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_action_go_to_today"
+            android:layout_below="@+id/Layoutstats"
+            android:layout_alignParentLeft="true"/>
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_action_labels"
+            android:layout_below="@+id/textViewEpisodeAirDate"
+            android:layout_alignParentLeft="true"/>
+
+        <TextView
+            style="@style/Item.Sticky.1Line.Left"
+            android:id="@+id/textViewMovieInfoGenre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Comedy | Animation"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textAlignment="viewStart"
+            android:layout_below="@+id/textViewEpisodeAirDate"
+            android:layout_toRightOf="@+id/imageView2"
+            android:layout_above="@+id/text2"
+            android:layout_alignParentRight="true"
+            android:gravity="center_vertical"/>
 
     </RelativeLayout>
 

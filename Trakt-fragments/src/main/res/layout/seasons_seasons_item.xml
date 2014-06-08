@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:text="Select All"
         android:textColor="@color/blue"
-        android:id="@+id/textView"
+        android:id="@+id/textViewMovieInfoRuntime"
         android:gravity="center_vertical|center_horizontal"
         android:background="@drawable/bg_selected"
         android:layout_alignParentTop="true"

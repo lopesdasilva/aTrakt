@@ -33,88 +33,30 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/imageViewShowFanart"
-                android:text="Large Text"
-                android:textAppearance="?android:attr/textAppearanceLarge" />
+                android:text="Episode Title"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentLeft="true"/>
 
             <View
                 android:id="@+id/viewLine"
                 android:layout_width="fill_parent"
                 android:layout_height="1dp"
                 android:padding="2dp"
-                android:layout_below="@+id/relativeLayoutShowStats"
-                android:background="@color/light_grey" />
-
-            <RelativeLayout
-                android:id="@+id/relativeLayoutShowStats"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
+                android:background="@color/light_grey"
                 android:layout_below="@+id/textViewShowInfo"
-                android:layout_alignLeft="@+id/imageViewShowFanart">
-
-                <ImageView
-                    android:id="@+id/imageViewSeasonEpisodeScreen"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/rating_favorite" />
-
-                <TextView
-                    android:id="@+id/textViewShowPercentage"
-                    style="@style/CardTitleBold.Blue"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="10dp"
-                    android:layout_toRightOf="@+id/imageViewSeasonEpisodeScreen"
-                    android:text="93%"
-                    android:textAppearance="?android:attr/textAppearanceLarge" />
-
-                <TextView
-                    android:id="@+id/textViewShowNetwork"
-                    style="@style/CardTitleBold.Blue"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignBaseline="@+id/textViewShowPercentage"
-                    android:layout_alignBottom="@+id/textViewShowPercentage"
-                    android:layout_alignParentRight="true"
-                    android:text="@string/network"
-                    android:textAppearance="?android:attr/textAppearanceSmall" />
-
-                <TextView
-                    android:id="@+id/textView4"
-                    style="@style/CardText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_toLeftOf="@+id/textViewShowNetwork"
-                    android:paddingLeft="2dp"
-                    android:paddingRight="2dp"
-                    android:text="@string/on"
-                    android:textAppearance="?android:attr/textAppearanceSmall" />
-
-                <TextView
-                    android:id="@+id/textViewAirDate"
-                    style="@style/CardTitleBold"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_toLeftOf="@+id/textView4"
-                    android:text="Sun 9pm"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
-
-            </RelativeLayout>
+                android:layout_alignParentLeft="true"/>
 
             <TextView
                 android:id="@+id/textViewShowNextEpisode"
                 android:gravity="left"
-                style="@style/Item.Sticky.1Line"
+                style="@style/Item.Sticky.1Line.Small"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/nextepisode"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:layout_below="@+id/viewLine"
-                android:layout_alignLeft="@+id/viewLine"
+                android:layout_below="@+id/textViewShowInfo"
+                android:layout_alignParentLeft="true"
                 android:layout_toLeftOf="@+id/buttonShowNextEpisode"/>
 
             <ImageView
@@ -133,8 +75,8 @@
                 android:text="EPISODE"
 
                 android:id="@+id/buttonShowNextEpisode"
-                android:layout_alignBottom="@+id/textViewShowNextEpisodeDate"
-                android:layout_alignRight="@+id/viewLine"/>
+                android:layout_below="@+id/textViewShowInfo"
+                android:layout_alignParentRight="true"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -144,7 +86,8 @@
                 style="@style/CardText.1Line"
                 android:id="@+id/textViewShowNextEpisodeDate"
                 android:layout_below="@+id/textViewShowNextEpisode"
-                android:layout_alignParentLeft="true"/>
+                android:layout_alignParentLeft="true"
+                android:layout_toLeftOf="@+id/buttonShowNextEpisode"/>
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -205,16 +148,89 @@
                     android:layout_alignParentRight="true" />
                 </RelativeLayout>
 
+            <TextView
+                android:id="@+id/textViewAirDate"
+                style="@style/CardTitleBold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sun 9pm"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_alignTop="@+id/imageView"
+                android:layout_toRightOf="@+id/imageView"/>
 
+            <TextView
+                android:id="@+id/textView4"
+                style="@style/CardText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="2dp"
+                android:paddingRight="2dp"
+                android:text="@string/on"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:layout_alignBaseline="@+id/textViewAirDate"
+                android:layout_alignBottom="@+id/textViewAirDate"
+                android:layout_toRightOf="@+id/textViewAirDate"/>
 
+            <TextView
+                android:id="@+id/textViewShowNetwork"
+                style="@style/CardTitleBold.Blue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/network"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:layout_alignBottom="@+id/textView4"
+                android:layout_toRightOf="@+id/textView4"/>
 
-        </RelativeLayout>
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_action_go_to_today"
+                android:layout_below="@+id/textViewShowInfoVotes"
+                android:layout_alignRight="@+id/imageViewShowCollectionTag"/>
 
-        <LinearLayout
-            style="@style/nowCardStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_action_clock"
+                android:layout_alignBottom="@+id/textViewShowInfoRuntime"
+                android:layout_toLeftOf="@+id/textViewShowInfoRuntime"/>
+
+            <TextView
+                style="@style/CardText"
+                android:id="@+id/textViewShowInfoVotes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/votes"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:layout_gravity="center"
+                android:layout_marginLeft="3dp"
+                android:gravity="center_vertical"
+                android:layout_alignBaseline="@+id/textViewShowInfoRuntime"
+                android:layout_alignBottom="@+id/textViewShowInfoRuntime"
+                android:layout_toRightOf="@+id/textViewShowPercentage"/>
+
+            <TextView
+                style="@style/Item.Sticky.1Line.Left"
+                android:id="@+id/textViewShowInfoGenre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Comedy | Animation"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textAlignment="viewStart"
+                android:gravity="center_vertical|left"
+                android:layout_below="@+id/textView4"
+                android:layout_toRightOf="@+id/imageView3"
+                android:layout_above="@+id/textViewSeasonEpisodeDate"/>
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_action_labels"
+                android:layout_below="@+id/textViewAirDate"
+                android:layout_alignParentLeft="true"/>
 
             <TextView
                 android:id="@+id/textViewSeasonEpisodeDate"
@@ -222,7 +238,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/overview"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_below="@+id/imageView3"
+                android:layout_alignParentLeft="true"/>
 
             <TextView
                 android:id="@+id/textViewShowOverview"
@@ -231,8 +249,41 @@
                 android:layout_height="wrap_content"
                 android:padding="3dp"
                 android:text="Small Text"
-                android:textAppearance="?android:attr/textAppearanceSmall" />
-        </LinearLayout>
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:layout_alignLeft="@+id/imageView"
+                android:layout_below="@+id/textViewSeasonEpisodeDate"/>
+
+            <TextView
+                style="@style/CardTitleBold"
+                android:id="@+id/textViewShowInfoRuntime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="50 minutes"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_below="@+id/buttonShowNextEpisode"
+                android:layout_alignParentRight="true"/>
+
+            <TextView
+                android:id="@+id/textViewShowPercentage"
+                style="@style/CardTitleBold.Blue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="93%"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:layout_below="@+id/textViewShowNextEpisodeDate"
+                android:layout_toRightOf="@+id/imageViewSeasonEpisodeScreen"/>
+
+            <ImageView
+                android:id="@+id/imageViewSeasonEpisodeScreen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/rating_favorite"
+                android:layout_below="@+id/textViewShowNextEpisodeDate"
+                android:layout_alignParentLeft="true"/>
+
+
+        </RelativeLayout>
+
     </LinearLayout>
 
 </ScrollView>

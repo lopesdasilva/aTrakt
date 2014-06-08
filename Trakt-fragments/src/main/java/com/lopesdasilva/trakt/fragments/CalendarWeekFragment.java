@@ -176,7 +176,7 @@ public class CalendarWeekFragment extends Fragment implements DownloadWeekCalend
                                 new MarkEpisodeSeenUnseen(getActivity(), CalendarWeekFragment.this, manager, lista.get(position).show, lista.get(position).episode, position).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
                                 break;
                             case 1:
-                                RatingAdvance  dialogRatingAdvance=new RatingAdvance(CalendarWeekFragment.this,lista.get(position).episode.ratingAdvanced);
+                                RatingAdvance  dialogRatingAdvance=new RatingAdvance(CalendarWeekFragment.this,lista.get(position).episode.ratingAdvanced,-1);
                                 dialogRatingAdvance.show(getFragmentManager(), "NoticeDialogFragment");
                                 temp_position=position;
                                 break;
@@ -242,7 +242,7 @@ public class CalendarWeekFragment extends Fragment implements DownloadWeekCalend
     }
 
     @Override
-    public void onRatingComplete(int rating) {
+    public void onRatingComplete(int rating,int position) {
         this.rating=rating;
         new RateAdvancedEpisode(getActivity(),this,manager,lista.get(temp_position).show,lista.get(temp_position).episode,rating,temp_position).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     }

@@ -83,6 +83,7 @@
     <string name="prefs_enable_tonight_shows_notifications_summary">Enable a notification with your shows airing tonight</string>
     <string name="prefs_enable_checkin_notifications_summary">Enable a notification when you are watching movie or an episode</string>
     <string name="prefs_enable_checkin_notifications">Checkin</string>
+    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus nec augue nisl. Sed a ultricies dolor. Sed vitae velit rutrum, pellentesque nisi sit amet, cursus justo. Donec a congue leo, luctus tempor leo. In hac habitasse platea dictumst. Proin sed mi a magna auctor semper sed vestibulum odio. Aliquam in urna massa. Lorem ipsum dolor sit amet, consectetur adipiscing elit. </string>
     <array name="watchlist">
 
 

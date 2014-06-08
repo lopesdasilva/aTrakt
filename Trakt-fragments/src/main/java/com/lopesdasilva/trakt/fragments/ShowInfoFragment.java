@@ -54,7 +54,17 @@ public class ShowInfoFragment extends Fragment {
         aq.id(R.id.imageViewShowFanart).image(show.images.fanart, false, true,600,R.drawable.episode_backdrop,aq.getCachedImage(R.drawable.episode_backdrop),AQuery.FADE_IN,AQuery.RATIO_PRESERVE);
         aq.id(R.id.textViewShowOverview).text(show.overview);
         aq.id(R.id.textViewShowNetwork).text(show.network);
-        aq.id(R.id.textViewAirDate).text(show.airDay.name().substring(0, 3) + " " + show.airTime.replace(":00", ""));
+        aq.id(R.id.textViewAirDate).text(show.airDayUTC.name().substring(0, 3) + " " + show.airTimeUTC.replace(":00", ""));
+        aq.id(R.id.textViewShowInfoVotes).text(show.ratings.votes + " votes");
+        aq.id(R.id.textViewShowInfoRuntime).text(show.runtime+" minutes");
+        StringBuilder genres= new StringBuilder();
+        for(int index=0; index!=show.genres.length;index++){
+            genres.append(show.genres[index]);
+            if(index!=show.genres.length-1)
+                genres.append(" | ");
+
+        }
+        aq.id(R.id.textViewShowInfoGenre).text(genres.toString());
 
         TvShowEpisode episode_unwatched = null;
         for (TvShowSeason season : show.seasons) {

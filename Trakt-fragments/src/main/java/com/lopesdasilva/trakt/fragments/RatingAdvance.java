@@ -18,15 +18,20 @@ import com.lopesdasilva.trakt.R;
  */
 public class RatingAdvance extends DialogFragment {
 
-    private final String currentRating;
+    private String currentRating;
+    private int position=-1;
     private SeekBar ratingBar;
     private TextView txtRatingValue;
     private OnRatingComplete listener;
 
-    public RatingAdvance(OnRatingComplete listener, String ratingAdvanced){
+    public RatingAdvance(){
+    }
+
+
+    public RatingAdvance(OnRatingComplete listener, String ratingAdvanced, int position) {
         this.listener=listener;
         this.currentRating=ratingAdvanced;
-
+        this.position=position;
     }
 
     @Override
@@ -45,7 +50,7 @@ public class RatingAdvance extends DialogFragment {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
 
-                        listener.onRatingComplete(Integer.parseInt(txtRatingValue.getText().toString()));
+                            listener.onRatingComplete(Integer.parseInt(txtRatingValue.getText().toString()),position);
                     }
                 })
                 .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
@@ -83,7 +88,8 @@ public class RatingAdvance extends DialogFragment {
     }
 
     public interface OnRatingComplete{
-        void onRatingComplete(int rating);
+        void onRatingComplete(int rating, int position);
     }
+
 
 }

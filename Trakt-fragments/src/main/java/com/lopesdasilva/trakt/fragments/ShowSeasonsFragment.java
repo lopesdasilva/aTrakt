@@ -21,15 +21,12 @@ import android.widget.Toast;
 
 import com.androidquery.AQuery;
 import com.jakewharton.trakt.ServiceManager;
+import com.jakewharton.trakt.entities.RatingResponse;
 import com.jakewharton.trakt.entities.TvShow;
 import com.jakewharton.trakt.entities.TvShowEpisode;
 import com.jakewharton.trakt.entities.TvShowSeason;
 import com.lopesdasilva.trakt.R;
-import com.lopesdasilva.trakt.Tasks.DownloadSeasonsInfo;
-import com.lopesdasilva.trakt.Tasks.DownloadShowInfo;
-import com.lopesdasilva.trakt.Tasks.EpisodeWatchlistUnWatchlist;
-import com.lopesdasilva.trakt.Tasks.MarkEpisodeSeenUnseen;
-import com.lopesdasilva.trakt.Tasks.MultipleSeenUnseenTask;
+import com.lopesdasilva.trakt.Tasks.*;
 import com.lopesdasilva.trakt.activities.EpisodeActivity;
 import com.lopesdasilva.trakt.extras.UserChecker;
 import com.tonicartos.widget.stickygridheaders.StickyGridHeadersBaseAdapter;
@@ -42,7 +39,7 @@ import java.util.List;
 /**
  * Created by lopesdasilva on 22/05/13.
  */
-public class ShowSeasonsFragment extends Fragment implements MarkEpisodeSeenUnseen.OnMarkSeenUnseenCompleted, MultipleSeenUnseenTask.OnMarkSeenUnseenCompleted, EpisodeWatchlistUnWatchlist.WatchlistUnWatchlistCompleted, DownloadSeasonsInfo.onSeasonsTaskComplete, DownloadShowInfo.onShowInfoTaskComplete {
+public class ShowSeasonsFragment extends Fragment implements MarkEpisodeSeenUnseen.OnMarkSeenUnseenCompleted, MultipleSeenUnseenTask.OnMarkSeenUnseenCompleted, EpisodeWatchlistUnWatchlist.WatchlistUnWatchlistCompleted, DownloadSeasonsInfo.onSeasonsTaskComplete, DownloadShowInfo.onShowInfoTaskComplete, RatingAdvance.OnRatingComplete, RateAdvancedEpisode.OnRatingAdvancedEpisodeCompleted {
 
 
     List<TvShowEpisode> mSelectedEpisodes = new LinkedList<TvShowEpisode>();
@@ -56,6 +53,7 @@ public class ShowSeasonsFragment extends Fragment implements MarkEpisodeSeenUnse
     private List<TvShowEpisode> lista = new LinkedList<TvShowEpisode>();
     private Bundle savedInstanceState;
     private String mShow;
+    private int rating_temp;
 
     public ShowSeasonsFragment() {
     }
@@ -274,6 +272,19 @@ public class ShowSeasonsFragment extends Fragment implements MarkEpisodeSeenUnse
         onActivityCreated(savedInstanceState);
     }
 
+    @Override
+    public void onRatingComplete(int rating,int position) {
+        new RateAdvancedEpisode(getActivity(),ShowSeasonsFragment.this,manager,show,lista.get(position),rating,position).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+        rating_temp=rating;
+    }
+
+    @Override
+    public void OnRatingAdvancedEpisodeCompleted(int position, RatingResponse response) {
+        lista.get(position).ratingAdvanced=rating_temp+"";
+        mAdapter.notifyDataSetChanged();
+    }
+
+
 
     public class ShowSeasonsAdapter extends BaseAdapter implements StickyGridHeadersBaseAdapter {
 
@@ -430,6 +441,10 @@ public class ShowSeasonsFragment extends Fragment implements MarkEpisodeSeenUnse
                         case R.id.action_episode_add_watchlist:
                             new EpisodeWatchlistUnWatchlist(getActivity(), ShowSeasonsFragment.this, manager, show, episode, position).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
                             return true;
+                        case R.id.action_episode_rating:
+                            RatingAdvance  dialog=new RatingAdvance(ShowSeasonsFragment.this,episode.ratingAdvanced,position);
+                            dialog.show(getFragmentManager(), "NoticeDialogFragment");
+//                new RateShowHate(getActivity(),ShowFragment.this,manager,mTVshow,0).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
                         default:
                             return false;
@@ -445,6 +460,7 @@ public class ShowSeasonsFragment extends Fragment implements MarkEpisodeSeenUnse
                 popup.inflate(R.menu.seasons_episode_actions_remove_watchlist);
             } else
                 popup.inflate(R.menu.seasons_episode_actions_add_watchlist);
+            popup.inflate(R.menu.seasons_episode_actions_rate);
         }
 
 

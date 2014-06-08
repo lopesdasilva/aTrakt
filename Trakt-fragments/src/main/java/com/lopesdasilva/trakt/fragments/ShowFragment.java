@@ -82,8 +82,7 @@ public class ShowFragment extends Fragment implements ActionBar.TabListener, Dow
 
                 return true;
             case 3:
-                RatingAdvance  dialog=new RatingAdvance(this,mTVshow.ratingAdvanced);
-                dialog.show(getFragmentManager(), "NoticeDialogFragment");
+                RatingAdvance  dialog=new RatingAdvance(this,mTVshow.ratingAdvanced, -1);
 //                new RateShowHate(getActivity(),ShowFragment.this,manager,mTVshow,0).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
                 return true;
@@ -263,7 +262,7 @@ public class ShowFragment extends Fragment implements ActionBar.TabListener, Dow
     }
 
     @Override
-    public void onRatingComplete(int rating) {
+    public void onRatingComplete(int rating, int position) {
         new RateAdvancedShow(getActivity(),this,manager,mTVshow,rating,rating).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
         rating_temp=rating;
 

@@ -134,7 +134,7 @@ public class MovieFragment extends Fragment implements ActionBar.TabListener, Do
                 new MovieWatchlist().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
                 return true;
             case 4:
-                RatingAdvance  dialog=new RatingAdvance(this,mMovie.ratingAdvanced);
+                RatingAdvance  dialog=new RatingAdvance(this,mMovie.ratingAdvanced,-1);
                 dialog.show(getFragmentManager(), "NoticeDialogFragment");
 
                 break;
@@ -311,7 +311,7 @@ public class MovieFragment extends Fragment implements ActionBar.TabListener, Do
     }
 
     @Override
-    public void onRatingComplete(int rating) {
+    public void onRatingComplete(int rating,int position) {
         this.rating=rating;
         new RateAdvancedMovie(getActivity(), MovieFragment.this, manager, mMovie,rating, 0)
                 .executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
